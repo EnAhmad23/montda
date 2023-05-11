@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class Login implements Initializable {
     private final String url = "jdbc:postgresql://localhost/UNI1";
     private final String user = "postgres";
-    private final String password = "bohboq20";
+    private final String password = "شيةخى";
     @FXML
     private AnchorPane root;
     @FXML
