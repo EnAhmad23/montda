@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.test_javafx.views.AddStudent"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddStudent">
+   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="600.0" style="-fx-background-color: #37474F;">
+      <Button fx:id="btn_add" layoutX="365.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="43.0" layoutY="58.0" prefHeight="23.0" prefWidth="117.0" text="Student ID" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="126.0" prefHeight="23.0" prefWidth="74.0" text="Name" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="room" layoutX="161.0" layoutY="187.0" prefHeight="26.0" prefWidth="162.0" style="-fx-background-color: #DEE4E7;" />
+      <Label layoutX="43.0" layoutY="189.0" prefHeight="23.0" prefWidth="74.0" text="Level" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="256.0" prefHeight="23.0" prefWidth="74.0" text="Major" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="semester" layoutX="161.0" layoutY="319.0" prefHeight="26.0" prefWidth="162.0" style="-fx-background-color: #DEE4E7;" />
+      <Label layoutX="43.0" layoutY="317.0" prefHeight="23.0" prefWidth="74.0" style="-fx-font-size: 20; -fx-font-family: bold;" text="Gender" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="course_name" layoutX="307.0" layoutY="40.0" prefHeight="34.0" prefWidth="232.0" textFill="#49484a">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="conflict_in_room" layoutX="299.0" layoutY="298.0" prefHeight="34.0" prefWidth="232.0" text="Conflict !" textFill="#e80602" visible="false">
+         <font>
+            <Font name="Times New Roman" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="nav_back" layoutX="481.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Close">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Button>
+      <TextField layoutX="161.0" layoutY="56.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField layoutX="161.0" layoutY="124.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField layoutX="161.0" layoutY="254.0" prefHeight="26.0" prefWidth="162.0" />
+      <Label layoutX="355.0" layoutY="145.0" prefHeight="54.0" prefWidth="223.0" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
 
+
+   </AnchorPane>
 </AnchorPane>

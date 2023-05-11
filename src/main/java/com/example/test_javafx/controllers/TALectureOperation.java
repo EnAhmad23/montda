@@ -1,2 +1,4 @@
-package com.example.test_javafx.controllers;public class TALectureOperation {
+package com.example.test_javafx.controllers;
+
+public class TALectureOperation {
 }

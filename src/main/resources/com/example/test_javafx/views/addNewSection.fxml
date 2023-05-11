@@ -70,7 +70,7 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <Label fx:id="notification" layoutX="359.0" layoutY="223.0" prefHeight="59.0" prefWidth="215.0" style="-fx-background-color: #DEE4E7;" text="Label">
+        <Label fx:id="notification" layoutX="359.0" layoutY="223.0" prefHeight="59.0" prefWidth="215.0" style="-fx-background-color: #DEE4E7; -fx-border-radius: 20Px;" text="Label">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>

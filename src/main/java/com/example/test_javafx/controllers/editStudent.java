@@ -1,2 +1,4 @@
-package com.example.test_javafx.controllers;public class editStudent {
+package com.example.test_javafx.controllers;
+
+public class editStudent {
 }

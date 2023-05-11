@@ -16,6 +16,8 @@ public class StartController implements Initializable {
     public AnchorPane rootPane;
     @FXML
     public Button nav_add_section;
+    @FXML
+    public Button users ;
     // nav_add_section,nav_lectures_times,nav_enroll_student
     @FXML
     public Button nav_lectures_times;
@@ -29,6 +31,7 @@ public class StartController implements Initializable {
     }
 
     public void navToAddSection() {
+
         nav.navigateTo(rootPane, nav.ADD_SECTION_FXML);
     }
 
@@ -38,5 +41,8 @@ public class StartController implements Initializable {
 
     public void navToLecturesTimes() {
         nav.navigateTo(rootPane, nav.LECTURES_TIMES_FXML);
+    }
+    public void navUsers() {
+        nav.navigateTo(rootPane, nav.Users_FXML);
     }
 }

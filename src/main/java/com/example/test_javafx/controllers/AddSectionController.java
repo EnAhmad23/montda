@@ -60,7 +60,7 @@ public class AddSectionController implements Initializable {
 //                "-fx-background-position: center center;"
 //                + "-fx-background-size: 32px 32px; -fx-background-repeat: no-repeat; ");
 
-        setComboBoxes();
+//        setComboBoxes();
     }
 
     private void setCombInitials() {

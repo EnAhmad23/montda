@@ -27,7 +27,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("UNI1");
         source.setUser("postgres");
-        source.setPassword("admin");
+        source.setPassword("bohboq20");
 
         try {
             con = source.getConnection();
