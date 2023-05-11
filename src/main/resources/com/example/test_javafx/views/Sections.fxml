@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="611.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Sections">
+    <children>
+        <TextField fx:id="id" layoutX="127.0" layoutY="149.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter Section ID" />
+        <Separator layoutX="1.0" layoutY="211.0" prefHeight="13.0" prefWidth="818.0" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="149.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+            <font>
+                <Font name="Times New Roman" size="13.0" />
+            </font>
+        </Label>
+        <TableView layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
+            <columns>
+                <TableColumn prefWidth="260.0" text="Section ID" />
+                <TableColumn prefWidth="281.0" text="Name" />
+                <TableColumn prefWidth="278.0" text="Department" />
+            </columns>
+        </TableView>
+        <Label alignment="BOTTOM_CENTER" layoutX="272.0" layoutY="51.0" prefHeight="54.0" prefWidth="275.0" text="Sections" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="48.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Button fx:id="delete" layoutX="672.0" layoutY="141.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="update" layoutX="532.0" layoutY="141.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="add" layoutX="388.0" layoutY="141.0" mnemonicParsing="false" onAction="#addSection" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>
