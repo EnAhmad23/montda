@@ -1,7 +1,15 @@
 package com.example.test_javafx.controllers;
 
 
+import javafx.fxml.Initializable;
 
-public class Users {
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class Users implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }
