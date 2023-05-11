@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.test_javafx.views.Login"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Users">
+    <Pane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #37474F;">
+        <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #DEE4E7;">
+            <Label layoutX="625.0" layoutY="100.0" text="LOGIN" textFill="#DEE4E7">
+                <font>
+                    <Font name="Times New Roman Bold" size="75.0" />
+                </font></Label>
+            <Label layoutX="570.0" layoutY="250.0" text="Username" textFill="#DEE4E7">
+                <font>
+                    <Font size="20.0" />
+                </font></Label>
+            <TextField layoutX="570.0" layoutY="285.0" prefHeight="35.0" prefWidth="360.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-font: bold 15.0 'Times New Roman';" />
+            <Label layoutX="570.0" layoutY="350.0" text="Password" textFill="#DEE4E7">
+                <font>
+                    <Font size="20.0" />
+                </font></Label>
+            <PasswordField layoutX="570.0" layoutY="385.0" prefHeight="35.0" prefWidth="360.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" />
+            <Label layoutX="625.0" layoutY="450.0" prefHeight="20.0" prefWidth="250.0" style="-fx-alignment: center;" textFill="RED" />
+            <Button layoutX="625.0" layoutY="500.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-font: bold 20.0 'Times New Roman';" text="LOGIN" />
+            <Label layoutX="280.0" layoutY="311.0" style="-fx-background-color: #DEE4E7;" text="MANAGEMENT SYSTEM" textFill="#37474F">
+                <font>
+                    <Font name="Verdana Bold" size="15.0" />
+                </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="248.0" style="-fx-text-fill: #37474F;" text="ATTENDANCE" textFill="#37474F">
+                <font>
+                    <Font name="Verdana Bold" size="50.0" />
+                </font>
+            </Label>
+        </Pane>
+    </Pane>
 </AnchorPane>
