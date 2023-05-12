@@ -25,9 +25,9 @@
                 <TableColumn prefWidth="150.0" text="Section ID" />
                 <TableColumn prefWidth="150.0" text="Building" />
                 <TableColumn prefWidth="167.0" text="Room number" />
-            <TableColumn prefWidth="114.0" text="Year" />
-            <TableColumn prefWidth="110.0" text="Semester" />
-            <TableColumn prefWidth="128.0" text="Time Slot" />
+                <TableColumn prefWidth="114.0" text="Year" />
+                <TableColumn prefWidth="110.0" text="Semester" />
+                <TableColumn prefWidth="128.0" text="Time Slot" />
             </columns>
         </TableView>
         <Label alignment="BOTTOM_CENTER" layoutX="273.0" layoutY="33.0" prefHeight="54.0" prefWidth="275.0" text="Sections" textFill="WHITE">
@@ -62,10 +62,10 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <Button fx:id="id_close_section" layoutX="776.0" layoutY="14.0" mnemonicParsing="false" onAction="#close_section" prefHeight="14.0" prefWidth="23.0" text="X">
-         <font>
-            <Font name="Times New Roman Bold" size="14.0" />
-         </font>
-      </Button>
+        <Button fx:id="id_close_section" layoutX="776.0" layoutY="14.0" mnemonicParsing="false" onAction="#close_section" prefHeight="14.0" prefWidth="23.0" text="X">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

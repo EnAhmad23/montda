@@ -1,61 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="root" dividerPositions="0.314070351758794" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
-    <GridPane hgap="32.0" prefHeight="134.0" prefWidth="599.0" style="-fx-background-color: #37474F;" vgap="8.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-        <children>
-            <Button fx:id="view" mnemonicParsing="false" onAction="#viewTimes" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="View" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                <font>
-                    <Font name="Times New Roman Bold" size="18.0" />
-                </font>
-            </Button>
-            <Button fx:id="close" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Close" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                <font>
-                    <Font name="Times New Roman Bold" size="18.0" />
-                </font>
-            </Button>
-            <ComboBox fx:id="sem" onAction="#SelectSemester" prefHeight="33.0" prefWidth="130.0" promptText="Select Semester" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <CheckBox fx:id="student" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" selected="true" text="Student" textFill="WHITE" GridPane.columnIndex="1">
-                <font>
-                    <Font name="Times New Roman Bold" size="18.0" />
-                </font>
-            </CheckBox>
-            <TextField fx:id="id" onAction="#studentId_lecture" promptText="Enter your ID">
-                <font>
-                    <Font name="Times New Roman" size="12.0" />
-                </font>
-            </TextField>
-            <TextField fx:id="name" editable="false" onAction="#studentName_lecture" promptText="Name" GridPane.rowIndex="1" />
-            <TextField fx:id="dept" editable="false" onAction="#studentDepartment_lecture" promptText="Department" GridPane.rowIndex="2" />
-            <ComboBox fx:id="year" onAction="#SelectYear" prefHeight="33.0" prefWidth="130.0" promptText="Select Year" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        </children>
-        <padding>
-            <Insets bottom="8.0" left="32.0" right="32.0" top="8.0" />
-        </padding>
-    </GridPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="598.0" style="-fx-background-color: #37474F;">
-        <TableView fx:id="time_table" layoutX="-1.0" layoutY="1.0" prefHeight="269.0" prefWidth="598.0">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="647.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="86.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+            <font>
+                <Font name="Times New Roman" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="127.0" prefHeight="36.0" prefWidth="103.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
+            <font>
+                <Font name="Times New Roman" size="13.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="166.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="room" textFill="#e8e3e3">
+            <font>
+                <Font name="Times New Roman" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="room" editable="false" layoutX="126.0" layoutY="168.0" onAction="#studentDepartment_lecture" prefHeight="33.0" prefWidth="157.0" promptText="room" />
+        <TextField fx:id="id" layoutX="126.0" layoutY="88.0" onAction="#studentId_lecture" prefHeight="32.0" prefWidth="157.0" promptText="ID">
+            <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+        </TextField>
+        <Button fx:id="view" layoutX="538.0" layoutY="127.0" mnemonicParsing="false" onAction="#viewTimes" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="View" AnchorPane.bottomAnchor="364.0" AnchorPane.topAnchor="127.0">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+        <TextField fx:id="instructorID" editable="false" layoutX="126.0" layoutY="129.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" AnchorPane.rightAnchor="364.0" />
+        <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="131.0" text="Course ID" />
-                <TableColumn fx:id="course_title" prefWidth="124.0" text="Course title" />
-                <TableColumn fx:id="building" prefWidth="102.0" text="Building" />
-                <TableColumn fx:id="room_number" prefWidth="123.0" text="Room No." />
-                <TableColumn fx:id="time_slot" prefWidth="116.0" text="Time Slot" />
+                <TableColumn fx:id="course_id" prefWidth="145.0" text="Course ID" />
+                <TableColumn fx:id="course_title" prefWidth="170.0" text="Instructor ID" />
+                <TableColumn fx:id="room_number" prefWidth="144.0" text="Room No." />
+                <TableColumn fx:id="time_slot" prefWidth="187.0" text="Time Slot" />
             </columns>
         </TableView>
-    </AnchorPane>
-</SplitPane>
+        <Button fx:id="delete" layoutX="538.0" layoutY="174.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="delete">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="update" layoutX="428.0" layoutY="173.0" mnemonicParsing="false" onAction="#update_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="update">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="add" layoutX="428.0" layoutY="127.0" mnemonicParsing="false" onAction="#add_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="add">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+        <Label alignment="BOTTOM_CENTER" layoutX="195.0" layoutY="14.0" prefHeight="54.0" prefWidth="275.0" text="Students" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman" size="48.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Button fx:id="id_back_addStu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_addStu" text="←">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

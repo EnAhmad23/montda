@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="403.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddSectionController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="403.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.addUser">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="498.0" style="-fx-background-color: #37474F;">
-        <Button fx:id="btn_add" layoutX="365.0" layoutY="298.0" mnemonicParsing="false" onAction="#addSection" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
+        <Button fx:id="btn_add" layoutX="365.0" layoutY="298.0" mnemonicParsing="false" onAction="#adduser" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -15,27 +15,22 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <Label layoutX="43.0" layoutY="44.0" prefHeight="23.0" prefWidth="98.0" text="Course ID" textFill="WHITE">
+        <Label layoutX="43.0" layoutY="44.0" prefHeight="23.0" prefWidth="98.0" text="User ID" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="43.0" layoutY="96.0" prefHeight="23.0" prefWidth="98.0" text="Building" textFill="WHITE">
+        <Label layoutX="43.0" layoutY="96.0" prefHeight="23.0" prefWidth="98.0" text="Name" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="43.0" layoutY="148.0" prefHeight="23.0" prefWidth="98.0" text="Room #" textFill="WHITE">
+        <Label layoutX="43.0" layoutY="148.0" prefHeight="23.0" prefWidth="98.0" text="Dept_name" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="43.0" layoutY="200.0" prefHeight="23.0" prefWidth="98.0" text="Year" textFill="WHITE">
-            <font>
-                <Font name="Times New Roman" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="43.0" layoutY="252.0" prefHeight="23.0" prefWidth="98.0" text="Semester" textFill="WHITE">
+        <Label layoutX="43.0" layoutY="200.0" prefHeight="23.0" prefWidth="98.0" text="password" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="16.0" />
             </font>
@@ -50,11 +45,6 @@
                 <Font name="Times New Roman" size="25.0" />
             </font>
         </Label>
-        <Label layoutX="43.0" layoutY="302.0" prefHeight="23.0" prefWidth="98.0" text="Time Slot" textFill="WHITE">
-            <font>
-                <Font name="Times New Roman" size="16.0" />
-            </font>
-        </Label>
         <Button fx:id="nav_back" layoutX="365.0" layoutY="343.0" mnemonicParsing="false" onAction="#back_to_start" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Close">
             <cursor>
                 <Cursor fx:constant="HAND" />
@@ -63,11 +53,11 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="courseId" layoutX="128.0" layoutY="43.0" onAction="#courseId" />
-        <TextField fx:id="building" layoutX="128.0" layoutY="95.0" onAction="#building" />
-        <TextField fx:id="roomNo" layoutX="128.0" layoutY="147.0" onAction="#roomNo" />
-        <TextField fx:id="year" layoutX="128.0" layoutY="199.0" onAction="#year" />
-        <TextField fx:id="semester" layoutX="129.0" layoutY="251.0" onAction="#semester" />
-        <TextField fx:id="timeSlot" layoutX="130.0" layoutY="301.0" onAction="#timeSlot" />
+        <TextField fx:id="userId" layoutX="131.0" layoutY="45.0" onAction="#userId" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="userDept" layoutX="135.0" layoutY="147.0" onAction="#userDept" prefHeight="26.0" prefWidth="150.0" />
+        <TextField fx:id="userName" layoutX="132.0" layoutY="95.0" onAction="#userName" prefHeight="26.0" prefWidth="149.0" />
+        <TextField fx:id="userPass" layoutX="133.0" layoutY="199.0" onAction="#userPass" prefHeight="26.0" prefWidth="156.0" />
+
+
     </AnchorPane>
 </AnchorPane>

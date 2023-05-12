@@ -24,7 +24,7 @@ public class Sections implements Initializable {
     private Button delete;
     @FXML
     private Button id_close_section;
-     Navigation nav = new Navigation();
+    Navigation nav = new Navigation();
     public void addSection (){
         nav.navigateTo(root,nav.ADD_SECTION_FXML);
     }
@@ -32,6 +32,8 @@ public class Sections implements Initializable {
 
     }
     public void deleteSection(){}
+    public void textToSecionID(){}
+    public void close_section(){}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

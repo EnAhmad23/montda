@@ -27,6 +27,9 @@ public class TALectureOperation implements Initializable {
 
     }
 
+    public void back(){
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

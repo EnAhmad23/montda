@@ -161,4 +161,23 @@ public class AddSectionController implements Initializable {
         nav.navigateTo(rootPane, nav.MAIN_FXML);
     }
 
+    public void courseId() {
+
+    }
+    public void building() {
+
+    }
+    public void roomNo() {
+
+    }
+    public void year() {
+
+    }
+    public void semester() {
+
+    }
+    public void timeSlot() {
+
+    }
+
 }

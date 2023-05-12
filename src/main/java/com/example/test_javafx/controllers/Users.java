@@ -14,13 +14,11 @@ public class Users implements Initializable {
     @FXML
     private Button nav_add;
     @FXML
-    private Button back;
-    @FXML
     private Button nav_update;
     @FXML
     private Button nav_delete;
     @FXML
-    private Button close;
+    private Button id_close_user;
     @FXML
     private TextField field_to_id;
     @FXML
@@ -49,7 +47,7 @@ public class Users implements Initializable {
 
     }
 
-    public void back_b(){
+    public void close_user(){
 
     }
 

@@ -33,6 +33,15 @@ public class AddStudent implements Initializable {
     public void close_addStudent(){}
 
     public void back_addStu(){}
+    public void addSrudentLevel(){}
+    public void addSrudentGender(){}
+    public void addSrudentID(){}
+    public void addSrudentName(){}
+    public void addSrudentMajor(){}
+
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

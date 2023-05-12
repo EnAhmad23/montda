@@ -32,9 +32,9 @@ public class LecturesTimesController implements Initializable {
     @FXML
     public TextField id;
     @FXML
-    public TextField name;
+    public TextField instructorID;
     @FXML
-    public TextField dept;
+    public TextField room;
     @FXML
     public ComboBox<String> year;
     @FXML
@@ -57,7 +57,7 @@ public class LecturesTimesController implements Initializable {
         time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
     }
 
-    public void close() {
+    public void back_addStu() {
         nav.navigateTo(root, nav.MAIN_FXML);
     }
 
@@ -65,13 +65,13 @@ public class LecturesTimesController implements Initializable {
     public void onIDEnter() {
         if (!id.getText().equals("")) {
             if (student.isSelected()) {
-                name.setText(db.getStdName(id.getText()));
-                dept.setText(db.getStdDept(id.getText()));
+                instructorID.setText(db.getStdName(id.getText()));
+                room.setText(db.getStdDept(id.getText()));
                 ObservableList<String> years = FXCollections.observableList(db.getStdYears(id.getText()));
                 year.setItems(years);
             } else {
-                name.setText(db.getInstructorName(id.getText()));
-                dept.setText(db.getInstructorDept(id.getText()));
+                instructorID.setText(db.getInstructorName(id.getText()));
+                room.setText(db.getInstructorDept(id.getText()));
                 ObservableList<String> years = FXCollections.observableList(db.getInstructorYears(id.getText()));
                 year.setItems(years);
             }
@@ -107,4 +107,21 @@ public class LecturesTimesController implements Initializable {
                                 Integer.parseInt(year.getValue()))));
         } else System.err.println("Error! fill fields");
     }
+
+    public void SelectSemester(){}
+    public void studentId_lecture(){}
+    public void studentName_lecture(){}
+    public void studentDepartment_lecture(){}
+
+    public void delete_button(){
+
+    }
+    public void update_button(){
+
+    }
+    public void add_button(){
+
+    }
+
+    public void SelectYear(){}
 }

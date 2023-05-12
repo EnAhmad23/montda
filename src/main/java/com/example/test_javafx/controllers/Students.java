@@ -40,6 +40,20 @@ public class Students implements Initializable {
 
     }
 
+    public void enterStudentID(){
+
+    }
+
+    public void enterStudentName(){
+
+    }
+    public void enterStudentDepartment(){
+
+    }
+    public void close_Students(){
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

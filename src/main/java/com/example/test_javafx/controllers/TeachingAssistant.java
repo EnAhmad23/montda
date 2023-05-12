@@ -27,6 +27,9 @@ public class TeachingAssistant implements Initializable {
     public void attendance_page(){
 
     }
+    public void back_TA(){
+
+    }
     public void report_statement_page(){
 
     }
