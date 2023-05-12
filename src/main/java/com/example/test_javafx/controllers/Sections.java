@@ -22,10 +22,17 @@ public class Sections implements Initializable {
     private Button update;
     @FXML
     private Button delete;
+    @FXML
+    private Button id_close_section;
      Navigation nav = new Navigation();
     public void addSection (){
         nav.navigateTo(root,nav.ADD_SECTION_FXML);
     }
+    public void updateSection (){
+
+    }
+    public void deleteSection(){}
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

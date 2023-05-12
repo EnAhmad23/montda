@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Students">
+<AnchorPane fx:id="root" prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Students">
    <children>
-      <TextField fx:id="id" layoutX="126.0" layoutY="23.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter Student ID" />
-      <TextField fx:id="s_name" layoutX="126.0" layoutY="84.0" prefHeight="36.0" prefWidth="187.0" promptText="Name" />
-      <TextField fx:id="department" layoutX="126.0" layoutY="151.0" prefHeight="36.0" prefWidth="187.0" promptText="Department" />
+      <TextField fx:id="id" layoutX="126.0" layoutY="23.0" onAction="#enterStudentID" prefHeight="36.0" prefWidth="187.0" promptText="Enter Student ID" />
+      <TextField fx:id="s_name" layoutX="126.0" layoutY="84.0" onAction="#enterStudentName" prefHeight="36.0" prefWidth="187.0" promptText="Name" />
+      <TextField fx:id="department" layoutX="126.0" layoutY="151.0" onAction="#enterStudentDepartment" prefHeight="36.0" prefWidth="187.0" promptText="Department" />
       <Separator layoutX="1.0" layoutY="211.0" prefHeight="13.0" prefWidth="818.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="23.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
          <font>
@@ -27,13 +32,6 @@
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TableView layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
-         <columns>
-            <TableColumn prefWidth="260.0" text="Student ID" />
-            <TableColumn prefWidth="281.0" text="Name" />
-            <TableColumn prefWidth="278.0" text="Department" />
-         </columns>
-      </TableView>
       <Label alignment="BOTTOM_CENTER" layoutX="334.0" layoutY="18.0" prefHeight="54.0" prefWidth="275.0" text="Students" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="48.0" />
@@ -42,7 +40,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="delete" layoutX="672.0" layoutY="125.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
+      <Button fx:id="delete" layoutX="672.0" layoutY="125.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -50,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="update" layoutX="532.0" layoutY="125.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+      <Button fx:id="update" layoutX="532.0" layoutY="125.0" mnemonicParsing="false" onAction="#UpdateStudent" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -66,5 +64,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="id_close_students" layoutX="777.0" layoutY="18.0" mnemonicParsing="false" onAction="#close_Students" prefHeight="14.0" prefWidth="0.0" text="X">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Button>
+      <TableView layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
+         <columns>
+            <TableColumn prefWidth="167.0" text="Student ID" />
+            <TableColumn prefWidth="179.0" text="Name" />
+            <TableColumn prefWidth="182.0" text="Department" />
+            <TableColumn prefWidth="152.0" text="Level" />
+            <TableColumn prefWidth="139.0" text="Major" />
+            <TableColumn prefWidth="118.0" text="Gender" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

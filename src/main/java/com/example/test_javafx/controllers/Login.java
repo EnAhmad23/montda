@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,11 +17,15 @@ public class Login implements Initializable {
     private final String user = "postgres";
     private final String password = "admin";
     @FXML
-    private AnchorPane root;
+    private Pane root;
     @FXML
     private TextField userName ;
     @FXML
     private TextField passWord;
+    @FXML
+    private Button login;
+    @FXML
+    private Button id_close_login;
     @FXML
     private Label label;
     Navigation nav = new Navigation();

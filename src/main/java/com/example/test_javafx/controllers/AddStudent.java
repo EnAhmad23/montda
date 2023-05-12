@@ -2,6 +2,7 @@ package com.example.test_javafx.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -19,6 +20,19 @@ public class AddStudent implements Initializable {
     private ComboBox level;
     @FXML
     private ComboBox gender;
+    @FXML
+    private Button btn_add;
+    @FXML
+    private Button nav_close;
+    @FXML
+    private Button id_back_addStu;
+
+
+    public void addStudntBotton(){}
+
+    public void close_addStudent(){}
+
+    public void back_addStu(){}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

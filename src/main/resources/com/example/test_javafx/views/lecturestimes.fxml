@@ -28,33 +28,33 @@
                     <Font name="Times New Roman Bold" size="18.0" />
                 </font>
             </Button>
-            <ComboBox fx:id="sem" prefHeight="33.0" prefWidth="130.0" promptText="Select Semester" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="sem" onAction="#SelectSemester" prefHeight="33.0" prefWidth="130.0" promptText="Select Semester" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <CheckBox fx:id="student" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" selected="true" text="Student" textFill="WHITE" GridPane.columnIndex="1">
                 <font>
                     <Font name="Times New Roman Bold" size="18.0" />
                 </font>
             </CheckBox>
-            <TextField fx:id="id" onAction="#onIDEnter" promptText="Enter your ID">
+            <TextField fx:id="id" onAction="#studentId_lecture" promptText="Enter your ID">
                 <font>
                     <Font name="Times New Roman" size="12.0" />
                 </font>
             </TextField>
-            <TextField fx:id="name" editable="false" promptText="Name" GridPane.rowIndex="1" />
-            <TextField fx:id="dept" editable="false" promptText="Department" GridPane.rowIndex="2" />
-            <ComboBox fx:id="year" onAction="#upCombSems" prefHeight="33.0" prefWidth="130.0" promptText="Select Year" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="name" editable="false" onAction="#studentName_lecture" promptText="Name" GridPane.rowIndex="1" />
+            <TextField fx:id="dept" editable="false" onAction="#studentDepartment_lecture" promptText="Department" GridPane.rowIndex="2" />
+            <ComboBox fx:id="year" onAction="#SelectYear" prefHeight="33.0" prefWidth="130.0" promptText="Select Year" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         </children>
         <padding>
             <Insets bottom="8.0" left="32.0" right="32.0" top="8.0" />
         </padding>
     </GridPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="598.0" style="-fx-background-color: #37474F;">
-        <TableView fx:id="time_table" layoutX="28.0" layoutY="18.0" prefHeight="234.0" prefWidth="543.0">
+        <TableView fx:id="time_table" layoutX="-1.0" layoutY="1.0" prefHeight="269.0" prefWidth="598.0">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="70.0" text="Course ID" />
-                <TableColumn fx:id="course_title" prefWidth="110.0" text="Course title" />
-                <TableColumn fx:id="building" prefWidth="100.0" text="Building" />
-                <TableColumn fx:id="room_number" prefWidth="70.0" text="Room No." />
-                <TableColumn fx:id="time_slot" prefWidth="200.0" text="Time Slot" />
+                <TableColumn fx:id="course_id" prefWidth="131.0" text="Course ID" />
+                <TableColumn fx:id="course_title" prefWidth="124.0" text="Course title" />
+                <TableColumn fx:id="building" prefWidth="102.0" text="Building" />
+                <TableColumn fx:id="room_number" prefWidth="123.0" text="Room No." />
+                <TableColumn fx:id="time_slot" prefWidth="116.0" text="Time Slot" />
             </columns>
         </TableView>
     </AnchorPane>

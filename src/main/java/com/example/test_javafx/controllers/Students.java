@@ -25,10 +25,21 @@ public class Students implements Initializable {
     private Button update;
     @FXML
     private Button delete;
+    @FXML
+    private Button id_close_students;
+
+
     Navigation nav = new Navigation();
     public void addStudent (){
         nav.navigateTo(root,nav.Add_STUDENT_FXML);
     }
+    public void UpdateStudent(){
+
+    }
+    public void deleteStudent(){
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

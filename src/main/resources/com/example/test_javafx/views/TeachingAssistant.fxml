@@ -8,8 +8,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.TeachingAssistant">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;">
+      <VBox prefHeight="426.0" prefWidth="600.0" style="-fx-background-color: #37474F;">
          <children>
+            <Button fx:id="id_back_TA" mnemonicParsing="false" onAction="#back_TA" text="←">
+               <font>
+                  <Font name="Times New Roman Bold" size="14.0" />
+               </font></Button>
             <Label alignment="BOTTOM_CENTER" prefHeight="54.0" prefWidth="425.0" text="Teaching Assistant" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <font>
                   <Font name="Times New Roman" size="48.0" />
@@ -21,7 +25,7 @@
                   <Insets left="87.0" top="31.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="nav_add_section" mnemonicParsing="false" onAction="#navToAddSection" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Students">
+            <Button fx:id="student" mnemonicParsing="false" onAction="#student_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Students">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -32,7 +36,7 @@
                   <Insets bottom="12.0" left="160.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="nav_add_section1" mnemonicParsing="false" onAction="#navToAddSection" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="lectures">
+            <Button fx:id="lectures" mnemonicParsing="false" onAction="#lecture_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="lectures">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -43,7 +47,7 @@
                   <Insets bottom="12.0" left="160.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="nav_add_section2" mnemonicParsing="false" onAction="#navToAddSection" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Attendance">
+            <Button fx:id="attendance" mnemonicParsing="false" onAction="#attendance_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Attendance">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>
@@ -54,7 +58,7 @@
                   <Insets bottom="12.0" left="160.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="nav_add_section3" mnemonicParsing="false" onAction="#navToAddSection" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Reports &amp; Statements">
+            <Button fx:id="reports_statements" mnemonicParsing="false" onAction="#report_statement_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Reports &amp; Statements">
                <font>
                   <Font name="Times New Roman" size="24.0" />
                </font>

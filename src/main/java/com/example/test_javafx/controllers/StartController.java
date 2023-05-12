@@ -23,6 +23,8 @@ public class StartController implements Initializable {
     public Button nav_lectures_times;
     @FXML
     public Button nav_enroll_student;
+    @FXML
+    public Button id_close_admin;
     Navigation nav = new Navigation();
 
     @Override
@@ -31,18 +33,18 @@ public class StartController implements Initializable {
     }
 
     public void navToAddSection() {
-
         nav.navigateTo(rootPane, nav.ADD_SECTION_FXML);
+    }
+    public void navUsers() {
+        nav.navigateTo(rootPane, nav.Users_FXML);
+    }
+
+    public void navToLecturesTimes() {
+        nav.navigateTo(rootPane, nav.LECTURES_TIMES_FXML);
     }
 
     public void navToEnrollStudent() {
         nav.navigateTo(rootPane, nav.ENROLL_STUDENT_FXML);
     }
 
-    public void navToLecturesTimes() {
-        nav.navigateTo(rootPane, nav.LECTURES_TIMES_FXML);
-    }
-    public void navUsers() {
-        nav.navigateTo(rootPane, nav.Users_FXML);
-    }
 }
