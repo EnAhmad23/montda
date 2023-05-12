@@ -53,10 +53,10 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="userId" layoutX="131.0" layoutY="45.0" onAction="#userId" prefHeight="26.0" prefWidth="156.0" />
-        <TextField fx:id="userDept" layoutX="135.0" layoutY="147.0" onAction="#userDept" prefHeight="26.0" prefWidth="150.0" />
-        <TextField fx:id="userName" layoutX="132.0" layoutY="95.0" onAction="#userName" prefHeight="26.0" prefWidth="149.0" />
-        <TextField fx:id="userPass" layoutX="133.0" layoutY="199.0" onAction="#userPass" prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="userId" layoutX="131.0" layoutY="45.0"  prefHeight="26.0" prefWidth="156.0" />
+        <TextField fx:id="userDept" layoutX="135.0" layoutY="147.0"  prefHeight="26.0" prefWidth="150.0" />
+        <TextField fx:id="userName" layoutX="132.0" layoutY="95.0"  prefHeight="26.0" prefWidth="149.0" />
+        <TextField fx:id="userPass" layoutX="133.0" layoutY="199.0"  prefHeight="26.0" prefWidth="156.0" />
 
 
     </AnchorPane>

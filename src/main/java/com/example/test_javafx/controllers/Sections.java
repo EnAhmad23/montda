@@ -33,7 +33,7 @@ public class Sections implements Initializable {
     }
     public void deleteSection(){}
     public void textToSecionID(){}
-    public void close_section(){}
+    public void back_addStu(){}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

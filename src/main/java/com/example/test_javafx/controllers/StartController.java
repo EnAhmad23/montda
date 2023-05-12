@@ -43,14 +43,9 @@ public class StartController implements Initializable {
         nav.navigateTo(rootPane, nav.LECTURES_TIMES_FXML);
     }
 
-    public void navToEnrollStudent() {
+    public void navToStudent() {
         nav.navigateTo(rootPane, nav.ENROLL_STUDENT_FXML);
     }
 
-    public void close_admin(){}
-    public void admin_Section(){}
-    public void admin_Users(){}
-    public void admin_LecturesTimes(){}
-    public void admin_EnrollStudent(){}
 
 }

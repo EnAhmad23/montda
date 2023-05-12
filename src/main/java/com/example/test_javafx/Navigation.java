@@ -14,6 +14,7 @@ public class Navigation {
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
     public final String Admin_FXML = "views/start.fxml";
     public final String Users_FXML = "views/users.fxml";
+    public final String ADD_USER_FXML = "views/users.fxml";
 
 
     public void navigateTo(Parent rootPane, String path) {

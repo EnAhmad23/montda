@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Attendence">
+<AnchorPane prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Attendence">
     <children>
         <Label alignment="BOTTOM_CENTER" layoutX="350.0" layoutY="19.0" prefHeight="60.0" prefWidth="256.0" text="Attendence" textFill="WHITE">
             <font>
@@ -16,7 +22,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="nav_add" layoutX="657.0" layoutY="137.0" mnemonicParsing="false" onAction="#addUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="nav_add" layoutX="657.0" layoutY="149.0" mnemonicParsing="false" onAction="#addUser" prefHeight="48.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -35,11 +41,6 @@
                 <TableColumn fx:id="Table_Department" prefWidth="278.0" text="Department" />
             </columns>
         </TableView>
-        <Button fx:id="id_close_user" layoutX="777.0" layoutY="21.0" mnemonicParsing="false" onAction="#close_user" prefHeight="21.0" prefWidth="0.0" text="X">
-            <font>
-                <Font name="Times New Roman Bold" size="14.0" />
-            </font>
-        </Button>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="21.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
@@ -56,5 +57,10 @@
             </font>
         </Label>
         <ComboBox fx:id="id_att_course" layoutX="361.0" layoutY="143.0" onAction="#att_course" prefHeight="48.0" prefWidth="179.0" promptText="course_id" />
+      <Button fx:id="id_back_addStu" layoutX="783.0" layoutY="6.0" mnemonicParsing="false" onAction="#back_addStu" text="←">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

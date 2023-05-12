@@ -7,23 +7,23 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="647.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="86.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="66.0" prefHeight="36.0" prefWidth="109.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Course ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="127.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
+        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="118.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="166.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="room" textFill="#e8e3e3">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="173.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="room" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <TextField fx:id="room" editable="false" layoutX="138.0" layoutY="167.0" onAction="#studentDepartment_lecture" prefHeight="33.0" prefWidth="157.0" promptText="room" />
-        <TextField fx:id="id" layoutX="138.0" layoutY="88.0" onAction="#studentId_lecture" prefHeight="32.0" prefWidth="157.0" promptText="ID">
+        <TextField fx:id="room" editable="false" layoutX="138.0" layoutY="174.0" onAction="#studentDepartment_lecture" prefHeight="33.0" prefWidth="157.0" promptText="room" />
+        <TextField fx:id="id" layoutX="138.0" layoutY="68.0" onAction="#studentId_lecture" prefHeight="32.0" prefWidth="157.0" promptText="ID">
             <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
@@ -33,7 +33,7 @@
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="instructorID" editable="false" layoutX="138.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" AnchorPane.rightAnchor="351.4" />
+        <TextField fx:id="instructorID" editable="false" layoutX="138.0" layoutY="119.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" AnchorPane.rightAnchor="351.4" />
         <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0">
             <columns>
                 <TableColumn fx:id="course_id" prefWidth="145.0" text="Course ID" />
@@ -57,7 +57,7 @@
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Label alignment="BOTTOM_CENTER" layoutX="195.0" layoutY="14.0" prefHeight="54.0" prefWidth="275.0" text="Students" textFill="WHITE">
+        <Label alignment="BOTTOM_CENTER" layoutX="194.0" layoutY="1.0" prefHeight="54.0" prefWidth="275.0" text="Lectures" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="48.0" />
             </font>
