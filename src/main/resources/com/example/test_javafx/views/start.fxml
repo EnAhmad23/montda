@@ -51,7 +51,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="nav_enroll_student" mnemonicParsing="false" onAction="#navToEnrollStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Enroll Student">
+        <Button fx:id="nav_enroll_student" mnemonicParsing="false" onAction="#navToEnrollStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Students">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
