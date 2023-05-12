@@ -9,4 +9,5 @@ public class AddUser {
     public void userDept(){}
     public void userName(){}
     public void userPass(){}
+    public void back_user(){}
 }

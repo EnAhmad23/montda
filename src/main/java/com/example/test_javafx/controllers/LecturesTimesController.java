@@ -14,8 +14,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LecturesTimesController implements Initializable {
+    @FXML
+    private Button add;
 
     @FXML
+    private Button update;
+    @FXML
+    private Button delete;
+
     public TableView<LectureTime> time_table;
     @FXML
     public TableColumn<LectureTime, String> course_id;
@@ -42,7 +48,7 @@ public class LecturesTimesController implements Initializable {
     @FXML
     public CheckBox student;
     @FXML
-    public Button close;
+    public Button id_back_addStu;
     public Button view;
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
@@ -57,7 +63,7 @@ public class LecturesTimesController implements Initializable {
         time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
     }
 
-    public void back_addStu() {
+    public void back() {
         nav.navigateTo(root, nav.MAIN_FXML);
     }
 

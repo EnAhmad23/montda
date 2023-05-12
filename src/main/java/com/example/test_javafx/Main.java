@@ -16,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/users.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/attendence.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("University");
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));

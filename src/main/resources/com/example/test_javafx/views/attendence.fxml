@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Attendence">
+<AnchorPane fx:id="root" prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Attendence">
     <children>
         <Label alignment="BOTTOM_CENTER" layoutX="350.0" layoutY="19.0" prefHeight="60.0" prefWidth="256.0" text="Attendence" textFill="WHITE">
             <font>
@@ -22,7 +22,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="nav_add" layoutX="657.0" layoutY="149.0" mnemonicParsing="false" onAction="#addUser" prefHeight="48.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="nav_add" layoutX="657.0" layoutY="137.0" mnemonicParsing="false" onAction="#addUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -57,9 +57,9 @@
             </font>
         </Label>
         <ComboBox fx:id="id_att_course" layoutX="361.0" layoutY="143.0" onAction="#att_course" prefHeight="48.0" prefWidth="179.0" promptText="course_id" />
-      <Button fx:id="id_back_addStu" layoutX="783.0" layoutY="6.0" mnemonicParsing="false" onAction="#back_addStu" text="←">
+      <Button fx:id="id_back_addus" layoutX="783.0" layoutY="8.0" mnemonicParsing="false" onAction="#back" text="←">
          <font>
-            <Font size="14.0" />
+            <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
     </children>

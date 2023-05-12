@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.StartController">
-    <VBox alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="604.0" spacing="32.0" style="-fx-background-color: #37474F;">
+    <VBox alignment="CENTER" focusTraversable="true" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="604.0" spacing="32.0" style="-fx-background-color: #37474F;">
         <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
         </padding>
@@ -51,7 +51,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="nav_enroll_student" mnemonicParsing="false" onAction="#navToStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Students">
+        <Button fx:id="nav_student" mnemonicParsing="false" onAction="#navToStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Students">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>

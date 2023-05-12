@@ -32,8 +32,10 @@ public class Sections implements Initializable {
 
     }
     public void deleteSection(){}
-    public void textToSecionID(){}
-    public void back_addStu(){}
+
+    public void back(){
+        nav.navigateTo(root,nav.Admin_FXML);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

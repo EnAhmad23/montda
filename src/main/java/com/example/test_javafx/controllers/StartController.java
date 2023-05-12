@@ -22,7 +22,7 @@ public class StartController implements Initializable {
     @FXML
     public Button nav_lectures_times;
     @FXML
-    public Button nav_enroll_student;
+    public Button nav_student;
     @FXML
     public Button id_close_admin;
     Navigation nav = new Navigation();
@@ -46,6 +46,8 @@ public class StartController implements Initializable {
     public void navToStudent() {
         nav.navigateTo(rootPane, nav.ENROLL_STUDENT_FXML);
     }
+
+    public void close_admin(){}
 
 
 }

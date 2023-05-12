@@ -64,6 +64,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="id_close_students" layoutX="777.0" layoutY="18.0" mnemonicParsing="false" onAction="#close_Students" prefHeight="14.0" prefWidth="0.0" text="X">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Button>
       <TableView layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
          <columns>
             <TableColumn prefWidth="167.0" text="Student ID" />
@@ -74,10 +79,5 @@
             <TableColumn prefWidth="118.0" text="Gender" />
          </columns>
       </TableView>
-      <Button fx:id="id_back_addStu" layoutX="783.0" layoutY="8.0" mnemonicParsing="false" onAction="#back_addStu" text="←">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
