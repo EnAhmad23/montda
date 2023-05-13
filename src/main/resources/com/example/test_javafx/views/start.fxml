@@ -24,7 +24,7 @@
                 <Font name="Times New Roman" size="48.0" />
             </font>
         </Label>
-        <Button fx:id="nav_add_section" mnemonicParsing="false" onAction="#navToAddSection" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Sections">
+        <Button fx:id="nav_add_section" mnemonicParsing="false" onAction="#navSections" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Sections">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>

@@ -9,8 +9,9 @@ import java.util.Objects;
 public class Navigation {
     public final String MAIN_FXML = "views/start.fxml";
     public final String ADD_SECTION_FXML = "views/addNewSection.fxml";
+    public final String SECTIONs_FXML = "views/Sections.fxml";
     public final String LECTURES_TIMES_FXML = "views/lecturestimes.fxml";
-    public final String ENROLL_STUDENT_FXML = "views/enrollstudent.fxml";
+
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
     public final String STUDENTS_FXML = "views/Students.fxml";
     public final String Admin_FXML = "views/start.fxml";

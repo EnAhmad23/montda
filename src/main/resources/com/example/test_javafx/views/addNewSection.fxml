@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="403.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddSectionController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="498.0" style="-fx-background-color: #37474F;">
-        <Button fx:id="btn_add" layoutX="365.0" layoutY="298.0" mnemonicParsing="false" onAction="#addSection" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
+        <Button fx:id="btn_add" layoutX="365.0" layoutY="298.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -63,11 +63,11 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="courseId" layoutX="128.0" layoutY="43.0" onAction="#courseId" />
-        <TextField fx:id="building" layoutX="128.0" layoutY="95.0" onAction="#building" />
-        <TextField fx:id="roomNo" layoutX="128.0" layoutY="147.0" onAction="#roomNo" />
-        <TextField fx:id="year" layoutX="128.0" layoutY="199.0" onAction="#year" />
-        <TextField fx:id="semester" layoutX="129.0" layoutY="251.0" onAction="#semester" />
-        <TextField fx:id="timeSlot" layoutX="130.0" layoutY="301.0" onAction="#timeSlot" />
+        <TextField fx:id="courseId" layoutX="128.0" layoutY="43.0" />
+        <TextField fx:id="building" layoutX="128.0" layoutY="95.0" />
+        <TextField fx:id="roomNo" layoutX="128.0" layoutY="147.0" />
+        <TextField fx:id="year" layoutX="128.0" layoutY="199.0" />
+        <TextField fx:id="semester" layoutX="129.0" layoutY="251.0" />
+        <TextField fx:id="timeSlot" layoutX="130.0" layoutY="301.0" />
     </AnchorPane>
 </AnchorPane>

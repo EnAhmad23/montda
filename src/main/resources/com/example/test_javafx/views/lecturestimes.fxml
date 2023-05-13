@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="647.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
+<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="647.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="68.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
             <font>
@@ -33,7 +33,7 @@
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="instructorID" editable="false" layoutX="157.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" AnchorPane.rightAnchor="332.4" />
+        <TextField fx:id="instructorID" layoutX="157.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" />
         <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0">
             <columns>
                 <TableColumn fx:id="course_id" prefWidth="145.0" text="Course ID" />

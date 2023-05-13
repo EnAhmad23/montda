@@ -32,8 +32,8 @@ public class StartController implements Initializable {
 
     }
 
-    public void navToAddSection() {
-        nav.navigateTo(rootPane, nav.ADD_SECTION_FXML);
+    public void navSections() {
+        nav.navigateTo(rootPane, nav.SECTIONs_FXML);
     }
     public void navUsers() {
         nav.navigateTo(rootPane, nav.Users_FXML);
@@ -44,7 +44,7 @@ public class StartController implements Initializable {
     }
 
     public void navToStudent() {
-        nav.navigateTo(rootPane, nav.ENROLL_STUDENT_FXML);
+        nav.navigateTo(rootPane, nav.STUDENTS_FXML);
     }
 
     public void close_admin(){}
