@@ -15,10 +15,10 @@ public class Upload implements Initializable {
     @FXML
     private AnchorPane root;
     Navigation nav = new Navigation();
-    public void Update_back(){
+    public void Upload_back(){
         nav.navigateTo(root,nav.UPLOAD);
     }
-    public void Update_update(){
+    public void Upload(){
 
     }
     @Override
