@@ -34,7 +34,7 @@ public class LecturesTimesController implements Initializable {
     @FXML
     public TableColumn<LectureTime, String> time_slot;
     @FXML
-    public SplitPane root;
+    public AnchorPane root;
     @FXML
     public TextField id;
     @FXML
@@ -56,10 +56,10 @@ public class LecturesTimesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //make sure the property value factory should be exactly same as the getStudentId from your model class
-        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
-        instructor_id.setCellValueFactory(new PropertyValueFactory<>("Course_title"));
-        room_number.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
+//        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
+//        instructor_id.setCellValueFactory(new PropertyValueFactory<>("Course_title"));
+//        room_number.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
+//        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
     }
 
     public void back() {

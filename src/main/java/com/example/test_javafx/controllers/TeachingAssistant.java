@@ -31,6 +31,9 @@ public class TeachingAssistant implements Initializable {
     public void attendance_page(){
         nav.navigateTo(root,nav.ATTENDENCE_FXML);
     }
+    public void backTA(){
+        nav.navigateTo(root,nav.LOGIN);
+    }
 
     public void report_statement_page(){
 

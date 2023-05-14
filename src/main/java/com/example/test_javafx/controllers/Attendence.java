@@ -16,4 +16,7 @@ public class Attendence {
         nav.navigateTo(root,nav.TEACHING_FXML);
     }
     public void att_course(){}
+    public void UpdateUser(){}
+
+
 }

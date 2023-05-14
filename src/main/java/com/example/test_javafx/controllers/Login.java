@@ -31,7 +31,7 @@ public class Login implements Initializable {
 
     public void checkAdmin() {
         if (userName.getText().equals(user) && passWord.getText().equals(password))
-            nav.navigateTo(root, nav.Admin_FXML);
+            nav.navigateTo(root, nav.MAIN_FXML);
         else label.setText(" WRONG USER NAME OR PASSWORD ");
     }
 

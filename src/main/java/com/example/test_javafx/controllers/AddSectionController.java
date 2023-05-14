@@ -43,9 +43,11 @@ public class AddSectionController implements Initializable {
     @FXML
     public Label notification;
     @FXML
-    public Button btn_add;
+    public Button button_to_back;
     @FXML
     public Button btn_hide;
+    @FXML
+    public ComboBox semesters;
     @FXML
     public Button nav_back;
     DBModel db = DBModel.getModel();
@@ -158,16 +160,14 @@ public class AddSectionController implements Initializable {
         btn_hide.setVisible(false);
     }
 
-    public void back_to_start() {
+    public void back() {
         nav.navigateTo(rootPane, nav.MAIN_FXML);
     }
 
-    public void courseId() {
+    public void ComboBox_semester() {
 
     }
-    public void building() {
 
-    }
     public void roomNo() {
 
     }
