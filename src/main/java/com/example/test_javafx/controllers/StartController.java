@@ -1,16 +1,23 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.postgresql.ds.PGSimpleDataSource;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StartController implements Initializable {
@@ -36,9 +43,27 @@ public class StartController implements Initializable {
 
 
     }
+    private void handleButtonAction (ActionEvent event) throws Exception {
+        Stage stage = null;
+        Parent root = null;
 
-    public void navSections() {
+        if(event.getSource()==nav_student){
+            stage = (Stage) nav_student.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource(nav.SECTIONs_FXML));
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void navSections() throws IOException {
         nav.navigateTo(rootPane, nav.SECTIONs_FXML);
+//        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource(".../views/Sections.fxml")));
+//        Stage stage = (Stage) nav_add_section.getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+
     }
     public void navUsers() {
         nav.navigateTo(rootPane, nav.Users_FXML);

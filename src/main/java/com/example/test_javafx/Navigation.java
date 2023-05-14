@@ -2,6 +2,8 @@ package com.example.test_javafx;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -28,7 +30,10 @@ public class Navigation {
     public void navigateTo(Parent rootPane, String path) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
-            rootPane.getScene().setRoot(root);
+//            rootPane.getScene().setRoot(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -50,8 +50,8 @@ public class Students implements Initializable {
     public void enterStudentDepartment(){
 
     }
-    public void close_Students(){
-
+    public void Update_back(){
+        nav.navigateTo(root,nav.MAIN_FXML);
     }
 
     @Override
