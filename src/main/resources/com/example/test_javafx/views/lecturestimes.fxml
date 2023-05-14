@@ -7,34 +7,34 @@
 
 <AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="647.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.LecturesTimesController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="68.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="68.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="555.6" AnchorPane.topAnchor="68.0">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="127.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
+        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutY="127.0" prefHeight="36.0" prefWidth="132.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutY="184.0" prefHeight="36.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="room" textFill="#e8e3e3">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="184.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="room" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <TextField fx:id="room" editable="false" layoutX="157.0" layoutY="185.0" onAction="#studentDepartment_lecture" prefHeight="33.0" prefWidth="157.0" promptText="room" />
-        <TextField fx:id="id" layoutX="157.0" layoutY="70.0" onAction="#studentId_lecture" prefHeight="32.0" prefWidth="157.0" promptText="ID">
+        <TextField fx:id="room" editable="false" layoutX="132.0" layoutY="186.0" onAction="#studentDepartment_lecture" prefHeight="33.0" prefWidth="157.0" promptText="room" AnchorPane.bottomAnchor="307.4" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="357.4" AnchorPane.topAnchor="186.0" />
+        <TextField fx:id="id" layoutX="132.0" layoutY="70.0" onAction="#studentId_lecture" prefHeight="32.0" prefWidth="157.0" promptText="ID" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="357.4">
             <font>
                 <Font name="Times New Roman" size="12.0" />
             </font>
         </TextField>
-        <Button fx:id="view" layoutX="538.0" layoutY="127.0" mnemonicParsing="false" onAction="#viewTimes" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="View" AnchorPane.bottomAnchor="364.0" AnchorPane.topAnchor="127.0">
+        <Button fx:id="view" layoutX="538.0" layoutY="127.0" mnemonicParsing="false" onAction="#viewTimes" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="View" AnchorPane.leftAnchor="538.0" AnchorPane.rightAnchor="2.0">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="instructorID" layoutX="157.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" />
-        <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0">
+        <TextField fx:id="instructorID" layoutX="132.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="357.4" />
+        <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0" AnchorPane.bottomAnchor="-1.3999999999999773" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.20000000000004547" AnchorPane.topAnchor="234.0">
             <columns>
                 <TableColumn fx:id="course_id" prefWidth="145.0" text="Course ID" />
                 <TableColumn fx:id="course_title" prefWidth="170.0" text="Instructor ID" />
@@ -42,22 +42,22 @@
                 <TableColumn fx:id="time_slot" prefWidth="187.0" text="Time Slot" />
             </columns>
         </TableView>
-        <Button fx:id="delete" layoutX="538.0" layoutY="174.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="delete">
+        <Button fx:id="delete" layoutX="538.0" layoutY="174.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="delete" AnchorPane.bottomAnchor="31.0" AnchorPane.topAnchor="14.0">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="update" layoutX="428.0" layoutY="173.0" mnemonicParsing="false" onAction="#update_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="update">
+        <Button fx:id="update" layoutX="428.0" layoutY="173.0" mnemonicParsing="false" onAction="#update_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="update" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="27.0">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="add" layoutX="428.0" layoutY="127.0" mnemonicParsing="false" onAction="#add_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="add">
+        <Button fx:id="add" layoutX="428.0" layoutY="127.0" mnemonicParsing="false" onAction="#add_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="add" AnchorPane.rightAnchor="135.0">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Label alignment="BOTTOM_CENTER" layoutX="194.0" layoutY="1.0" prefHeight="54.0" prefWidth="275.0" text="Lectures" textFill="WHITE">
+        <Label alignment="BOTTOM_CENTER" layoutX="233.0" layoutY="14.0" prefHeight="46.0" prefWidth="181.0" text="Lectures" textFill="WHITE" AnchorPane.bottomAnchor="458.6" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="232.4" AnchorPane.topAnchor="14.0">
             <font>
                 <Font name="Times New Roman" size="48.0" />
             </font>
@@ -65,7 +65,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="id_back_addStu" layoutX="5.0" layoutY="-1.0" mnemonicParsing="false" onAction="#back" text="←">
+        <Button fx:id="id_back_addStu" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" text="←" AnchorPane.bottomAnchor="482.4" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="601.0" AnchorPane.topAnchor="15.0">
             <font>
                 <Font size="14.0" />
             </font>

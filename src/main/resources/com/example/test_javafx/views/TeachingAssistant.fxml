@@ -10,6 +10,14 @@
    <children>
       <VBox prefHeight="426.0" prefWidth="600.0" style="-fx-background-color: #37474F;">
          <children>
+            <Button fx:id="id_backTA" mnemonicParsing="false" onAction="#backTA" text="←">
+               <font>
+                  <Font name="Times New Roman Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
             <Label alignment="BOTTOM_CENTER" prefHeight="54.0" prefWidth="425.0" text="Teaching Assistant" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <font>
                   <Font name="Times New Roman" size="48.0" />

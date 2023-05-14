@@ -26,16 +26,15 @@ public class LecturesTimesController implements Initializable {
     public TableView<LectureTime> time_table;
     @FXML
     public TableColumn<LectureTime, String> course_id;
+
     @FXML
-    public TableColumn<LectureTime, String> course_title;
-    @FXML
-    public TableColumn<LectureTime, String> building;
+    public TableColumn<LectureTime, String> instructor_id;
     @FXML
     public TableColumn<LectureTime, String> room_number;
     @FXML
     public TableColumn<LectureTime, String> time_slot;
     @FXML
-    public AnchorPane root;
+    public SplitPane root;
     @FXML
     public TextField id;
     @FXML
@@ -57,11 +56,10 @@ public class LecturesTimesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //make sure the property value factory should be exactly same as the getStudentId from your model class
-//        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
-//        course_title.setCellValueFactory(new PropertyValueFactory<>("Course_title"));
-//        building.setCellValueFactory(new PropertyValueFactory<>("Building"));
-//        room_number.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-//        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
+        instructor_id.setCellValueFactory(new PropertyValueFactory<>("Course_title"));
+        room_number.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
+        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
     }
 
     public void back() {

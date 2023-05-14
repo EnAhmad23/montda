@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="635.0" prefWidth="818.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Users">
+<AnchorPane fx:id="root" prefHeight="672.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Users">
    <children>
-      <Label alignment="BOTTOM_CENTER" layoutX="421.0" layoutY="19.0" prefHeight="54.0" prefWidth="116.0" text="Users" textFill="WHITE">
+      <Label alignment="BOTTOM_CENTER" layoutX="342.0" layoutY="12.0" prefHeight="54.0" prefWidth="136.0" text="Users" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="48.0" />
          </font>
@@ -16,7 +21,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="nav_add" layoutX="372.0" layoutY="137.0" mnemonicParsing="false" onAction="#addUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add ">
+      <Button fx:id="nav_add" layoutX="666.0" layoutY="52.0" mnemonicParsing="false" onAction="#addUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add ">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -24,7 +29,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="nav_delete" layoutX="665.0" layoutY="137.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
+      <Button fx:id="nav_delete" layoutX="666.0" layoutY="188.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -32,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="nav_update" layoutX="516.0" layoutY="137.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+      <Button fx:id="nav_update" layoutX="666.0" layoutY="118.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -40,33 +45,33 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="field_to_id" layoutX="134.0" layoutY="21.0"  prefHeight="36.0" prefWidth="187.0" promptText="Enter your ID" />
-      <TextField fx:id="field_to_name" layoutX="134.0" layoutY="82.0"  prefHeight="36.0" prefWidth="187.0" promptText="Name" />
-      <TextField fx:id="field_to_department" layoutX="134.0" layoutY="149.0"  prefHeight="36.0" prefWidth="187.0" promptText="Department" />
-      <Separator layoutX="1.0" layoutY="209.0" prefHeight="13.0" prefWidth="818.0" />
-      <TableView layoutY="217.0" prefHeight="417.0" prefWidth="820.0">
+      <TextField fx:id="field_to_id" layoutX="136.0" layoutY="79.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter your ID" />
+      <TextField fx:id="field_to_name" layoutX="136.0" layoutY="140.0" prefHeight="36.0" prefWidth="187.0" promptText="Name" />
+      <TextField fx:id="field_to_department" layoutX="136.0" layoutY="197.0" prefHeight="36.0" prefWidth="187.0" promptText="Department" />
+      <Separator layoutX="1.0" layoutY="242.0" prefHeight="18.0" prefWidth="818.0" />
+      <TableView layoutY="255.0" prefHeight="417.0" prefWidth="820.0">
          <columns>
             <TableColumn fx:id="Table_UserID" prefWidth="260.0" text="User ID" />
             <TableColumn fx:id="Table_Name" prefWidth="281.0" text="Name" />
             <TableColumn fx:id="Table_Department" prefWidth="278.0" text="Department" />
          </columns>
       </TableView>
-      <Button fx:id="id_close_user" layoutX="775.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" text="←">
+      <Button fx:id="id_close_user" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="21.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="79.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="82.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Name" textFill="#e8e3e3">
+      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="140.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Name" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="149.0" prefHeight="36.0" prefWidth="116.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Department" textFill="#e8e3e3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="197.0" prefHeight="36.0" prefWidth="116.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Department" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>

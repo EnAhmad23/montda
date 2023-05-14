@@ -12,7 +12,7 @@ public class DBModel {
     Connection con = null;
     //here our queries method
     private DBModel() {
-        schemaConnect("uni-largeSpace");
+        schemaConnect("uni-space");
     }
 
     public static DBModel getModel() {
