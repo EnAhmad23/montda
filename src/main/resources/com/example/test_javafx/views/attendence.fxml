@@ -16,7 +16,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="nav_add" layoutX="678.0" layoutY="130.0" mnemonicParsing="false" onAction="#addUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="nav_add" layoutX="678.0" layoutY="97.0" mnemonicParsing="false" onAction="#addUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -28,7 +28,7 @@
         <TextField fx:id="field_to_name" layoutX="146.0" layoutY="145.0" onAction="#enterUserName" prefHeight="36.0" prefWidth="187.0" promptText="Name" />
         <TextField fx:id="field_to_department" layoutX="146.0" layoutY="202.0" onAction="#enterUserDepartment" prefHeight="36.0" prefWidth="187.0" promptText="phone No." />
         <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
-        <TableView layoutY="276.0" prefHeight="434.0" prefWidth="825.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="274.6">
+        <TableView layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
             <columns>
                 <TableColumn fx:id="Table_UserID" prefWidth="178.0" text="Student ID" />
                 <TableColumn fx:id="Table_Name" prefWidth="147.0" text="Teacher Name" />
@@ -58,7 +58,7 @@
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="nav_Update" layoutX="678.0" layoutY="196.0" mnemonicParsing="false" onAction="#UpdateUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+      <Button fx:id="nav_Update" layoutX="678.0" layoutY="172.0" mnemonicParsing="false" onAction="#UpdateUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
