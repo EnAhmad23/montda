@@ -1,13 +1,17 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.DBModel;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Students implements Initializable {
@@ -26,9 +30,11 @@ public class Students implements Initializable {
     @FXML
     private Button delete;
     @FXML
+    private TableView table;
+    @FXML
     private Button id_close_students;
 
-
+    DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
     public void addStudent (){
         nav.navigateTo(root,nav.Add_STUDENT_FXML);
@@ -59,6 +65,8 @@ public class Students implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList ids = dm.getStdId();
+        table.getItems().add(ids);
 
     }
 }

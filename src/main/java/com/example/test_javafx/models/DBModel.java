@@ -1,5 +1,7 @@
 package com.example.test_javafx.models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import java.sql.*;
@@ -12,7 +14,7 @@ public class DBModel {
     Connection con = null;
     //here our queries method
     private DBModel() {
-        schemaConnect("uni");
+        connect();
     }
 
     public static DBModel getModel() {
@@ -28,6 +30,7 @@ public class DBModel {
         source.setDatabaseName("project");
         source.setUser("postgres");
         source.setPassword("bohboq20");
+        source.setCurrentSchema("uni");
 
         try {
             con = source.getConnection();
@@ -38,24 +41,24 @@ public class DBModel {
 
     }
 
-    public void schemaConnect(String schema) {
-        String sql = "set search_path to '" + schema + "'";
-        Statement s1 = null;
-        try {
-            connect();
-            s1 = con.createStatement();
-            s1.execute(sql);
-            System.out.println("Connected to schema " + schema);
-        } catch (SQLException ex) {
-        } finally {
-            try {
-                s1.close();
-            } catch (SQLException ex) {
-            }
-
-        }
-
-    }
+//    public void schemaConnect(String schema) {
+//        String sql = "set search_path to '" + schema + "'";
+//        Statement s1 = null;
+//        try {
+//            connect();
+//            s1 = con.createStatement();
+//            s1.execute(sql);
+//            System.out.println("Connected to schema " + schema);
+//        } catch (SQLException ex) {
+//        } finally {
+//            try {
+//                s1.close();
+//            } catch (SQLException ex) {
+//            }
+//
+//        }
+//
+//    }
 
     private void closeEverything() {
         try {
@@ -227,6 +230,24 @@ public class DBModel {
             if (rs.next()) {
                 System.out.println(rs.getString(1));
                 return rs.getString(1);
+            }
+            return null;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ObservableList getStdId() {
+        String sql = "select id from students ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ObservableList ids = FXCollections.observableArrayList();
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                ids.add(rs.getString(1));
+                return  ids;
             }
             return null;
         } catch (SQLException ex) {

@@ -7,10 +7,10 @@ public class LectureTime {
     String room_number;
     String time_slot;
 
-    public LectureTime(String course_id, String course_title, String building, String room_number, String time_slot) {
-        this.course_id = course_id;
-        this.course_title = course_title;
-        this.building = building;
+    public LectureTime(String id, String course_id, String title, String room_number, String time_slot) {
+        this.course_id = id;
+        this.course_title = course_id;
+        this.building = title;
         this.room_number = room_number;
         this.time_slot = time_slot;
     }
@@ -35,9 +35,9 @@ public class LectureTime {
         return building;
     }
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+//    public void setBuilding(String building) {
+//        this.building = building;
+//    }
 
     public String getRoom_number() {
         return room_number;

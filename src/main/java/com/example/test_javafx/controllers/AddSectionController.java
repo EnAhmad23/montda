@@ -77,7 +77,7 @@ public class AddSectionController implements Initializable {
 
     private void setComboBoxes() {
 //        setCombInitials();
-        ObservableList<String> ids = FXCollections.observableList(db.getCourseIDs());
+//        ObservableList<String> ids = FXCollections.observableList(db.getCourseIDs());
 //        ObservableList<String> buildings = FXCollections.observableList(db.getBuildings());
 
         List<Integer> years
