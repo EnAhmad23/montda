@@ -32,8 +32,8 @@
             <columns>
                 <TableColumn fx:id="Table_UserID" prefWidth="178.0" text="Student ID" />
                 <TableColumn fx:id="Table_Name" prefWidth="147.0" text="Teacher Name" />
-            <TableColumn fx:id="Table_UserID2" prefWidth="176.0" text="Section ID" />
-                <TableColumn fx:id="Table_Department" minWidth="0.0" prefWidth="196.0" text="Department" />
+            <TableColumn fx:id="Table_LecId" prefWidth="176.0" text="Lecture Id" />
+                <TableColumn fx:id="Table_Department" minWidth="0.0" prefWidth="196.0" text="Room" />
             <TableColumn fx:id="Table_UserID21" prefWidth="126.0" text="Time" />
             </columns>
         </TableView>

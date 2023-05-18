@@ -12,7 +12,7 @@
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutY="127.0" prefHeight="36.0" prefWidth="132.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Instructor ID" textFill="#e8e3e3">
+        <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" layoutY="127.0" prefHeight="36.0" prefWidth="132.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Course ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
             </font>
@@ -33,13 +33,14 @@
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <TextField fx:id="instructorID" layoutX="132.0" layoutY="128.0" onAction="#studentName_lecture" prefHeight="33.0" prefWidth="157.0" promptText="Instructor ID" />
-        <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0" AnchorPane.bottomAnchor="-1.3999999999999773" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.20000000000004547" AnchorPane.topAnchor="234.0">
+        <TextField fx:id="courseId" layoutX="132.0" layoutY="128.0" onAction="#studentCourse_id" prefHeight="33.0" prefWidth="157.0" promptText="Course ID" />
+        <TableView fx:id="time_table" layoutY="234.0" prefHeight="294.0" prefWidth="647.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="234.0">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="145.0" text="Course ID" />
-                <TableColumn fx:id="course_title" prefWidth="170.0" text="Instructor ID" />
-                <TableColumn fx:id="room_number" prefWidth="144.0" text="Room No." />
-                <TableColumn fx:id="time_slot" prefWidth="187.0" text="Time Slot" />
+                <TableColumn fx:id="course_id" prefWidth="114.5999892950058" text="ID" />
+                <TableColumn fx:id="course_title" prefWidth="151.4000244140625" text="Course Id" />
+                <TableColumn fx:id="room_number" prefWidth="119.4000244140625" text="Room No." />
+                <TableColumn fx:id="time_slot" minWidth="0.0" prefWidth="128.5999755859375" text="Time Slot" />
+            <TableColumn prefWidth="132.5999755859375" text="Title" />
             </columns>
         </TableView>
         <Button fx:id="delete" layoutX="538.0" layoutY="174.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="delete">

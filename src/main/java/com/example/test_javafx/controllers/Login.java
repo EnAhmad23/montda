@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class Login implements Initializable {
     private final String url = "jdbc:postgresql://localhost/UNI1";
-    private final String user = "postgres";
+    private final String user = "admin";
     private final String password = "admin";
     @FXML
     private AnchorPane root;
@@ -31,7 +31,7 @@ public class Login implements Initializable {
 
     public void checkAdmin() {
         if (userName.getText().equals(user) && passWord.getText().equals(password))
-            nav.navigateTo(root, nav.MAIN_FXML);
+            nav.navigateTo(root, nav.TEACHING_FXML);
         else label.setText(" WRONG USER NAME OR PASSWORD ");
     }
 

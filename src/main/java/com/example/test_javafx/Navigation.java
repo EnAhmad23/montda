@@ -24,12 +24,14 @@ public class Navigation {
     public final String TEACHING_FXML = "views/teachingAssistant.fxml";
     public final String UPLOAD = "views/upload.fxml";
     public final String LOGIN = "views/login.fxml";
+    private String currentPath = "";
 
 
 
     public void navigateTo(Parent rootPane, String path) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
+            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
             Stage stage = (Stage) rootPane.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -39,4 +41,10 @@ public class Navigation {
             e.printStackTrace();
         }
     }
+
+    public String getCurrentPath() {
+        return currentPath;
+    }
+
+
 }

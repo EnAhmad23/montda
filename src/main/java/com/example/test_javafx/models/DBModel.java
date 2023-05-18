@@ -12,7 +12,7 @@ public class DBModel {
     Connection con = null;
     //here our queries method
     private DBModel() {
-        schemaConnect("uni-space");
+        schemaConnect("uni");
     }
 
     public static DBModel getModel() {
@@ -25,7 +25,7 @@ public class DBModel {
     public void connect() {
         PGSimpleDataSource source = new PGSimpleDataSource();
         source.setServerName("localhost");
-        source.setDatabaseName("UNI1");
+        source.setDatabaseName("project");
         source.setUser("postgres");
         source.setPassword("bohboq20");
 
@@ -90,41 +90,41 @@ public class DBModel {
 
     }
 
-    public ArrayList<String> getBuildings() {
-        String sql = "select building from classroom;";
-        ArrayList<String> buildings = new ArrayList<>();
-        try (Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql)
-        ) {
-            while (rs.next()) {
-                buildings.add(rs.getString(1));
-            }
-            return buildings;
-        } catch (SQLException ex) {
+//    public ArrayList<String> getBuildings() {
+//        String sql = "select building from classroom;";
+//        ArrayList<String> buildings = new ArrayList<>();
+//        try (Statement st = con.createStatement();
+//             ResultSet rs = st.executeQuery(sql)
+//        ) {
+//            while (rs.next()) {
+//                buildings.add(rs.getString(1));
+//            }
+//            return buildings;
+//        } catch (SQLException ex) {
+//
+//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//
+//    }
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-
-    }
-
-    public ArrayList<String> getABuildingRooms(String building) {
-        String sql = "select room_number from classroom where building = ? ;";
-        ArrayList<String> rooms = new ArrayList<>();
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, building);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                rooms.add(rs.getString(1));
-            }
-            return rooms;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-
-    }
+//    public ArrayList<String> getABuildingRooms(String building) {
+//        String sql = "select room_number from classroom where building = ? ;";
+//        ArrayList<String> rooms = new ArrayList<>();
+//        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, building);
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+//                rooms.add(rs.getString(1));
+//            }
+//            return rooms;
+//        } catch (SQLException ex) {
+//
+//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//
+//    }
 
     public String getcourseName(String id) {
         String sql = "select title from course where course_id = ? ;";
@@ -220,7 +220,7 @@ public class DBModel {
     }
 
     public String getStdName(String id) {
-        String sql = "select name from student where id = ? ;";
+        String sql = "select name from students where id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();

@@ -1,6 +1,7 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.DBModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,25 +38,26 @@ public class StartController implements Initializable {
     @FXML
     public Button id_close_admin;
     Navigation nav = new Navigation();
+    DBModel dm = DBModel.getModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        System.out.println(dm.getStdName("ahmad"));
 
     }
-    private void handleButtonAction (ActionEvent event) throws Exception {
-        Stage stage = null;
-        Parent root = null;
-
-        if(event.getSource()==nav_student){
-            stage = (Stage) nav_student.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource(nav.SECTIONs_FXML));
-        }
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    private void handleButtonAction (ActionEvent event) throws Exception {
+//        Stage stage = null;
+//        Parent root = null;
+//
+//        if(event.getSource()==nav_student){
+//            stage = (Stage) nav_student.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource(nav.SECTIONs_FXML));
+//        }
+//
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     public void navSections() throws IOException {
         nav.navigateTo(rootPane, nav.SECTIONs_FXML);
 //        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource(".../views/Sections.fxml")));
