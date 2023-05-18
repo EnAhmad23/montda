@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="402.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddStudent">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="402.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddStudent">
    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="570.0" style="-fx-background-color: #37474F;">
       <Button fx:id="btn_add" layoutX="437.0" layoutY="377.0" mnemonicParsing="false" onAction="#addStudntBotton" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
          <cursor>

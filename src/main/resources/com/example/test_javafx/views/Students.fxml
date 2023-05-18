@@ -17,7 +17,7 @@
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="134.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Name" textFill="#e8e3e3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="134.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Name" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
