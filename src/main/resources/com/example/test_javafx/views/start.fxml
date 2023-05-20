@@ -16,7 +16,7 @@
                 <Font name="Times New Roman" size="48.0" />
             </font>
         </Label>
-        <Button fx:id="nav_add_section" mnemonicParsing="false" onAction="#navSections" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Courses">
+        <Button fx:id="nav_add_section" mnemonicParsing="false" onAction="#navSections" prefHeight="44.0" prefWidth="241.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Courses">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -27,7 +27,7 @@
                 <Insets />
             </VBox.margin>
         </Button>
-        <Button fx:id="users" mnemonicParsing="false" onAction="#navUsers" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Users">
+        <Button fx:id="users" mnemonicParsing="false" onAction="#navUsers" prefHeight="44.0" prefWidth="241.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Teaching Assistant">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -35,7 +35,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="nav_lectures_times" mnemonicParsing="false" onAction="#navToLecturesTimes" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Lectures times">
+        <Button fx:id="nav_lectures_times" mnemonicParsing="false" onAction="#navToLecturesTimes" prefHeight="42.0" prefWidth="241.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Lectures times">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -43,7 +43,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="nav_student" mnemonicParsing="false" onAction="#navToStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Students">
+        <Button fx:id="nav_student" mnemonicParsing="false" onAction="#navToStudent" prefHeight="42.0" prefWidth="241.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;" text="Students">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
