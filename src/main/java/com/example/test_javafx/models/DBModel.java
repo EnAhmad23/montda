@@ -239,18 +239,17 @@ public class DBModel {
         }
 
     }
-    public ArrayList<LectureTime> getStdId() {
+    public ObservableList getStdId() {
         String sql = "select id from students ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
-            ArrayList<LectureTime> ids = new ArrayList<>();
+            ObservableList ids = FXCollections.observableArrayList();
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                ids.add(new LectureTime(rs.getString(1)," dsf"," "," "," "));
-                System.out.println(rs.getString(1));
+                ids.add(rs.getString(1));
                 return  ids;
             }
-            return ids;
+            return null;
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,18 +1,18 @@
 package com.example.test_javafx.models;
 
 public class LectureTime {
+    String lecture_id;
     String course_id;
-    String course_title;
-    String building;
     String room_number;
     String time_slot;
+    String course_title;
 
-    public LectureTime(String id, String course_id, String title, String room_number, String time_slot) {
-        this.course_id = id;
-        this.course_title = course_id;
-        this.building = title;
+    public LectureTime(String lecture_id, String course_id,  String room_number, String time_slot,  String title) {
+        this.lecture_id = lecture_id;
+        this.course_id = course_id;
         this.room_number = room_number;
         this.time_slot = time_slot;
+        this.course_title = title;
     }
 
     public String getCourse_id() {
@@ -31,12 +31,12 @@ public class LectureTime {
         this.course_title = course_title;
     }
 
-    public String getBuilding() {
-        return building;
+    public String getLecture_id() {
+        return lecture_id;
     }
 
-//    public void setBuilding(String building) {
-//        this.building = building;
+//    public void setlecture_id(String lecture_id) {
+//        this.lecture_id = lecture_id;
 //    }
 
     public String getRoom_number() {

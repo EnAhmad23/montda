@@ -3,6 +3,7 @@ package com.example.test_javafx.controllers;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.LectureTime;
+import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,15 +27,15 @@ public class Students implements Initializable {
     @FXML
     private TextField s_name;
     @FXML
-    private TableColumn<LectureTime,String> s_id;
+    private TableColumn<Student, String> s_id;
     @FXML
-    private TableColumn<LectureTime,String> name;
+    private TableColumn<Student, String> name;
     @FXML
-    private TableColumn<LectureTime,String> g;
+    private TableColumn<Student, String> gender;
     @FXML
-    private TableColumn<LectureTime,String> l;
+    private TableColumn<Student, String> level;
     @FXML
-    private TableColumn<LectureTime,String> m;
+    private TableColumn<Student, String> major;
     @FXML
     private TextField department;
     @FXML
@@ -44,49 +45,53 @@ public class Students implements Initializable {
     @FXML
     private Button delete;
     @FXML
-    private TableView<LectureTime> table;
+    private TableView<Student> table;
     @FXML
     private Button id_close_students;
 
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-    public void addStudent (){
-        nav.navigateTo(root,nav.Add_STUDENT_FXML);
-    }
-    public void UpdateStudent(){
 
-    }
-    public void deleteStudent(){
-
+    public void addStudent() {
+        nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
-    public void enterStudentID(){
+    public void UpdateStudent() {
 
     }
 
-    public void enterStudentName(){
+    public void deleteStudent() {
 
     }
-    public void enterStudentDepartment(){
+
+    public void enterStudentID() {
 
     }
-    public void Update_back(){
+
+    public void enterStudentName() {
+
+    }
+
+    public void enterStudentDepartment() {
+
+    }
+
+    public void Update_back() {
         if (nav.getCurrentPath().equals(nav.MAIN_FXML))
-        nav.navigateTo(root,nav.MAIN_FXML);
+            nav.navigateTo(root, nav.MAIN_FXML);
         else
-            nav.navigateTo(root,nav.TEACHING_FXML);
+            nav.navigateTo(root, nav.TEACHING_FXML);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        s_id =new TableColumn<>("Student ID");
-//        s_id.setCellFactory(new PropertyValueFactory<>("id"));
-//        name.setCellFactory(new PropertyValueFactory<LectureTime,String>("m"));
-//        m.setCellFactory(new PropertyValueFactory<LectureTime,String>("cv"));
-//        g.setCellFactory(new PropertyValueFactory<LectureTime,String>("id"));
-//        l.setCellFactory(new PropertyValueFactory<LectureTime,String>("id"));
+        s_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        level.setCellValueFactory(new PropertyValueFactory<>("Level"));
+        major.setCellValueFactory(new PropertyValueFactory<>("Major"));
 
-        ObservableList <LectureTime>ids = FXCollections.observableArrayList(dm.getStdId());
+        ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
         table.setItems(ids);
 
     }
