@@ -23,11 +23,11 @@ public class Students implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private TextField id;
+    private TextField t_id;
     @FXML
     private TextField s_name;
     @FXML
-    private TableColumn<Student, String> s_id;
+    private TableColumn<Student, String> id;
     @FXML
     private TableColumn<Student, String> name;
     @FXML
@@ -85,11 +85,11 @@ public class Students implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        s_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        level.setCellValueFactory(new PropertyValueFactory<>("Level"));
-        major.setCellValueFactory(new PropertyValueFactory<>("Major"));
+        level.setCellValueFactory(new PropertyValueFactory<>("stu_level"));
+        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
 
         ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
         table.setItems(ids);

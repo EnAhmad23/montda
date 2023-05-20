@@ -239,17 +239,68 @@ public class DBModel {
         }
 
     }
-    public ObservableList getStdId() {
-        String sql = "select id from students ;";
+    public ArrayList<Student> getStd(){
+        String sql = "select * from students ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
-            ObservableList ids = FXCollections.observableArrayList();
+            ArrayList<Student> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(new Student( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<Course> getCou(){
+        String sql = "select * from course ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<Course> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(new Course( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<LectureTime> getLectures(){
+        String sql = "select * from lecture ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<LectureTime> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                ids.add(new LectureTime( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<Student> login(String id , String passWord){
+        String sql = "select * from students ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                ids.add(rs.getString(1));
+                ids.add(new Student( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
                 return  ids;
             }
-            return null;
+            return ids;
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);

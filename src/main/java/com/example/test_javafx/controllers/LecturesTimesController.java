@@ -23,24 +23,25 @@ public class LecturesTimesController implements Initializable {
     @FXML
     private Button delete;
 
-    public TableView<LectureTime> time_table;
+    public TableView<LectureTime> table;
     @FXML
-    public TableColumn<LectureTime, String> course_id;
+    public TableColumn<LectureTime, String> id;
 
     @FXML
-    public TableColumn<LectureTime, String> instructor_id;
+    public TableColumn<LectureTime, String> course_id;
     @FXML
-    public TableColumn<LectureTime, String> room_number;
+    public TableColumn<LectureTime, String> room;
     @FXML
     public TableColumn<LectureTime, String> time_slot;
     @FXML
+    public TableColumn<LectureTime, String> title;
+    @FXML
     public AnchorPane root;
     @FXML
-    public TextField id;
+    public TextField t_id;
     @FXML
     public TextField instructorID;
-    @FXML
-    public TextField room;
+
     @FXML
     public ComboBox<String> year;
     @FXML
@@ -56,10 +57,13 @@ public class LecturesTimesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //make sure the property value factory should be exactly same as the getStudentId from your model class
-//        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
-//        instructor_id.setCellValueFactory(new PropertyValueFactory<>("Course_title"));
-//        room_number.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-//        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
+        id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
+        room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
+        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.getLectures());
+        table.setItems(lectures);
     }
 
     public void back() {
@@ -103,11 +107,11 @@ public class LecturesTimesController implements Initializable {
         if (id.getText() != null && sem.getValue() != (null)
                 && year.getValue() != null) {
             if (student.isSelected())
-                time_table.setItems(FXCollections.observableArrayList(
+                table.setItems(FXCollections.observableArrayList(
                         db.getStdLectures(id.getText(), sem.getValue(),
                                 Integer.parseInt(year.getValue()))));
             else
-                time_table.setItems(FXCollections.observableArrayList(
+                table.setItems(FXCollections.observableArrayList(
                         db.getInstructorLectures(id.getText(), sem.getValue(),
                                 Integer.parseInt(year.getValue()))));
         } else System.err.println("Error! fill fields");

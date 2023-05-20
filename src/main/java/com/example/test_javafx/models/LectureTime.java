@@ -5,14 +5,14 @@ public class LectureTime {
     String course_id;
     String room_number;
     String time_slot;
-    String course_title;
+    String title;
 
     public LectureTime(String lecture_id, String course_id,  String room_number, String time_slot,  String title) {
         this.lecture_id = lecture_id;
         this.course_id = course_id;
         this.room_number = room_number;
         this.time_slot = time_slot;
-        this.course_title = title;
+        this.title = title;
     }
 
     public String getCourse_id() {
@@ -23,12 +23,12 @@ public class LectureTime {
         this.course_id = course_id;
     }
 
-    public String getCourse_title() {
-        return course_title;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCourse_title(String course_title) {
-        this.course_title = course_title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getLecture_id() {

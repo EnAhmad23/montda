@@ -59,7 +59,7 @@ public class StartController implements Initializable {
 //        stage.show();
 //    }
     public void navSections() throws IOException {
-        nav.navigateTo(rootPane, nav.SECTIONs_FXML);
+        nav.navigateTo(rootPane, nav.COURSES);
 //        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource(".../views/Sections.fxml")));
 //        Stage stage = (Stage) nav_add_section.getScene().getWindow();
 //        Scene scene = new Scene(root);

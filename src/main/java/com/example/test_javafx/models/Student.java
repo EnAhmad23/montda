@@ -1,59 +1,58 @@
 package com.example.test_javafx.models;
 
 public class Student {
+    private String id ;
+    private String name ;
+    private String gender ;
+    private String stu_level ;
+    private String majer ;
 
-    String student_id;
-    String student_name;
-    String gender;
-    String level;
-    String major;
-
-    public Student(String student_id, String student_name, String gender, String level, String major) {
-        this.student_id = student_id;
-        this.student_name = student_name;
+    public Student(String id, String name, String gender, String stuLevel, String majer) {
+        this.id = id;
+        this.name = name;
         this.gender = gender;
-        this.level = level;
-        this.major = major;
-    }
-
-    public String getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(String student_id) {
-        this.student_id = student_id;
-    }
-
-    public String getStudent_name() {
-        return student_name;
-    }
-
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
+        stu_level = stuLevel;
+        this.majer = majer;
     }
 
     public String getGender() {
         return gender;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getMajer() {
+        return majer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStu_level() {
+        return stu_level;
+    }
+
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getLevel() {
-        return level;
+    public void setMajer(String majer) {
+        this.majer = majer;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMajort() {
-        return major;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setStu_level(String stu_level) {
+        this.stu_level = stu_level;
     }
 
 }
