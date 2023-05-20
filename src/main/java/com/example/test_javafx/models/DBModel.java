@@ -6,12 +6,13 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DBModel {
     private static DBModel dbmodel = null;
-    Connection con = null;
+     Connection con = null;
     //here our queries method
     private DBModel() {
         connect();
@@ -274,6 +275,25 @@ public class DBModel {
         }
 
     }
+    public void addTeacher(String id ,String name ,String teache,String password ){
+        String sql = "insert into teacher_ass values (?,?,?,?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            st.setString(2, name);
+            st.setString(3, teache);
+            st.setString(4, password);
+            ArrayList<TeacherAssistant> teachers = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+//            while (rs.next())
+            teachers.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
     public ArrayList<LectureTime> getLectures(){
         String sql = "select * from lecture ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -282,6 +302,24 @@ public class DBModel {
             ResultSet rs = st.executeQuery();
             while (rs.next())
                 ids.add(new LectureTime( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<TeacherAssistant> getTeacherAssistant(){
+        String sql = "select * from teacher_ass ;";
+        String sql2 = "select name from instructor natural join advisor;";
+        try (PreparedStatement st = con.prepareStatement(sql);PreparedStatement ad = con.prepareStatement(sql2)) {
+//            st.setString(1, id);
+            ArrayList<TeacherAssistant> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            ResultSet advisor = ad.executeQuery();
+            while (rs.next()&&advisor.next())
+                ids.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),advisor.getString(1)));
             return ids;
         } catch (SQLException ex) {
 

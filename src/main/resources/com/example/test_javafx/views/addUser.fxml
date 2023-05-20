@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="435.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddUser">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="435.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddTeacherAssistant">
    <children>
-      <Button fx:id="btn_add" layoutX="312.0" layoutY="386.0" mnemonicParsing="false" onAction="#adduser" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
+      <Button fx:id="add" layoutX="312.0" layoutY="386.0" mnemonicParsing="false" onAction="#add_teacher" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -18,17 +16,17 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="43.0" layoutY="115.0" prefHeight="34.0" prefWidth="78.0" text="User ID" textFill="WHITE">
+      <Label layoutX="43.0" layoutY="115.0" prefHeight="34.0" prefWidth="78.0" text=" ID" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="180.0" prefHeight="34.0" prefWidth="114.0" text="User Name" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="180.0" prefHeight="34.0" prefWidth="114.0" text=" Name" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="248.0" prefHeight="34.0" prefWidth="101.0" text="User_Role" textFill="WHITE">
+      <Label layoutX="43.0" layoutY="248.0" prefHeight="34.0" prefWidth="101.0" text="Teache" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
@@ -38,16 +36,16 @@
             <Font name="Times New Roman Bold" size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="id_userId" layoutX="171.0" layoutY="114.0" onAction="#userId" prefHeight="34.0" prefWidth="156.0" />
-      <TextField fx:id="id_userRole" layoutX="171.0" layoutY="248.0" prefHeight="34.0" prefWidth="156.0" />
-      <TextField fx:id="id_userName" layoutX="171.0" layoutY="180.0" onAction="#userName" prefHeight="34.0" prefWidth="156.0" />
-      <TextField fx:id="id_userPass" layoutX="171.0" layoutY="310.0" onAction="#userPass" prefHeight="34.0" prefWidth="156.0" />
+      <TextField fx:id="T_id" layoutX="171.0" layoutY="114.0" prefHeight="34.0" prefWidth="156.0" />
+      <TextField fx:id="T_teache" layoutX="171.0" layoutY="248.0" prefHeight="34.0" prefWidth="156.0" />
+      <TextField fx:id="T_name" layoutX="171.0" layoutY="180.0" prefHeight="34.0" prefWidth="156.0" />
+      <TextField fx:id="T_password" layoutX="171.0" layoutY="310.0" prefHeight="34.0" prefWidth="156.0" />
       <Button fx:id="id_back_addus" layoutX="26.0" layoutY="15.0" mnemonicParsing="false" onAction="#back_user" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Label alignment="BOTTOM_CENTER" layoutX="152.0" layoutY="28.0" prefHeight="46.0" prefWidth="132.0" style="-fx-font-family: bold;" text="Add User" textFill="WHITE">
+      <Label alignment="BOTTOM_CENTER" layoutX="77.0" layoutY="28.0" prefHeight="46.0" prefWidth="317.0" style="-fx-font-family: bold;" text="Add Teacher Assistant" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="31.0" />
          </font>

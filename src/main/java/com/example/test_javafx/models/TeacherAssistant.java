@@ -10,13 +10,15 @@ public class TeacherAssistant implements Initializable {
     String id;
     String name;
     String teache;
-    String password;
 
-    public TeacherAssistant(String id, String name, String teache, String password) {
+    String advisor;
+
+    public TeacherAssistant(String id, String name, String teache,String advisor) {
         this.id = id;
         this.name = name;
         this.teache = teache;
-        this.password = password;
+
+        this.advisor=advisor;
     }
 
     public String getId() {
@@ -43,13 +45,7 @@ public class TeacherAssistant implements Initializable {
         this.teache = teache;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
