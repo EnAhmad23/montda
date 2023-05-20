@@ -16,8 +16,8 @@ public class AddTeacherAssistant {
     private AnchorPane root;
     @FXML
     private TextField id;
-    @FXML
-    private Label label;
+//    @FXML
+//    private Label label;
     @FXML
     private TextField name;
     @FXML
@@ -31,11 +31,11 @@ public class AddTeacherAssistant {
         String t_name = name.getText();
         String t_teache = teache.getText();
         String t_password = password.getText();
-
+//        label.setText("");
         if (!t_id.isEmpty()&&!t_name.isEmpty()&&!t_password.isEmpty())
             new TeacherAssistant(id.getText(),name.getText(),teache.getText(),password.getText());
         else
-            label.setText("INCOMPLETE INPUTS");
+//            label.setText("INCOMPLETE INPUTS");
         dm.addTeacher(t_id,t_name,t_teache,t_password);
         System.out.println("0");
 

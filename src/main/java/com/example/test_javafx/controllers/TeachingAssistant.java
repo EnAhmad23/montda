@@ -42,7 +42,7 @@ public class TeachingAssistant implements Initializable {
     DBModel dm =  DBModel.getModel();
     Navigation nav = new Navigation();
     public void addUser(){
-        nav.navigateTo(root,nav.ADD_USER_FXML);
+        nav.navigateTo(root,nav.ADD_TEACHER_FXML);
     }
     public void deleteUser(){
         nav.navigateTo(root,nav.LECTURES_TIMES_FXML);
