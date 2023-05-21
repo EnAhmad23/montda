@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Paint;
 
 import java.sql.PreparedStatement;
 
@@ -16,8 +18,8 @@ public class AddTeacherAssistant {
     private AnchorPane root;
     @FXML
     private TextField id;
-//    @FXML
-//    private Label label;
+    @FXML
+    private Label label;
     @FXML
     private TextField name;
     @FXML
@@ -35,9 +37,13 @@ public class AddTeacherAssistant {
         if (!t_id.isEmpty()&&!t_name.isEmpty()&&!t_password.isEmpty())
             new TeacherAssistant(id.getText(),name.getText(),teache.getText(),password.getText());
         else
-//            label.setText("INCOMPLETE INPUTS");
-        dm.addTeacher(t_id,t_name,t_teache,t_password);
-        System.out.println("0");
+            label.setText("INCOMPLETE INPUTS");
+        if(dm.addTeacher(t_id,t_name,t_teache,t_password)!=0){
+//
+            System.out.println("1");
+        }else
+//            label.setText("Teacher Assistant didn't add ");
+            System.out.println("0");
 
     }
     public void back_to_start(){}

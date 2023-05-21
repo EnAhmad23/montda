@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 
 public class DBModel {
     private static DBModel dbmodel = null;
-     Connection con = null;
+    Connection con = null;
+
     //here our queries method
     private DBModel() {
         connect();
@@ -240,14 +241,15 @@ public class DBModel {
         }
 
     }
-    public ArrayList<Student> getStd(){
+
+    public ArrayList<Student> getStd() {
         String sql = "select * from students ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Student( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -257,14 +259,15 @@ public class DBModel {
         }
 
     }
-    public ArrayList<Course> getCou(){
+
+    public ArrayList<Course> getCou() {
         String sql = "select * from course ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 
             }
             return ids;
@@ -275,33 +278,47 @@ public class DBModel {
         }
 
     }
-    public void addTeacher(String id ,String name ,String teache,String password ){
-        String sql = "insert into teacher_ass values (?,?,?,?);";
+    public int addStudent(String id, String name, String gender, String stu_level, String major) throws SQLException {
+        String SQL = "INSERT INTO students(id,name,gender,stu_level,majer) VALUES(?,?,?,?,?)";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, gender);
+            pstmt.setString(4, stu_level);
+            pstmt.setString(5, major);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new SQLException(e);
+        }
+    }
+    public int addTeacher(String id, String name, String teache, String password) {
+        String sql = "insert into teacher_ass(id,name,teache,password) values (?,?,?,?);";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             st.setString(2, name);
             st.setString(3, teache);
             st.setString(4, password);
-            ArrayList<TeacherAssistant> teachers = new ArrayList<>();
-            ResultSet rs = st.executeQuery();
+//            ArrayList<TeacherAssistant> teachers = new ArrayList<>();
+            return st.executeUpdate();
 //            while (rs.next())
-            teachers.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+//            teachers.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
 
         } catch (SQLException ex) {
-
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-
+            return 0;
         }
 
     }
-    public ArrayList<LectureTime> getLectures(){
+
+    public ArrayList<LectureTime> getLectures() {
         String sql = "select * from lecture ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<LectureTime> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new LectureTime( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             return ids;
         } catch (SQLException ex) {
 
@@ -310,33 +327,35 @@ public class DBModel {
         }
 
     }
-    public ArrayList<TeacherAssistant> getTeacherAssistant(){
+
+    public ArrayList<TeacherAssistant> getTeacherAssistant() {
         String sql = "select * from teacher_ass ;";
-        String sql2 = "select name from instructor natural join advisor;";
-        try (PreparedStatement st = con.prepareStatement(sql);PreparedStatement ad = con.prepareStatement(sql2)) {
+        String sql2 = "select name from instructor natural join (advisor natural join teacher_ass);";
+        try (PreparedStatement st = con.prepareStatement(sql); PreparedStatement ad = con.prepareStatement(sql2)) {
 //            st.setString(1, id);
             ArrayList<TeacherAssistant> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             ResultSet advisor = ad.executeQuery();
-            while (rs.next()&&advisor.next())
-                ids.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),advisor.getString(1)));
+            while (rs.next() && advisor.next())
+                ids.add(new TeacherAssistant(rs.getString(1), rs.getString(2), rs.getString(3), advisor.getString(1)));
             return ids;
         } catch (SQLException ex) {
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
             return null;
         }
 
     }
-    public ArrayList<Student> login(String id , String passWord){
+
+    public ArrayList<Student> login(String id, String passWord) {
         String sql = "select * from students ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                ids.add(new Student( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
-                return  ids;
+                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                return ids;
             }
             return ids;
         } catch (SQLException ex) {

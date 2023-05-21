@@ -64,6 +64,7 @@ public class TeachingAssistant implements Initializable {
         advisor.setCellValueFactory(new PropertyValueFactory<>("advisor"));
         ObservableList<TeacherAssistant> ob= FXCollections.observableArrayList(dm.getTeacherAssistant());
         table.setItems(ob);
+        System.out.println("2");
 
     }
 

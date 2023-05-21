@@ -17,7 +17,6 @@ public class TeacherAssistant implements Initializable {
         this.id = id;
         this.name = name;
         this.teache = teache;
-
         this.advisor=advisor;
     }
 

@@ -44,7 +44,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Label layoutX="45.0" layoutY="372.0" prefHeight="46.0" prefWidth="241.0" textFill="#fa0000">
+        <Label fx:id="lable" layoutX="45.0" layoutY="372.0" prefHeight="46.0" prefWidth="241.0" text="  " textFill="#fa0000">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
