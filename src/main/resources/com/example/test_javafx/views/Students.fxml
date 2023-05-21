@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TableView fx:id="table" layoutY="256.0" prefHeight="417.0" prefWidth="820.0">
+      <TableView fx:id="table" editable="true" layoutY="256.0" prefHeight="417.0" prefWidth="820.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="167.0" text="Student ID" />
             <TableColumn fx:id="name" prefWidth="179.0" text="Name" />

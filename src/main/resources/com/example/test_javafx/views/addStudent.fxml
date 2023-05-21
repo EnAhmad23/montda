@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="489.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddStudent">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="489.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddStudent">
    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="477.0" style="-fx-background-color: #37474F;">
       <Button fx:id="btn_add" layoutX="355.0" layoutY="429.0" mnemonicParsing="false" onAction="#addStudntBotton" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
          <cursor>
@@ -59,7 +59,7 @@
       <TextField fx:id="id" layoutX="151.0" layoutY="102.0" onAction="#addSrudentID" prefHeight="34.0" prefWidth="176.0" />
       <TextField fx:id="name" layoutX="151.0" layoutY="170.0" onAction="#addSrudentName" prefHeight="34.0" prefWidth="176.0" />
       <TextField fx:id="major" layoutX="151.0" layoutY="300.0" onAction="#addSrudentMajor" prefHeight="34.0" prefWidth="176.0" />
-      <Label fx:id="label" layoutX="355.0" layoutY="145.0" prefHeight="54.0" prefWidth="223.0" textFill="RED">
+      <Label fx:id="label" layoutX="41.0" layoutY="419.0" prefHeight="54.0" prefWidth="295.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
@@ -69,9 +69,9 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label alignment="BOTTOM_CENTER" layoutX="153.0" layoutY="28.0" prefHeight="46.0" prefWidth="187.0" style="-fx-font-family: bold;" text="Add Student" textFill="WHITE">
+      <Label alignment="BOTTOM_CENTER" layoutX="153.0" layoutY="28.0" prefHeight="46.0" prefWidth="232.0" text="Add Student" textFill="WHITE">
          <font>
-            <Font name="Times New Roman" size="31.0" />
+            <Font name="Calibri Bold" size="40.0" />
          </font>
          <opaqueInsets>
             <Insets />

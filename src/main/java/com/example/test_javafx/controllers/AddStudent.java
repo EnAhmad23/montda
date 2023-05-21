@@ -9,8 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.sql.Array;
@@ -18,6 +20,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddStudent implements Initializable {
+    @FXML
+    private Label label =new Label();
     @FXML
     private AnchorPane root;
     @FXML
@@ -47,7 +51,11 @@ public class AddStudent implements Initializable {
         String stu_major = major.getText();
         String stu_level = (String) level.getValue();
         String stu_gender = (String) gender.getValue();
-        dm.addStudent(stu_id,stu_name,stu_gender,stu_level,stu_major);
+        if (dm.addStudent(stu_id,stu_name,stu_gender,stu_level,stu_major)!=0){
+            label.setTextFill(Color.color(0,1,0));
+            label.setText("Student added successfully");
+        }else
+            label.setText("Student did'nt add");
     }
 
     public void close_addStudent() {
