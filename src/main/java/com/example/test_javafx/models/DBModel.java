@@ -289,7 +289,8 @@ public class DBModel {
             pstmt.setString(5, major);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new SQLException(e);
+            return 0;
+
         }
     }
     public int addTeacher(String id, String name, String teache, String password) {
