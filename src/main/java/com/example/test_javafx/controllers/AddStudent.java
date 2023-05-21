@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class AddStudent implements Initializable {
     @FXML
-    private Label label =new Label();
+    private Label label = new Label();
     @FXML
     private AnchorPane root;
     @FXML
@@ -40,10 +40,11 @@ public class AddStudent implements Initializable {
     private Button nav_close;
     @FXML
     private Button ids_back_addStu;
-    private String levels []={"1","2","3","4","5"};
-    private String genders []={"male","female"};
+    private String levels[] = {"1", "2", "3", "4", "5"};
+    private String genders[] = {"male", "female"};
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
+
     public void addStudntBotton() throws SQLException {
 
         String stu_id = id.getText();
@@ -51,18 +52,20 @@ public class AddStudent implements Initializable {
         String stu_major = major.getText();
         String stu_level = (String) level.getValue();
         String stu_gender = (String) gender.getValue();
-        if (dm.addStudent(stu_id,stu_name,stu_gender,stu_level,stu_major)!=0){
-            label.setTextFill(Color.color(0,1,0));
+        if (dm.addStudent(stu_id, stu_name, stu_gender, stu_level, stu_major) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
-        }else
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
             label.setText("Student did'nt add");
+        }
     }
 
     public void close_addStudent() {
     }
 
     public void back_addStu() {
-        nav.navigateTo(root,nav.MAIN_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
 
     public void addSrudentLevel() {

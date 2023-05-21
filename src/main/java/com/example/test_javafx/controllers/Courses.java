@@ -49,16 +49,16 @@ public class Courses implements Initializable {
     private TextField field_to_department;
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-    public void addUser(){
-        nav.navigateTo(root,nav.ADD_USER_FXML);
+    public void addCourse(){
+        nav.navigateTo(root,nav.ADD_COURSE_FXML);
 
     }
-    public void deleteUser(){
-        nav.navigateTo(root,nav.ADD_USER_FXML);
+    public void deleteCourses(){
+//        nav.navigateTo(root,nav.ADD_USER_FXML);
 
     }
-    public void updateUser(){
-        nav.navigateTo(root,nav.ADD_USER_FXML);
+    public void updateCourses(){
+//        nav.navigateTo(root,nav.ADD_USER_FXML);
 
     }
 

@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Navigation {
     public final String MAIN_FXML = "views/start.fxml";
-    public final String ADD_SECTION_FXML = "views/addNewSection.fxml";
+    public final String ADD_COURSE_FXML = "views/addNewSection.fxml";
     public final String ADD_TEACHER_FXML = "views/addTeacher.fxml";
     public final String LECTURES_TIMES_FXML = "views/lecturestimes.fxml";
 

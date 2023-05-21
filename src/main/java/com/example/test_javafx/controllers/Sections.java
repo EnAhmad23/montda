@@ -26,7 +26,7 @@ public class Sections implements Initializable {
     private Button id_close_section;
     Navigation nav = new Navigation();
     public void addSection (){
-        nav.navigateTo(root,nav.ADD_SECTION_FXML);
+//        nav.navigateTo(root,nav.ADD_SECTION_FXML);
     }
     public void updateSection (){
 

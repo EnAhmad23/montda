@@ -32,7 +32,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="delete" layoutX="672.0" layoutY="141.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
+        <Button fx:id="delete" layoutX="672.0" layoutY="141.0" mnemonicParsing="false" onAction="#deleteCourses" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -40,7 +40,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="update" layoutX="532.0" layoutY="141.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+        <Button fx:id="update" layoutX="532.0" layoutY="141.0" mnemonicParsing="false" onAction="#updateCourses" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -48,7 +48,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="add" layoutX="388.0" layoutY="141.0" mnemonicParsing="false" onAction="#addUser" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="add" layoutX="388.0" layoutY="141.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>

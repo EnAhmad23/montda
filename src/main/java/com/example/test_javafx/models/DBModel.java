@@ -278,6 +278,7 @@ public class DBModel {
         }
 
     }
+
     public int addStudent(String id, String name, String gender, String stu_level, String major) throws SQLException {
         String SQL = "INSERT INTO students(id,name,gender,stu_level,majer) VALUES(?,?,?,?,?)";
 //        ArrayList<student> arr;
@@ -293,8 +294,9 @@ public class DBModel {
 
         }
     }
+
     public int addTeacher(String id, String name, String teache, String password) {
-        String sql = "insert into teacher_ass(id,name,teache,password) values (?,?,?,?);";
+        String sql = "insert into teacher_ass(id,name,teache,password) values (?,?,?,crypt(?, gen_salt('bf')));";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             st.setString(2, name);
@@ -306,7 +308,6 @@ public class DBModel {
 //            teachers.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
 
         } catch (SQLException ex) {
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
         }
 
@@ -348,21 +349,17 @@ public class DBModel {
 
     }
 
-    public ArrayList<Student> login(String id, String passWord) {
-        String sql = "select * from students ;";
+    public boolean login(String id, String password) {
+        String sql = "select id from teacher_ass where password=crypt(?, password) and id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-//            st.setString(1, id);
-            ArrayList<Student> ids = new ArrayList<>();
+            st.setString(1, password);
+            st.setString(2, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-                return ids;
-            }
-            return ids;
+            return (rs.next());
         } catch (SQLException ex) {
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            return false;
+
         }
 
     }

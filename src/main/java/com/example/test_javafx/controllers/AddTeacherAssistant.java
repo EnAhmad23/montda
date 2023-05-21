@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class AddTeacherAssistant {
     @FXML
     private TextField id;
     @FXML
-    private Label label;
+    private Label label = new Label();
     @FXML
     private TextField name;
     @FXML
@@ -28,30 +29,45 @@ public class AddTeacherAssistant {
     private TextField password;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-    public void addTeacher(ActionEvent actionEvent){
+
+    public void addTeacher(ActionEvent actionEvent) {
         String t_id = id.getText();
         String t_name = name.getText();
         String t_teache = teache.getText();
         String t_password = password.getText();
-//        label.setText("");
-        if (!t_id.isEmpty()&&!t_name.isEmpty()&&!t_password.isEmpty())
-            new TeacherAssistant(id.getText(),name.getText(),teache.getText(),password.getText());
+        label.setText("");
+        if (!t_id.isEmpty() && !t_name.isEmpty() && !t_password.isEmpty())
+            new TeacherAssistant(id.getText(), name.getText(), teache.getText(), password.getText());
         else
             label.setText("INCOMPLETE INPUTS");
-        if(dm.addTeacher(t_id,t_name,t_teache,t_password)!=0){
-//
-            System.out.println("1");
-        }else
-//            label.setText("Teacher Assistant didn't add ");
-            System.out.println("0");
+        if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("Teacher Assistant added Successfully");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("Teacher Assistant didn't add ");
+        }
 
     }
-    public void back_to_start(){}
-    public void userId(){}
-    public void userDept(){}
-    public void userName(){}
-    public void userPass(){}
-    public void back_user(){nav.navigateTo(root,nav.MAIN_FXML);}
+
+    public void back_to_start() {
+    }
+
+    public void userId() {
+    }
+
+    public void userDept() {
+    }
+
+    public void userName() {
+    }
+
+    public void userPass() {
+    }
+
+    public void back_user() {
+        nav.navigateTo(root, nav.MAIN_FXML);
+    }
 
     public void add_teacher(ActionEvent actionEvent) {
     }
