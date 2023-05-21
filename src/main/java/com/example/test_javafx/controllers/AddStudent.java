@@ -45,8 +45,8 @@ public class AddStudent implements Initializable {
         String stu_id = id.getText();
         String stu_name = name.getText();
         String stu_major = major.getText();
-        String stu_level = levels.toString();
-        String stu_gender = gender.toString();
+        String stu_level = (String) level.getValue();
+        String stu_gender = (String) gender.getValue();
         dm.addStudent(stu_id,stu_name,stu_gender,stu_level,stu_major);
     }
 
@@ -75,9 +75,9 @@ public class AddStudent implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList op= FXCollections.observableArrayList(levels);
-        level.setItems(op);
-        ObservableList op1= FXCollections.observableArrayList(genders);
-        gender.setItems(op1);
+//        ObservableList op= FXCollections.observableArrayList(levels);
+        level.getItems().addAll(levels);
+//        ObservableList op1= FXCollections.observableArrayList(genders);
+        gender.getItems().addAll(genders);
     }
 }
