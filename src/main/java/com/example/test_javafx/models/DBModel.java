@@ -1,12 +1,9 @@
 package com.example.test_javafx.models;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -240,6 +237,17 @@ public class DBModel {
             return null;
         }
 
+    }
+    public int delete_Student(String id) {
+        String sql = "DELETE FROM students WHERE id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            return st.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
     }
 
     public ArrayList<Student> getStd() {

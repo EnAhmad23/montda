@@ -8,12 +8,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -61,6 +65,24 @@ public class Students implements Initializable {
     }
 
     public void deleteStudent() {
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label =new Label("STUDENT DELETED !");
+        if ( dm.delete_Student(t_id.getText())!=0) {
+            view();
+            label.setTextFill(Color.color(0,0,0));
+        }else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("STUDENT DIDN'T DELETE !");
+        }
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
+//
+//        stage.setScene(new Scene());
 
     }
 
@@ -82,9 +104,7 @@ public class Students implements Initializable {
         else
             nav.navigateTo(root, nav.TEACHING_FXML);
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void view (){
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
@@ -93,6 +113,11 @@ public class Students implements Initializable {
 
         ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
         table.setItems(ids);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        view();
 
     }
 }

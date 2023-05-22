@@ -65,22 +65,7 @@ public class AddStudent implements Initializable {
     }
 
     public void back_addStu() {
-        nav.navigateTo(root, nav.MAIN_FXML);
-    }
-
-    public void addSrudentLevel() {
-    }
-
-    public void addSrudentGender() {
-    }
-
-    public void addSrudentID() {
-    }
-
-    public void addSrudentName() {
-    }
-
-    public void addSrudentMajor() {
+        nav.navigateTo(root, nav.STUDENTS_FXML);
     }
 
 
