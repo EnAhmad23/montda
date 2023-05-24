@@ -220,11 +220,11 @@ public class DBModel {
             return "";
         }
     }
-    public ArrayList<String> availableCourse(String id) {
-        String sql = "select course_id from course where course_id != (select teache from teacher_ass where id != ?)  ;";
+    public ArrayList<String> availableCourse() {
+        String sql = "SELECT C.course_id FROM course AS C LEFT JOIN teacher_assistant AS TA ON C.course_id = TA.teache WHERE TA.teache IS NULL;";
         ArrayList<String> ids = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
+//            st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 ids.add(rs.getString(1));
@@ -318,12 +318,10 @@ public class DBModel {
     public ArrayList<Course> getCou() {
         String sql = "select * from course ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-//            st.setString(1, id);
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-
             }
             return ids;
         } catch (SQLException ex) {
@@ -363,15 +361,15 @@ public class DBModel {
             return 0;
         }
     }
-    public int addStudent(String id, String name, String gender, String stu_level, String major)  {
-        String SQL = "INSERT INTO students(id,name,gender,stu_level,majer) VALUES(?,?,?,?,?)";
+    public int addStudent(String id, String name, String gender,  String major, String place)  {
+        String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
             pstmt.setString(2, name);
             pstmt.setString(3, gender);
-            pstmt.setString(4, stu_level);
-            pstmt.setString(5, major);
+            pstmt.setString(4, major);
+            pstmt.setString(5, place);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             return 0;
@@ -386,11 +384,7 @@ public class DBModel {
             st.setString(2, name);
             st.setString(3, teache);
             st.setString(4, password);
-//            ArrayList<TeacherAssistant> teachers = new ArrayList<>();
             return st.executeUpdate();
-//            while (rs.next())
-//            teachers.add(new TeacherAssistant( rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
-
         } catch (SQLException ex) {
             return 0;
         }

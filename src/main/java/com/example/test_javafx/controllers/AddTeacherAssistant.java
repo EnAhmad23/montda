@@ -24,7 +24,7 @@ public class AddTeacherAssistant implements Initializable {
     @FXML
     private TextField id;
     @FXML
-    private Label label = new Label();
+    private Label lable = new Label() ;
     @FXML
     private TextField name;
     @FXML
@@ -34,25 +34,7 @@ public class AddTeacherAssistant implements Initializable {
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
-    public void addTeacher(ActionEvent actionEvent) {
-        String t_id = id.getText();
-        String t_name = name.getText();
-        String t_teache = (String) teache.getValue();
-        String t_password = password.getText();
-        label.setText("");
-        if (!t_id.isEmpty() && !t_name.isEmpty() && !t_password.isEmpty())
-            new TeacherAssistant(t_id, t_name, t_teache).setPassword(t_password);
-        else
-            label.setText("INCOMPLETE INPUTS");
-        if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
-            label.setTextFill(Color.color(0, 0, 0));
-            label.setText("Teacher Assistant added Successfully");
-        } else {
-            label.setTextFill(Color.color(1, 0, 0));
-            label.setText("Teacher Assistant didn't add ");
-        }
 
-    }
 
     public void back_to_start() {
     }
@@ -74,17 +56,30 @@ public class AddTeacherAssistant implements Initializable {
     }
 
     public void add_teacher(ActionEvent actionEvent) {
+        String t_id = id.getText();
+        String t_name = name.getText();
+        String t_teache = (String) teache.getValue();
+        String t_password = password.getText();
+        lable.setText("");
+        if (!t_id.isEmpty() && !t_name.isEmpty() && !t_password.isEmpty()&&!t_teache.isEmpty())
+            new TeacherAssistant(t_id, t_name, t_teache).setPassword(t_password);
+        else
+            lable.setText("INCOMPLETE INPUTS");
+        if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
+            lable.setTextFill(Color.color(0, 0, 0));
+            lable.setText("Teacher Assistant added Successfully");
+        } else {
+            lable.setTextFill(Color.color(1, 0, 0));
+            lable.setText("Teacher Assistant didn't add ");
+        }
+        id.clear();name.clear();password.clear();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+//        if (!dm.availableCourse().is)
+        teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }
 
-    public void ids(ActionEvent actionEvent) {
-        if (!id.getText().isEmpty())
-            teache.getItems().addAll(dm.availableCourse(id.getText()));
-        else
-            teache.getItems().addAll(dm.getCou());
-    }
+
 }

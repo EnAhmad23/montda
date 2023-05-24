@@ -51,7 +51,7 @@ public class AddStudent implements Initializable {
         String stu_major = major.getText();
         String stu_place =  place.getText();
         String stu_gender = (String) gender.getValue();
-        if (dm.addStudent(stu_id, stu_name, stu_gender, stu_place, stu_major) != 0) {
+        if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
         } else {

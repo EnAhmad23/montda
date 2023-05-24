@@ -43,15 +43,15 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Label fx:id="lable" layoutX="45.0" layoutY="372.0" prefHeight="46.0" prefWidth="241.0" text="  " textFill="#fa0000">
+        <Label fx:id="lable" layoutX="28.0" layoutY="382.0" prefHeight="46.0" prefWidth="300.0" text="  " textFill="#fa0000">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="add" layoutX="343.0" layoutY="398.0" mnemonicParsing="false" onAction="#addTeacher" prefHeight="34.0" prefWidth="67.0" style="-fx-text-fill: #37474F; -fx-background-color: #DEE4E7;" text="Add">
+        <ComboBox fx:id="teache" layoutX="171.0" layoutY="248.0" prefHeight="34.0" prefWidth="156.0" />
+      <Button fx:id="add" layoutX="351.0" layoutY="395.0" mnemonicParsing="false" onAction="#add_teacher" prefHeight="34.0" prefWidth="59.0" text="Add">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <ComboBox fx:id="teache" layoutX="171.0" layoutY="248.0" onAction="#ids" prefHeight="34.0" prefWidth="156.0" />
     </children>
 </AnchorPane>
