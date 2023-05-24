@@ -6,13 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,6 +52,11 @@ public class AddSectionController implements Initializable {
     public Button nav_back;
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
+    private Label label;
+    private TextField courseSubject;
+    private TextField bookName;
+    private TextField teacherName;
+    DBModel dm = DBModel.getModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -155,30 +160,23 @@ public class AddSectionController implements Initializable {
 //        }
 //    }
 
-    public void hide() {
-        notification.setVisible(false);
-        btn_hide.setVisible(false);
-    }
 
     public void back() {
-        nav.navigateTo(rootPane, nav.MAIN_FXML);
+        nav.navigateTo(rootPane, nav.COURSES);
     }
-
-    public void ComboBox_semester() {
-
-    }
-
-    public void roomNo() {
-
-    }
-    public void year() {
-
-    }
-    public void semester() {
-
-    }
-    public void timeSlot() {
-
+    public void addCourses() {
+        String courseId = course_id.getText();
+        String Teacher_name = teacherName.getText();
+        String book = bookName.getText();
+        String Room = room.getText();
+        String Subject = courseSubject.getText();
+        if (dm.addCourse(courseId, Teacher_name, book, Room, Subject) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("COURSE ADDED SUCCESSFULLY");//successfully
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("COURSE DIDN'T ADD");
+        }
     }
 
 }

@@ -4,15 +4,15 @@ public class Student {
     private String id ;
     private String name ;
     private String gender ;
-    private String stu_level ;
+    private String place ;
     private String majer ;
 
-    public Student(String id, String name, String gender, String stuLevel, String majer) {
+    public Student(String id, String name, String gender, String place, String majer) {
         this.id = id;
         this.name = name;
         this.gender = gender;
-        stu_level = stuLevel;
         this.majer = majer;
+        this.place = place;
     }
 
     public String getGender() {
@@ -31,8 +31,8 @@ public class Student {
         return name;
     }
 
-    public String getStu_level() {
-        return stu_level;
+    public String getPlace() {
+        return place;
     }
 
     public void setGender(String gender) {
@@ -51,8 +51,8 @@ public class Student {
         this.id = id;
     }
 
-    public void setStu_level(String stu_level) {
-        this.stu_level = stu_level;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
 }

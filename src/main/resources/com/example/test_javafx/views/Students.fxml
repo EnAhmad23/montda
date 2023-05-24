@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="add" layoutX="686.0" layoutY="55.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+      <Button fx:id="add" layoutX="558.0" layoutY="116.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -64,14 +64,22 @@
             <TableColumn fx:id="id" prefWidth="167.0" text="Student ID" />
             <TableColumn fx:id="name" prefWidth="179.0" text="Name" />
             <TableColumn fx:id="gender" prefWidth="182.0" text="Gender" />
-            <TableColumn fx:id="level" prefWidth="152.0" text="Level" />
             <TableColumn fx:id="major" prefWidth="139.0" text="Major" />
+            <TableColumn fx:id="place" prefWidth="152.0" text="Place" />
          </columns>
       </TableView>
       <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Update_back" prefHeight="24.0" prefWidth="33.0" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
+      </Button>
+      <Button fx:id="search" layoutX="558.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

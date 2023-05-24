@@ -21,9 +21,11 @@ public class StartTeacher implements Initializable {
     }
 
     public void lectures(ActionEvent actionEvent) {
+        nav.navigateTo(root,nav.LECTURES_TIMES_FXML);
     }
 
     public void attendance_page(ActionEvent actionEvent) {
+        nav.navigateTo(root,nav.ATTENDENCE_FXML);
     }
 
     public void report_statement_page(ActionEvent actionEvent) {

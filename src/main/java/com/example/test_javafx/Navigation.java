@@ -13,6 +13,7 @@ public class Navigation {
     public final String ADD_COURSE_FXML = "views/addNewSection.fxml";
     public final String ADD_TEACHER_FXML = "views/addTeacher.fxml";
     public final String LECTURES_TIMES_FXML = "views/lecturestimes.fxml";
+    public final String ADD_LECTURES_FXML = "views/addLectureTime.fxml";
 
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
     public final String STUDENTS_FXML = "views/Students.fxml";

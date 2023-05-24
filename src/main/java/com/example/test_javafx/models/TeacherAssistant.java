@@ -5,19 +5,18 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TeacherAssistant implements Initializable {
+public class TeacherAssistant  {
 
     String id;
     String name;
     String teache;
+    String password;
 
-    String advisor;
 
-    public TeacherAssistant(String id, String name, String teache,String advisor) {
+    public TeacherAssistant(String id, String name, String teache) {
         this.id = id;
         this.name = name;
         this.teache = teache;
-        this.advisor=advisor;
     }
 
     public String getId() {
@@ -40,14 +39,15 @@ public class TeacherAssistant implements Initializable {
         return teache;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
+    }
+
     public void setTeache(String teache) {
         this.teache = teache;
     }
 
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }

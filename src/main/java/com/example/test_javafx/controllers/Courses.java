@@ -4,16 +4,20 @@ package com.example.test_javafx.controllers;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,13 +28,13 @@ public class Courses implements Initializable {
     @FXML
     private TableView<Course> table;
     @FXML
-    private TableColumn <Courses,String> id;
+    private TableColumn <Courses,String> course_id;;
     @FXML
-    private TableColumn <Courses,String> bookName;
+    private TableColumn <Courses,String> book_name;
     @FXML
-    private TableColumn <Courses,String> teacherName;
+    private TableColumn <Courses,String> teacher_name;
     @FXML
-    private TableColumn <Courses,String> room;
+    private TableColumn <Courses,String> room_number;
     @FXML
     private TableColumn <Courses,String> subject;
     @FXML
@@ -42,7 +46,7 @@ public class Courses implements Initializable {
     @FXML
     private Button id_close_user;
     @FXML
-    private TextField field_to_id;
+    private TextField t_id;
     @FXML
     private TextField field_to_name;
     @FXML
@@ -53,8 +57,24 @@ public class Courses implements Initializable {
         nav.navigateTo(root,nav.ADD_COURSE_FXML);
 
     }
-    public void deleteCourses(){
-//        nav.navigateTo(root,nav.ADD_USER_FXML);
+    public void deleteCourse(){
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label =new Label("STUDENT DELETED !");
+        if ( dm.delete_Course(t_id.getText())!=0) {
+            view();
+            label.setTextFill(Color.color(0,0,0));
+        }else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("STUDENT DIDN'T DELETE !");
+        }
+        t_id.clear();
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
 
     }
     public void updateCourses(){
@@ -67,15 +87,25 @@ public class Courses implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
-        bookName.setCellValueFactory(new PropertyValueFactory<>("book_name"));
-        teacherName.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
-        room.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+    public void view (){
+        course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        book_name.setCellValueFactory(new PropertyValueFactory<>("book_name"));
+        teacher_name.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
+        room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+
         ObservableList<Course> course = FXCollections.observableArrayList(dm.getCou());
         table.setItems(course);
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        view();
 
+    }
+
+    public void updateCourse(ActionEvent actionEvent) {
+    }
+
+    public void searchCourse(ActionEvent actionEvent) {
     }
 }

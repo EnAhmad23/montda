@@ -17,14 +17,14 @@
         </Label>
         <TableView fx:id="table" layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
             <columns>
-                <TableColumn fx:id="id" prefWidth="165.0" text="Course ID" />
-                <TableColumn fx:id="bookName" prefWidth="165.0" text="Book Name" />
-                <TableColumn fx:id="teacherName" prefWidth="165.0" text="Teacher Name" />
-                <TableColumn fx:id="room" prefWidth="165.0" text="Room No" />
+                <TableColumn fx:id="course_id" prefWidth="165.0" text="Course ID" />
+                <TableColumn fx:id="book_name" prefWidth="165.0" text="Book Name" />
+                <TableColumn fx:id="teacher_name" prefWidth="165.0" text="Teacher Name" />
+                <TableColumn fx:id="room_number" prefWidth="165.0" text="Room No" />
                 <TableColumn fx:id="subject" prefWidth="165.0" text="Subject" />
             </columns>
         </TableView>
-        <Label alignment="BOTTOM_CENTER" layoutX="317.0" layoutY="34.0" prefHeight="54.0" prefWidth="187.0" text="Courses" textFill="WHITE">
+        <Label alignment="BOTTOM_CENTER" layoutX="317.0" layoutY="19.0" prefHeight="54.0" prefWidth="187.0" text="Courses" textFill="WHITE">
             <font>
                 <Font name="Times New Roman Bold" size="48.0" />
             </font>
@@ -32,7 +32,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="delete" layoutX="672.0" layoutY="141.0" mnemonicParsing="false" onAction="#deleteCourses" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
+        <Button fx:id="delete" layoutX="666.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -40,7 +40,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="update" layoutX="532.0" layoutY="141.0" mnemonicParsing="false" onAction="#updateCourses" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+        <Button fx:id="update" layoutX="666.0" layoutY="80.0" mnemonicParsing="false" onAction="#updateCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -48,7 +48,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="add" layoutX="388.0" layoutY="141.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="add" layoutX="533.0" layoutY="80.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -61,5 +61,13 @@
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>
         </Button>
+      <Button fx:id="search" layoutX="533.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

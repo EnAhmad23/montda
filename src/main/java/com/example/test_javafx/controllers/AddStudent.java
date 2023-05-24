@@ -31,7 +31,7 @@ public class AddStudent implements Initializable {
     @FXML
     private TextField major;
     @FXML
-    private ComboBox level;
+    private TextField place;
     @FXML
     private ComboBox gender;
     @FXML
@@ -40,19 +40,18 @@ public class AddStudent implements Initializable {
     private Button nav_close;
     @FXML
     private Button ids_back_addStu;
-    private String levels[] = {"1", "2", "3", "4", "5"};
+
     private String genders[] = {"male", "female"};
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
-    public void addStudntBotton() throws SQLException {
-
+    public void addStudntBotton()  {
         String stu_id = id.getText();
         String stu_name = name.getText();
         String stu_major = major.getText();
-        String stu_level = (String) level.getValue();
+        String stu_place =  place.getText();
         String stu_gender = (String) gender.getValue();
-        if (dm.addStudent(stu_id, stu_name, stu_gender, stu_level, stu_major) != 0) {
+        if (dm.addStudent(stu_id, stu_name, stu_gender, stu_place, stu_major) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
         } else {
@@ -71,9 +70,6 @@ public class AddStudent implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        ObservableList op= FXCollections.observableArrayList(levels);
-        level.getItems().addAll(levels);
-//        ObservableList op1= FXCollections.observableArrayList(genders);
         gender.getItems().addAll(genders);
     }
 }

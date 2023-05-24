@@ -6,6 +6,7 @@ import com.example.test_javafx.models.LectureTime;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -37,7 +38,7 @@ public class Students implements Initializable {
     @FXML
     private TableColumn<Student, String> gender;
     @FXML
-    private TableColumn<Student, String> level;
+    private TableColumn<Student, String> place;
     @FXML
     private TableColumn<Student, String> major;
     @FXML
@@ -108,7 +109,7 @@ public class Students implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        level.setCellValueFactory(new PropertyValueFactory<>("stu_level"));
+        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
         major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
 
         ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
@@ -119,5 +120,8 @@ public class Students implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         view();
 
+    }
+
+    public void searchStudent(ActionEvent actionEvent) {
     }
 }

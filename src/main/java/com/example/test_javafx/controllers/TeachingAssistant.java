@@ -8,26 +8,32 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TeachingAssistant implements Initializable {
     @FXML
-    private TableView <TeacherAssistant> table ;
+    private TableView<TeacherAssistant> table;
     @FXML
-    public TableColumn <TeachingAssistant,String> name;
+    public TableColumn<TeachingAssistant, String> name;
     @FXML
-    public TableColumn <TeachingAssistant,String> id;
+    public TableColumn<TeachingAssistant, String> id;
     @FXML
-    public TableColumn <TeachingAssistant,String> teache;
+    public TableColumn<TeachingAssistant, String> teache;
+
+
+
     @FXML
-    public TableColumn <TeachingAssistant,String> advisor;
+    private TextField t_id;
 
     @FXML
     private AnchorPane root;
@@ -39,37 +45,53 @@ public class TeachingAssistant implements Initializable {
     private Button delete;
     @FXML
     private Button view;
-    DBModel dm =  DBModel.getModel();
+    DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-    public void addUser(){
-        nav.navigateTo(root,nav.ADD_TEACHER_FXML);
-    }
-    public void deleteUser(){
-        nav.navigateTo(root,nav.LECTURES_TIMES_FXML);
-    }
-    public void updateUser(){
-        nav.navigateTo(root,nav.ATTENDENCE_FXML);
+
+    public void add_teaching_assist() {
+        nav.navigateTo(root, nav.ADD_TEACHER_FXML);
     }
 
-
-    public void report_statement_page(){
-
+    public void delete_teaching_assist() {
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label = new Label("TEACHING ASSIST DELETED !");
+        if (dm.delete_teacher_assistant(t_id.getText()) != 0) {
+            view();
+            label.setTextFill(Color.color(0, 0, 0));
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("TEACHING ASSIST DIDN'T DELETE !");
+        }
+        t_id.clear();
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
     }
+
+    public void update_teaching_assist() {
+        nav.navigateTo(root, nav.ATTENDENCE_FXML);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        view();
+    }
+
+    public void view() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         teache.setCellValueFactory(new PropertyValueFactory<>("teache"));
-        advisor.setCellValueFactory(new PropertyValueFactory<>("advisor"));
-        ObservableList<TeacherAssistant> ob= FXCollections.observableArrayList(dm.getTeacherAssistant());
+        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.getTeacherAssistant());
         table.setItems(ob);
-        System.out.println("2");
-
     }
 
     public void back(ActionEvent actionEvent) {
-        nav.navigateTo(root,nav.MAIN_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
 
     public void viewUser(ActionEvent actionEvent) {

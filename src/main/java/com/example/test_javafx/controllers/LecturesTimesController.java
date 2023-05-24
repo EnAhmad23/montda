@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
-
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.LectureTime;
@@ -10,6 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,14 +60,7 @@ public class LecturesTimesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //make sure the property value factory should be exactly same as the getStudentId from your model class
-        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
-        id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
-        room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
-        title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.getLectures());
-        table.setItems(lectures);
+        view();
     }
 
     public void back() {
@@ -117,18 +114,45 @@ public class LecturesTimesController implements Initializable {
         } else System.err.println("Error! fill fields");
     }
 
-    public void SelectSemester(){}
+
     public void studentId_lecture(){}
     public void studentName_lecture(){}
     public void studentDepartment_lecture(){}
+    public void view(){
+        id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
+        room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
+        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.getLectures());
+        table.setItems(lectures);
+    }
 
     public void delete_button(){
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label =new Label("LECTURE DELETED !");
+        if (db.delete_lecture(t_id.getText())!=0) {
+            view();
+            label.setTextFill(Color.color(0,0,0));
+        }else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("LECTURE DIDN'T DELETE !");
+        }
+        t_id.clear();
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
 
     }
     public void update_button(){
 
     }
     public void add_button(){
+        nav.navigateTo(root,nav.ADD_LECTURES_FXML);
 
     }
 
