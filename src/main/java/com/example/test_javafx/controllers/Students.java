@@ -18,13 +18,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Students implements Initializable {
 
@@ -175,6 +175,23 @@ public class Students implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        start(new Stage() );
+//        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
+//
+//        // Bind auto-completion to the TextField
+//        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(t_id, suggestions);
+//
+//        // Set the minimum number of characters for auto-completion to trigger
+//        autoCompletionBinding.setMinWidth(1);
+//
+//        // Set the auto-completion behavior to complete when a suggestion is selected
+//        autoCompletionBinding.setOnAutoCompleted(event -> {
+//            // Get the selected suggestion
+//            String selectedSuggestion = event.getCompletion();
+//
+//            // Perform any action you want when a suggestion is selected
+//            // For example, update other fields or perform a search based on the selected suggestion
+//            // ...
+//        });
         view();
     }
 
@@ -213,7 +230,34 @@ public class Students implements Initializable {
             "Peach",
             "Strawberry"
     };
-
+    @FXML
+//    private void autoComplete() {
+//        // Get the entered text from the TextField
+//        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
+//        Stage stage=new Stage();
+//        TextField textField = null;
+//        TextFields.bindAutoCompletion(textField);
+//
+//
+//
+//        // Perform auto-complete logic based on the entered text
+////        // Example: Retrieve suggestions from a list or database
+////        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
+////
+////        // Filter the suggestions based on the entered text
+////        List<String> filteredSuggestions = suggestions.stream()
+////                .filter(suggestion -> suggestion.toLowerCase().startsWith(enteredText.toLowerCase()))
+////                .collect(Collectors.toList());
+//
+//        // Show the filtered suggestions in a drop-down or any other UI element
+//        // Example: Use a ListView or ComboBox to display the suggestions
+//        // ...
+//
+//        // Update the TextField or selected value based on the user's selection
+//        // ...
+//        stage.setScene(new Scene(textField,300,200));
+//        stage.show();
+//    }
 
 //    public void start(Stage primaryStage) {
 ////        TextField t_id = new TextField();
@@ -247,10 +291,10 @@ public class Students implements Initializable {
 //            }
 //        });
 //
-//        VBox root = new VBox(t_id, comboBox);
-//        Scene scene = new Scene(root, 200, 200);
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
+////        VBox root = new VBox(t_id, comboBox);
+////        Scene scene = new Scene(root, 200, 200);
+////        primaryStage.setScene(scene);
+////        primaryStage.show();
 //    }
 
     private String[] getMatchingItems(String input) {

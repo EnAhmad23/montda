@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="root" prefHeight="674.0" prefWidth="856.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Students">
    <children>
-      <TextField fx:id="t_id" layoutX="132.0" layoutY="183.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter Student ID" />
+      <TextField fx:id="t_id" layoutX="132.0" layoutY="183.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter Student ID"  />
       <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="856.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="183.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
          <font>

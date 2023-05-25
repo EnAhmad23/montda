@@ -32,6 +32,7 @@ public class AddStudent implements Initializable {
     private TextField major;
     @FXML
     private TextField place;
+
     @FXML
     private ComboBox gender;
 
@@ -58,10 +59,16 @@ public class AddStudent implements Initializable {
         if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
+
         } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("Student did'nt add");
         }
+        id.clear();
+        name.clear();
+        major.clear();
+        place.clear();
+        phone_number.clear();
     }
 
 
