@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 
 public class TeachingAssistant implements Initializable {
     @FXML
+    private AnchorPane root;
+    @FXML
     private TableView<TeacherAssistant> table;
     @FXML
     public TableColumn<TeachingAssistant, String> name;
@@ -30,15 +32,10 @@ public class TeachingAssistant implements Initializable {
     @FXML
     public TableColumn<TeachingAssistant, String> teache;
 
-
-
     @FXML
     private TextField t_id;
-
     @FXML
-    private AnchorPane root;
-    @FXML
-    private Button add;
+    private Button nav_add;
     @FXML
     private Button update;
     @FXML
@@ -73,7 +70,8 @@ public class TeachingAssistant implements Initializable {
     }
 
     public void update_teaching_assist() {
-        nav.navigateTo(root, nav.ATTENDENCE_FXML);
+
+        nav.navigateTo(root, nav.UPDATE_TA);
     }
 
 
@@ -90,10 +88,12 @@ public class TeachingAssistant implements Initializable {
         table.setItems(ob);
     }
 
+//    public void back(ActionEvent actionEvent) {
+//        nav.navigateTo(root, nav.MAIN_FXML);
+//    }
     public void back(ActionEvent actionEvent) {
-        nav.navigateTo(root, nav.MAIN_FXML);
-    }
-
+    nav.navigateTo(root,nav.MAIN_FXML);
+}
     public void viewUser(ActionEvent actionEvent) {
     }
 
@@ -105,4 +105,5 @@ public class TeachingAssistant implements Initializable {
 
     public void attendance_page(ActionEvent actionEvent) {
     }
+    public void report_statement_page(){}
 }

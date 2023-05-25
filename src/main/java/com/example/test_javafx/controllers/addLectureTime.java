@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import java.sql.SQLException;
 
 public class addLectureTime {
+
     @FXML
     private AnchorPane root;
     @FXML

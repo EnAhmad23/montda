@@ -104,8 +104,44 @@ public class Courses implements Initializable {
     }
 
     public void updateCourse(ActionEvent actionEvent) {
+        nav.navigateTo(root, nav.UPDATE_COURSE);
     }
 
     public void searchCourse(ActionEvent actionEvent) {
+        if(t_id.getText().isEmpty()){
+            view();
+        }else
+            viewSearch();
     }
+
+//    public void searchCourse(){
+//        if(t_id.getText().isEmpty()){
+//            view();
+//        }else
+//            viewSearch();
+//    }
+
+
+//    public void view (){
+//        id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+//        bookName.setCellValueFactory(new PropertyValueFactory<>("book_name"));
+//        teacherName.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
+//        room.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+//        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+//
+//        ObservableList<Course> course = FXCollections.observableArrayList(dm.getCou());
+//        table.setItems(course);
+//    }
+
+    public void viewSearch(){
+        course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        book_name.setCellValueFactory(new PropertyValueFactory<>("book_name"));
+        teacher_name.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
+        room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+
+        ObservableList<Course> course = FXCollections.observableArrayList(dm.searchCourse(t_id.getText()));
+        table.setItems(course);
+    }
+
 }
