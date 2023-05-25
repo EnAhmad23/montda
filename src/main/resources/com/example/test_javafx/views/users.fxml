@@ -65,7 +65,7 @@
             <Font name="Times New Roman Bold" size="28.0" />
          </font>
       </Label>
-      <Button fx:id="view" layoutX="536.0" layoutY="183.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+      <Button fx:id="view" layoutX="536.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchTA" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

@@ -28,7 +28,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -720,4 +720,62 @@ public class DBModel {
 //            return null;
 //        }
 //    }
+
+
+    public int UpdateStudent(String id,String name, String gender,  String major, String place)  {
+        String SQL = "UPDATE students SET name = ?, gender = ?, place= ?, major = ? WHERE id = ?";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, gender);
+            pstmt.setString(3, place);
+            pstmt.setString(4, major);
+            pstmt.setString(5, id);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+
+    public int UpdateCourse(String id,String book_name, String teach_name, String room,String subject){
+        String SQL = "UPDATE course SET book_name = ?, teacher_name = ?, room = ?, subject = ? WHERE course_id = ?";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, book_name);
+            pstmt.setString(2, teach_name );
+            pstmt.setString(3, room);
+            pstmt.setString(4, subject);
+            pstmt.setString(5, id);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+    public int UpdateLecture(String id,String course_id, String l_time,  String room, String title)  {
+        String SQL = "UPDATE lecture SET course_id = ?, l_time = ?, room = ?, title = ? WHERE id = ?";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, course_id);
+            pstmt.setString(2, l_time);
+            pstmt.setString(3, room);
+            pstmt.setString(4, title);
+            pstmt.setString(5, id);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+    public int UpdateTeacher_Assist(String id,String name, String teach ,String password)  {
+        String SQL = "UPDATE teacher_assist SET name = ?, teache = ?, `password` = ? WHERE id = ?";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, teach );
+            pstmt.setString(3, password);
+            pstmt.setString(4, id);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
 }

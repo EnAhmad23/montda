@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Students implements Initializable {
+
     @FXML
     private AnchorPane root;
     @FXML
     private TextField t_id;
-    @FXML
-    private TextField s_name;
+//    @FXML
+//    private TextField s_name;
     @FXML
     private TableColumn<Student, String> id;
     @FXML
@@ -41,8 +42,8 @@ public class Students implements Initializable {
     private TableColumn<Student, String> major;
     @FXML
     private TableColumn<Student, String> phone_num;
-    @FXML
-    private TextField department;
+//    @FXML
+//    private TextField department;
     @FXML
     private Button add;
     @FXML

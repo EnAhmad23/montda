@@ -4,6 +4,7 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -22,13 +23,15 @@ public class UpdateTA implements Initializable {
     private ComboBox teach;
     @FXML
     private TextField password;
+    @FXML
+    private Button back;
     private String teaches[] = {"", ""};
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
 
     public void nav_back(){
-        nav.navigateTo(root, nav.TEACHING_FXML);
+        nav.navigateTo(root,nav.TEACHING_FXML);
     }
     public void nav_update(){}
 

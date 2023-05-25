@@ -20,9 +20,18 @@ public class TALectureOperation implements Initializable {
 
     }
 
+    public void students(){
+
+    }
     public void navToEditSection(){
 
     }
+//    public void navToEditSection(){
+//
+//    }
+//    public void navToEditSection(){
+//
+//    }
     public void back_lecOP(){
 
     }

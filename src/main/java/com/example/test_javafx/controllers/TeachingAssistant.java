@@ -44,6 +44,11 @@ public class TeachingAssistant implements Initializable {
     private Button delete;
     @FXML
     private Button view;
+    @FXML
+    private Button nav_back;
+
+    @FXML
+    private Button reports_statements;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
@@ -90,10 +95,13 @@ public class TeachingAssistant implements Initializable {
 
     public void lectures(ActionEvent actionEvent) {
     }
+    public void students(){}
 
     public void attendance_page(ActionEvent actionEvent) {
     }
     public void report_statement_page(){}
+
+    public void searchTA(){}
 
 
     public void search(ActionEvent actionEvent) {
