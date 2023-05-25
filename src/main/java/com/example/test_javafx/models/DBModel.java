@@ -28,7 +28,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
@@ -298,13 +298,13 @@ public class DBModel {
     }
 
     public ArrayList<Student> getStd() {
-        String sql = "select * from students ;";
+        String sql = "select id,name,gender,majer,place,ph_num from students join phone_num on id =s_id;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -378,7 +378,7 @@ public class DBModel {
     }
 
     public int addTeacher(String id, String name, String teache, String password) {
-        String sql = "insert into teacher_ass(id,name,teache,password) values (?,?,?,crypt(?, gen_salt('bf')));";
+        String sql = "insert into teacher_assistant(id,name,teache,password) values (?,?,?,crypt(?, gen_salt('bf')));";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             st.setString(2, name);
@@ -423,6 +423,7 @@ public class DBModel {
         }
 
     }
+
 
     public boolean login(String id, String password) {
         String sql = "select id from teacher_ass where password=crypt(?, password) and id =?;";
@@ -653,13 +654,13 @@ public class DBModel {
     }
 
     public ArrayList<Student> searchStudent(String id) {
-        String sql = "select * from students where id = ? ;";
+        String sql = "select id,name,gender,majer,place,ph_num from students join phone_num on id =s_id where id = ? ;";
         ArrayList<Student> student = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return student;
         } catch (SQLException ex) {

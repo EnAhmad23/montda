@@ -6,15 +6,25 @@ public class Student {
     private String gender ;
     private String place ;
     private String majer ;
+    private String phone_num ;
 
-    public Student(String id, String name, String gender, String place, String majer) {
+
+
+    public Student(String id, String name, String gender, String place, String majer, String phoneNum) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.majer = majer;
         this.place = place;
+        phone_num = phoneNum;
+    }
+    public void setPhone_num(String phone_num) {
+        this.phone_num = phone_num;
     }
 
+    public String getPhone_num() {
+        return phone_num;
+    }
     public String getGender() {
         return gender;
     }

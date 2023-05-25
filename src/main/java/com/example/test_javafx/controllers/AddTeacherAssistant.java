@@ -9,10 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.TextFieldSkin;
+import javafx.scene.control.skin.TextInputControlSkin;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -30,7 +33,7 @@ public class AddTeacherAssistant implements Initializable {
     @FXML
     private ComboBox teache;
     @FXML
-    private TextField password;
+    private TextField password ;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
@@ -52,10 +55,11 @@ public class AddTeacherAssistant implements Initializable {
     }
 
     public void back_user() {
-        nav.navigateTo(root, nav.MAIN_FXML);
+        nav.navigateTo(root, nav.USERS_FXML);
     }
 
     public void add_teacher(ActionEvent actionEvent) {
+
         String t_id = id.getText();
         String t_name = name.getText();
         String t_teache = (String) teache.getValue();
@@ -66,7 +70,7 @@ public class AddTeacherAssistant implements Initializable {
         else
             lable.setText("INCOMPLETE INPUTS");
         if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
-            lable.setTextFill(Color.color(0, 0, 0));
+            lable.setTextFill(Color.color(0, 1, 0));
             lable.setText("Teacher Assistant added Successfully");
         } else {
             lable.setTextFill(Color.color(1, 0, 0));
@@ -78,6 +82,7 @@ public class AddTeacherAssistant implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        if (!dm.availableCourse().is)
+
         teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }
 

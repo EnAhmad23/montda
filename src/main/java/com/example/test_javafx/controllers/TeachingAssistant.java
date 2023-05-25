@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
-
+import com.example.test_javafx.models.Student;
+import org.controlsfx.control.textfield.TextFields;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.TeacherAssistant;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TeachingAssistant implements Initializable {
@@ -33,7 +35,7 @@ public class TeachingAssistant implements Initializable {
     public TableColumn<TeachingAssistant, String> teache;
 
     @FXML
-    private TextField t_id;
+    private TextField t_id ;
     @FXML
     private Button nav_add;
     @FXML
@@ -50,23 +52,12 @@ public class TeachingAssistant implements Initializable {
     }
 
     public void delete_teaching_assist() {
-        Stage stage = new Stage();
-        VBox root = new VBox();
-        root.setSpacing(20);
-        root.setAlignment(Pos.BASELINE_CENTER);
-        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
-        Label label = new Label("TEACHING ASSIST DELETED !");
-        if (dm.delete_teacher_assistant(t_id.getText()) != 0) {
-            view();
-            label.setTextFill(Color.color(0, 0, 0));
-        } else {
-            label.setTextFill(Color.color(1, 0, 0));
-            label.setText("TEACHING ASSIST DIDN'T DELETE !");
-        }
-        t_id.clear();
-        root.getChildren().add(label);
-        stage.setScene(new Scene(root, 300, 100));
-        stage.show();
+
+      if (nav.del_message("TEACHING ASSIST DELETED !","TEACHING ASSIST DIDN'T DELETE !",t_id.getText())==1)
+          view();
+      t_id.clear();
+
+
     }
 
     public void update_teaching_assist() {
@@ -88,17 +79,14 @@ public class TeachingAssistant implements Initializable {
         table.setItems(ob);
     }
 
-//    public void back(ActionEvent actionEvent) {
-//        nav.navigateTo(root, nav.MAIN_FXML);
-//    }
+
     public void back(ActionEvent actionEvent) {
     nav.navigateTo(root,nav.MAIN_FXML);
 }
     public void viewUser(ActionEvent actionEvent) {
     }
 
-    public void students(ActionEvent actionEvent) {
-    }
+
 
     public void lectures(ActionEvent actionEvent) {
     }
@@ -106,4 +94,8 @@ public class TeachingAssistant implements Initializable {
     public void attendance_page(ActionEvent actionEvent) {
     }
     public void report_statement_page(){}
+
+
+    public void search(ActionEvent actionEvent) {
+    }
 }

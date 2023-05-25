@@ -2,23 +2,21 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,6 +39,8 @@ public class Students implements Initializable {
     private TableColumn<Student, String> place;
     @FXML
     private TableColumn<Student, String> major;
+    @FXML
+    private TableColumn<Student, String> phone_num;
     @FXML
     private TextField department;
     @FXML
@@ -117,22 +117,23 @@ public class Students implements Initializable {
         place.setCellValueFactory(new PropertyValueFactory<>("Place"));
         major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
 
+
         ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
         table.setItems(ids);
     }
 
-    public void searchStudent() {
-        if(t_id.getText().isEmpty()){
-            view();
-        }else{
-
-            viewSearch();
-//            }
-//            for(int i =0 ;i < dm.getStudentIds() ;i++ ){
+//    public void searchStudent() {
+//        if(t_id.getText().isEmpty()){
+//            view();
+//        }else{
 //
-//            }
-        }
-    }
+//            viewSearch();
+////            }
+////            for(int i =0 ;i < dm.getStudentIds() ;i++ ){
+////
+////            }
+//        }
+//    }
     public void viewSearch(){
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -146,9 +147,87 @@ public class Students implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        start(new Stage() );
         view();
     }
 
 //    public void searchStudent(ActionEvent actionEvent) {
 //    }
+
+    public void searchStudent() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Student s : dm.getStd()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(s.getId());
+            stringBuilder.append(",");
+            stringBuilder.append(s.getName());
+            stringBuilder.append(",");
+            stringBuilder.append(s.getGender());
+            stringBuilder.append(",");
+            stringBuilder.append(s.getMajer());
+            stringBuilder.append(",");
+            stringBuilder.append(s.getPlace());
+            stringBuilder.append(",");
+            stringBuilder.append(s.getPhone_num());
+            list.add(stringBuilder.toString());
+            System.out.println(stringBuilder);
+        }
+        TextFields.bindAutoCompletion(t_id, list.toArray());
+
+    }
+    private static final String[] DATA = {
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Grape",
+            "Lemon",
+            "Orange",
+            "Peach",
+            "Strawberry"
+    };
+
+
+    public void start(Stage primaryStage) {
+//        TextField t_id = new TextField();
+        ComboBox<String> comboBox = new ComboBox<>();
+        comboBox.setVisible(false);
+
+        t_id.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.DOWN) {
+                comboBox.requestFocus();
+                comboBox.getSelectionModel().selectFirst();
+            }
+        });
+
+        t_id.textProperty().addListener((observable, oldValue, newValue) -> {
+            String input = t_id.getText().toLowerCase();
+
+            if (input.isEmpty()) {
+                comboBox.setVisible(false);
+            } else {
+                comboBox.setItems(FXCollections.observableArrayList(getMatchingItems(input)));
+                comboBox.setVisible(true);
+            }
+        });
+
+        comboBox.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                t_id.setText(comboBox.getSelectionModel().getSelectedItem());
+                comboBox.setVisible(false);
+            } else if (event.getCode() == KeyCode.ESCAPE) {
+                comboBox.setVisible(false);
+            }
+        });
+
+        VBox root = new VBox(t_id, comboBox);
+        Scene scene = new Scene(root, 200, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private String[] getMatchingItems(String input) {
+        return FXCollections.observableArrayList(DATA).filtered(item -> item.toLowerCase().startsWith(input)).toArray(new String[0]);
+    }
+
+
 }

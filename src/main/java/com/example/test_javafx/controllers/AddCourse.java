@@ -2,8 +2,6 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,7 +10,6 @@ import javafx.scene.paint.Color;
 
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class AddSectionController implements Initializable {
+public class AddCourse implements Initializable {
 
     @FXML
     public AnchorPane rootPane;

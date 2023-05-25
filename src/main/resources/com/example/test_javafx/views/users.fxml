@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="t_id" layoutX="141.0" layoutY="118.0" prefHeight="36.0" prefWidth="187.0" promptText="Enter your ID" />
+      <TextField fx:id="t_id" layoutX="141.0" layoutY="118.0" onAction="#search" prefHeight="36.0" prefWidth="187.0" />
       <TextField fx:id="t_name" layoutX="141.0" layoutY="179.0" prefHeight="36.0" prefWidth="187.0" promptText="Name" />
       <Separator layoutX="1.0" layoutY="242.0" prefHeight="18.0" prefWidth="818.0" />
       <TableView fx:id="table" layoutY="255.0" prefHeight="417.0" prefWidth="820.0">
