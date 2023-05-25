@@ -1,5 +1,7 @@
 package com.example.test_javafx.models;
 
+import jxl.Cell;
+import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -32,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
@@ -309,7 +311,15 @@ public class DBModel {
 
     public void readEXL(String path) {
         try {
-            Workbook workbook = Workbook.getWorkbook(new File("path/to/your/file.xls"));
+            Workbook workbook = Workbook.getWorkbook(new File(path));
+            Sheet sheet = workbook.getSheet(0);
+            Cell cell1 = sheet.getCell(0, 0);
+            System.out.print(cell1.getContents() + ":");    // Test Count + :
+            Cell cell2 = sheet.getCell(0, 1);
+            System.out.println(cell2.getContents());        // 1
+
+            Cell cell3 = sheet.getCell(1, 0);
+            System.out.print(cell3.getContents() + ":");
         } catch (IOException | BiffException e) {
             e.printStackTrace();
         }

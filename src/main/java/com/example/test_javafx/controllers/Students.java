@@ -6,8 +6,10 @@ import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,8 +20,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Students implements Initializable {
@@ -65,8 +69,15 @@ public class Students implements Initializable {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
-    public void UpdateStudent() {
-        nav.navigateTo(root, nav.UPDATE_STUDENT);
+    public void UpdateStudent() throws IOException {
+        Parent rootP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("views/updateStudent.fxml")));
+
+//            rootPane.getScene().setRoot(root);
+        Stage stage = new Stage();
+        Scene scene = new Scene(rootP);
+        stage.setScene(scene);
+        stage.show();
+//        nav.navigateTo(root, nav.UPDATE_STUDENT);
 
     }
 
