@@ -26,6 +26,13 @@ public class Navigation {
     public final String UPLOAD = "views/upload.fxml";
     public final String LOGIN = "views/login.fxml";
     public final String COURSES = "views/course.fxml";
+
+    public final String UPDATE_ATTENDENCE = "views/UpdateAttendence.fxml";
+    public final String UPDATE_COURSE = "views/UpdateCourse.fxml";
+    public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
+    public final String UPDATE_STUDENT = "views/updateStudent.fxml";
+    public final String UPDATE_TA= "views/UpdateTA.fxml";
+
     private String currentPath = "";
 
 
@@ -42,7 +49,13 @@ public class Navigation {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
+
+
+
 
     public String getCurrentPath() {
         return currentPath;

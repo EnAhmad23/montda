@@ -50,6 +50,8 @@ public class Students implements Initializable {
     @FXML
     private Button delete;
     @FXML
+    private Button back;
+    @FXML
     private TableView<Student> table;
     @FXML
     private Button id_close_students;
@@ -57,11 +59,13 @@ public class Students implements Initializable {
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
+
     public void addStudent() {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
     public void UpdateStudent() {
+        nav.navigateTo(root, nav.UPDATE_STUDENT);
 
     }
 
@@ -100,10 +104,11 @@ public class Students implements Initializable {
     }
 
     public void Update_back() {
-        if (nav.getCurrentPath().equals(nav.MAIN_FXML))
-            nav.navigateTo(root, nav.MAIN_FXML);
-        else
-            nav.navigateTo(root, nav.TEACHING_FXML);
+//        if (nav.getCurrentPath().equals(nav.MAIN_FXML))
+//            nav.navigateTo(root, nav.MAIN_FXML);
+//        else
+//            nav.navigateTo(root, nav.TEACHING_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
     public void view (){
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -116,12 +121,34 @@ public class Students implements Initializable {
         table.setItems(ids);
     }
 
+    public void searchStudent() {
+        if(t_id.getText().isEmpty()){
+            view();
+        }else{
+
+            viewSearch();
+//            }
+//            for(int i =0 ;i < dm.getStudentIds() ;i++ ){
+//
+//            }
+        }
+    }
+    public void viewSearch(){
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
+        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
+
+        ObservableList<Student> ids = FXCollections.observableArrayList(dm.searchStudent(t_id.getText()));
+        table.setItems(ids);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         view();
-
     }
 
-    public void searchStudent(ActionEvent actionEvent) {
-    }
+//    public void searchStudent(ActionEvent actionEvent) {
+//    }
 }

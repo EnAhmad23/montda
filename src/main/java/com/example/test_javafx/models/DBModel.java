@@ -28,7 +28,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -657,4 +657,72 @@ public class DBModel {
             return null;
         }
     }
+
+    public ArrayList<Student> searchStudent(String id) {
+        String sql = "select * from students where id = ? ;";
+        ArrayList<Student> student = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            return student;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public ArrayList<Course> searchCourse(String id) {
+        String sql = "select * from course where course_id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ArrayList<Course> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
+    public ArrayList<LectureTime> searchLecture(String id) {
+        String sql = "select * from lecture where id = ? ;";
+        ArrayList<LectureTime> Lecture = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Lecture.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            return Lecture;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+//    public ArrayList<TeacherAssistant> searchTA(String id) {
+//        String sql = "select * from teacher_assistant where id = ? ;";
+//        ArrayList<TeacherAssistant> TA = new ArrayList<>();
+//        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+//                TA.add(new TeacherAssistant(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+//            }
+//            return TA;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//    }
 }
