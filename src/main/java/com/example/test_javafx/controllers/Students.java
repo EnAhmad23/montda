@@ -31,8 +31,8 @@ public class Students implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private TextField t_id;
-//    @FXML
+    private  TextField t_id;
+    //    @FXML
 //    private TextField s_name;
     @FXML
     private TableColumn<Student, String> id;
@@ -46,7 +46,7 @@ public class Students implements Initializable {
     private TableColumn<Student, String> major;
     @FXML
     private TableColumn<Student, String> phone_num;
-//    @FXML
+    //    @FXML
 //    private TextField department;
     @FXML
     private Button add;
@@ -60,24 +60,36 @@ public class Students implements Initializable {
     private TableView<Student> table;
     @FXML
     private Button id_close_students;
-
+    public static String string = "";
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
+
 
 
     public void addStudent() {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
-    public void UpdateStudent() throws IOException {
-        Parent rootP = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("views/updateStudent.fxml")));
-
-//            rootPane.getScene().setRoot(root);
-        Stage stage = new Stage();
-        Scene scene = new Scene(rootP);
-        stage.setScene(scene);
-        stage.show();
-//        nav.navigateTo(root, nav.UPDATE_STUDENT);
+    public void UpdateStudent() {
+//        try {
+//            Stage stage = new Stage();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource(nav.UPDATE_STUDENT));
+//            Parent rootP = loader.load();
+//
+//
+////            rootPane.getScene().setRoot(root);
+////            Stage stage = (Stage) rootPane.getScene().getWindow();
+//            Scene scene = new Scene(rootP);
+//            stage.setScene(scene);
+//            stage.show();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        string = t_id.getText();
+//        System.out.println(string);
+        Navigation.id=t_id.getText();
+        nav.navigateTo(root, nav.UPDATE_STUDENT);
 
     }
 
@@ -87,11 +99,11 @@ public class Students implements Initializable {
         root.setSpacing(20);
         root.setAlignment(Pos.BASELINE_CENTER);
         root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
-        Label label =new Label("STUDENT DELETED !");
-        if ( dm.delete_Student(t_id.getText())!=0) {
+        Label label = new Label("STUDENT DELETED !");
+        if (dm.delete_Student(t_id.getText()) != 0) {
             view();
-            label.setTextFill(Color.color(0,0,0));
-        }else {
+            label.setTextFill(Color.color(0, 0, 0));
+        } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("STUDENT DIDN'T DELETE !");
         }
@@ -122,7 +134,8 @@ public class Students implements Initializable {
 //            nav.navigateTo(root, nav.TEACHING_FXML);
         nav.navigateTo(root, nav.MAIN_FXML);
     }
-    public void view (){
+
+    public void view() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
@@ -135,7 +148,7 @@ public class Students implements Initializable {
         table.setItems(ids);
     }
 
-//    public void searchStudent() {
+    //    public void searchStudent() {
 //        if(t_id.getText().isEmpty()){
 //            view();
 //        }else{
@@ -147,7 +160,7 @@ public class Students implements Initializable {
 ////            }
 //        }
 //    }
-    public void viewSearch(){
+    public void viewSearch() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
@@ -188,6 +201,7 @@ public class Students implements Initializable {
         TextFields.bindAutoCompletion(t_id, list.toArray());
 
     }
+
     private static final String[] DATA = {
             "Apple",
             "Banana",
@@ -200,43 +214,43 @@ public class Students implements Initializable {
     };
 
 
-    public void start(Stage primaryStage) {
-//        TextField t_id = new TextField();
-        ComboBox<String> comboBox = new ComboBox<>();
-        comboBox.setVisible(false);
-
-        t_id.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.DOWN) {
-                comboBox.requestFocus();
-                comboBox.getSelectionModel().selectFirst();
-            }
-        });
-
-        t_id.textProperty().addListener((observable, oldValue, newValue) -> {
-            String input = t_id.getText().toLowerCase();
-
-            if (input.isEmpty()) {
-                comboBox.setVisible(false);
-            } else {
-                comboBox.setItems(FXCollections.observableArrayList(getMatchingItems(input)));
-                comboBox.setVisible(true);
-            }
-        });
-
-        comboBox.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                t_id.setText(comboBox.getSelectionModel().getSelectedItem());
-                comboBox.setVisible(false);
-            } else if (event.getCode() == KeyCode.ESCAPE) {
-                comboBox.setVisible(false);
-            }
-        });
-
-        VBox root = new VBox(t_id, comboBox);
-        Scene scene = new Scene(root, 200, 200);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+//    public void start(Stage primaryStage) {
+////        TextField t_id = new TextField();
+//        ComboBox<String> comboBox = new ComboBox<>();
+//        comboBox.setVisible(false);
+//
+//        t_id.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.DOWN) {
+//                comboBox.requestFocus();
+//                comboBox.getSelectionModel().selectFirst();
+//            }
+//        });
+//
+//        t_id.textProperty().addListener((observable, oldValue, newValue) -> {
+//            String input = t_id.getText().toLowerCase();
+//
+//            if (input.isEmpty()) {
+//                comboBox.setVisible(false);
+//            } else {
+//                comboBox.setItems(FXCollections.observableArrayList(getMatchingItems(input)));
+//                comboBox.setVisible(true);
+//            }
+//        });
+//
+//        comboBox.setOnKeyPressed(event -> {
+//            if (event.getCode() == KeyCode.ENTER) {
+//                t_id.setText(comboBox.getSelectionModel().getSelectedItem());
+//                comboBox.setVisible(false);
+//            } else if (event.getCode() == KeyCode.ESCAPE) {
+//                comboBox.setVisible(false);
+//            }
+//        });
+//
+//        VBox root = new VBox(t_id, comboBox);
+//        Scene scene = new Scene(root, 200, 200);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
 
     private String[] getMatchingItems(String input) {
         return FXCollections.observableArrayList(DATA).filtered(item -> item.toLowerCase().startsWith(input)).toArray(new String[0]);

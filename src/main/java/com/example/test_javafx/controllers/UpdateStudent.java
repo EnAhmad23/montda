@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -29,8 +30,11 @@ public class UpdateStudent implements Initializable {
     private TextField major;
     @FXML
     private ComboBox gender;
+    @FXML
+    private Label label;
     private String genders[] = {"male", "female"};
     String idFromStudent;
+
 
     @FXML
     private Button back;
@@ -41,21 +45,20 @@ public class UpdateStudent implements Initializable {
 
     public void nav_update(){
 //                      t_id
-        idFromStudent = id.getText();
-        String stu_id = idFromStudent;
+
         String stu_name = name.getText();
         String stu_major = major.getText();
         String stu_place =  place.getText();
         String stu_gender = (String) gender.getValue();
-        dm.UpdateStudent(idFromStudent, stu_name, stu_gender,  stu_major,stu_place);
 
-//        if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place) != 0) {
-//            label.setTextFill(Color.color(0, 1, 0));
-//            label.setText("Student added successfully");
-//        } else {
-//            label.setTextFill(Color.color(1, 0, 0));
-//            label.setText("Student did'nt add");
-//        }
+
+        if (dm.UpdateStudent(idFromStudent, stu_name, stu_gender,  stu_major,stu_place) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("Student Update successfully");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("Student did'nt Update");
+        }
 
     }
     public void nav_back(){
@@ -63,7 +66,8 @@ public class UpdateStudent implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(idFromStudent);
+
+        id.setText(Navigation.id) ;
         id.setEditable(false);
         gender.getItems().addAll(genders);
     }

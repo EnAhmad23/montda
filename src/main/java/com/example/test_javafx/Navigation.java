@@ -38,14 +38,14 @@ public class Navigation {
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
     public final String UPDATE_TA= "views/UpdateTA.fxml";
 
-    private String currentPath = "";
+    public static String id = "";
 DBModel dm = DBModel.getModel();
 
 
     public void navigateTo(Parent rootPane, String path) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
-            currentPath = path ;
+//            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
             Stage stage = (Stage) rootPane.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -56,6 +56,7 @@ DBModel dm = DBModel.getModel();
         }
 
     }
+
 
     public int del_message(String done , String error,String id){
         Stage stage = new Stage();
@@ -88,7 +89,8 @@ DBModel dm = DBModel.getModel();
 
 
     public String getCurrentPath() {
-        return currentPath;
+//        return currentPath;
+        return null;
     }
 
 
