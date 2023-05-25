@@ -166,6 +166,7 @@ public class Students implements Initializable {
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         place.setCellValueFactory(new PropertyValueFactory<>("Place"));
         major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
+        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
 
         ObservableList<Student> ids = FXCollections.observableArrayList(dm.searchStudent(t_id.getText()));
         table.setItems(ids);

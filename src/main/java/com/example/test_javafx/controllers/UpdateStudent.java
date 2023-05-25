@@ -30,6 +30,9 @@ public class UpdateStudent implements Initializable {
     private TextField major;
     @FXML
     private ComboBox gender;
+
+    @FXML
+    private TextField phone_number;
     @FXML
     private Label label;
     private String genders[] = {"male", "female"};
@@ -50,9 +53,9 @@ public class UpdateStudent implements Initializable {
         String stu_major = major.getText();
         String stu_place =  place.getText();
         String stu_gender = (String) gender.getValue();
+        String stu_phone = phone_number.getText();
 
-
-        if (dm.UpdateStudent(idFromStudent, stu_name, stu_gender,  stu_major,stu_place) != 0) {
+        if (dm.UpdateStudent(idFromStudent, stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student Update successfully");
         } else {

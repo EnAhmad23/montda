@@ -34,12 +34,14 @@ public class AddStudent implements Initializable {
     private TextField place;
     @FXML
     private ComboBox gender;
+
+    @FXML
+    private TextField phone_number;
     @FXML
     private Button btn_add;
+
     @FXML
-    private Button nav_close;
-    @FXML
-    private Button ids_back_addStu;
+    private Button id_back_addStu;
 
     private String genders[] = {"male", "female"};
     Navigation nav = new Navigation();
@@ -51,7 +53,9 @@ public class AddStudent implements Initializable {
         String stu_major = major.getText();
         String stu_place =  place.getText();
         String stu_gender = (String) gender.getValue();
-        if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place) != 0) {
+        String stu_phone = phone_number.getText();
+
+        if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
         } else {
@@ -60,8 +64,6 @@ public class AddStudent implements Initializable {
         }
     }
 
-    public void close_addStudent() {
-    }
 
     public void back_addStu() {
         nav.navigateTo(root, nav.STUDENTS_FXML);

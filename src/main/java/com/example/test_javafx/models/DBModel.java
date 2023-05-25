@@ -18,7 +18,7 @@ public class DBModel {
     Connection con = null;
 
     //here our queries method
-    private DBModel() {
+    public DBModel() {
         connect();
     }
 
@@ -34,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -392,15 +392,18 @@ public class DBModel {
         }
     }
 
-    public int addStudent(String id, String name, String gender, String major, String place) {
+    public int addStudent(String id, String name, String gender, String major, String place,String phone_number) {
         String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
+        String SQL2 = "INSERT INTO phone_num (s_id,ph_num) VALUES(?,?)";
 //        ArrayList<student> arr;
-        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = con.prepareStatement(SQL);PreparedStatement pstmt2 = con.prepareStatement(SQL2)) {
             pstmt.setString(1, id);
             pstmt.setString(2, name);
             pstmt.setString(3, gender);
             pstmt.setString(4, major);
             pstmt.setString(5, place);
+            pstmt2.setString(1, id);
+            pstmt2.setString(2, phone_number);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             return 0;
@@ -753,15 +756,18 @@ public class DBModel {
 //    }
 
 
-    public int UpdateStudent(String id, String name, String gender, String major, String place) {
-        String SQL = "UPDATE students SET name = ?, gender = ?, place= ?, major = ? WHERE id = ?";
+    public int UpdateStudent(String id, String name, String gender, String major, String place,String phone_num) {
+        String SQL = "UPDATE students SET name = ?, gender = ?, place = ?, majer = ? WHERE id = ?";
+        String SQL2 = "UPDATE phone_num SET ph_num = ? WHERE s_id = ?";
 //        ArrayList<student> arr;
-        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = con.prepareStatement(SQL); PreparedStatement pstmt2 = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
             pstmt.setString(2, gender);
             pstmt.setString(3, place);
             pstmt.setString(4, major);
             pstmt.setString(5, id);
+            pstmt2.setString(1, phone_num);
+            pstmt2.setString(2, id);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             return 0;
@@ -811,4 +817,12 @@ public class DBModel {
             return 0;
         }
     }
+
+//    public void readEXL(String path) {
+//        try {
+//            Workbook workbook = Workbook.getWorkbook(new File("path/to/your/file.xls"));
+//        } catch (IOException | BiffException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -1,5 +1,6 @@
 package com.example.test_javafx;
 
+import com.example.test_javafx.models.DBModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+//        DBModel db = new DBModel();
+//        db.readEXL("/Users/yaseenhasan/Documents/Data_Project_main/Book1.xlsx");
+
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/start.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("University");
