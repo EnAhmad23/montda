@@ -114,8 +114,8 @@ public class Students implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
         place.setCellValueFactory(new PropertyValueFactory<>("Place"));
-        major.setCellValueFactory(new PropertyValueFactory<>("majer"));
         phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
 
 
