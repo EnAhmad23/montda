@@ -60,6 +60,6 @@
       <TextField fx:id="id" layoutX="188.0" layoutY="167.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the id" />
       <TextField fx:id="name" layoutX="188.0" layoutY="233.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the name" />
       <TextField fx:id="password" layoutX="188.0" layoutY="363.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the password" />
-      <ComboBox fx:id="teach" layoutX="188.0" layoutY="301.0" onAction="#ids" prefHeight="34.0" prefWidth="156.0" />
+      <ComboBox fx:id="teach" layoutX="188.0" layoutY="301.0"  prefHeight="34.0" prefWidth="156.0" />
    </children>
 </AnchorPane>

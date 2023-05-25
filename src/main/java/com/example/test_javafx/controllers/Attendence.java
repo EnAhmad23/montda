@@ -19,6 +19,9 @@ public class Attendence {
     public void UpdateUser(){
         nav.navigateTo(root, nav.UPDATE_ATTENDENCE);
     }
+    public void searchAttendence(){
+
+    }
 
 
 }

@@ -32,12 +32,10 @@ public class TeachingAssistant implements Initializable {
     @FXML
     public TableColumn<TeachingAssistant, String> teache;
 
-
-
     @FXML
     private TextField t_id;
     @FXML
-    private Button add;
+    private Button nav_add;
     @FXML
     private Button update;
     @FXML
@@ -93,7 +91,7 @@ public class TeachingAssistant implements Initializable {
 //    public void back(ActionEvent actionEvent) {
 //        nav.navigateTo(root, nav.MAIN_FXML);
 //    }
-public void back(ActionEvent actionEvent) {
+    public void back(ActionEvent actionEvent) {
     nav.navigateTo(root,nav.MAIN_FXML);
 }
     public void viewUser(ActionEvent actionEvent) {
@@ -107,4 +105,5 @@ public void back(ActionEvent actionEvent) {
 
     public void attendance_page(ActionEvent actionEvent) {
     }
+    public void report_statement_page(){}
 }
