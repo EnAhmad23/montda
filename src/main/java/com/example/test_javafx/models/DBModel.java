@@ -1,7 +1,11 @@
 package com.example.test_javafx.models;
 
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import org.postgresql.ds.PGSimpleDataSource;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -220,6 +224,7 @@ public class DBModel {
             return "";
         }
     }
+
     public ArrayList<String> availableCourse() {
         String sql = "SELECT C.course_id FROM course AS C LEFT JOIN teacher_assistant AS TA ON C.course_id = TA.teache WHERE TA.teache IS NULL;";
         ArrayList<String> ids = new ArrayList<>();
@@ -253,6 +258,7 @@ public class DBModel {
         }
 
     }
+
     public int delete_Student(String id) {
         String sql = "DELETE FROM students WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -264,6 +270,7 @@ public class DBModel {
             return 0;
         }
     }
+
     public int delete_lecture(String id) {
         String sql = "DELETE FROM lecture WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -274,7 +281,9 @@ public class DBModel {
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
         }
-    } public int delete_teacher_assistant(String id) {
+    }
+
+    public int delete_teacher_assistant(String id) {
         String sql = "DELETE FROM teacher_assistant WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -285,6 +294,7 @@ public class DBModel {
             return 0;
         }
     }
+
     public int delete_Course(String id) {
         String sql = "DELETE FROM course WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -294,6 +304,14 @@ public class DBModel {
         } catch (SQLException ex) {
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
+        }
+    }
+
+    public void readEXL(String path) {
+        try {
+            Workbook workbook = Workbook.getWorkbook(new File("path/to/your/file.xls"));
+        } catch (IOException | BiffException e) {
+            e.printStackTrace();
         }
     }
 
@@ -331,6 +349,7 @@ public class DBModel {
         }
 
     }
+
     public int addLecture(String id, String course_id, String l_time, String room, String title) throws SQLException {
         String SQL = "INSERT INTO lecture(id,course_id,l_time,room,title) VALUES(?,?,?,?,?);";
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -341,12 +360,13 @@ public class DBModel {
             pstmt.setString(4, room);
             pstmt.setString(5, title);
             System.out.println("1");
-             return pstmt.executeUpdate();
+            return pstmt.executeUpdate();
             //return "";
         } catch (SQLException e) {
             throw e;
         }
     }
+
     public int addCourse(String course_id, String book_name, String teacher_name, String room, String subject) {
         String SQL = "INSERT INTO course(course_id,book_name,teacher_name,room,subject) "
                 + "VALUES(?,?,?,?,?)";
@@ -361,7 +381,8 @@ public class DBModel {
             return 0;
         }
     }
-    public int addStudent(String id, String name, String gender,  String major, String place)  {
+
+    public int addStudent(String id, String name, String gender, String major, String place) {
         String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -414,7 +435,7 @@ public class DBModel {
             ArrayList<TeacherAssistant> teacherAssistants = new ArrayList<>();
             ResultSet rs = st.executeQuery();
 //            ResultSet advisor = ad.executeQuery();
-            while (rs.next() )
+            while (rs.next())
                 teacherAssistants.add(new TeacherAssistant(rs.getString(1), rs.getString(2), rs.getString(3)));
             return teacherAssistants;
         } catch (SQLException ex) {
@@ -722,7 +743,7 @@ public class DBModel {
 //    }
 
 
-    public int UpdateStudent(String id,String name, String gender,  String major, String place)  {
+    public int UpdateStudent(String id, String name, String gender, String major, String place) {
         String SQL = "UPDATE students SET name = ?, gender = ?, place= ?, major = ? WHERE id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -737,12 +758,12 @@ public class DBModel {
         }
     }
 
-    public int UpdateCourse(String id,String book_name, String teach_name, String room,String subject){
+    public int UpdateCourse(String id, String book_name, String teach_name, String room, String subject) {
         String SQL = "UPDATE course SET book_name = ?, teacher_name = ?, room = ?, subject = ? WHERE course_id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, book_name);
-            pstmt.setString(2, teach_name );
+            pstmt.setString(2, teach_name);
             pstmt.setString(3, room);
             pstmt.setString(4, subject);
             pstmt.setString(5, id);
@@ -751,7 +772,8 @@ public class DBModel {
             return 0;
         }
     }
-    public int UpdateLecture(String id,String course_id, String l_time,  String room, String title)  {
+
+    public int UpdateLecture(String id, String course_id, String l_time, String room, String title) {
         String SQL = "UPDATE lecture SET course_id = ?, l_time = ?, room = ?, title = ? WHERE id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -765,12 +787,13 @@ public class DBModel {
             return 0;
         }
     }
-    public int UpdateTeacher_Assist(String id,String name, String teach ,String password)  {
+
+    public int UpdateTeacher_Assist(String id, String name, String teach, String password) {
         String SQL = "UPDATE teacher_assist SET name = ?, teache = ?, `password` = ? WHERE id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
-            pstmt.setString(2, teach );
+            pstmt.setString(2, teach);
             pstmt.setString(3, password);
             pstmt.setString(4, id);
             return pstmt.executeUpdate();

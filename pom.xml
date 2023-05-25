@@ -11,10 +11,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.9.1</junit.version>
+        <junit.version>5.9.2</junit.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
@@ -23,12 +24,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>19</version>
+            <version>21-ea+17</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>19</version>
+            <version>21-ea+17</version>
         </dependency>
 
         <dependency>
@@ -54,7 +55,16 @@
             <artifactId>jxl</artifactId>
             <version>2.6.12</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.github.aafc-bicoe</groupId>
+            <artifactId>dina-workbook</artifactId>
+            <version>0.102</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.aafc-bicoe</groupId>
+            <artifactId>dina-workbook</artifactId>
+            <version>0.102</version>
+        </dependency>
 
 
     </dependencies>
