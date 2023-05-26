@@ -148,18 +148,7 @@ public class Students implements Initializable {
         table.setItems(ids);
     }
 
-    //    public void searchStudent() {
-//        if(t_id.getText().isEmpty()){
-//            view();
-//        }else{
-//
-//            viewSearch();
-////            }
-////            for(int i =0 ;i < dm.getStudentIds() ;i++ ){
-////
-////            }
-//        }
-//    }
+
     public void viewSearch() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -174,29 +163,10 @@ public class Students implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        start(new Stage() );
-//        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
-//
-//        // Bind auto-completion to the TextField
-//        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(t_id, suggestions);
-//
-//        // Set the minimum number of characters for auto-completion to trigger
-//        autoCompletionBinding.setMinWidth(1);
-//
-//        // Set the auto-completion behavior to complete when a suggestion is selected
-//        autoCompletionBinding.setOnAutoCompleted(event -> {
-//            // Get the selected suggestion
-//            String selectedSuggestion = event.getCompletion();
-//
-//            // Perform any action you want when a suggestion is selected
-//            // For example, update other fields or perform a search based on the selected suggestion
-//            // ...
-//        });
         view();
     }
 
-//
-    public void searchStudent() {
+    public void autoComplete(){
         ArrayList<String> list = new ArrayList<>();
         for (Student s : dm.getStd()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -212,9 +182,12 @@ public class Students implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
-            System.out.println(stringBuilder);
         }
-        TextFields.bindAutoCompletion(t_id, list.toArray());
+        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,9)));
+    }
+//
+    public void searchStudent() {
+
 
     }
 
