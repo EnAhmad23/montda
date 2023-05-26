@@ -122,11 +122,12 @@ public class Students implements Initializable {
     }
 
     public void Update_back() {
+
 //        if (nav.getCurrentPath().equals(nav.MAIN_FXML))
 //            nav.navigateTo(root, nav.MAIN_FXML);
 //        else
 //            nav.navigateTo(root, nav.TEACHING_FXML);
-        nav.navigateTo(root, nav.MAIN_FXML);
+        nav.navigateTo(root, Navigation.owner);
     }
 
     public void view() {

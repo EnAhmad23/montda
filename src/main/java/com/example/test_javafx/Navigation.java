@@ -42,6 +42,7 @@ public class Navigation {
 
     public static String string = "";
     DBModel dm = DBModel.getModel();
+    public static String owner;
 
 
     public void navigateTo(Parent rootPane, String path) {

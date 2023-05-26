@@ -69,7 +69,7 @@ public class LecturesTimesController implements Initializable {
     }
 
     public void back() {
-        nav.navigateTo(root, nav.MAIN_FXML);
+        nav.navigateTo(root, Navigation.owner);
     }
 
 //    public void addLectureTime(){
