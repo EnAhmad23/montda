@@ -34,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -273,7 +273,7 @@ public class DBModel {
         }
     }
 
-    public int delete_lecture(String id) {
+    public int delete_lecture (String id) {
         String sql = "DELETE FROM lecture WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);

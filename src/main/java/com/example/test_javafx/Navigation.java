@@ -37,6 +37,8 @@ public class Navigation {
     public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
     public final String UPDATE_TA= "views/UpdateTA.fxml";
+    public final String REPORT_ATTENDANCE = "views/ReportAttendance.fxml";
+    public final String REPORT_STUDENT= "views/ReportStudent.fxml";
 
     public static String id = "";
 DBModel dm = DBModel.getModel();
