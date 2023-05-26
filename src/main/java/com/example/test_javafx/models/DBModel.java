@@ -741,7 +741,7 @@ public class DBModel {
         }
     }
 
-    public ArrayList<TeacherAssistant> search_TA(String id) {
+    public ArrayList<TeacherAssistant> searchTeacher(String id) {
         String sql = "select * from teacher_assistant where id = ? ;";
         ArrayList<TeacherAssistant> TA = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
