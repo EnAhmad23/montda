@@ -188,7 +188,11 @@ public class LecturesTimesController implements Initializable {
 
     }
     public void update_button(){
-        nav.navigateTo(root, nav.UPDATE_LECTURE);
+        if (t_id.getText().length()==5) {
+            Navigation.string = t_id.getText();
+            nav.navigateTo(root, nav.UPDATE_LECTURE);
+        }else
+            nav.error_message("ENTER THE ID FOR  THE LECTURE !!");
     }
     public void add_button(){
         nav.navigateTo(root,nav.ADD_LECTURES_FXML);

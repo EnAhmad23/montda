@@ -42,7 +42,7 @@ public class UpdateLecture implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lecture_id.setText("lecture ID");
+        lecture_id.setText(Navigation.string);
         lecture_id.setEditable(false);
     }
 }
