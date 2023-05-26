@@ -94,20 +94,18 @@ public class TeachingAssistant implements Initializable {
         table.setItems(ob);
     }
 
-    public void viewSearch(){
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        teache.setCellValueFactory(new PropertyValueFactory<>("teache"));
-        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.search_TA(id.getText()));
-        table.setItems(ob);
-    }
-
 
     public void back(ActionEvent actionEvent) {
     nav.navigateTo(root,nav.MAIN_FXML);
 }
 
-
+    public void viewSearch(){
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        teache.setCellValueFactory(new PropertyValueFactory<>("teache"));
+        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.searchTeacher(id.getText()));
+        table.setItems(ob);
+    }
 
 
     public void lectures(ActionEvent actionEvent) {
@@ -125,4 +123,7 @@ public class TeachingAssistant implements Initializable {
             viewSearch();
         }
     }
+
+
+
 }

@@ -34,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
@@ -461,19 +461,18 @@ public class DBModel {
 
 
     public boolean login(String id, String password) {
-        String sql = "select id from teacher_assistant where password=crypt(?, password) and id =?;";
+        String sql = "select id from teacher_ass where password=crypt(?, password) and id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, password);
             st.setString(2, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next())
-                return rs.getString(1).equals(id);
-
+            return (rs.next());
         } catch (SQLException ex) {
+
             return false;
+
         }
 
-        return false;
     }
 
     public String getStdDept(String id) {
@@ -725,7 +724,7 @@ public class DBModel {
 
     }
 
-    public ArrayList<LectureTime> searchLecture(String id){
+    public ArrayList<LectureTime> searchLecture(String id) {
         String sql = "select * from lecture where id = ? ;";
         ArrayList<LectureTime> Lecture = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -741,7 +740,7 @@ public class DBModel {
         }
     }
 
-    public ArrayList<TeacherAssistant> search_TA(String id) {
+    public ArrayList<TeacherAssistant> searchTeacher(String id) {
         String sql = "select * from teacher_assistant where id = ? ;";
         ArrayList<TeacherAssistant> TA = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
