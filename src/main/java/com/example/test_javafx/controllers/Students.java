@@ -195,23 +195,21 @@ public class Students implements Initializable {
         view();
     }
 
-//    public void searchStudent(ActionEvent actionEvent) {
-//    }
-
+//
     public void searchStudent() {
         ArrayList<String> list = new ArrayList<>();
         for (Student s : dm.getStd()) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getId());
-            stringBuilder.append(",");
+            stringBuilder.append(", ");
             stringBuilder.append(s.getName());
-            stringBuilder.append(",");
+            stringBuilder.append(", ");
             stringBuilder.append(s.getGender());
-            stringBuilder.append(",");
+            stringBuilder.append(", ");
             stringBuilder.append(s.getMajer());
-            stringBuilder.append(",");
+            stringBuilder.append(", ");
             stringBuilder.append(s.getPlace());
-            stringBuilder.append(",");
+            stringBuilder.append(", ");
             stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
             System.out.println(stringBuilder);
@@ -220,86 +218,7 @@ public class Students implements Initializable {
 
     }
 
-    private static final String[] DATA = {
-            "Apple",
-            "Banana",
-            "Cherry",
-            "Grape",
-            "Lemon",
-            "Orange",
-            "Peach",
-            "Strawberry"
-    };
-    @FXML
-//    private void autoComplete() {
-//        // Get the entered text from the TextField
-//        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
-//        Stage stage=new Stage();
-//        TextField textField = null;
-//        TextFields.bindAutoCompletion(textField);
-//
-//
-//
-//        // Perform auto-complete logic based on the entered text
-////        // Example: Retrieve suggestions from a list or database
-////        List<String> suggestions = Arrays.asList("John", "Jane", "James", "Jennifer");
-////
-////        // Filter the suggestions based on the entered text
-////        List<String> filteredSuggestions = suggestions.stream()
-////                .filter(suggestion -> suggestion.toLowerCase().startsWith(enteredText.toLowerCase()))
-////                .collect(Collectors.toList());
-//
-//        // Show the filtered suggestions in a drop-down or any other UI element
-//        // Example: Use a ListView or ComboBox to display the suggestions
-//        // ...
-//
-//        // Update the TextField or selected value based on the user's selection
-//        // ...
-//        stage.setScene(new Scene(textField,300,200));
-//        stage.show();
-//    }
 
-//    public void start(Stage primaryStage) {
-////        TextField t_id = new TextField();
-//        ComboBox<String> comboBox = new ComboBox<>();
-//        comboBox.setVisible(false);
-//
-//        t_id.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.DOWN) {
-//                comboBox.requestFocus();
-//                comboBox.getSelectionModel().selectFirst();
-//            }
-//        });
-//
-//        t_id.textProperty().addListener((observable, oldValue, newValue) -> {
-//            String input = t_id.getText().toLowerCase();
-//
-//            if (input.isEmpty()) {
-//                comboBox.setVisible(false);
-//            } else {
-//                comboBox.setItems(FXCollections.observableArrayList(getMatchingItems(input)));
-//                comboBox.setVisible(true);
-//            }
-//        });
-//
-//        comboBox.setOnKeyPressed(event -> {
-//            if (event.getCode() == KeyCode.ENTER) {
-//                t_id.setText(comboBox.getSelectionModel().getSelectedItem());
-//                comboBox.setVisible(false);
-//            } else if (event.getCode() == KeyCode.ESCAPE) {
-//                comboBox.setVisible(false);
-//            }
-//        });
-//
-////        VBox root = new VBox(t_id, comboBox);
-////        Scene scene = new Scene(root, 200, 200);
-////        primaryStage.setScene(scene);
-////        primaryStage.show();
-//    }
-
-    private String[] getMatchingItems(String input) {
-        return FXCollections.observableArrayList(DATA).filtered(item -> item.toLowerCase().startsWith(input)).toArray(new String[0]);
-    }
 
 
 }
