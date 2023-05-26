@@ -98,7 +98,7 @@ public class TeachingAssistant implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         teache.setCellValueFactory(new PropertyValueFactory<>("teache"));
-        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.searchTeacher(id.getText()));
+        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.search_TA(id.getText()));
         table.setItems(ob);
     }
 
