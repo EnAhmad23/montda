@@ -1,5 +1,4 @@
 package com.example.test_javafx.controllers;
-import com.example.test_javafx.models.Student;
 import org.controlsfx.control.textfield.TextFields;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
@@ -9,14 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,14 +60,30 @@ public class TeachingAssistant implements Initializable {
     }
 
     public void update_teaching_assist() {
-
-        nav.navigateTo(root, nav.UPDATE_TA);
+        if (!t_id.getText().isEmpty()) {
+            Navigation.string = t_id.getText();
+            nav.navigateTo(root, nav.UPDATE_COURSE);
+        }else
+            nav.error_message("ENTER THE ID FOR  THE COURSE !!");
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         view();
+    }
+    public void autoComplete(){
+        ArrayList<String> list = new ArrayList<>();
+        for (TeacherAssistant s : dm.getTeacherAssistant()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(s.getId());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getName());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getTeache());
+            list.add(stringBuilder.toString());
+        }
+        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,9)));
     }
 
     public void view() {
@@ -88,8 +98,7 @@ public class TeachingAssistant implements Initializable {
     public void back(ActionEvent actionEvent) {
     nav.navigateTo(root,nav.MAIN_FXML);
 }
-    public void viewUser(ActionEvent actionEvent) {
-    }
+
 
 
 
@@ -104,6 +113,5 @@ public class TeachingAssistant implements Initializable {
     public void searchTA(){}
 
 
-    public void search(ActionEvent actionEvent) {
-    }
+
 }

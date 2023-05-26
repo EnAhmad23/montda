@@ -298,7 +298,7 @@ public class DBModel {
     }
 
     public int delete_Course(String id) {
-        String sql = "DELETE FROM course WHERE id = ? ;";
+        String sql = "DELETE FROM course WHERE course_id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             return st.executeUpdate();

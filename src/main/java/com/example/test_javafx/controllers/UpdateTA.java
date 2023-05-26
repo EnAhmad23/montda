@@ -31,15 +31,15 @@ public class UpdateTA implements Initializable {
 
 
     public void nav_back(){
-        nav.navigateTo(root,nav.TEACHING_FXML);
+        nav.navigateTo(root,nav.USERS_FXML);
     }
     public void nav_update(){}
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText("Student ID");
+        id.setText(Navigation.string);
         id.setEditable(false);
-        teach.getItems().addAll(teaches);
+//        teach.getItems().addAll(teaches);
     }
 }

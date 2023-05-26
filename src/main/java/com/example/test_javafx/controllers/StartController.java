@@ -46,7 +46,7 @@ public class StartController implements Initializable {
 
     }
 //    private void handleButtonAction (ActionEvent event) throws Exception {
-//        Stage stage = null;
+//
 //        Parent root = null;
 //
 //        if(event.getSource()==nav_student){

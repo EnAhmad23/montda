@@ -70,7 +70,7 @@ public class UpdateStudent implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        id.setText(Navigation.id) ;
+        id.setText(Navigation.string) ;
         id.setEditable(false);
         gender.getItems().addAll(genders);
     }

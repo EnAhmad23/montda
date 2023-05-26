@@ -39,7 +39,7 @@ public class UpdateCourse implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        course_id.setText("course Page ID");
+        course_id.setText(Navigation.string);
         course_id.setEditable(false);
     }
 }

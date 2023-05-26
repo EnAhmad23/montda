@@ -36,12 +36,12 @@ public class Navigation {
     public final String UPDATE_COURSE = "views/UpdateCourse.fxml";
     public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
-    public final String UPDATE_TA= "views/UpdateTA.fxml";
+    public final String UPDATE_TA = "views/UpdateTA.fxml";
     public final String REPORT_ATTENDANCE = "views/ReportAttendance.fxml";
-    public final String REPORT_STUDENT= "views/ReportStudent.fxml";
+    public final String REPORT_STUDENT = "views/ReportStudent.fxml";
 
-    public static String id = "";
-DBModel dm = DBModel.getModel();
+    public static String string = "";
+    DBModel dm = DBModel.getModel();
 
 
     public void navigateTo(Parent rootPane, String path) {
@@ -60,7 +60,7 @@ DBModel dm = DBModel.getModel();
     }
 
 
-    public int del_message(String done , String error,String id){
+    public int del_message(String done, String error, String id) {
         Stage stage = new Stage();
         VBox root = new VBox();
         root.setSpacing(20);
@@ -86,8 +86,20 @@ DBModel dm = DBModel.getModel();
         return 0;
     }
 
-
-
+    public int error_message(String error) {
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label = new Label();
+        label.setTextFill(Color.color(1, 0, 0));
+        label.setText(error);
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
+        return 0;
+    }
 
 
     public String getCurrentPath() {
