@@ -112,7 +112,7 @@ public class Courses implements Initializable {
 
     public void updateCourse(ActionEvent actionEvent) {
 
-        if (!t_id.getText().isEmpty()) {
+        if (t_id.getText().length()==8) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root, nav.UPDATE_COURSE);
         }else

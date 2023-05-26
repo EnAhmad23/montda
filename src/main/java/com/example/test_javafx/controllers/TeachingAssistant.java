@@ -60,9 +60,9 @@ public class TeachingAssistant implements Initializable {
     }
 
     public void update_teaching_assist() {
-        if (!t_id.getText().isEmpty()) {
+        if (t_id.getText().length()==9) {
             Navigation.string = t_id.getText();
-            nav.navigateTo(root, nav.UPDATE_COURSE);
+            nav.navigateTo(root, nav.UPDATE_TA);
         }else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");
     }
