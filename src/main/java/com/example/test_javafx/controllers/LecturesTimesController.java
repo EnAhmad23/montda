@@ -41,8 +41,7 @@ public class LecturesTimesController implements Initializable {
     public TableColumn<LectureTime, String> course_id;
     @FXML
     public TableColumn<LectureTime, String> room;
-    @FXML
-    public TableColumn<LectureTime, String> time_slot;
+
     @FXML
     public TableColumn<LectureTime, String> title;
 
@@ -151,7 +150,6 @@ public class LecturesTimesController implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
         room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.searchLecture(t_id.getText()));
         table.setItems(lectures);
@@ -160,7 +158,6 @@ public class LecturesTimesController implements Initializable {
         id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
         room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-        time_slot.setCellValueFactory(new PropertyValueFactory<>("Time_slot"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.getLectures());
         table.setItems(lectures);
@@ -206,8 +203,6 @@ public class LecturesTimesController implements Initializable {
             stringBuilder.append(s.getLecture_id());
             stringBuilder.append(", ");
             stringBuilder.append(s.getRoom_number());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getTime_slot());
             stringBuilder.append(", ");
             stringBuilder.append(s.getTitle());
 //            stringBuilder.append(", ");

@@ -360,15 +360,15 @@ public class DBModel {
 
     }
 
-    public int addLecture(String id, String course_id, String l_time, String room, String title) throws SQLException {
-        String SQL = "INSERT INTO lecture(id,course_id,l_time,room,title) VALUES(?,?,?,?,?);";
+    public int addLecture(String id, String course_id, String room, String title) throws SQLException {
+        String SQL = "INSERT INTO lecture(id,course_id,room,title) VALUES(?,?,?,?);";
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
-            Timestamp ts = Timestamp.valueOf(l_time);
+
             pstmt.setString(1, id);
             pstmt.setString(2, course_id);
-            pstmt.setTimestamp(3, ts);
-            pstmt.setString(4, room);
-            pstmt.setString(5, title);
+            pstmt.setString(3, room);
+            pstmt.setString(4, title);
+
             System.out.println("1");
             return pstmt.executeUpdate();
             //return "";
@@ -433,7 +433,7 @@ public class DBModel {
             ArrayList<LectureTime> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             return ids;
         } catch (SQLException ex) {
 
@@ -644,8 +644,7 @@ public class DBModel {
                 }
                 time += "\n";
                 time += "From " + rs.getInt(5) + " : " + rs.getInt(6) + " To " + rs.getInt(7) + " : " + rs.getInt(8);
-                lects.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), time));
+                lects.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
             }
             return lects;
         } catch (SQLException ex) {
@@ -680,7 +679,7 @@ public class DBModel {
                 time += "\n";
                 time += "From " + rs.getInt(5) + " : " + rs.getInt(6) + " To " + rs.getInt(7) + " : " + rs.getInt(8);
                 lects.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), time));
+                        rs.getString(4)));
             }
             return lects;
         } catch (SQLException ex) {
@@ -733,7 +732,7 @@ public class DBModel {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Lecture.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                Lecture.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
             return Lecture;
         } catch (SQLException ex) {
