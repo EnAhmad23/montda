@@ -273,7 +273,7 @@ public class DBModel {
         }
     }
 
-    public int delete_lecture (String id) {
+    public int delete_lecture(String id) {
         String sql = "DELETE FROM lecture WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -392,20 +392,20 @@ public class DBModel {
         }
     }
 
-    public int addStudent(String id, String name, String gender, String major, String place,String phone_num) {
+    public int addStudent(String id, String name, String gender, String major, String place, String phone_num) {
         String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
         String SQL2 = "INSERT INTO phone_num (s_id,ph_num) VALUES(?,?)";
 //        ArrayList<student> arr;
-        try (PreparedStatement pstmt = con.prepareStatement(SQL);PreparedStatement pstmt2 = con.prepareStatement(SQL2)) {
+        try (PreparedStatement pstmt = con.prepareStatement(SQL); PreparedStatement pstmt2 = con.prepareStatement(SQL2)) {
             pstmt.setString(1, id);
             pstmt.setString(2, name);
             pstmt.setString(3, gender);
             pstmt.setString(4, major);
             pstmt.setString(5, place);
-            pstmt2.setString(1,id);
-            pstmt2.setString(2,phone_num);
+            pstmt2.setString(1, id);
+            pstmt2.setString(2, phone_num);
 
-            return pstmt.executeUpdate() +pstmt2.executeUpdate();
+            return pstmt.executeUpdate() + pstmt2.executeUpdate();
         } catch (SQLException e) {
             return 0;
 
@@ -461,18 +461,20 @@ public class DBModel {
 
 
     public boolean login(String id, String password) {
-        String sql = "select id from teacher_ass where password=crypt(?, password) and id =?;";
+        String sql = "select id from teacher_assistant where password=crypt(?, password) and id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, password);
             st.setString(2, id);
             ResultSet rs = st.executeQuery();
-            return (rs.next());
+            if (rs.next())
+                return rs.getString(1).equals(id);
+
         } catch (SQLException ex) {
 
             return false;
 
         }
-
+        return false;
     }
 
     public String getStdDept(String id) {
@@ -757,7 +759,7 @@ public class DBModel {
     }
 
 
-    public int UpdateStudent(String id, String name, String gender, String major, String place,String phone_num) {
+    public int UpdateStudent(String id, String name, String gender, String major, String place, String phone_num) {
         String SQL = "UPDATE students SET name = ?, gender = ?, place = ?, majer = ? WHERE id = ?";
         String SQL2 = "UPDATE phone_num SET ph_num = ? WHERE s_id = ?";
 //        ArrayList<student> arr;
@@ -769,7 +771,7 @@ public class DBModel {
             pstmt.setString(5, id);
             pstmt2.setString(1, phone_num);
             pstmt2.setString(2, id);
-            return pstmt.executeUpdate()+pstmt2.executeUpdate();
+            return pstmt.executeUpdate() + pstmt2.executeUpdate();
         } catch (SQLException e) {
             return 0;
         }
