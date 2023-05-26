@@ -179,13 +179,11 @@ public class Students implements Initializable {
         }
         TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,9)));
     }
-//
     public void searchStudent() {
-
-
+        if (t_id.getText().isEmpty()) {
+            view();
+        } else {
+            viewSearch();
+        }
     }
-
-
-
-
 }

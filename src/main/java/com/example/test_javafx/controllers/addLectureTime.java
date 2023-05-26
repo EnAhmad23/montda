@@ -53,7 +53,9 @@ public class addLectureTime {
             label.setText("Lecture did'nt add");
     }
 
+    public void addLectureTime(){}
+
     public void back_lecT() {
-        nav.navigateTo(root,nav.MAIN_FXML);
+        nav.navigateTo(root,nav.LECTURES_TIMES_FXML);
     }
 }

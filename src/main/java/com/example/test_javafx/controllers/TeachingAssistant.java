@@ -94,6 +94,14 @@ public class TeachingAssistant implements Initializable {
         table.setItems(ob);
     }
 
+    public void viewSearch(){
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        teache.setCellValueFactory(new PropertyValueFactory<>("teache"));
+        ObservableList<TeacherAssistant> ob = FXCollections.observableArrayList(dm.search_TA(id.getText()));
+        table.setItems(ob);
+    }
+
 
     public void back(ActionEvent actionEvent) {
     nav.navigateTo(root,nav.MAIN_FXML);
@@ -110,8 +118,11 @@ public class TeachingAssistant implements Initializable {
     }
     public void report_statement_page(){}
 
-    public void searchTA(){}
-
-
-
+    public void searchTA(){
+        if (t_id.getText().isEmpty()) {
+            view();
+        } else {
+            viewSearch();
+        }
+    }
 }

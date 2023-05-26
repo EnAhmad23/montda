@@ -1,4 +1,5 @@
 package com.example.test_javafx.controllers;
+import com.example.test_javafx.models.Student;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import com.example.test_javafx.Navigation;
@@ -14,8 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LecturesTimesController implements Initializable {
@@ -68,6 +71,10 @@ public class LecturesTimesController implements Initializable {
     public void back() {
         nav.navigateTo(root, nav.MAIN_FXML);
     }
+
+//    public void addLectureTime(){
+//
+//    }
 
     @FXML
     public void onIDEnter() {
@@ -189,6 +196,25 @@ public class LecturesTimesController implements Initializable {
     public void add_button(){
         nav.navigateTo(root,nav.ADD_LECTURES_FXML);
 
+    }
+    public void autoComplete(){
+        ArrayList<String> list = new ArrayList<>();
+        for (LectureTime s : db.getLectures()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(s.getLecture_id());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getLecture_id());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getRoom_number());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getTime_slot());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getTitle());
+//            stringBuilder.append(", ");
+//            stringBuilder.append(s.getPhone_num());
+//            list.add(stringBuilder.toString());
+        }
+        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,5)));
     }
 
     public void SelectYear(){}

@@ -13,7 +13,7 @@ public class TeacherAssistant  {
     String password;
 
 
-    public TeacherAssistant(String id, String name, String teache) {
+    public TeacherAssistant(String id, String name, String teach) {
         this.id = id;
         this.name = name;
         this.teache = teache;

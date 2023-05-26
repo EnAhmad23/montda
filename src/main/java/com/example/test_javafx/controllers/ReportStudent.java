@@ -29,9 +29,9 @@ public class ReportStudent implements Initializable {
     public TableColumn<ReportStudent, String> sti_id;
 
     @FXML
-    public TableColumn<ReportStudent, String> lect_id;
+    public TableColumn<ReportStudent, String> course_id;
     @FXML
-    public TableColumn<ReportStudent, String> lecture_name;
+    public TableColumn<ReportStudent, String> lec_id;
     @FXML
     public TableColumn<ReportStudent, String> attendancePear;
 

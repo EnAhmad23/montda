@@ -44,9 +44,9 @@
       <Separator layoutX="1.0" layoutY="242.0" prefHeight="18.0" prefWidth="818.0" />
       <TableView fx:id="table" layoutY="255.0" prefHeight="417.0" prefWidth="820.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="186.1999969482422" text="ID" />
-            <TableColumn fx:id="name" prefWidth="337.79998779296875" text="Name" />
-            <TableColumn fx:id="teache" prefWidth="295.5999755859375" text="Teache" />
+            <TableColumn fx:id="id" prefWidth="257.5" text="ID" />
+            <TableColumn fx:id="name" prefWidth="303.0" text="Name" />
+            <TableColumn fx:id="teache" prefWidth="260.0" text="Teach" />
          </columns>
       </TableView>
       <Button fx:id="id_close_user" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" text="←">

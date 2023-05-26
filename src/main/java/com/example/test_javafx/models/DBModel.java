@@ -34,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -461,18 +461,19 @@ public class DBModel {
 
 
     public boolean login(String id, String password) {
-        String sql = "select id from teacher_ass where password=crypt(?, password) and id =?;";
+        String sql = "select id from teacher_assistant where password=crypt(?, password) and id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, password);
             st.setString(2, id);
             ResultSet rs = st.executeQuery();
-            return (rs.next());
+            if (rs.next())
+                return rs.getString(1).equals(id);
+
         } catch (SQLException ex) {
-
             return false;
-
         }
 
+        return false;
     }
 
     public String getStdDept(String id) {
@@ -724,7 +725,7 @@ public class DBModel {
 
     }
 
-    public ArrayList<LectureTime> searchLecture(String id) {
+    public ArrayList<LectureTime> searchLecture(String id){
         String sql = "select * from lecture where id = ? ;";
         ArrayList<LectureTime> Lecture = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -740,21 +741,21 @@ public class DBModel {
         }
     }
 
-//    public ArrayList<TeacherAssistant> searchTA(String id) {
-//        String sql = "select * from teacher_assistant where id = ? ;";
-//        ArrayList<TeacherAssistant> TA = new ArrayList<>();
-//        try (PreparedStatement st = con.prepareStatement(sql)) {
-//            st.setString(1, id);
-//            ResultSet rs = st.executeQuery();
-//            while (rs.next()) {
-//                TA.add(new TeacherAssistant(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-//            }
-//            return TA;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//    }
+    public ArrayList<TeacherAssistant> search_TA(String id) {
+        String sql = "select * from teacher_assistant where id = ? ;";
+        ArrayList<TeacherAssistant> TA = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                TA.add(new TeacherAssistant(rs.getString(1), rs.getString(2), rs.getString(3)));
+            }
+            return TA;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
 
     public int UpdateStudent(String id, String name, String gender, String major, String place,String phone_num) {
