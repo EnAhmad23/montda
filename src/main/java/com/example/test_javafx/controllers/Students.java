@@ -1,6 +1,7 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
@@ -57,8 +59,10 @@ public class Students implements Initializable {
     public static String string = "";
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-
-
+ArrayList<Student>students=dm.getStd();
+//    ArrayList<Course> courses = dm.getCou();
+    private AutoCompletionBinding<Object> autoCompletionBinding;
+    ArrayList<String> list = new ArrayList<>();
 
     public void addStudent() {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
@@ -100,17 +104,29 @@ public class Students implements Initializable {
         Label label = new Label("STUDENT DELETED !");
         if (dm.delete_Student(t_id.getText()) != 0) {
             view();
+            del(t_id.getText());
+            if (autoCompletionBinding != null)
+                autoCompletionBinding.dispose();
             label.setTextFill(Color.color(0, 0, 0));
         } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("STUDENT DIDN'T DELETE !");
         }
+        t_id.clear();
         root.getChildren().add(label);
         stage.setScene(new Scene(root, 300, 100));
         stage.show();
 //
 //        stage.setScene(new Scene());
 
+    }
+    void del(String s) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId().equals(s)) {
+//                list.remove(i);
+                System.out.println(students.remove(i));
+            }
+        }
     }
 
     public void enterStudentID() {
@@ -166,8 +182,8 @@ public class Students implements Initializable {
     }
 
     public void autoComplete(){
-        ArrayList<String> list = new ArrayList<>();
-        for (Student s : dm.getStd()) {
+         list = new ArrayList<>();
+        for (Student s : students) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getId());
             stringBuilder.append(", ");
@@ -182,7 +198,13 @@ public class Students implements Initializable {
             stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
         }
-        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,9)));
+        if (autoCompletionBinding != null)
+            autoCompletionBinding.dispose();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0,9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
     }
     public void searchStudent() {
         if (t_id.getText().isEmpty()) {

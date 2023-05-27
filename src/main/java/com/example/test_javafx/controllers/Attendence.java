@@ -1,6 +1,7 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
@@ -24,4 +25,9 @@ public class Attendence {
     }
 
 
+    public void updateAttendence(ActionEvent actionEvent) {
+    }
+
+    public void delete(ActionEvent actionEvent) {
+    }
 }

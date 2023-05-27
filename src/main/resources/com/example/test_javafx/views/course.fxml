@@ -15,7 +15,7 @@
                 <Font name="Times New Roman" size="13.0" />
             </font>
         </Label>
-        <TableView fx:id="table" layoutY="218.0" prefHeight="417.0" prefWidth="820.0">
+        <TableView fx:id="table" layoutY="218.0" onKeyTyped="#autoComplete" prefHeight="417.0" prefWidth="820.0">
             <columns>
                 <TableColumn fx:id="course_id" prefWidth="165.0" text="Course ID" />
                 <TableColumn fx:id="book_name" prefWidth="165.0" text="Book Name" />

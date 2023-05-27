@@ -33,7 +33,7 @@ public class AddTeacherAssistant implements Initializable {
     @FXML
     private ComboBox teache;
     @FXML
-    private TextField password ;
+    private TextField password =TextFields.createClearablePasswordField() ;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
