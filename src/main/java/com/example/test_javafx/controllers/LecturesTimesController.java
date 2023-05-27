@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.TeacherAssistant;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import com.example.test_javafx.Navigation;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
@@ -61,6 +63,10 @@ public class LecturesTimesController implements Initializable {
     public Button view;
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
+    ArrayList<LectureTime>lectures=db.getLectures();
+    //    ArrayList<Course> courses = dm.getCou();
+    private AutoCompletionBinding<Object> autoCompletionBinding;
+    private ArrayList<String> list = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -176,6 +182,9 @@ public class LecturesTimesController implements Initializable {
         Label label =new Label("LECTURE DELETED !");
         if (db.delete_lecture(t_id.getText())!=0) {
             view();
+            del(t_id.getText());
+            if (autoCompletionBinding != null)
+                autoCompletionBinding.dispose();
             label.setTextFill(Color.color(0,0,0));
         }else {
             label.setTextFill(Color.color(1, 0, 0));
@@ -186,6 +195,14 @@ public class LecturesTimesController implements Initializable {
         stage.setScene(new Scene(root, 300, 100));
         stage.show();
 
+    }
+    void del(String s) {
+        for (int i = 0; i < lectures.size(); i++) {
+            if (lectures.get(i).getLecture_id().equals(s)) {
+//                list.remove(i);
+                System.out.println(lectures.remove(i));
+            }
+        }
     }
     public void update_button(){
         if (t_id.getText().length()==5) {
@@ -199,8 +216,8 @@ public class LecturesTimesController implements Initializable {
 
     }
     public void autoComplete(){
-        ArrayList<String> list = new ArrayList<>();
-        for (LectureTime s : db.getLectures()) {
+        list = new ArrayList<>();
+        for (LectureTime s : lectures) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getLecture_id());
             stringBuilder.append(", ");
@@ -209,11 +226,14 @@ public class LecturesTimesController implements Initializable {
             stringBuilder.append(s.getRoom_number());
             stringBuilder.append(", ");
             stringBuilder.append(s.getTitle());
-//            stringBuilder.append(", ");
-//            stringBuilder.append(s.getPhone_num());
-//            list.add(stringBuilder.toString());
+            list.add(stringBuilder.toString());
         }
-        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,5)));
+        if (autoCompletionBinding != null)
+            autoCompletionBinding.dispose();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0,5));
+        });
     }
 
     public void SelectYear(){}

@@ -1,4 +1,6 @@
 package com.example.test_javafx.controllers;
+import com.example.test_javafx.models.Student;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
@@ -45,6 +47,10 @@ public class TeachingAssistant implements Initializable {
     private Button reports_statements;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
+    ArrayList<TeacherAssistant>teachers=dm.getTeacherAssistant();
+    //    ArrayList<Course> courses = dm.getCou();
+    private AutoCompletionBinding<Object> autoCompletionBinding;
+   private ArrayList<String> list = new ArrayList<>();
 
     public void add_teaching_assist() {
         nav.navigateTo(root, nav.ADD_TEACHER_FXML);
@@ -54,11 +60,21 @@ public class TeachingAssistant implements Initializable {
 
       if (nav.del_message("TEACHING ASSIST DELETED !","TEACHING ASSIST DIDN'T DELETE !",t_id.getText())==1)
           view();
+        del(t_id.getText());
+        if (autoCompletionBinding != null)
+            autoCompletionBinding.dispose();
       t_id.clear();
 
 
     }
-
+    void del(String s) {
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId().equals(s)) {
+//                list.remove(i);
+                System.out.println(teachers.remove(i));
+            }
+        }
+    }
     public void update_teaching_assist() {
         if (t_id.getText().length()==9) {
             Navigation.string = t_id.getText();
@@ -73,8 +89,8 @@ public class TeachingAssistant implements Initializable {
         view();
     }
     public void autoComplete(){
-        ArrayList<String> list = new ArrayList<>();
-        for (TeacherAssistant s : dm.getTeacherAssistant()) {
+        list = new ArrayList<>();
+        for (TeacherAssistant s : teachers) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getId());
             stringBuilder.append(", ");
@@ -83,7 +99,13 @@ public class TeachingAssistant implements Initializable {
             stringBuilder.append(s.getTeache());
             list.add(stringBuilder.toString());
         }
-        TextFields.bindAutoCompletion(t_id, list.toArray()).setOnAutoCompleted(event ->t_id.setText(event.getCompletion().toString().substring(0,9)));
+        if (autoCompletionBinding != null)
+            autoCompletionBinding.dispose();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0,9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
     }
 
     public void view() {
