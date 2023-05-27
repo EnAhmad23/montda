@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="404.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateCourse">
    <children>
-      <Label fx:id="label" layoutX="33.0" layoutY="423.0" prefHeight="50.0" prefWidth="213.0" textFill="RED">
+      <Label fx:id="label" layoutX="5.0" layoutY="423.0" prefHeight="50.0" prefWidth="257.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
@@ -60,9 +60,9 @@
          </font>
       </Label>
       <TextField fx:id="course_id" layoutX="172.0" layoutY="118.0" prefHeight="42.0" prefWidth="170.0" />
-      <TextField fx:id="BookName" layoutX="169.0" layoutY="234.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter book name" />
+      <TextField fx:id="bookName" layoutX="169.0" layoutY="234.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter book name" />
       <TextField fx:id="teacherName" layoutX="170.0" layoutY="176.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the teacher name" />
-      <TextField fx:id="CourseSubject" layoutX="170.0" layoutY="350.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the subject" />
+      <TextField fx:id="courseSubject" layoutX="170.0" layoutY="350.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the subject" />
       <TextField fx:id="room" layoutX="169.0" layoutY="292.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter room number" />
    </children>
 </AnchorPane>

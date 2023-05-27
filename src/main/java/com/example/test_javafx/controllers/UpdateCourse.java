@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,13 +20,15 @@ public class UpdateCourse implements Initializable {
     @FXML
     public TextField course_id;
     @FXML
-    public TextField BookName;
+    public TextField bookName;
     @FXML
     public TextField room;
     @FXML
-    public TextField CourseSubject;
+    public TextField teacherName;
     @FXML
-    public Label notification;
+    public TextField courseSubject;
+    @FXML
+    public Label label;
     @FXML
     public Button back;
 
@@ -34,12 +37,21 @@ public class UpdateCourse implements Initializable {
     public void nav_back(){
         nav.navigateTo(root, nav.COURSES);
     }
-    public void nav_update(){}
+    public void nav_update() {
+        if (dm.updateCourse(course_id.getText(), teacherName.getText(), bookName.getText(), room.getText(), courseSubject.getText()) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("COURSE UPDATE SUCCESSFULLY");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("COURSE DIDN'T UPDATE");
+        }
+    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         course_id.setText(Navigation.string);
         course_id.setEditable(false);
+
     }
 }

@@ -442,6 +442,107 @@ public class DBModel {
         }
 
     }
+    public Double getNumAttendence(String id) {
+        String SQL = "select count(*) from attendence where lec_id = ?;";
+        double att = 0.0;
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)){
+            rs.next();
+            att = rs.getDouble(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return att;
+    }
+
+    public Double getAllStuCourse(String id) {
+        String SQL = "Select count (*) " +
+                "From takes  " +
+                "Where course_id in (" +
+                "Select course_id " +
+                "From lecture" +
+                "Where id =  ?);";
+        double StuCourse = 0.0;
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)){
+            rs.next();
+            StuCourse = rs.getDouble(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return StuCourse;
+    }
+
+
+    public Double getAbsent(String id) {
+        String SQL = "select count(*) from takes where id  not in " +
+                "(Select id " +
+                "From takes  " +
+                "Where course_id in (" +
+                "Select course_id " +
+                "From lecture" +
+                "Where id = ?));";
+        double absent = 0.0;
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)){
+            rs.next();
+            absent = rs.getDouble(1);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return absent;
+    }
+
+
+    public ArrayList<String> getLecIdsFromCou(String course_id) {
+        ArrayList<String> LecId = new ArrayList<>();
+        String sql = "select id from lecture where course_id = ?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, course_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                LecId.add(rs.getString(1));
+            }
+            return LecId;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public ArrayList<String> LecIds(String id, String course_id) {
+        ArrayList<String> Ids = new ArrayList<>();
+        String sql = "select lec_id from attendence join lecture on lec_id = lecture.id  where stu_id = ? and course_id = ?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            st.setString(2, course_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Ids.add(rs.getString(1));
+            }
+            return Ids;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+
+    public ArrayList<String> getLecIdsFromStuId(String stu_id) {
+        ArrayList<String> LecId = new ArrayList<>();
+        String sql = "select lec_id from attendence where stu_id = ?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, stu_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                LecId.add(rs.getString(1));
+            }
+            return LecId;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public ArrayList<TeacherAssistant> getTeacherAssistant() {
         String sql = "SELECT ID, name, teache FROM teacher_assistant ;";
@@ -777,7 +878,7 @@ public class DBModel {
     }
 
 
-    public int UpdateCourse(String id, String book_name, String teach_name, String room, String subject) {
+    public int updateCourse(String id, String book_name, String teach_name, String room, String subject) {
         String SQL = "UPDATE course SET book_name = ?, teacher_name = ?, room = ?, subject = ? WHERE course_id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -792,12 +893,11 @@ public class DBModel {
         }
     }
 
-    public int UpdateLecture(String id, String course_id, String l_time, String room, String title) {
+    public int UpdateLecture(String id, String course_id, String room, String title) {
         String SQL = "UPDATE lecture SET course_id = ?, l_time = ?, room = ?, title = ? WHERE id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, course_id);
-            pstmt.setString(2, l_time);
             pstmt.setString(3, room);
             pstmt.setString(4, title);
             pstmt.setString(5, id);
