@@ -54,6 +54,6 @@ public class UpdateTA implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setText(Navigation.string);
         id.setEditable(false);
-//        teach.getItems().addAll(teaches);
+        teach.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }
 }

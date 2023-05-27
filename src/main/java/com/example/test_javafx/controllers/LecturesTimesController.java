@@ -239,7 +239,7 @@ public class LecturesTimesController implements Initializable {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getLecture_id());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getLecture_id());
+            stringBuilder.append(s.getCourse_id());
             stringBuilder.append(", ");
             stringBuilder.append(s.getRoom_number());
             stringBuilder.append(", ");
