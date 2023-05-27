@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="467.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateTA">
    <children>
-      <Label fx:id="label" layoutX="20.0" layoutY="432.0" prefHeight="50.0" prefWidth="313.0" textFill="RED">
+      <Label fx:id="label" layoutX="4.0" layoutY="432.0" prefHeight="50.0" prefWidth="330.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>

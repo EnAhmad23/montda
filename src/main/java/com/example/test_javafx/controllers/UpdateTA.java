@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,15 +27,27 @@ public class UpdateTA implements Initializable {
     private TextField password;
     @FXML
     private Button back;
-    private String teaches[] = {"", ""};
+    @FXML
+    private Label label;
+
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
 
-    public void nav_back(){
-        nav.navigateTo(root,nav.USERS_FXML);
+    public void nav_back() {
+
+        nav.navigateTo(root, nav.USERS_FXML);
     }
-    public void nav_update(){}
+
+    public void nav_update() {
+        if (dm.UpdateTeacher_Assist(id.getText(), name.getText(), teach.getValue().toString(), password.getText()) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("Teacher UPDATE SUCCESSFULLY");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("Teacher DIDN'T UPDATE");
+        }
+    }
 
 
     @Override

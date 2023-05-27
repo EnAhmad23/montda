@@ -908,7 +908,7 @@ public class DBModel {
     }
 
     public int UpdateTeacher_Assist(String id, String name, String teach, String password) {
-        String SQL = "UPDATE teacher_assist SET name = ?, teache = ?, `password` = ? WHERE id = ?";
+        String SQL = "UPDATE teacher_assist SET name = ?, teache = ?, password = crypt(?, gen_salt('bf')) WHERE id = ?";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
