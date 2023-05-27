@@ -1,11 +1,9 @@
 package com.example.test_javafx.controllers;
-import com.example.test_javafx.models.Student;
-import com.example.test_javafx.models.TeacherAssistant;
+
+import com.example.test_javafx.models.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,14 +61,20 @@ public class LecturesTimesController implements Initializable {
     public Button view;
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
-    ArrayList<LectureTime>lectures=db.getLectures();
+    ArrayList<LectureTime> lectures ;
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     private ArrayList<String> list = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lectures=db.getLectures();
         view();
+        autoValues();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0, 5));
+        });
     }
 
     public void back() {
@@ -130,9 +134,9 @@ public class LecturesTimesController implements Initializable {
 
 
     public void viewTimes() {
-        if(t_id.getText().isEmpty()){
+        if (t_id.getText().isEmpty()) {
             view();
-        }else
+        } else
             viewSearch();
 
 //        if (id.getText() != null && sem.getValue() != (null)
@@ -152,7 +156,7 @@ public class LecturesTimesController implements Initializable {
 
     }
 
-    public void viewSearch(){
+    public void viewSearch() {
         id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
         room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
@@ -160,7 +164,8 @@ public class LecturesTimesController implements Initializable {
         ObservableList<LectureTime> lectures = FXCollections.observableArrayList(db.searchLecture(t_id.getText()));
         table.setItems(lectures);
     }
-    public void view(){
+
+    public void view() {
         id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
         room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
@@ -169,33 +174,39 @@ public class LecturesTimesController implements Initializable {
         table.setItems(lectures);
     }
 
-    public void studentId_lecture(){}
-    public void studentName_lecture(){}
-    public void studentDepartment_lecture(){}
+    public void studentId_lecture() {
+    }
 
-    public void delete_button(){
+    public void studentName_lecture() {
+    }
+
+    public void studentDepartment_lecture() {
+    }
+
+    public void delete_button() {
         Stage stage = new Stage();
-        VBox root = new VBox();
-        root.setSpacing(20);
-        root.setAlignment(Pos.BASELINE_CENTER);
-        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
-        Label label =new Label("LECTURE DELETED !");
-        if (db.delete_lecture(t_id.getText())!=0) {
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.BASELINE_CENTER);
+        vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label = new Label("LECTURE DELETED !");
+        if (db.delete_lecture(t_id.getText()) != 0) {
             view();
             del(t_id.getText());
-            if (autoCompletionBinding != null)
-                autoCompletionBinding.dispose();
-            label.setTextFill(Color.color(0,0,0));
-        }else {
+           nav.navigateTo(root,nav.LECTURES_TIMES_FXML);
+            label.setTextFill(Color.color(0, 0, 0));
+        } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("LECTURE DIDN'T DELETE !");
         }
+        lectures=db.getLectures();
         t_id.clear();
-        root.getChildren().add(label);
-        stage.setScene(new Scene(root, 300, 100));
+        vBox.getChildren().add(label);
+        stage.setScene(new Scene(vBox, 300, 100));
         stage.show();
 
     }
+
     void del(String s) {
         for (int i = 0; i < lectures.size(); i++) {
             if (lectures.get(i).getLecture_id().equals(s)) {
@@ -204,18 +215,25 @@ public class LecturesTimesController implements Initializable {
             }
         }
     }
-    public void update_button(){
-        if (t_id.getText().length()==5) {
+
+    public void update_button() {
+        if (t_id.getText().length() == 5) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root, nav.UPDATE_LECTURE);
-        }else
+        } else
             nav.error_message("ENTER THE ID FOR  THE LECTURE !!");
     }
-    public void add_button(){
-        nav.navigateTo(root,nav.ADD_LECTURES_FXML);
+
+    public void add_button() {
+        nav.navigateTo(root, nav.ADD_LECTURES_FXML);
 
     }
-    public void autoComplete(){
+
+    public void autoComplete() {
+
+
+    }
+    void autoValues(){
         list = new ArrayList<>();
         for (LectureTime s : lectures) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -228,13 +246,7 @@ public class LecturesTimesController implements Initializable {
             stringBuilder.append(s.getTitle());
             list.add(stringBuilder.toString());
         }
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
-        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0,5));
-        });
     }
-
-    public void SelectYear(){}
+    public void SelectYear() {
+    }
 }

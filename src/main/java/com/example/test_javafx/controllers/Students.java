@@ -59,7 +59,7 @@ public class Students implements Initializable {
     public static String string = "";
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-ArrayList<Student>students=dm.getStd();
+    ArrayList<Student>students;
 //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
@@ -178,11 +178,24 @@ ArrayList<Student>students=dm.getStd();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        students=dm.getStd();
         view();
+        autoValues();
+        if (autoCompletionBinding != null)
+            autoCompletionBinding.dispose();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0,9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
     }
 
     public void autoComplete(){
-         list = new ArrayList<>();
+         autoValues();
+
+    }
+    void autoValues(){
+        list = new ArrayList<>();
         for (Student s : students) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getId());
@@ -198,13 +211,6 @@ ArrayList<Student>students=dm.getStd();
             stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
         }
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
-        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0,9));
-//            TextFields.bindAutoCompletion(t_id, list.toArray());
-        });
     }
     public void searchStudent() {
         if (t_id.getText().isEmpty()) {

@@ -56,7 +56,7 @@ public class Courses implements Initializable {
     private TextField field_to_department;
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-    ArrayList<Course> courses = dm.getCou();
+    ArrayList<Course> courses ;
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
 
@@ -67,28 +67,27 @@ public class Courses implements Initializable {
 
     public void deleteCourse() {
         Stage stage = new Stage();
-        VBox root = new VBox();
-        root.setSpacing(20);
-        root.setAlignment(Pos.BASELINE_CENTER);
-        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.BASELINE_CENTER);
+        vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
         Label label = new Label("COURSES DELETED !");
         if (dm.delete_Course(t_id.getText()) != 0) {
-
             view();
             del(t_id.getText());
-            if (autoCompletionBinding != null)
-                autoCompletionBinding.dispose();
+//            if (autoCompletionBinding != null)
+//                autoCompletionBinding.dispose();
+            nav.navigateTo(root,nav.COURSES);
             label.setTextFill(Color.color(0, 0, 0));
-//            courses = dm.getCou();
 
         } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("COURSES DIDN'T DELETE !");
         }
-        courses = dm.getCou();
+//        courses = dm.getCou();
         t_id.clear();
-        root.getChildren().add(label);
-        stage.setScene(new Scene(root, 300, 100));
+        vBox.getChildren().add(label);
+        stage.setScene(new Scene(vBox, 300, 100));
         stage.show();
 
     }
@@ -111,7 +110,14 @@ public class Courses implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        courses= dm.getCou();
         view();
+        autoValues();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0, 8));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
 
     }
 
@@ -125,6 +131,18 @@ public class Courses implements Initializable {
     }
 
     public void autoComplete() {
+        autoValues();
+//        if (autoCompletionBinding != null)
+//            autoCompletionBinding.dispose();
+//        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+//        autoCompletionBinding.setOnAutoCompleted(event -> {
+//            t_id.setText(event.getCompletion().toString().substring(0, 8));
+////            TextFields.bindAutoCompletion(t_id, list.toArray());
+//        });
+
+
+    }
+    void autoValues(){
         list = new ArrayList<>();
         for (Course s : courses) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -139,15 +157,6 @@ public class Courses implements Initializable {
             stringBuilder.append(s.getSubject());
             list.add(stringBuilder.toString());
         }
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
-        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0, 8));
-//            TextFields.bindAutoCompletion(t_id, list.toArray());
-        });
-
-
     }
 
     void del(String s) {

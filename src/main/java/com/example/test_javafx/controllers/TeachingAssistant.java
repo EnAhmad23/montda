@@ -1,4 +1,5 @@
 package com.example.test_javafx.controllers;
+import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.Student;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -47,7 +48,7 @@ public class TeachingAssistant implements Initializable {
     private Button reports_statements;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-    ArrayList<TeacherAssistant>teachers=dm.getTeacherAssistant();
+    ArrayList<TeacherAssistant>teachers;
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
    private ArrayList<String> list = new ArrayList<>();
@@ -58,11 +59,11 @@ public class TeachingAssistant implements Initializable {
 
     public void delete_teaching_assist() {
 
-      if (nav.del_message("TEACHING ASSIST DELETED !","TEACHING ASSIST DIDN'T DELETE !",t_id.getText())==1)
+      if (nav.del_message("TEACHING ASSIST DELETED !","TEACHING ASSIST DIDN'T DELETE !",t_id.getText())==1) {
           view();
-        del(t_id.getText());
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
+          del(t_id.getText());
+         nav.navigateTo(root,nav.USERS_FXML);
+      }
       t_id.clear();
 
 
@@ -86,9 +87,20 @@ public class TeachingAssistant implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+       teachers =dm.getTeacherAssistant();
         view();
+        autoValues();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0,9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
     }
     public void autoComplete(){
+        autoValues();
+
+    }
+    void autoValues(){
         list = new ArrayList<>();
         for (TeacherAssistant s : teachers) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -99,13 +111,6 @@ public class TeachingAssistant implements Initializable {
             stringBuilder.append(s.getTeache());
             list.add(stringBuilder.toString());
         }
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
-        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0,9));
-//            TextFields.bindAutoCompletion(t_id, list.toArray());
-        });
     }
 
     public void view() {
