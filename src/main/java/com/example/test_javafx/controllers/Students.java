@@ -97,24 +97,23 @@ public class Students implements Initializable {
 
     public void deleteStudent() {
         Stage stage = new Stage();
-        VBox root = new VBox();
-        root.setSpacing(20);
-        root.setAlignment(Pos.BASELINE_CENTER);
-        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        VBox vBox = new VBox();
+        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.BASELINE_CENTER);
+        vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
         Label label = new Label("STUDENT DELETED !");
         if (dm.delete_Student(t_id.getText()) != 0) {
             view();
             del(t_id.getText());
-            if (autoCompletionBinding != null)
-                autoCompletionBinding.dispose();
+            nav.navigateTo(root,nav.STUDENTS_FXML);
             label.setTextFill(Color.color(0, 0, 0));
         } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("STUDENT DIDN'T DELETE !");
         }
         t_id.clear();
-        root.getChildren().add(label);
-        stage.setScene(new Scene(root, 300, 100));
+        vBox.getChildren().add(label);
+        stage.setScene(new Scene(vBox, 300, 100));
         stage.show();
 //
 //        stage.setScene(new Scene());
@@ -181,8 +180,6 @@ public class Students implements Initializable {
         students=dm.getStd();
         view();
         autoValues();
-        if (autoCompletionBinding != null)
-            autoCompletionBinding.dispose();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0,9));
