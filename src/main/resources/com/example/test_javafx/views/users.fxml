@@ -46,7 +46,7 @@
          <columns>
             <TableColumn fx:id="id" prefWidth="257.5" text="ID" />
             <TableColumn fx:id="name" prefWidth="303.0" text="Name" />
-            <TableColumn fx:id="teache" prefWidth="260.0" text="Teach" />
+            <TableColumn fx:id="teache" prefWidth="260.0" text="Teache" />
          </columns>
       </TableView>
       <Button fx:id="id_close_user" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" text="←">

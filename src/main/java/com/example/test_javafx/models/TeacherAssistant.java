@@ -10,10 +10,10 @@ public class TeacherAssistant  {
     String id;
     String name;
     String teache;
-    String password;
+   private String password;
 
 
-    public TeacherAssistant(String id, String name, String teach) {
+    public TeacherAssistant(String id, String name, String teache) {
         this.id = id;
         this.name = name;
         this.teache = teache;
