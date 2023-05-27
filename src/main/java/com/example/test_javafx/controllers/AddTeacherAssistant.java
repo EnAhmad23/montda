@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.control.skin.TextInputControlSkin;
@@ -33,7 +34,7 @@ public class AddTeacherAssistant implements Initializable {
     @FXML
     private ComboBox teache;
     @FXML
-    private TextField password =TextFields.createClearablePasswordField() ;
+    private PasswordField password ;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
@@ -82,6 +83,7 @@ public class AddTeacherAssistant implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        if (!dm.availableCourse().is)
+        password =TextFields.createClearablePasswordField();
 
         teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }
