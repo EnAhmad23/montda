@@ -4,13 +4,17 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class absent {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class absent implements Initializable {
 
     @FXML
     private AnchorPane root;
@@ -42,6 +46,10 @@ public class absent {
     @FXML
     private TableColumn<absent, String> attPercentage;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
     Navigation nav = new Navigation();
 
     public void exportStudent() {
@@ -60,6 +68,8 @@ public class absent {
     }
 
     public void back() {
-        nav.navigateTo(root, nav.TEACHING_FXML);
+        nav.navigateTo(root, nav.REPORT_PAGE);
     }
+
+
 }

@@ -138,7 +138,6 @@ public class LecturesTimesController implements Initializable {
         if (t_id.getText().isEmpty() && courses.getValue() != null) {
             view(db.getLecFromCou(courses.getValue()));
             courses.setValue(null);
-
         } else if (!t_id.getText().isEmpty())
             view(db.searchLecture(t_id.getText()));
         else

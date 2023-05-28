@@ -474,12 +474,7 @@ public class DBModel {
     }
 
     public Double getAllStuCourse(String id) {
-        String SQL = "Select count (*) " +
-                "From takes  " +
-                "Where course_id in (" +
-                "Select course_id " +
-                "From lecture" +
-                "Where id =  ?);";
+        String SQL = "Select count (*)  From takes   Where course_id in ( Select course_id  From lecture Where id =  ?);";
         double StuCourse = 0.0;
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(SQL)){
