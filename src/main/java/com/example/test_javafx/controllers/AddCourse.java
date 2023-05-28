@@ -22,23 +22,31 @@ public class AddCourse implements Initializable {
     @FXML
     public AnchorPane rootPane;
     @FXML
+    private Label label;
+    @FXML
     public TextField course_id;
+
     @FXML
-    public TextField building;
+    private TextField CourseSubject;
     @FXML
+    private TextField bookName;
+    @FXML
+    private TextField teacherName;
+    @FXML
+
     public TextField room;
-    @FXML
-    public TextField year;
-    @FXML
-    public TextField semester;
-    @FXML
-    public TextField time_slot;
-    @FXML
-    public Label course_name;
-    @FXML
-    public Label conflict_in_room;
-    @FXML
-    public Label notification;
+//    @FXML
+//    public TextField year;
+//    @FXML
+//    public TextField semester;
+//    @FXML
+//    public TextField time_slot;
+//    @FXML
+//    public Label course_name;
+//    @FXML
+//    public Label conflict_in_room;
+//    @FXML
+//    public Label notification;
     @FXML
     public Button button_to_back;
     @FXML
@@ -49,12 +57,28 @@ public class AddCourse implements Initializable {
     public Button nav_back;
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
-    private Label label;
-    private TextField courseSubject;
-    private TextField bookName;
-    private TextField teacherName;
+
     DBModel dm = DBModel.getModel();
 
+
+
+    public void back() {
+        nav.navigateTo(rootPane, nav.COURSES);
+    }
+    public void addCourses() {
+        String courseId = course_id.getText();
+        String Teacher_name = teacherName.getText();
+        String book = bookName.getText();
+        String Room = room.getText();
+        String Subject = CourseSubject.getText();
+        if (dm.addCourse(courseId, Teacher_name, book, Room, Subject) != 0) {
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("COURSE ADDED SUCCESSFULLY");//successfully
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("COURSE DIDN'T ADD");
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //        notification.setVisible(false);
@@ -158,22 +182,6 @@ public class AddCourse implements Initializable {
 //    }
 
 
-    public void back() {
-        nav.navigateTo(rootPane, nav.COURSES);
-    }
-    public void addCourses() {
-        String courseId = course_id.getText();
-        String Teacher_name = teacherName.getText();
-        String book = bookName.getText();
-        String Room = room.getText();
-        String Subject = courseSubject.getText();
-        if (dm.addCourse(courseId, Teacher_name, book, Room, Subject) != 0) {
-            label.setTextFill(Color.color(0, 1, 0));
-            label.setText("COURSE ADDED SUCCESSFULLY");//successfully
-        } else {
-            label.setTextFill(Color.color(1, 0, 0));
-            label.setText("COURSE DIDN'T ADD");
-        }
-    }
+
 
 }

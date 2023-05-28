@@ -20,7 +20,7 @@ public class Main extends Application {
 //        DBModel db = new DBModel();
 //        db.readEXL("/Users/yaseenhasan/Documents/Data_Project_main/Book1.xlsx");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/start.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/teachingAssistant.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("University");
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));

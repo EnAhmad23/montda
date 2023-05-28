@@ -34,7 +34,7 @@ public class AddTeacherAssistant implements Initializable {
     @FXML
     private ComboBox teache;
     @FXML
-    private PasswordField password ;
+    private PasswordField password =TextFields.createClearablePasswordField() ;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
@@ -83,7 +83,6 @@ public class AddTeacherAssistant implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        if (!dm.availableCourse().is)
-        password =TextFields.createClearablePasswordField();
 
         teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }

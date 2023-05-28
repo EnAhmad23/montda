@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.LectureTime;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,18 +32,20 @@ public class ReportAttendance implements Initializable {
     @FXML
     public TableColumn<ReportStudent, String> lect_id;
     @FXML
-    public TableColumn<ReportStudent, String> lecture_name;
+    public TableColumn<ReportStudent, String> student_name;
     @FXML
     public TableColumn<ReportStudent, String> attendancePear;
 
-
+    Navigation nav = new Navigation();
 
 
     public void SearchReportAttendance(){
 
 
     }
-    public void back(){}
+    public void back(){
+        nav.navigateTo(root,nav.REPORT_PAGE);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.LectureTime;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,11 +36,13 @@ public class ReportStudent implements Initializable {
     @FXML
     public TableColumn<ReportStudent, String> attendancePear;
 
-
+    Navigation nav = new Navigation();
 
     public void SearchReport(){}
 
-    public void back(){}
+    public void back(){
+        nav.navigateTo(root,nav.REPORT_PAGE);
+    }
 
 
     @Override
