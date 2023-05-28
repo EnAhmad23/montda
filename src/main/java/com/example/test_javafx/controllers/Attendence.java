@@ -23,7 +23,7 @@ public class Attendence implements Initializable {
     @FXML
     private TextField t_id;
     @FXML
-    private ComboBox lec_id_comboBox;
+    private ComboBox <String>courses;
 
     public TableView<Student> table;
     @FXML  public TableColumn<LectureTime, String> stu_id;
@@ -86,5 +86,8 @@ public class Attendence implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void add() {
     }
 }

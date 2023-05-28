@@ -570,6 +570,7 @@ public class DBModel {
     public ArrayList<String> getLecIdsFromStuId(String stu_id) {
         ArrayList<String> LecId = new ArrayList<>();
         String sql = "select lec_id from attendence where stu_id = ?;";
+        String sql2 = "select lec_id from attendence where stu_id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
             ResultSet rs = st.executeQuery();

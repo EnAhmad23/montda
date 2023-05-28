@@ -16,7 +16,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="nav_add" layoutX="541.0" layoutY="103.0" mnemonicParsing="false" onAction="#addUser" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="nav_add" layoutX="541.0" layoutY="103.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -30,12 +30,12 @@
             <columns>
                 <TableColumn fx:id="stu_id" prefWidth="172.0" text="Student ID" />
             <TableColumn fx:id="lec_id" prefWidth="190.0" text="Lecture Id" />
-            <TableColumn fx:id="title" prefWidth="206.0" text="Title" />
-                <TableColumn fx:id="room" minWidth="0.0" prefWidth="108.0" text="Room" />
+            <TableColumn fx:id="title" prefWidth="168.79998779296875" text="Title" />
+                <TableColumn fx:id="room" minWidth="0.0" prefWidth="148.0" text="Room" />
                 <TableColumn fx:id="attendance_percentage" prefWidth="147.0" text="Attendance percentage" />
             </columns>
         </TableView>
-        <ComboBox fx:id="lec_id_comboBox" layoutX="350.0" layoutY="196.0" prefHeight="36.0" prefWidth="179.0" promptText="lecture_id" />
+        <ComboBox fx:id="courses" layoutX="350.0" layoutY="196.0" prefHeight="36.0" prefWidth="179.0" promptText="Course_id" />
       <Button fx:id="id_back_addus" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
