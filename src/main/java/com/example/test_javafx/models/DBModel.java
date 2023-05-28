@@ -117,6 +117,23 @@ public class DBModel {
             return 0;
         }
     }
+    public int updateAttendence(String stu_id,String name,String lec_id,String cou_id,String title)  {
+        String sql = "UPDATE students, lecture\n" +
+                "SET  students.name = ?, lecture.course_id = ?, lecture.title = ?\n" +
+                "WHERE students.id = (SELECT stu_id FROM attendence WHERE stu_id = ? AND lec_id = ?)\n" +
+                "    AND lecture.id = ?;\n ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, name);
+            st.setString(2, cou_id);
+            st.setString(3, title);
+            st.setString(4, stu_id);
+            st.setString(5, lec_id);
+            st.setString(6, lec_id);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            return 0;
+        }
+    }
     public  ArrayList<Attendences> searchAttendence(String stu_id,String lec_id)  {
         String sql = "SELECT s.id, s.name, l.id, l.course_id, l.title \n" +
                 "FROM students s \n" +
