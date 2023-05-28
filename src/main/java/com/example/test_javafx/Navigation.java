@@ -103,6 +103,20 @@ public class Navigation {
         stage.show();
         return 0;
     }
+    public int message(String string) {
+        Stage stage = new Stage();
+        VBox root = new VBox();
+        root.setSpacing(20);
+        root.setAlignment(Pos.BASELINE_CENTER);
+        root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
+        Label label = new Label();
+        label.setTextFill(Color.color(0, 0, 0));
+        label.setText(string);
+        root.getChildren().add(label);
+        stage.setScene(new Scene(root, 300, 100));
+        stage.show();
+        return 0;
+    }
 
 
     public String getCurrentPath() {

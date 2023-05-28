@@ -42,7 +42,7 @@ public class Attendence implements Initializable {
     public TableColumn<LectureTime, String> course;
     @FXML
     public TableColumn<LectureTime, String> name;
-    ArrayList<Attendences>attendences = new ArrayList<>();
+    ArrayList<Student> students;
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
@@ -58,19 +58,31 @@ public class Attendence implements Initializable {
     }
 
     public void updateAttendance() {
-        nav.navigateTo(root, nav.UPDATE_ATTENDENCE);
+        if (t_id.getText().length()==9&&!t_id.getText().equals("         ")&&lecture_ids.getValue()!=null) {
+            Navigation.string = t_id.getText();
+            nav.navigateTo(root, nav.UPDATE_ATTENDENCE);
+        }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 
     public void delete(ActionEvent actionEvent) {
+        if (dm.deleteAttendence(t_id.getText())!=0) {
+            nav.message("STUDENT DELETED");
+            view(dm.getAttendence(lecture_ids.getValue()));
+            t_id.clear();
+        }else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {
+        if(t_id.getText().length()==9&&!t_id.getText().equals("         ")&&lecture_ids.getValue()!=null) {
+             view(dm.searchAttendence(t_id.getText(),lecture_ids.getValue()));
+        }
 //        if (t_id.getText().isEmpty()) {
 //            view();
 //        } else {
 //            viewSearch();
 //        }
     }
+
     public void view(ArrayList<Attendences> lectureTimes) {
         stu_id.setCellValueFactory(new PropertyValueFactory<>("student_id"));
         lec_id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
@@ -97,46 +109,68 @@ public class Attendence implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lecture_ids.getItems().addAll(dm.getLecIds().toArray(new String[dm.getLecIds().size()]));
-        lecture_ids.setOnAction(e->{
-            if (lecture_ids.getValue()!=null) {
-                attendences = dm.getAttendence(lecture_ids.getValue());
-                autoValues();
+        students = dm.getStd();
+        lecture_ids.setOnAction(e -> {
+            if (lecture_ids.getValue() != null) {
+//                attendences = dm.getAttendence(lecture_ids.getValue());
+
                 view(dm.getAttendence(lecture_ids.getValue()));
-                autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-                autoCompletionBinding.setOnAutoCompleted(event -> {
-                    t_id.setText(event.getCompletion().toString().substring(0,9));
-//            TextFields.bindAutoCompletion(t_id, list.toArray());
-                });
-            }else {
+
+            } else {
                 nav.error_message("SELECT LECTURE ID");
             }
         });
+        autoValues();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0, 9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
 
     }
-    public void autoComplete(){
+
+    public void autoComplete() {
 
 
         autoValues();
 
 
     }
-    void autoValues(){
+
+    void autoValues() {
         list = new ArrayList<>();
-        for (Attendences s : attendences) {
+        for (Student s : students) {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(s.getStudent_id());
+            stringBuilder.append(s.getId());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getStudent_name());
+            stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getLecture_id());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getCourse_id());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getTitle());
+            stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
         }
     }
+//    void autoValues(){
+//        list = new ArrayList<>();
+//        for (Attendences s : attendences) {
+//            StringBuilder stringBuilder = new StringBuilder();
+//            stringBuilder.append(s.getStudent_id());
+//            stringBuilder.append(", ");
+//            stringBuilder.append(s.getStudent_name());
+//            stringBuilder.append(", ");
+//            stringBuilder.append(s.getLecture_id());
+//            stringBuilder.append(", ");
+//            stringBuilder.append(s.getCourse_id());
+//            stringBuilder.append(", ");
+//            stringBuilder.append(s.getTitle());
+//            list.add(stringBuilder.toString());
+//        }
+//    }
 
     public void add() {
+        if (t_id.getText() != null && lecture_ids.getValue() != null && t_id.getText().length() == 9) {
+            if (dm.addAttendence(t_id.getText(), lecture_ids.getValue()) != 0)
+                view(dm.getAttendence(lecture_ids.getValue()));
+            t_id.clear();
+        } else nav.error_message("STUDENT DIDN'T ADD");
     }
 }
