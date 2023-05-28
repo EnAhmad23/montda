@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
 public class absent {
 
@@ -49,6 +48,9 @@ public class absent {
 
     public void searchStudent(){}
 
-    public void autoComplete(KeyEvent keyEvent) {
+    public void autoComplete() {
+    }
+
+    public void updateStudent() {
     }
 }
