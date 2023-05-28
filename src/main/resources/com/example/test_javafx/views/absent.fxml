@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="718.0" prefWidth="923.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.absent">
+<AnchorPane fx:id="root" prefHeight="718.0" prefWidth="927.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.absent">
     <children>
         <TextField fx:id="t_id" layoutX="132.0" layoutY="183.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="249.0" promptText="Enter Student ID" />
-        <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="943.0" />
+        <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="926.0" />
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="183.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
             <font>
                 <Font name="Times New Roman" size="13.0" />
@@ -31,7 +31,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="update" layoutX="810.0" layoutY="183.0" mnemonicParsing="false" onAction="#UpdateStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+        <Button fx:id="update" layoutX="810.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -39,16 +39,14 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <TableView fx:id="table" editable="true" layoutX="-28.0" layoutY="256.0" prefHeight="462.0" prefWidth="971.0">
+        <TableView fx:id="table" editable="true" layoutX="-1.0" layoutY="255.0" prefHeight="463.0" prefWidth="926.0">
             <columns>
                 <TableColumn fx:id="id" prefWidth="120.19997864961624" text="Student ID" />
-                <TableColumn fx:id="name" prefWidth="140.99996948242188" text="Name" />
-                <TableColumn fx:id="gender" prefWidth="100.4000244140625" text="Gender" />
-                <TableColumn fx:id="major" prefWidth="115.5999755859375" text="Major" />
-                <TableColumn fx:id="place" prefWidth="115.20001220703125" text="Place" />
-                <TableColumn fx:id="phone_num" prefWidth="140.4000244140625" text="Phone No." />
-                <TableColumn fx:id="course_id" prefWidth="130.4000244140625" text="Course_id" />
-                <TableColumn fx:id="attPercentage" prefWidth="100.4000244140625" text="AttPercentage" />
+                <TableColumn fx:id="name" prefWidth="173.60001373291016" text="Name" />
+                <TableColumn fx:id="gender" prefWidth="109.80001831054688" text="Gender" />
+                <TableColumn fx:id="phone_num" prefWidth="173.0" text="Phone No." />
+                <TableColumn fx:id="course_id" prefWidth="154.60003662109375" text="Course_id" />
+                <TableColumn fx:id="attPercentage" prefWidth="193.39996337890625" text="AttPercentage" />
             </columns>
         </TableView>
         <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Back" prefHeight="24.0" prefWidth="33.0" text="←">
