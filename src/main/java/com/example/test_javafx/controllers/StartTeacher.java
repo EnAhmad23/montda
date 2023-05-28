@@ -32,7 +32,7 @@ public class StartTeacher implements Initializable {
     }
 
     public void report_statement_page(ActionEvent actionEvent) {
-        nav.navigateTo(root,nav.REPORT_STUDENT);
+        nav.navigateTo(root,nav.REPORT_PAGE);
     }
 
     @Override

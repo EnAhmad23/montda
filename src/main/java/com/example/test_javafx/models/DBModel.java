@@ -34,7 +34,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -433,7 +433,7 @@ public class DBModel {
             ArrayList<LectureTime> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(5)));
             return ids;
         } catch (SQLException ex) {
 

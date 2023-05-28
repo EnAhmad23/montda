@@ -28,20 +28,20 @@
         <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
         <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
             <columns>
-                <TableColumn fx:id="Table_UserID" prefWidth="178.0" text="Student ID" />
-                <TableColumn fx:id="Table_Name" prefWidth="173.0" text="Teacher Name" />
-            <TableColumn fx:id="Table_LecId" prefWidth="179.0" text="Lecture Id" />
-                <TableColumn fx:id="Table_Department" minWidth="0.0" prefWidth="134.0" text="Room" />
-            <TableColumn fx:id="Table_UserID21" prefWidth="159.0" text="Time" />
+                <TableColumn fx:id="stu_id" prefWidth="172.0" text="Student ID" />
+            <TableColumn fx:id="lec_id" prefWidth="190.0" text="Lecture Id" />
+            <TableColumn fx:id="title" prefWidth="206.0" text="Title" />
+                <TableColumn fx:id="room" minWidth="0.0" prefWidth="108.0" text="Room" />
+                <TableColumn fx:id="attendance_percentage" prefWidth="147.0" text="Attendance percentage" />
             </columns>
         </TableView>
-        <ComboBox fx:id="id_att_course" layoutX="350.0" layoutY="196.0" onAction="#att_course" prefHeight="36.0" prefWidth="179.0" promptText="lecture_id" />
+        <ComboBox fx:id="lec_id_comboBox" layoutX="350.0" layoutY="196.0" prefHeight="36.0" prefWidth="179.0" promptText="lecture_id" />
       <Button fx:id="id_back_addus" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="update" layoutX="676.0" layoutY="103.0" mnemonicParsing="false" onAction="#updateAttendence" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+      <Button fx:id="update" layoutX="676.0" layoutY="103.0" mnemonicParsing="false" onAction="#updateAttendance" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="search" layoutX="541.0" layoutY="172.0" mnemonicParsing="false" onAction="#searchAttendence" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+      <Button fx:id="search" layoutX="541.0" layoutY="172.0" mnemonicParsing="false" onAction="#searchAttendance" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

@@ -9,38 +9,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.ReportAttendance">
+<AnchorPane fx:id="root" prefHeight="683.0" prefWidth="768.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.ReportAttendance">
    <children>
 
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="131.0" prefHeight="33.0" prefWidth="105.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Student ID" textFill="#e8e3e3" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="538.0" AnchorPane.topAnchor="131.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="129.0" prefHeight="33.0" prefWidth="105.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Student ID" textFill="#e8e3e3">
                <font>
                   <Font name="Times New Roman" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="nav_back" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="40.0" text="←" AnchorPane.bottomAnchor="574.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="611.0" AnchorPane.topAnchor="16.0">
+            <Button fx:id="nav_back" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="40.0" text="←">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="Student_ID" layoutX="134.0" layoutY="131.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Student ID">
+            <TextField fx:id="Student_ID" layoutX="137.0" layoutY="129.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Student ID">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="Search" layoutX="505.0" layoutY="147.0" mnemonicParsing="false" onAction="#SearchReportAttendance" prefHeight="54.0" prefWidth="113.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Search">
+            <Button fx:id="Search" layoutX="615.0" layoutY="153.0" mnemonicParsing="false" onAction="#SearchReportAttendance" prefHeight="54.0" prefWidth="113.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Search">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="table" layoutY="234.0" prefHeight="294.0" prefWidth="655.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="234.0">
+            <TableView fx:id="table" layoutY="237.0" prefHeight="393.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="237.0">
                <columns>
-                  <TableColumn fx:id="id_student" prefWidth="156.0" text="Student ID" />
-                  <TableColumn fx:id="lect_id" prefWidth="176.5" text="Lecture ID" />
-                  <TableColumn fx:id="student_name" prefWidth="164.5" text="Studnet Name" />
+                  <TableColumn fx:id="id_student" prefWidth="178.0" text="Student ID" />
+                  <TableColumn fx:id="lect_id" prefWidth="211.5" text="Lecture ID" />
+                  <TableColumn fx:id="student_name" prefWidth="215.5" text="Studnet Name" />
                   <TableColumn fx:id="attendancePear" minWidth="0.0" prefWidth="162.0" text="Attendance percentage" />
                </columns>
             </TableView>
-            <Label alignment="BOTTOM_CENTER" layoutX="163.0" layoutY="29.0" prefHeight="54.0" prefWidth="374.0" text="Report Attendance" textFill="WHITE">
+            <Label alignment="BOTTOM_CENTER" layoutX="197.0" layoutY="21.0" prefHeight="54.0" prefWidth="374.0" text="Report Attendance" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="48.0" />
                </font>
@@ -48,12 +48,12 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="174.0" prefHeight="33.0" prefWidth="91.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture ID" textFill="#e8e3e3">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="180.0" prefHeight="33.0" prefWidth="91.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture ID" textFill="#e8e3e3">
                <font>
                   <Font name="Times New Roman" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="lecture_id" layoutX="134.0" layoutY="174.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Lecture ID">
+            <TextField fx:id="lecture_id" layoutX="137.0" layoutY="180.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Lecture ID">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>

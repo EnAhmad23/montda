@@ -28,7 +28,7 @@ public class Students implements Initializable {
     private AnchorPane root;
     @FXML
     private  TextField t_id;
-    //    @FXML
+//    @FXML
 //    private TextField s_name;
     @FXML
     private TableColumn<Student, String> id;
@@ -86,13 +86,12 @@ public class Students implements Initializable {
 //        }
 //        string = t_id.getText();
 //        System.out.println(string);
+
         if (t_id.getText().length()==8) {
             Navigation.string = t_id.getText();
-            nav.navigateTo(root, nav.UPDATE_STUDENT);
+            nav.navigateTo(root,nav.UPDATE_STUDENT);
         }else
-            nav.error_message("ENTER THE ID FOR  THE STUDENT !!");
-
-
+            nav.error_message("ENTER THE ID FOR THE STUDENT !!");
     }
 
     public void deleteStudent() {
@@ -126,18 +125,6 @@ public class Students implements Initializable {
                 System.out.println(students.remove(i));
             }
         }
-    }
-
-    public void enterStudentID() {
-
-    }
-
-    public void enterStudentName() {
-
-    }
-
-    public void enterStudentDepartment() {
-
     }
 
     public void Update_back() {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Reports">
+    <children>
+        <Button fx:id="id_back_stuOP" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_stuOP" prefHeight="28.0" prefWidth="37.0" text="←">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="studentReport" layoutX="160.0" layoutY="149.0" mnemonicParsing="false" onAction="#navToStudentReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Student Reports">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="lectureReports" layoutX="161.0" layoutY="251.0" mnemonicParsing="false" onAction="#navToLectureReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Lecture Reports">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Label alignment="BOTTOM_CENTER" layoutX="114.0" layoutY="39.0" prefHeight="54.0" prefWidth="373.0" text="Reports" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman" size="48.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+    </children>
+</AnchorPane>
