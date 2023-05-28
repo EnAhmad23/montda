@@ -19,9 +19,9 @@
             </Button>
             <TableView fx:id="table" layoutY="237.0" prefHeight="393.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="237.0">
                <columns>
-                  <TableColumn fx:id="lect_id" prefWidth="211.5" text="Lecture ID" />
+                  <TableColumn fx:id="lec_id" prefWidth="211.5" text="Lecture ID" />
                   <TableColumn fx:id="id" prefWidth="178.0" text="Course ID" />
-                  <TableColumn fx:id="student_name" prefWidth="215.5" text="title" />
+                  <TableColumn fx:id="title" prefWidth="215.5" text="title" />
                   <TableColumn fx:id="attendancePear" minWidth="0.0" prefWidth="162.0" text="Attendance percentage" />
                </columns>
             </TableView>
