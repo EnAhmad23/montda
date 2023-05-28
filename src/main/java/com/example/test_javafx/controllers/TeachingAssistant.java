@@ -77,7 +77,7 @@ public class TeachingAssistant implements Initializable {
         }
     }
     public void update_teaching_assist() {
-        if (t_id.getText().length()==9) {
+        if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root, nav.UPDATE_TA);
         }else

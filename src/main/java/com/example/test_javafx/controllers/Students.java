@@ -87,7 +87,7 @@ public class Students implements Initializable {
 //        string = t_id.getText();
 //        System.out.println(string);
 
-        if (t_id.getText().length()==8) {
+        if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root,nav.UPDATE_STUDENT);
         }else

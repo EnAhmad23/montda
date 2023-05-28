@@ -217,7 +217,7 @@ public class LecturesTimesController implements Initializable {
     }
 
     public void update_button() {
-        if (t_id.getText().length() == 5) {
+        if (t_id.getText().length() == 5&& (!t_id.getText().equals("     "))) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root, nav.UPDATE_LECTURE);
         } else

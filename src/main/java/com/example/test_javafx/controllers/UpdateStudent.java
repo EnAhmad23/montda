@@ -55,7 +55,7 @@ public class UpdateStudent implements Initializable {
         String stu_gender = (String) gender.getValue();
         String stu_phone = phone_number.getText();
 
-        if (dm.UpdateStudent(idFromStudent, stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
+        if (dm.UpdateStudent(id.getText(), stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student Update successfully");
         } else {

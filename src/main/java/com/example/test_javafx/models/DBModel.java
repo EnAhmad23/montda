@@ -894,7 +894,7 @@ public class DBModel {
     }
 
     public int UpdateLecture(String id, String course_id, String room, String title) {
-        String SQL = "UPDATE lecture SET course_id = ?, l_time = ?, room = ?, title = ? WHERE id = ?";
+        String SQL = "UPDATE lecture SET course_id = ?, room = ?, title = ? WHERE id = ?;";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, course_id);

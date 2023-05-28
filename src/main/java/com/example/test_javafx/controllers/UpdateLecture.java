@@ -5,6 +5,7 @@ import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -20,11 +21,10 @@ public class UpdateLecture implements Initializable {
     @FXML
     private TextField lecture_id ;
     @FXML
-    private TextField course_id;
+    private ComboBox<String> courses;
     @FXML
     private TextField roomNo;
-    @FXML
-    private TextField timeSlot;
+
     @FXML
     private TextField title;
 
@@ -38,7 +38,8 @@ public class UpdateLecture implements Initializable {
     DBModel dm = DBModel.getModel();
 
 
-    public void nav_update(){  if (dm.UpdateLecture(lecture_id.getText(), course_id.getText(), roomNo.getText(), title.getText()) != 0) {
+    public void nav_update(){
+        if (dm.UpdateLecture(lecture_id.getText(), courses.getValue(), roomNo.getText(), title.getText()) != 0) {
         label.setTextFill(Color.color(0, 1, 0));
         label.setText("LECTURE UPDATE SUCCESSFULLY");
     } else {
@@ -53,5 +54,6 @@ public class UpdateLecture implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lecture_id.setText(Navigation.string);
         lecture_id.setEditable(false);
+        courses.getItems().addAll(dm.getCourseIDs().toArray(new String[dm.getCourseIDs().size()]));
     }
 }
