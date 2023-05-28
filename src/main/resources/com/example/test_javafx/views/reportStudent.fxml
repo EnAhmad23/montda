@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="root" prefHeight="622.0" prefWidth="665.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.ReportStudent">
    <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="131.0" prefHeight="33.0" prefWidth="105.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Student ID" textFill="#e8e3e3" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="538.0" AnchorPane.topAnchor="131.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="158.0" prefHeight="33.0" prefWidth="105.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Student " textFill="#e8e3e3" AnchorPane.bottomAnchor="431.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="539.0" AnchorPane.topAnchor="158.0">
                <font>
                   <Font name="Times New Roman" size="13.0" />
                </font>
@@ -17,7 +17,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="Student_ID" layoutX="134.0" layoutY="131.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Student ID">
+            <TextField fx:id="s_id" layoutX="159.0" layoutY="158.0" prefHeight="32.0" prefWidth="265.0" promptText="Enter Student ID or Name or phone number">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -29,7 +29,7 @@
             </Button>
             <TableView fx:id="table" layoutY="234.0" prefHeight="294.0" prefWidth="655.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="234.0">
                <columns>
-                  <TableColumn fx:id="sti_id" prefWidth="156.0" text="Student ID" />
+                  <TableColumn fx:id="id" prefWidth="156.0" text="Student ID" />
                   <TableColumn fx:id="course_id" prefWidth="176.5" text="Course ID" />
                   <TableColumn fx:id="lec_id" prefWidth="164.5" text="Lecture ID" />
                   <TableColumn fx:id="attendancePear" minWidth="0.0" prefWidth="167.0" text="Attendance percentage" />
@@ -43,15 +43,5 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="174.0" prefHeight="33.0" prefWidth="91.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture ID" textFill="#e8e3e3">
-         <font>
-            <Font name="Times New Roman" size="13.0" />
-         </font>
-      </Label>
-      <TextField fx:id="lecture_id" layoutX="134.0" layoutY="174.0" prefHeight="32.0" prefWidth="157.0" promptText="Enter Lecture ID">
-         <font>
-            <Font name="Times New Roman" size="12.0" />
-         </font>
-      </TextField>
          </children>
 </AnchorPane>

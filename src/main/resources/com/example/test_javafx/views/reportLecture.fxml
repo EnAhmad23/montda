@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="683.0" prefWidth="768.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.ReportLecture">
+   <children>
+            <Button fx:id="nav_back" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="40.0" text="←">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="Search" layoutX="514.0" layoutY="153.0" mnemonicParsing="false" onAction="#SearchReportAttendance" prefHeight="54.0" prefWidth="113.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Search">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <TableView fx:id="table" layoutY="237.0" prefHeight="393.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="237.0">
+               <columns>
+                  <TableColumn fx:id="lect_id" prefWidth="211.5" text="Lecture ID" />
+                  <TableColumn fx:id="id" prefWidth="178.0" text="Course ID" />
+                  <TableColumn fx:id="student_name" prefWidth="215.5" text="title" />
+                  <TableColumn fx:id="attendancePear" minWidth="0.0" prefWidth="162.0" text="Attendance percentage" />
+               </columns>
+            </TableView>
+            <Label alignment="BOTTOM_CENTER" layoutX="197.0" layoutY="21.0" prefHeight="54.0" prefWidth="374.0" text="Report Lecture" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="48.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="163.0" prefHeight="33.0" prefWidth="114.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture" textFill="#e8e3e3">
+               <font>
+                  <Font name="Times New Roman" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="l_id" layoutX="122.0" layoutY="164.0" onKeyTyped="#autoComplete" prefHeight="32.0" prefWidth="347.0">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+            </TextField>
+      <Button layoutX="640.0" layoutY="153.0" mnemonicParsing="false" onAction="#update" prefHeight="54.0" prefWidth="113.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Update">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+      </Button>
+         </children>
+</AnchorPane>

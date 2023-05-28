@@ -231,7 +231,7 @@ public class LecturesTimesController implements Initializable {
 
     public void autoComplete() {
 
-
+autoValues();
     }
     void autoValues(){
         list = new ArrayList<>();
