@@ -66,11 +66,11 @@
          </font>
       </Label>
       <TextField fx:id="update_title" layoutX="139.0" layoutY="287.0" prefHeight="36.0" prefWidth="185.0" promptText="Enter the Title" />
-      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="8.0" layoutY="347.0" prefHeight="33.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Room Number" textFill="#e8e3e3">
+      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutY="347.0" prefHeight="34.0" prefWidth="143.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Room Number" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="update_roomNumber" layoutX="139.0" layoutY="346.0" prefHeight="36.0" prefWidth="185.0" promptText="Enter the Room Number" />
+      <TextField fx:id="update_roomNumber" layoutX="142.0" layoutY="346.0" prefHeight="36.0" prefWidth="185.0" promptText="Enter the Room Number" />
    </children>
 </AnchorPane>

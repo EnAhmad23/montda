@@ -567,15 +567,20 @@ public class DBModel {
     }
 
 
-    public ArrayList<String> getLecIdsFromStuId(String stu_id) {
-        ArrayList<String> LecId = new ArrayList<>();
-        String sql = "select lec_id from attendence where stu_id = ?;";
-        String sql2 = "select lec_id from attendence where stu_id = ?;";
+    public ArrayList<Attendences> getAttendence(String lec_id) {
+        ArrayList<Attendences> LecId = new ArrayList<>();
+        String sql = "SELECT s.id, s.name, a.lec_id, l.course_id, l.title\n" +
+                "FROM students s\n" +
+                "JOIN attendence a ON s.id = a.stu_id\n" +
+                "JOIN lecture l ON a.lec_id = l.id\n" +
+                "WHERE a.lec_id = ?;";
+
+
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, stu_id);
+            st.setString(1,lec_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                LecId.add(rs.getString(1));
+                LecId.add(new Attendences(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4) ,rs.getString(5)));
             }
             return LecId;
         } catch (SQLException ex) {
@@ -618,16 +623,16 @@ public class DBModel {
         return false;
     }
 
-    public String getStdDept(String id) {
-        String sql = "select dept_name from student where id = ? ;";
+    public ArrayList<String> getLecIds() {
+        String sql = "select id from lecture ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
+            ArrayList<String> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 System.out.println(rs.getString(1));
-                return rs.getString(1);
+                ids.add(rs.getString(1));
             }
-            return null;
+            return ids;
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);

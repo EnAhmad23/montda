@@ -29,13 +29,12 @@
         <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
             <columns>
                 <TableColumn fx:id="stu_id" prefWidth="172.0" text="Student ID" />
-            <TableColumn fx:id="lec_id" prefWidth="190.0" text="Lecture Id" />
-            <TableColumn fx:id="title" prefWidth="168.79998779296875" text="Title" />
-                <TableColumn fx:id="room" minWidth="0.0" prefWidth="148.0" text="Room" />
-                <TableColumn fx:id="attendance_percentage" prefWidth="147.0" text="Attendance percentage" />
+                <TableColumn fx:id="name" prefWidth="167.20001220703125" text="Student Name" />
+            <TableColumn fx:id="lec_id" prefWidth="120.79998779296875" text="Lecture Id" />
+                <TableColumn fx:id="course" minWidth="0.0" prefWidth="148.0" text="Course ID" />
+            <TableColumn fx:id="title" prefWidth="218.79998779296875" text="Title" />
             </columns>
         </TableView>
-        <ComboBox fx:id="courses" layoutX="350.0" layoutY="196.0" prefHeight="36.0" prefWidth="179.0" promptText="Course_id" />
       <Button fx:id="id_back_addus" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
@@ -65,5 +64,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ComboBox fx:id="lecture_ids" layoutX="363.0" layoutY="196.0" prefHeight="36.0" prefWidth="150.0" promptText="lecture ID" />
     </children>
 </AnchorPane>
