@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="718.0" prefWidth="923.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.absent">
+    <children>
+        <TextField fx:id="t_id" layoutX="132.0" layoutY="183.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="249.0" promptText="Enter Student ID" />
+        <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="943.0" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="183.0" prefHeight="36.0" prefWidth="70.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
+            <font>
+                <Font name="Times New Roman" size="13.0" />
+            </font>
+        </Label>
+        <Label alignment="BOTTOM_CENTER" layoutX="320.0" layoutY="14.0" prefHeight="54.0" prefWidth="180.0" text="Absence" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman" size="48.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Button fx:id="export" layoutX="686.0" layoutY="183.0" mnemonicParsing="false" onAction="#exportStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Export">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="update" layoutX="810.0" layoutY="183.0" mnemonicParsing="false" onAction="#UpdateStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <TableView fx:id="table" editable="true" layoutX="-28.0" layoutY="256.0" prefHeight="462.0" prefWidth="971.0">
+            <columns>
+                <TableColumn fx:id="id" prefWidth="120.19997864961624" text="Student ID" />
+                <TableColumn fx:id="name" prefWidth="140.99996948242188" text="Name" />
+                <TableColumn fx:id="gender" prefWidth="100.4000244140625" text="Gender" />
+                <TableColumn fx:id="major" prefWidth="115.5999755859375" text="Major" />
+                <TableColumn fx:id="place" prefWidth="115.20001220703125" text="Place" />
+                <TableColumn fx:id="phone_num" prefWidth="140.4000244140625" text="Phone No." />
+                <TableColumn fx:id="course_id" prefWidth="130.4000244140625" text="Course_id" />
+                <TableColumn fx:id="attPercentage" prefWidth="100.4000244140625" text="AttPercentage" />
+            </columns>
+        </TableView>
+        <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Back" prefHeight="24.0" prefWidth="33.0" text="←">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="search" layoutX="558.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+            <font>
+                <Font name="Times New Roman" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>
