@@ -98,24 +98,62 @@ public class DBModel {
 
     }
 
-    public int addAttendence(String stu_id, String lec_id) throws SQLException {
-        String sql = "insert into attendence(id) values(?); ";
-        String sql1 = "INSERT INTO attendence (course_id) SELECT course_id  FROM lecture  WHERE id = ?";
-        String sql2 = "select title from lecture where id = ?;";
-        String sql3 = "select room from lecture where id = ?;";
-        double percent = getNumAttendence(lec_id) / getAllStuCourse(lec_id);
-        try (PreparedStatement st = con.prepareStatement(sql); PreparedStatement st1 = con.prepareStatement(sql1)
-             ; PreparedStatement st2 = con.prepareStatement(sql2); PreparedStatement st3 = con.prepareStatement(sql3)
-             ; PreparedStatement st4 = con.prepareStatement(sql3)) {
+    public int addAttendence(String stu_id, String lec_id)  {
+        String sql = "insert into attendence values(?,?); ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
-            st1.setString(2, sql1);
-            st2.setString(3, sql2);
-            st3.setString(4, sql3);
-            st4.setDouble(5, percent);
+            st.setString(2, lec_id);
             return st.executeUpdate();
         } catch (SQLException ex) {
             return 0;
         }
+    }
+    public int deleteAttendence(String stu_id)  {
+        String sql = "delete from attendence where stu_id =?; ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, stu_id);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            return 0;
+        }
+    }
+    public int updateAttendence(String stu_id,String name,String lec_id,String cou_id,String title)  {
+        String sql = "UPDATE students, lecture\n" +
+                "SET  students.name = ?, lecture.course_id = ?, lecture.title = ?\n" +
+                "WHERE students.id = (SELECT stu_id FROM attendence WHERE stu_id = ? AND lec_id = ?)\n" +
+                "    AND lecture.id = ?;\n ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, name);
+            st.setString(2, cou_id);
+            st.setString(3, title);
+            st.setString(4, stu_id);
+            st.setString(5, lec_id);
+            st.setString(6, lec_id);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            return 0;
+        }
+    }
+    public  ArrayList<Attendences> searchAttendence(String stu_id,String lec_id)  {
+        String sql = "SELECT s.id, s.name, l.id, l.course_id, l.title \n" +
+                "FROM students s \n" +
+                "JOIN attendence a ON s.id = a.stu_id \n" +
+                "JOIN lecture l ON a.lec_id = l.id \n" +
+                "WHERE s.id = ? AND l.id = ?;";
+
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Attendences> attendences =new ArrayList<>();
+            st.setString(1, stu_id);
+            st.setString(2, lec_id);
+            ResultSet rs =st.executeQuery();
+             while (rs.next()) {
+                 attendences.add(new Attendences(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+             }
+             return attendences;
+        } catch (SQLException ex) {
+            return null;
+        }
+
     }
 //    public ArrayList<String> getBuildings() {
 //        String sql = "select building from classroom;";
@@ -388,7 +426,7 @@ public class DBModel {
             pstmt.setString(3, room);
             pstmt.setString(4, title);
 
-            System.out.println("1");
+//            System.out.println("1");
             return pstmt.executeUpdate();
             //return "";
         } catch (SQLException e) {
@@ -628,7 +666,7 @@ public class DBModel {
             ArrayList<String> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+//                System.out.println(rs.getString(1));
                 ids.add(rs.getString(1));
             }
             return ids;
