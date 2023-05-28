@@ -168,7 +168,7 @@ public class Attendence implements Initializable {
 
     public void add() {
         if (t_id.getText() != null && lecture_ids.getValue() != null && t_id.getText().length() == 9) {
-            if (dm.addAttendence(t_id.getText(), lecture_ids.getValue()) != 0)
+            if (dm.addAttendance(t_id.getText(), lecture_ids.getValue()) != 0)
                 view(dm.getAttendence(lecture_ids.getValue()));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T ADD");

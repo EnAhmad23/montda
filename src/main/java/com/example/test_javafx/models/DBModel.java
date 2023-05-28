@@ -98,7 +98,7 @@ public class DBModel {
 
     }
 
-    public int addAttendence(String stu_id, String lec_id)  {
+    public int addAttendance(String stu_id, String lec_id)  {
         String sql = "insert into attendence values(?,?); ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);

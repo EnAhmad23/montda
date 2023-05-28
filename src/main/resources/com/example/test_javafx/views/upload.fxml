@@ -3,14 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="539.0" prefWidth="472.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Upload">
+<AnchorPane fx:id="root" prefHeight="514.0" prefWidth="475.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Upload">
    <children>
-      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#Upload_back" prefHeight="24.0" prefWidth="33.0" text="←">
+      <Button fx:id="back" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#Upload_back" prefHeight="24.0" prefWidth="33.0" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
@@ -26,19 +27,17 @@
             <Insets left="20.0" />
          </padding>
       </Label>
-      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="146.0" prefHeight="36.0" prefWidth="94.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="course_ID" textFill="#e8e3e3">
+      <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="174.0" prefHeight="36.0" prefWidth="94.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="course_ID" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="update_course_ID" layoutX="173.0" layoutY="143.0" prefHeight="42.0" prefWidth="187.0" promptText="Enter Course_ID" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="208.0" prefHeight="36.0" prefWidth="97.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture_ID" textFill="#e8e3e3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="117.0" prefHeight="36.0" prefWidth="97.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Lecture_ID" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="update_Lecture_ID" layoutX="173.0" layoutY="205.0" prefHeight="42.0" prefWidth="187.0" promptText="update_Lecture_ID" />
-      <Button fx:id="nav_upload" layoutX="308.0" layoutY="428.0" mnemonicParsing="false" onAction="#Upload" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Upload">
+      <Button fx:id="nav_upload" layoutX="286.0" layoutY="437.0" mnemonicParsing="false" onAction="#Upload" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Upload">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -46,19 +45,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="65.0" layoutY="268.0" prefHeight="33.0" prefWidth="47.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Title" textFill="#e8e3e3">
+      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="66.0" layoutY="241.0" prefHeight="33.0" prefWidth="47.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Title" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="update_title" layoutX="171.0" layoutY="263.0" prefHeight="42.0" prefWidth="185.0" promptText="Enter the Title" />
-      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="327.0" prefHeight="33.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Room Number" textFill="#e8e3e3">
+      <TextField fx:id="title" layoutX="172.0" layoutY="236.0" prefHeight="42.0" prefWidth="185.0" promptText="Enter the Title" />
+      <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="32.0" layoutY="303.0" prefHeight="33.0" prefWidth="126.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Room Number" textFill="#e8e3e3">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="update_roomNumber" layoutX="171.0" layoutY="322.0" prefHeight="42.0" prefWidth="185.0" promptText="Enter the Room Number" />
-      <Button fx:id="nav_choose" layoutX="143.0" layoutY="428.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="54.0" prefWidth="149.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="choose File">
+      <TextField fx:id="roomNumber" layoutX="172.0" layoutY="298.0" prefHeight="42.0" prefWidth="185.0" promptText="Enter the Room Number" />
+      <Button fx:id="nav_choose" layoutX="123.0" layoutY="437.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="54.0" prefWidth="149.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="choose File">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -66,5 +65,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="label" layoutX="32.0" layoutY="371.0" prefHeight="54.0" prefWidth="222.0" text="Label" />
+      <ComboBox fx:id="lecture_ID" layoutX="168.0" layoutY="112.0" prefHeight="42.0" prefWidth="185.0" />
+      <ComboBox fx:id="course_ID" layoutX="170.0" layoutY="174.0" prefHeight="42.0" prefWidth="185.0" />
    </children>
 </AnchorPane>
