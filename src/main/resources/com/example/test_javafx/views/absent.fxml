@@ -44,7 +44,7 @@
                 <TableColumn fx:id="attPercentage" prefWidth="193.39996337890625" text="AttPercentage" />
             </columns>
         </TableView>
-        <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-color: #DEE4E7;" text="←">
+        <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-color: #DEE4E7;" text="←">
             <font>
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>

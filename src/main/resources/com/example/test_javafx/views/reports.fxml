@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Reports">
+<AnchorPane fx:id="root" prefHeight="464.0" prefWidth="626.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Reports">
     <children>
         <Button fx:id="id_back_stuOP" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_stuOP" prefHeight="28.0" prefWidth="37.0" text="←">
             <font>
@@ -37,5 +37,10 @@
                 <Insets />
             </opaqueInsets>
         </Label>
+      <Button fx:id="absence" layoutX="161.0" layoutY="350.0" mnemonicParsing="false" onAction="#navToAbsence" prefHeight="60.0" prefWidth="280.0" text="Absence">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

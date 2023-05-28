@@ -97,7 +97,25 @@ public class DBModel {
         }
 
     }
-
+    public int addAttendence(String stu_id, String lec_id) {
+        String sql = "insert into attendence(id) values(?); ";
+        String sql1 = "INSERT INTO attendence (course_id) SELECT course_id  FROM lecture  WHERE id = ?";
+        String sql2 = "select title from lecture where id = ?;";
+        String sql3 = "select room from lecture where id = ?;";
+        double percent = getNumAttendence(lec_id) / getAllStuCourse(lec_id);
+        try (PreparedStatement st = con.prepareStatement(sql);PreparedStatement st1 = con.prepareStatement(sql1)
+             ;PreparedStatement st2 = con.prepareStatement(sql2);PreparedStatement st3 = con.prepareStatement(sql3)
+             ;PreparedStatement st4 = con.prepareStatement(sql3)) {
+            st.setString(1, stu_id);
+            st1.setString(2, sql1);
+            st2.setString(3, sql2);
+            st3.setString(4, sql3);
+            st4.setDouble(5, percent);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            return 0;
+        }
+    }
 //    public ArrayList<String> getBuildings() {
 //        String sql = "select building from classroom;";
 //        ArrayList<String> buildings = new ArrayList<>();
@@ -475,13 +493,7 @@ public class DBModel {
 
 
     public Double getAbsent(String id) {
-        String SQL = "select count(*) from takes where id  not in " +
-                "(Select id " +
-                "From takes  " +
-                "Where course_id in (" +
-                "Select course_id " +
-                "From lecture" +
-                "Where id = ?));";
+        String SQL = "select count(*) from takes where id  not in  (Select id  From takes   Where course_id in ( Select course_id  From lecture Where id = ?));";
         double absent = 0.0;
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(SQL)){
@@ -494,14 +506,14 @@ public class DBModel {
     }
 
 
-    public ArrayList<String> getLecIdsFromCou(String course_id) {
-        ArrayList<String> LecId = new ArrayList<>();
-        String sql = "select id from lecture where course_id = ?;";
+    public ArrayList<LectureTime> getLecFromCou(String course_id) {
+        ArrayList<LectureTime> LecId = new ArrayList<>();
+        String sql = "select * from lecture where course_id = ?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, course_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                LecId.add(rs.getString(1));
+                LecId.add(new LectureTime(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
             }
             return LecId;
         } catch (SQLException ex) {

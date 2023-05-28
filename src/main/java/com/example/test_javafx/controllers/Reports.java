@@ -22,6 +22,9 @@ public class Reports {
     public void navToStudentReports() {
         nav.navigateTo(root,nav.REPORT_STUDENT);
     }
+    public void navToAbsence() {
+        nav.navigateTo(root,nav.absence_FXML);
+    }
 
     public void navToLectureReports() {
         nav.navigateTo(root,nav.REPORT_ATTENDANCE);

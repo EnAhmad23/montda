@@ -1,15 +1,19 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class absent {
 
-
+    @FXML
+    private AnchorPane root;
     @FXML
     private Button search;
     @FXML
@@ -38,19 +42,24 @@ public class absent {
     @FXML
     private TableColumn<absent, String> attPercentage;
 
+    Navigation nav = new Navigation();
+
+    public void exportStudent() {
+    }
 
 
-    public void exportStudent(){}
 
-    public void UpdateStudent(){}
 
-    public void Back(){}
-
-    public void searchStudent(){}
+    public void searchStudent() {
+    }
 
     public void autoComplete() {
     }
 
     public void updateStudent() {
+    }
+
+    public void back() {
+        nav.navigateTo(root, nav.TEACHING_FXML);
     }
 }
