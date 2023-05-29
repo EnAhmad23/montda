@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
@@ -45,7 +46,26 @@ public class DBModel {
         }
 
     }
-
+    public int backupDatabase(String path) throws IOException, InterruptedException {
+        ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
+        String[] envp = {
+                "PGHOST=" + reader.getString("db.serverName"), //localhost
+                "PGDATABASE=" + reader.getString("db.databaseName"), //UNI1
+                "PGUSER=" + reader.getString("db.username"), //postgres
+                "PGPASSWORD=" + reader.getString("db.password"), //1234
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
+        };
+        String[] cmdArray = {
+                "cmd",
+                "/c",
+                String.format("pg_dump -f \"%s\"", path)
+        };
+        Runtime runtime = Runtime.getRuntime();
+        Process process = runtime.exec(cmdArray, envp);
+        process.waitFor();
+        return process.exitValue();
+    }
 //    public void schemaConnect(String schema) {
 //        String sql = "set search_path to '" + schema + "'";
 //        Statement s1 = null;
@@ -524,7 +544,7 @@ public class DBModel {
     }
 
     public Double getNumAttendence(String id) throws SQLException {
-        String SQL = "SELECT COUNT(*) FROM attendence WHERE lec_id = ?";
+        String SQL = "SELECT COUNT(DISTINCT a.stu_id) AS student_count FROM attendence a JOIN takes t ON a.stu_id = t.ID AND a.lec_id = ?;";
         double att = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
@@ -540,7 +560,7 @@ public class DBModel {
     }
 
     public Double getAllStuCourse(String id) {
-        String SQL = "SELECT COUNT(*)  FROM takes  WHERE course_id IN (     SELECT course_id      FROM lecture      WHERE id = ? );";
+        String SQL = "SELECT COUNT(*)  FROM takes  WHERE course_id IN (SELECT course_id FROM lecture WHERE id = ? );";
         double stuCourse = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
