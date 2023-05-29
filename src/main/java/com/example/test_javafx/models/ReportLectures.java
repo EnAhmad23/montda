@@ -4,11 +4,22 @@ public class ReportLectures {
     private String lec_id;
     private String course_id;
     private String title;
+    private double num;
     private double present;
-    ReportLectures(String lecId, String courseId, String title, double present){
+
+    public double getNum() {
+        return num;
+    }
+
+    public void setNum(double num) {
+        this.num = num;
+    }
+
+    ReportLectures(String lecId, String courseId, String title, double num, double present){
         lec_id = lecId;
         course_id = courseId;
         this.title = title;
+        this.num = num;
 
         this.present = present;
     }

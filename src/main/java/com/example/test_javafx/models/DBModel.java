@@ -128,10 +128,11 @@ public class DBModel {
             return 0;
         }
     }
-    public int deleteAttendence(String stu_id)  {
-        String sql = "delete from attendence where stu_id =?; ";
+    public int deleteAttendence(String stu_id, String lec_id ) {
+        String sql = "delete from attendence where stu_id =? and lec_id = ?; ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
+            st.setString(2, lec_id);
             return st.executeUpdate();
         } catch (SQLException ex) {
             return 0;
@@ -530,8 +531,9 @@ public class DBModel {
 
             while (rs.next()) {
                 String id = rs.getString(1);
-                double present = getNumAttendence(id) / getAllStuCourse(id);
-                ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), present));
+                double num =getNumAttendence(id);
+                double present = (num / getAllStuCourse(id)) *100;
+                ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), num, present));
 
             }
             return ids;

@@ -65,7 +65,7 @@ public class Attendence implements Initializable {
     }
 
     public void delete(ActionEvent actionEvent) {
-        if (dm.deleteAttendence(t_id.getText())!=0) {
+        if (dm.deleteAttendence(t_id.getText(),lecture_ids.getValue())!=0) {
             nav.message("STUDENT DELETED");
             view(dm.getAttendence(lecture_ids.getValue()));
             t_id.clear();

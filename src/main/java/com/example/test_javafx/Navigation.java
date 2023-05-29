@@ -1,14 +1,17 @@
 package com.example.test_javafx;
 
 import com.example.test_javafx.models.DBModel;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -37,6 +40,7 @@ public class Navigation {
     public final String UPDATE_COURSE = "views/UpdateCourse.fxml";
     public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
+    public final String UPDATE_STUDENT_REPORT = "views/updateStudentReport.fxml";
     public final String UPDATE_TA = "views/UpdateTA.fxml";
     public final String REPORT_PAGE = "views/reports.fxml";
     public final String REPORT_ATTENDANCE = "views/reportLecture.fxml";
@@ -49,10 +53,20 @@ public class Navigation {
 
     public void navigateTo(Parent rootPane, String path) {
         try {
+            Stage stage =new Stage();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
 //            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
-            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage = (Stage) rootPane.getScene().getWindow();
+            stage.setOnCloseRequest(event -> {
+//                try {
+//                    dm.backupDatabase("backups/");
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+            });
             Scene scene = new Scene(root);
             stage.setScene(scene);
 

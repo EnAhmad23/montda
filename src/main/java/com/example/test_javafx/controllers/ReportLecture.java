@@ -35,6 +35,8 @@ public class ReportLecture implements Initializable {
     public TableView<ReportLectures> table;
     @FXML
     public TableColumn<ReportStudent, String> id;
+    @FXML
+    public TableColumn<ReportStudent, String> num;
 
     @FXML
     public TableColumn<ReportStudent, String> lec_id;
@@ -73,6 +75,7 @@ public class ReportLecture implements Initializable {
         lec_id.setCellValueFactory(new PropertyValueFactory<>("lec_id"));
         id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
         attendancePear.setCellValueFactory(new PropertyValueFactory<>("present"));
+        num.setCellValueFactory(new PropertyValueFactory<>("num"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         ObservableList<ReportLectures> lecture = FXCollections.observableArrayList(lectures);
         table.setItems(lecture);
@@ -91,6 +94,8 @@ public class ReportLecture implements Initializable {
             stringBuilder.append(s.getCourse_id());
             stringBuilder.append(", ");
             stringBuilder.append(s.getTitle());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getNum());
             stringBuilder.append(", ");
             stringBuilder.append(s.getPresent());
             list.add(stringBuilder.toString());
