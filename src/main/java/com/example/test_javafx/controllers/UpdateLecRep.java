@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UpdateStuRep implements Initializable {
+public class UpdateLecRep implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
@@ -21,22 +21,22 @@ public class UpdateStuRep implements Initializable {
     @FXML
     private Button update_button;
     @FXML
-    private TextField id;
-    @FXML
     private TextField lec_id;
+    @FXML
+    private TextField title;
 
     @FXML
-    private ComboBox<String> course_id;
-    DBModel db =DBModel.getModel() ;
-    Navigation nav = new Navigation();
+    private ComboBox <String>course_id;
+    Navigation nav =new Navigation();
+    DBModel db =DBModel.getModel();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(Navigation.string);
-        id.setEditable(false);
+        lec_id.setText(Navigation.string);
+        lec_id.setEditable(false);
         course_id.getItems().addAll(db.getCourseIDs().toArray(new String[db.getCourseIDs().size()]));
+
     }
     public void nav_back(ActionEvent actionEvent) {
-        nav.navigateTo(root,nav.REPORT_STUDENT);
     }
 
     public void nav_update(ActionEvent actionEvent) {

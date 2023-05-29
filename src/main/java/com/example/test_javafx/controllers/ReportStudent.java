@@ -1,11 +1,10 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
-import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,17 +30,17 @@ public class ReportStudent implements Initializable {
     @FXML
     private TextField s_id;
 
-
-    public TableView<ReportStudent> table;
     @FXML
-    public TableColumn<ReportStudent, String> id;
-
+    public TableView<StudentReport> table;
     @FXML
-    public TableColumn<ReportStudent, String> course_id;
+    public TableColumn<StudentReport, String> id;
     @FXML
-    public TableColumn<ReportStudent, String> lec_id;
+    public TableColumn<StudentReport, String> course_id;
     @FXML
-    public TableColumn<ReportStudent, String> attendancePear;
+    public TableColumn<StudentReport, String> lec_id;
+    @FXML
+    public TableColumn<StudentReport, String> attendancePear;
+    ArrayList<StudentReport> stuReport;
     ArrayList<Student> students;
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
@@ -60,8 +59,8 @@ public class ReportStudent implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        students=dm.getStd();
-//        view();
+        students = dm.getStd();
+       // stuReport = ;
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(s_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
@@ -70,24 +69,27 @@ public class ReportStudent implements Initializable {
         });
     }
 
-    private void view() {
-//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        course_id.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-//        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
-//        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
-//        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
-//
-//
-//        ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
-//        table.setItems(ids);
+    public void action(){
+        if (s_id.getText() != null && s_id.getText().length() == 9 && !(s_id.getText().equals("         "))){
+            stuReport=dm.reportStudents(s_id.getText());
+            view(stuReport);
+        }
+    }
+
+    private void view(ArrayList<StudentReport> list) {
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        lec_id.setCellValueFactory(new PropertyValueFactory<>("lec_id"));
+        attendancePear.setCellValueFactory(new PropertyValueFactory<>("attendancePear"));
+        ObservableList<StudentReport> ids = FXCollections.observableArrayList(list);
+        table.setItems(ids);
     }
 
     public void autoComplete(){
         autoValues();
 
     }
-    void autoValues(){
+    void autoValues() {
         list = new ArrayList<>();
         for (Student s : students) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -95,14 +97,16 @@ public class ReportStudent implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getGender());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getMajer());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getPlace());
-            stringBuilder.append(", ");
             stringBuilder.append(s.getPhone_num());
             list.add(stringBuilder.toString());
         }
+    }
+
+    public void UpdateStuReport(ActionEvent actionEvent) {
+        if (id.getText().length()==9&&!id.getText().equals("         ")) {
+            Navigation.string = id.getText();
+            nav.navigateTo(root,nav.UPDATE_STUDENT_REPORT);
+        }else nav.error_message("ENTER THE ID FOR STUDENT !!");
+
     }
 }

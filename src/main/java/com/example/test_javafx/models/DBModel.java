@@ -543,8 +543,61 @@ public class DBModel {
             return null;
         }
 
+    }public Double getCourseLectures(String course_id) {
+        String SQL = "SELECT COUNT(*) FROM lecture WHERE course_id = ?";
+        double numLectures = 0.0;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, course_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    numLectures = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return numLectures;
+    }
+    public Double getStu_Atten_Course(String course_id, String stu_id) {
+        String SQL = "SELECT COUNT(*) FROM attendence JOIN lecture ON attendence.lec_id = lecture.id " +
+                "WHERE lecture.course_id = ? AND attendence.stu_id = ?";
+        double numLectures = 0.0;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, course_id);
+            pstmt.setString(2, stu_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    numLectures = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return numLectures;
     }
 
+    public ArrayList<StudentReport> reportStudents(String id) {
+        String query = "SELECT distinct (takes.course_id), lecture.id FROM takes " +
+                "INNER JOIN lecture ON takes.course_id = lecture.course_id " +
+                "INNER JOIN attendence ON lecture.id = attendence.lec_id " +
+                "WHERE takes.ID = ?";
+
+        try (PreparedStatement st = con.prepareStatement(query)) {
+            st.setString(1, id);
+            ArrayList<StudentReport> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                // id = rs.getString(2);
+                double precent = getStu_Atten_Course(rs.getString(1),id) / getCourseLectures(rs.getString(1));
+                ids.add(new StudentReport(id, rs.getString(1), rs.getString(2), precent));
+            }
+            return ids;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     public Double getNumAttendence(String id) throws SQLException {
         String SQL = "SELECT COUNT(DISTINCT a.stu_id) AS student_count FROM attendence a JOIN takes t ON a.stu_id = t.ID AND a.lec_id = ?;";
         double att = 0.0;

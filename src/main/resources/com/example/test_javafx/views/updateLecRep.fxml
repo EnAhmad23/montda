@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="469.0" prefWidth="462.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateLecRep">
+    <children>
+        <Label fx:id="label" layoutX="-4.0" layoutY="378.0" prefHeight="50.0" prefWidth="330.0" textFill="RED">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Button fx:id="back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#nav_back" style="-fx-background-radius: 7;" text="←">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label alignment="BOTTOM_CENTER" layoutX="36.0" layoutY="58.0" prefHeight="50.0" prefWidth="389.0" style="-fx-text-fill: #DEE4E7;" text="Update Lecture Report" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Button fx:id="update_button" layoutX="346.0" layoutY="378.0" mnemonicParsing="false" onAction="#nav_update" prefHeight="50.0" prefWidth="102.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-background-radius: 15;" text="Update">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <font>
+                <Font name="Times New Roman" size="18.0" />
+            </font>
+        </Button>
+        <Label layoutX="38.0" layoutY="167.0" prefHeight="34.0" prefWidth="112.0" text="Lecture ID" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="22.0" />
+            </font>
+        </Label>
+        <Label layoutX="38.0" layoutY="233.0" prefHeight="34.0" prefWidth="112.0" text="Title" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="22.0" />
+            </font>
+        </Label>
+        <Label layoutX="38.0" layoutY="301.0" prefHeight="34.0" prefWidth="89.0" text="Course ID" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="20.0" />
+            </font>
+        </Label>
+        <TextField fx:id="lec_id" layoutX="188.0" layoutY="167.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the lec_id" />
+        <TextField fx:id="title" layoutX="188.0" layoutY="233.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter Title" />
+        <ComboBox fx:id="course_id" layoutX="188.0" layoutY="301.0" prefHeight="34.0" prefWidth="156.0" />
+    </children>
+</AnchorPane>

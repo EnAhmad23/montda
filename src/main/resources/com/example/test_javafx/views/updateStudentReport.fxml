@@ -34,29 +34,23 @@
                 <Font name="Times New Roman" size="18.0" />
             </font>
         </Button>
-        <Label layoutX="49.0" layoutY="167.0" prefHeight="34.0" prefWidth="57.0" text=" ID" textFill="WHITE">
+        <Label layoutX="49.0" layoutY="176.0" prefHeight="34.0" prefWidth="57.0" text=" ID" textFill="WHITE">
             <font>
                 <Font name="Times New Roman Bold" size="22.0" />
             </font>
         </Label>
-        <Label layoutX="49.0" layoutY="233.0" prefHeight="34.0" prefWidth="112.0" text="Lecture ID" textFill="WHITE">
+        <Label layoutX="51.0" layoutY="267.0" prefHeight="34.0" prefWidth="112.0" text="Lecture ID" textFill="WHITE">
             <font>
                 <Font name="Times New Roman Bold" size="22.0" />
             </font>
         </Label>
-        <Label layoutX="49.0" layoutY="301.0" prefHeight="34.0" prefWidth="89.0" text="Course ID" textFill="WHITE">
+        <Label layoutX="49.0" layoutY="358.0" prefHeight="34.0" prefWidth="89.0" text="Course ID" textFill="WHITE">
             <font>
                 <Font name="Times New Roman Bold" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="49.0" layoutY="363.0" prefHeight="34.0" prefWidth="120.0" text="Percentage" textFill="WHITE">
-            <font>
-                <Font name="Times New Roman Bold" size="23.0" />
-            </font>
-        </Label>
-        <TextField fx:id="id" layoutX="188.0" layoutY="167.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the id" />
-        <TextField fx:id="lec_id" layoutX="188.0" layoutY="233.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter Lec_id" />
-        <TextField fx:id="percentage" layoutX="188.0" layoutY="363.0" prefHeight="34.0" prefWidth="156.0" promptText="percent" />
-        <ComboBox fx:id="course_id" layoutX="188.0" layoutY="301.0" prefHeight="34.0" prefWidth="156.0" />
+        <TextField fx:id="id" layoutX="188.0" layoutY="176.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter the id" />
+        <TextField fx:id="lec_id" layoutX="188.0" layoutY="267.0" prefHeight="34.0" prefWidth="156.0" promptText="Enter Lec_id" />
+        <ComboBox fx:id="course_id" layoutX="188.0" layoutY="358.0" prefHeight="34.0" prefWidth="156.0" />
     </children>
 </AnchorPane>
