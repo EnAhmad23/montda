@@ -2,7 +2,6 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class absent implements Initializable {
+public class Absent implements Initializable {
 
     @FXML
     private AnchorPane root;
@@ -30,21 +29,16 @@ public class absent implements Initializable {
     @FXML
     private TableView<Course> table;
     @FXML
-    private TableColumn<absent, String> id;
+    private TableColumn<Absent, String> id;
     @FXML
-    private TableColumn<absent, String> name;
+    private TableColumn<Absent, String> name;
+
     @FXML
-    private TableColumn<absent, String> gender;
+    private TableColumn<Absent, String> phone_num;
     @FXML
-    private TableColumn<absent, String> major;
+    private TableColumn<Absent, String> course_id;
     @FXML
-    private TableColumn<absent, String> place;
-    @FXML
-    private TableColumn<absent, String> phone_num;
-    @FXML
-    private TableColumn<absent, String> course_id;
-    @FXML
-    private TableColumn<absent, String> attPercentage;
+    private TableColumn<Absent, String> attPercentage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

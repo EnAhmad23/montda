@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ public class UpdateStuRep implements Initializable {
     @FXML
     private TextField id;
     @FXML
-    private TextField lec_id;
+    private ComboBox<String> lec_id;
 
     @FXML
     private ComboBox<String> course_id;
@@ -39,7 +40,12 @@ public class UpdateStuRep implements Initializable {
         nav.navigateTo(root,nav.REPORT_STUDENT);
     }
 
-    public void nav_update(ActionEvent actionEvent) {
+    public void nav_update() {
+//        if (db.updateAttendence(id.getText(),name.getText(),lecture_id.getId(),course_id.getId(),title.getText())!=0){
+//            label.setTextFill(Color.color(1,0,0));
+//            label.setText("UPDATED SUCCESSFULLY");
+//        }else { label.setTextFill(Color.color(0,1,0));
+//            label.setText("ATTENDENCES DIDN'T UPDATE");}
 
     }
 
