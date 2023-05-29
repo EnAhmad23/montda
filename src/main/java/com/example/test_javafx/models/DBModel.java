@@ -754,6 +754,56 @@ public class DBModel {
         }
 
     }
+    public ArrayList<Absents> getAbsents() {
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.ph_num AS phone_number, t.course_id AS course_id,\n" +
+                "       (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 AS attendance_percentage\n" +
+                "FROM students s\n" +
+                "JOIN takes t ON s.id = t.ID\n" +
+                "JOIN phone_num pn ON s.id = pn.s_id\n" +
+                "JOIN lecture l ON t.course_id = l.course_id\n" +
+                "LEFT JOIN attendence a ON l.id = a.lec_id AND t.ID = a.stu_id\n" +
+                "GROUP BY s.id, s.name, pn.ph_num, t.course_id\n" +
+                "HAVING (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 < 25;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Absents> absents = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                absents.add(new Absents(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            return absents;
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+    public ArrayList<Absents> searchAbsents( String id) {
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.ph_num AS phone_number, t.course_id AS course_id,\n" +
+                "       (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 AS attendance_percentage\n" +
+                "FROM students s\n" +
+                "JOIN takes t ON s.id = t.ID\n" +
+                "JOIN phone_num pn ON s.id = pn.s_id\n" +
+                "JOIN lecture l ON t.course_id = l.course_id\n" +
+                "LEFT JOIN attendence a ON l.id = a.lec_id AND t.ID = a.stu_id\n" +
+                "WHERE s.id = ? \n" +
+                "GROUP BY s.id, s.name, pn.ph_num, t.course_id\n" +
+                "HAVING (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 < 25;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<Absents> absents = new ArrayList<>();
+            st.setString(1,id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                absents.add(new Absents(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            return absents;
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
 
     public String getInstructorName(String id) {
         String sql = "select name from instructor where id = ? ;";

@@ -379,6 +379,7 @@ lec22	ecom4220	c502	quarter
 lec34	eele3302	b313	semifinal
 lec04	eele3402	i303	champions
 lec70	eele3302	m204	europa
+lec00	ecom3102	hk	ssdfs
 \.
 
 
@@ -410,6 +411,7 @@ COPY uni.takes (id, course_id) FROM stdin;
 120200887	eele3302
 120200887	eele3402
 120200887	ecom4220
+120200887	ecom3102
 \.
 
 

@@ -8,9 +8,9 @@
 
 <AnchorPane fx:id="root" prefHeight="718.0" prefWidth="927.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Absent">
     <children>
-        <TextField fx:id="t_id" layoutX="18.0" layoutY="183.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="473.0" style="-fx-background-color: #DEE4E7;" />
+        <TextField fx:id="t_id" layoutX="48.0" layoutY="183.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="473.0" style="-fx-background-color: #DEE4E7;" />
         <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="926.0" />
-        <Label alignment="BOTTOM_CENTER" layoutX="320.0" layoutY="14.0" prefHeight="54.0" prefWidth="180.0" style="-fx-text-fill: #DEE4E7;" text="Absence" textFill="WHITE">
+        <Label alignment="BOTTOM_CENTER" layoutX="365.0" layoutY="31.0" prefHeight="54.0" prefWidth="180.0" style="-fx-text-fill: #DEE4E7;" text="Absence" textFill="WHITE">
             <font>
                 <Font name="Times New Roman" size="48.0" />
             </font>
@@ -18,15 +18,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="export" layoutX="687.0" layoutY="174.0" mnemonicParsing="false" onAction="#exportStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Export">
-            <font>
-                <Font name="Times New Roman" size="24.0" />
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-        </Button>
-        <Button fx:id="update" layoutX="813.0" layoutY="174.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
+        <Button fx:id="export" layoutX="780.0" layoutY="174.0" mnemonicParsing="false" onAction="#exportStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Export">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -48,7 +40,7 @@
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="search" layoutX="555.0" layoutY="174.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
+        <Button fx:id="search" layoutX="633.0" layoutY="174.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
