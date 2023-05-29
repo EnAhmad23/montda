@@ -12,9 +12,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -100,10 +109,32 @@ public class Absent implements Initializable {
         }
     }
 
-    public void exportStudent() {
+
+
+    public void exportStudent() throws IOException {
+        try {
+            Stage stage = new Stage();
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File directory = directoryChooser.showDialog(stage);
+            if (directory != null) {
+                try {
+                    String path = directory.getAbsolutePath() + "/file.xls";
+                    System.out.println(path);
+                    WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
+                    WritableSheet sheet = workbook.createSheet("Sheet1", 0);
+                    Label label = new Label(0,0,"123");
+                    sheet.addCell((WritableCell) label);
+                    workbook.write();
+                    workbook.close();
+                    System.out.println("File created successfully at: "+ path);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
     }
-
-
 
 
     public void searchStudent() {
