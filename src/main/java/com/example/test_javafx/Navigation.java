@@ -1,17 +1,14 @@
 package com.example.test_javafx;
 
 import com.example.test_javafx.models.DBModel;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -41,9 +38,10 @@ public class Navigation {
     public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
     public final String UPDATE_STUDENT_REPORT = "views/updateStudentReport.fxml";
+
     public final String UPDATE_TA = "views/UpdateTA.fxml";
     public final String REPORT_PAGE = "views/reports.fxml";
-    public final String REPORT_ATTENDANCE = "views/reportLecture.fxml";
+    public final String REPORT_LECTURE = "views/reportLecture.fxml";
     public final String REPORT_STUDENT = "views/reportStudent.fxml";
 
     public static String string = "";
@@ -59,13 +57,14 @@ public class Navigation {
 //            rootPane.getScene().setRoot(root);
             stage = (Stage) rootPane.getScene().getWindow();
             stage.setOnCloseRequest(event -> {
-//                try {
-//                    dm.backupDatabase("backups/");
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
+                try {
+                   if( dm.backupDatabase("backups/")==0)
+                       System.out.println("Backup Successfully");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             });
             Scene scene = new Scene(root);
             stage.setScene(scene);

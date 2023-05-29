@@ -24,10 +24,7 @@ import java.util.ResourceBundle;
 public class ReportLecture implements Initializable {
     @FXML
     private AnchorPane root;
-    @FXML
-    private Button Search;
-    @FXML
-    private Button nav_back;
+
 
     @FXML
     private TextField l_id;
@@ -101,7 +98,5 @@ public class ReportLecture implements Initializable {
             list.add(stringBuilder.toString());
         }
     }
-    public void update() {
 
-    }
 }

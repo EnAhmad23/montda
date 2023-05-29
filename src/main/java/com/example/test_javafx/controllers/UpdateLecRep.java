@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,9 +28,12 @@ public class UpdateLecRep implements Initializable {
     private TextField title;
 
     @FXML
-    private ComboBox <String>course_id;
-    Navigation nav =new Navigation();
-    DBModel db =DBModel.getModel();
+    private ComboBox<String> course_id;
+    @FXML
+    private Label label;
+    Navigation nav = new Navigation();
+    DBModel db = DBModel.getModel();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lec_id.setText(Navigation.string);
@@ -36,12 +41,12 @@ public class UpdateLecRep implements Initializable {
         course_id.getItems().addAll(db.getCourseIDs().toArray(new String[db.getCourseIDs().size()]));
 
     }
-    public void nav_back(ActionEvent actionEvent) {
+
+    public void nav_back() {
+        nav.navigateTo(root, nav.REPORT_LECTURE);
     }
 
-    public void nav_update(ActionEvent actionEvent) {
 
-    }
 
 
 }

@@ -47,12 +47,12 @@ public class DBModel {
 
     }
     public int backupDatabase(String path) throws IOException, InterruptedException {
-        ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
+//        ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
         String[] envp = {
-                "PGHOST=" + reader.getString("db.serverName"), //localhost
-                "PGDATABASE=" + reader.getString("db.databaseName"), //UNI1
-                "PGUSER=" + reader.getString("db.username"), //postgres
-                "PGPASSWORD=" + reader.getString("db.password"), //1234
+                "PGHOST=localhost" ,
+                "PGDATABASE=project" , //UNI1
+                "PGUSER=postgres" , //postgres
+                "PGPASSWORD=bohboq20" , //1234
                 "PGPORT=5432",
                 "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
         };
@@ -66,6 +66,8 @@ public class DBModel {
         process.waitFor();
         return process.exitValue();
     }
+
+
 //    public void schemaConnect(String schema) {
 //        String sql = "set search_path to '" + schema + "'";
 //        Statement s1 = null;

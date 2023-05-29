@@ -27,6 +27,6 @@ public class Reports {
     }
 
     public void navToLectureReports() {
-        nav.navigateTo(root,nav.REPORT_ATTENDANCE);
+        nav.navigateTo(root,nav.REPORT_LECTURE);
     }
 }
