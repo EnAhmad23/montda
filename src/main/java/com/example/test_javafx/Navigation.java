@@ -20,6 +20,7 @@ public class Navigation {
     public final String ADD_TEACHER_FXML = "views/addTeacher.fxml";
     public final String LECTURES_TIMES_FXML = "views/lecturestimes.fxml";
     public final String ADD_LECTURES_FXML = "views/addLectureTime.fxml";
+    public final String ADD_TAKES_FXML = "views/addTakes.fxml";
 
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
     public final String STUDENTS_FXML = "views/Students.fxml";
@@ -57,16 +58,19 @@ public class Navigation {
 //            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
             stage = (Stage) rootPane.getScene().getWindow();
-//            stage.setOnCloseRequest(event -> {
-//                try {
-//                   if( dm.backupDatabase("backups/")==0)
-//                       System.out.println("Backup Successfully");
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
+            stage.setOnCloseRequest(event -> {
+                try {
+                   if( dm.backupDatabase("backups/")==0)
+                       System.out.println("Backup Successfully");
+                   else System.out.println("0");
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    System.err.println(e.getMessage());
+                    throw new RuntimeException(e);
+                }
+            });
             Scene scene = new Scene(root);
             stage.setScene(scene);
 

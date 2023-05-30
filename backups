@@ -350,10 +350,6 @@ COPY public.users (user_id, username, user_role, password) FROM stdin;
 --
 
 COPY uni.attendence (stu_id, lec_id) FROM stdin;
-120200887	lec22
-120200887	lec04
-120200887	lec70
-120200887	lec34
 \.
 
 
@@ -388,7 +384,7 @@ lec00	ecom3102	hk	ssdfs
 --
 
 COPY uni.phone_num (s_id, ph_num) FROM stdin;
-120200887	0591111236
+120200887	0592294728
 \.
 
 
@@ -399,7 +395,7 @@ COPY uni.phone_num (s_id, ph_num) FROM stdin;
 COPY uni.students (id, name, gender, majer, place) FROM stdin;
 220200326	sadfas	female	dsaf	dasf
 120200000	aa	male	dsaf	asdf
-120200887	ahmad nabil twfieq humeid	male	comp eng	north gaza
+120200887	ahmad nabil humeid	male	comp eng	gaxa
 \.
 
 
@@ -408,10 +404,6 @@ COPY uni.students (id, name, gender, majer, place) FROM stdin;
 --
 
 COPY uni.takes (id, course_id) FROM stdin;
-120200887	eele3302
-120200887	eele3402
-120200887	ecom4220
-120200887	ecom3102
 \.
 
 

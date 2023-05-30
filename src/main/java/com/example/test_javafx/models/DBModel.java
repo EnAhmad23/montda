@@ -60,12 +60,13 @@ public class DBModel {
         String[] cmdArray = {
                 "cmd",
                 "/c",
-                String.format("psql -f \"%s\"",path)
+                String.format("pg_dump -f \"%s\"", path)
         };
         Runtime runtime = Runtime.getRuntime();
         Process process = runtime.exec(cmdArray, envp);
         process.waitFor();
         return process.exitValue();
+
     }
 
 
@@ -359,6 +360,7 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<Take> searchTakes(String id) {
         String sql = "select s.id, s.name ,course_id from students as s  natural join takes  where s.id =? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -549,6 +551,18 @@ public class DBModel {
             st.setString(4, password);
             return st.executeUpdate();
         } catch (SQLException ex) {
+            return 0;
+        }
+
+    }
+    public int addTake(String id ,String course_id) {
+        String sql = "insert into takes values (?,?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            st.setString(2, course_id);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
             return 0;
         }
 
@@ -906,12 +920,11 @@ public class DBModel {
         }
     }
 
-    public ArrayList<String> getStdSems(String id, int year) {
+    public ArrayList<String> getStdIds() {
         ArrayList<String> sems = new ArrayList<>();
-        String sql = "select distinct semester from takes where id = ? and year = ?;";
+        String sql = "select  id from students ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            st.setInt(2, year);
+
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 sems.add(rs.getString(1) + "");
