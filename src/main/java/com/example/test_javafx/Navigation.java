@@ -57,16 +57,16 @@ public class Navigation {
 //            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
             stage = (Stage) rootPane.getScene().getWindow();
-            stage.setOnCloseRequest(event -> {
-                try {
-                   if( dm.backupDatabase("backups/")==0)
-                       System.out.println("Backup Successfully");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+//            stage.setOnCloseRequest(event -> {
+//                try {
+//                   if( dm.backupDatabase("backups/")==0)
+//                       System.out.println("Backup Successfully");
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            });
             Scene scene = new Scene(root);
             stage.setScene(scene);
 

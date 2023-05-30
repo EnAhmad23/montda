@@ -1,15 +1,16 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.Attendences;
-import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
-import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,36 +21,77 @@ public class Takes implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    public TableView<Attendences> table;
+    public TableView<Take> table;
     @FXML
-    public TableColumn<Takes, String> stu_id;
+    public TableColumn<Take, String> stu_id;
     @FXML
-    public TableColumn<Takes, String> name;
+    public TableColumn<Take, String> name;
     @FXML
-    public TableColumn<Takes, String> course;
-    ArrayList<Student> students;
+    public TableColumn<Take, String> course;
+    @FXML
+    private TextField t_id;
+    ArrayList<Take> students;
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-    public void back(){}
-    public void search(){}
-    public void delete(){}
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        students = dm.getTakes();
+        view(students);
+        autoValues();
+        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            t_id.setText(event.getCompletion().toString().substring(0, 9));
+//            TextFields.bindAutoCompletion(t_id, list.toArray());
+        });
+
+    }
+
+    public void back() {
+        nav.navigateTo(root, nav.Admin_FXML);
+    }
+
+    public void search() {
+        if(t_id.getText().length()==9&&!t_id.getText().equals("         ")) {
+            view(dm.searchTakes(t_id.getText()));
+        }else
+            view(students);
+    }
+
+    public void delete() {
+        if (dm.delete_take(t_id.getText())!=0) {
+            nav.message("STUDENT DELETED");
+            view(dm.getTakes());
+        }
+        else
+            nav.error_message("STUDENT DIDN'T DELETE");
+    }
+
     public void autoComplete() {
         autoValues();
     }
+
     void autoValues() {
         list = new ArrayList<>();
-        for (Student s : students) {
+        for (Take s : students) {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(s.getId());
+            stringBuilder.append(s.getStu_id());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getName());
+            stringBuilder.append(s.getStu_name());
+            stringBuilder.append(", ");
+            stringBuilder.append(s.getCourse_id());
             list.add(stringBuilder.toString());
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+    public void view(ArrayList<Take> lectureTimes) {
+        stu_id.setCellValueFactory(new PropertyValueFactory<>("stu_id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("stu_name"));
+        course.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        ObservableList<Take> ids = FXCollections.observableArrayList(lectureTimes);
+        table.setItems(ids);
     }
 }

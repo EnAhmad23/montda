@@ -35,7 +35,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
@@ -53,13 +53,14 @@ public class DBModel {
                 "PGHOST=localhost",
                 "PGDATABASE=project",
                 "PGUSER=postgres",
-                "PGPASSWORD=2002",
-                "PGPORT=5432"
+                "PGPASSWORD=bohboq20",
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
         };
         String[] cmdArray = {
-                "/bin/sh",
-                "-c",
-                String.format("/Library/PostgreSQL/15/bin/pg_dump -f \"%s\"", path)
+                "cmd",
+                "/c",
+                String.format("psql -f \"%s\"",path)
         };
         Runtime runtime = Runtime.getRuntime();
         Process process = runtime.exec(cmdArray, envp);
@@ -340,6 +341,42 @@ public class DBModel {
         }
 
     }
+    public ArrayList<Take> getTakes() {
+        String sql = "select id, name ,course_id from students  natural join takes ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<Take> takes =new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+//                System.out.println(rs.getString(1));
+                takes.add(new Take(rs.getString(1),rs.getString(2),rs.getString(3)));
+            }
+            return takes;
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+    public ArrayList<Take> searchTakes(String id) {
+        String sql = "select s.id, s.name ,course_id from students as s  natural join takes  where s.id =? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ArrayList<Take> takes =new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+//                System.out.println(rs.getString(1));
+                takes.add(new Take(rs.getString(1),rs.getString(2),rs.getString(3)));
+            }
+            return takes;
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
 
     public int delete_Student(String id) {
         String sql = "DELETE FROM students WHERE id = ? ;";
@@ -355,6 +392,17 @@ public class DBModel {
 
     public int delete_lecture(String id) {
         String sql = "DELETE FROM lecture WHERE id = ? ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            return st.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
+    public int delete_take(String id) {
+        String sql = "DELETE FROM takes WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             return st.executeUpdate();
