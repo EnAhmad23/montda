@@ -69,24 +69,6 @@ public class Students implements Initializable {
     }
 
     public void UpdateStudent() {
-//        try {
-//            Stage stage = new Stage();
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource(nav.UPDATE_STUDENT));
-//            Parent rootP = loader.load();
-//
-//
-////            rootPane.getScene().setRoot(root);
-////            Stage stage = (Stage) rootPane.getScene().getWindow();
-//            Scene scene = new Scene(rootP);
-//            stage.setScene(scene);
-//            stage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        string = t_id.getText();
-//        System.out.println(string);
-
         if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
             nav.navigateTo(root,nav.UPDATE_STUDENT);
@@ -102,7 +84,7 @@ public class Students implements Initializable {
         vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
         Label label = new Label("STUDENT DELETED !");
         if (dm.delete_Student(t_id.getText()) != 0) {
-            view();
+            view(dm.getStd());
             del(t_id.getText());
             nav.navigateTo(root,nav.STUDENTS_FXML);
             label.setTextFill(Color.color(0, 0, 0));
@@ -121,8 +103,7 @@ public class Students implements Initializable {
     void del(String s) {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId().equals(s)) {
-//                list.remove(i);
-                System.out.println(students.remove(i));
+                students.remove(i);
             }
         }
     }
@@ -136,7 +117,7 @@ public class Students implements Initializable {
         nav.navigateTo(root, Navigation.owner);
     }
 
-    public void view() {
+    public void view(ArrayList<Student> arrayList) {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
@@ -145,27 +126,27 @@ public class Students implements Initializable {
         phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
 
 
-        ObservableList<Student> ids = FXCollections.observableArrayList(dm.getStd());
+        ObservableList<Student> ids = FXCollections.observableArrayList(arrayList);
         table.setItems(ids);
     }
 
 
-    public void viewSearch() {
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
-        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
-        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
-
-        ObservableList<Student> ids = FXCollections.observableArrayList(dm.searchStudent(t_id.getText()));
-        table.setItems(ids);
-    }
+//    public void viewSearch() {
+//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+//        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+//        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
+//        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
+//        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
+//
+//        ObservableList<Student> ids = FXCollections.observableArrayList();
+//        table.setItems(ids);
+//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         students=dm.getStd();
-        view();
+        view(students);
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
@@ -198,9 +179,9 @@ public class Students implements Initializable {
     }
     public void searchStudent() {
         if (t_id.getText().isEmpty()) {
-            view();
+            view(dm.getStd());
         } else {
-            viewSearch();
+            view(dm.searchStudent(t_id.getText()));
         }
     }
 }

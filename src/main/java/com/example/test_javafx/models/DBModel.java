@@ -39,9 +39,19 @@ public class DBModel {
         source.setCurrentSchema("uni");
 
         try {
+
             con = source.getConnection();
             System.out.println("Connected to database");
         } catch (SQLException ex) {
+           if (ex.getSQLState().equals("3D000")) {
+               try {
+                   restoreDatabase("backups");
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               } catch (InterruptedException e) {
+                   throw new RuntimeException(e);
+               }
+           }
             System.err.println(ex.getMessage());
         }
 
@@ -68,26 +78,31 @@ public class DBModel {
         return process.exitValue();
 
     }
+    public static void restoreDatabase(String path) throws IOException, InterruptedException {
+        String[] envp = {
+                "PGHOST=localhost",
+                "PGDATABASE=project",
+                "PGUSER=postgres",
+                "PGPASSWORD=bohboq20",
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
+        };
+        String[] cmdArray = {
+                "cmd",
+                "/c",
+                String.format("pg_dump -f \"%s\"", path)
+        };
+        Runtime runtime = Runtime.getRuntime();
+        Process process = runtime.exec(cmdArray, envp);
+        process.waitFor();
 
+        // Check the exit value of the process
+        int exitValue = process.exitValue();
+        if (exitValue != 0) {
+            throw new IOException("Failed to restore database. Exit value: " + exitValue);
+        }
+    }
 
-//    public void schemaConnect(String schema) {
-//        String sql = "set search_path to '" + schema + "'";
-//        Statement s1 = null;
-//        try {
-//            connect();
-//            s1 = con.createStatement();
-//            s1.execute(sql);
-//            System.out.println("Connected to schema " + schema);
-//        } catch (SQLException ex) {
-//        } finally {
-//            try {
-//                s1.close();
-//            } catch (SQLException ex) {
-//            }
-//
-//        }
-//
-//    }
 
     private void closeEverything() {
         try {
@@ -456,7 +471,10 @@ public class DBModel {
     }
 
     public ArrayList<Student> getStd() {
-        String sql = "select id,name,gender,majer,place,ph_num from students join phone_num on id =s_id;";
+        String sql = "SELECT s.id, s.name, s.gender, s.majer, s.place, string_agg(p.ph_num, '\n') AS phone_numbers\n" +
+                "FROM students s\n" +
+                "LEFT JOIN phone_num p ON s.id = p.s_id\n" +
+                "GROUP BY s.id, s.name, s.gender, s.majer, s.place;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Student> ids = new ArrayList<>();

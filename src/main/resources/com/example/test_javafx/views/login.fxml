@@ -17,7 +17,7 @@
             </font></TextField>
             <PasswordField fx:id="password" layoutX="570.0" layoutY="385.0" prefHeight="41.0" prefWidth="360.0" style="-fx-background-radius: 15;">
             <font>
-               <Font name="System Bold" size="20.0" />
+               <Font name="System Bold" size="16.0" />
             </font></PasswordField>
             <Label layoutX="625.0" layoutY="450.0" prefHeight="20.0" prefWidth="250.0" style="-fx-alignment: center;" textFill="RED" />
             <Button fx:id="login" layoutX="625.0" layoutY="500.0" onAction="#checkAdmin" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-font: bold 20.0 'Times New Roman'; -fx-background-radius: 10;" text="LOGIN" />
