@@ -50,11 +50,20 @@ public class Attendence implements Initializable {
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
-    public void addUser() {
-    }
-
     public void back() {
         nav.navigateTo(root, nav.TEACHING_FXML);
+    }
+
+    public void upload() {
+        nav.navigateTo(root, nav.UPLOAD);
+    }
+
+    public void add() {
+        if (t_id.getText() != null && lecture_ids.getValue() != null && t_id.getText().length() == 9) {
+            if (dm.addAttendance(t_id.getText(), lecture_ids.getValue()) != 0)
+                view(dm.getAttendence(lecture_ids.getValue()));
+            t_id.clear();
+        } else nav.error_message("STUDENT DIDN'T ADD");
     }
 
     public void updateAttendance() {
@@ -130,11 +139,7 @@ public class Attendence implements Initializable {
     }
 
     public void autoComplete() {
-
-
         autoValues();
-
-
     }
 
     void autoValues() {
@@ -149,6 +154,8 @@ public class Attendence implements Initializable {
             list.add(stringBuilder.toString());
         }
     }
+
+
 //    void autoValues(){
 //        list = new ArrayList<>();
 //        for (Attendences s : attendences) {
@@ -166,11 +173,5 @@ public class Attendence implements Initializable {
 //        }
 //    }
 
-    public void add() {
-        if (t_id.getText() != null && lecture_ids.getValue() != null && t_id.getText().length() == 9) {
-            if (dm.addAttendance(t_id.getText(), lecture_ids.getValue()) != 0)
-                view(dm.getAttendence(lecture_ids.getValue()));
-            t_id.clear();
-        } else nav.error_message("STUDENT DIDN'T ADD");
-    }
+
 }

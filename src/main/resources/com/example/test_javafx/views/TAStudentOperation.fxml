@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.TAStudentOperation">
    <children>
-      <Button fx:id="id_back_stuOP" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_stuOP" prefHeight="28.0" prefWidth="37.0" text="←">
+      <Button fx:id="id_back_stuOP" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_stuOP" prefHeight="28.0" prefWidth="37.0" style="-fx-background-radius: 8;" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="add_student" layoutX="160.0" layoutY="149.0" mnemonicParsing="false" onAction="#navToAddStudent" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add Student">
+      <Button fx:id="add_student" layoutX="160.0" layoutY="149.0" mnemonicParsing="false" onAction="#navToAddStudent" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 30;" text="Add Student">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="edit_student" layoutX="161.0" layoutY="251.0" mnemonicParsing="false" onAction="#navToEditStudent" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Edit Student">
+      <Button fx:id="edit_student" layoutX="161.0" layoutY="251.0" mnemonicParsing="false" onAction="#navToEditStudent" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 30;" text="Edit Student">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

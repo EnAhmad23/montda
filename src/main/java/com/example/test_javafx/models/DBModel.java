@@ -35,7 +35,7 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
@@ -46,20 +46,20 @@ public class DBModel {
         }
 
     }
+
+
     public int backupDatabase(String path) throws IOException, InterruptedException {
-//        ResourceBundle reader = ResourceBundle.getBundle("dbconfig");
         String[] envp = {
-                "PGHOST=localhost" ,
-                "PGDATABASE=project" , //UNI1
-                "PGUSER=postgres" , //postgres
-                "PGPASSWORD=bohboq20" , //1234
-                "PGPORT=5432",
-                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
+                "PGHOST=localhost",
+                "PGDATABASE=project",
+                "PGUSER=postgres",
+                "PGPASSWORD=2002",
+                "PGPORT=5432"
         };
         String[] cmdArray = {
-                "cmd",
-                "/c",
-                String.format("pg_dump -f \"%s\"", path)
+                "/bin/sh",
+                "-c",
+                String.format("/Library/PostgreSQL/15/bin/pg_dump -f \"%s\"", path)
         };
         Runtime runtime = Runtime.getRuntime();
         Process process = runtime.exec(cmdArray, envp);

@@ -36,7 +36,9 @@ public class StartController implements Initializable {
     @FXML
     public Button nav_student;
     @FXML
-    public Button id_close_admin;
+    public Button nav_back;
+    @FXML
+    public Button nav_take;
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
@@ -81,7 +83,13 @@ public class StartController implements Initializable {
         nav.navigateTo(rootPane, nav.STUDENTS_FXML);
     }
 
-    public void close_admin(){}
+    public void takes(){
+        nav.navigateTo(rootPane, nav.TAKES);
+    }
+
+    public void back(){nav.navigateTo(rootPane, nav.LOGIN);}
+
+
     public Connection connect() {
         PGSimpleDataSource source = new PGSimpleDataSource();
         source.setServerName("localhost");

@@ -61,10 +61,10 @@
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="course_id" layoutX="172.0" layoutY="118.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter Course ID" />
-      <TextField fx:id="bookName" layoutX="169.0" layoutY="234.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter book name" />
-      <TextField fx:id="teacherName" layoutX="170.0" layoutY="176.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the teacher name" />
-      <TextField fx:id="courseSubject" layoutX="170.0" layoutY="350.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the subject" />
-      <TextField fx:id="room" layoutX="169.0" layoutY="292.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter room number" />
+      <TextField fx:id="course_id" layoutX="169.0" layoutY="116.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter Course ID" style="-fx-background-radius: 10;" />
+      <TextField fx:id="bookName" layoutX="169.0" layoutY="234.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter book name" style="-fx-background-radius: 10;" />
+      <TextField fx:id="teacherName" layoutX="170.0" layoutY="176.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the teacher name" style="-fx-background-radius: 10;" />
+      <TextField fx:id="courseSubject" layoutX="170.0" layoutY="350.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter the subject" style="-fx-background-radius: 10;" />
+      <TextField fx:id="room" layoutX="169.0" layoutY="292.0" prefHeight="42.0" prefWidth="170.0" promptText="Enter room number" style="-fx-background-radius: 10;" />
    </children>
 </AnchorPane>

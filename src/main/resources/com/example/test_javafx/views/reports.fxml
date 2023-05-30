@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="464.0" prefWidth="626.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Reports">
+<AnchorPane fx:id="root" prefHeight="437.0" prefWidth="626.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Reports">
     <children>
         <Button fx:id="id_back_stuOP" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#back_stuOP" prefHeight="28.0" prefWidth="37.0" text="←">
             <font>
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="studentReport" layoutX="160.0" layoutY="149.0" mnemonicParsing="false" onAction="#navToStudentReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Student Reports">
+        <Button fx:id="studentReport" layoutX="161.0" layoutY="156.0" mnemonicParsing="false" onAction="#navToStudentReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-radius: 30;" text="Student Reports">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -21,7 +22,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="lectureReports" layoutX="161.0" layoutY="251.0" mnemonicParsing="false" onAction="#navToLectureReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Lecture Reports">
+        <Button fx:id="lectureReports" layoutX="161.0" layoutY="243.0" mnemonicParsing="false" onAction="#navToLectureReports" prefHeight="60.0" prefWidth="280.0" style="-fx-background-radius: 30;" text="Lecture Reports">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -37,7 +38,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-      <Button fx:id="absence" layoutX="161.0" layoutY="350.0" mnemonicParsing="false" onAction="#navToAbsence" prefHeight="60.0" prefWidth="280.0" text="Absence">
+      <Button fx:id="absence" layoutX="161.0" layoutY="329.0" mnemonicParsing="false" onAction="#navToAbsence" prefHeight="60.0" prefWidth="280.0" style="-fx-background-radius: 30;" text="Absence">
          <font>
             <Font name="Times New Roman Bold" size="24.0" />
          </font>

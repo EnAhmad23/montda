@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.StartTeacher">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.StartTeacher">
    <children>
-      <Button fx:id="nav_back" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#back" prefHeight="29.0" prefWidth="39.0" text="←">
+      <Button fx:id="nav_back" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#back" prefHeight="29.0" prefWidth="39.0" style="-fx-background-radius: 8;" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
@@ -21,7 +22,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="student" layoutX="160.0" layoutY="118.0" mnemonicParsing="false" onAction="#students" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Students">
+      <Button fx:id="student" layoutX="160.0" layoutY="118.0" mnemonicParsing="false" onAction="#students" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 20;" text="Students">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -29,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="lectures" layoutX="160.0" layoutY="180.0" mnemonicParsing="false" onAction="#lectures" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="lectures">
+      <Button fx:id="lectures" layoutX="160.0" layoutY="180.0" mnemonicParsing="false" onAction="#lectures" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 20;" text="lectures">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -37,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="attendance" layoutX="160.0" layoutY="242.0" mnemonicParsing="false" onAction="#attendance_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Attendance">
+      <Button fx:id="attendance" layoutX="160.0" layoutY="242.0" mnemonicParsing="false" onAction="#attendance_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 20;" text="Attendance">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -45,7 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="reports_statements" layoutX="160.0" layoutY="305.0" mnemonicParsing="false" onAction="#report_statement_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Reports &amp; Statements">
+      <Button fx:id="reports_statements" layoutX="160.0" layoutY="305.0" mnemonicParsing="false" onAction="#report_statement_page" prefHeight="44.0" prefWidth="280.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 20;" text="Reports &amp; Statements">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

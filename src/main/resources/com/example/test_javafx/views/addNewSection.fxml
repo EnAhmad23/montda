@@ -18,7 +18,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btn_add" layoutX="315.0" layoutY="407.0" mnemonicParsing="false" onAction="#addCourses" prefHeight="42.0" prefWidth="101.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F;" text="Add">
+            <Button fx:id="btn_add" layoutX="326.0" layoutY="406.0" mnemonicParsing="false" onAction="#addCourses" prefHeight="42.0" prefWidth="101.0" style="-fx-background-radius: 10;" text="Add">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,9 +41,9 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="course_id" layoutX="173.0" layoutY="99.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Course ID" />
-            <TextField fx:id="bookName" layoutX="173.0" layoutY="215.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Book Name" />
-            <TextField fx:id="CourseSubject" layoutX="173.0" layoutY="340.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter The Subject" />
+            <TextField fx:id="course_id" layoutX="173.0" layoutY="99.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Course ID" style="-fx-background-radius: 10;" />
+            <TextField fx:id="bookName" layoutX="173.0" layoutY="215.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Book Name" style="-fx-background-radius: 10;" />
+            <TextField fx:id="CourseSubject" layoutX="173.0" layoutY="340.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter The Subject" style="-fx-background-radius: 10;" />
             <Label alignment="BOTTOM_CENTER" layoutX="94.0" layoutY="27.0" prefHeight="42.0" prefWidth="308.0" text="Add a New Course" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="37.0" />
@@ -52,13 +52,13 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Button fx:id="button_to_back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="←">
+            <Button fx:id="button_to_back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" style="-fx-background-radius: 8;" text="←">
                <font>
                   <Font name="Times New Roman Bold" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="room" layoutX="173.0" layoutY="276.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Room Number" />
-            <Label fx:id="label" layoutX="20.0" layoutY="396.0" prefHeight="42.0" prefWidth="279.0" textFill="RED">
+            <TextField fx:id="room" layoutX="173.0" layoutY="276.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Room Number" style="-fx-background-radius: 10;" />
+            <Label fx:id="label" layoutX="20.0" layoutY="406.0" prefHeight="42.0" prefWidth="279.0" textFill="RED">
                <font>
                   <Font size="20.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="teacherName" layoutX="173.0" layoutY="154.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter the teacher name" />
+            <TextField fx:id="teacherName" layoutX="173.0" layoutY="154.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter the teacher name" style="-fx-background-radius: 10;" />
          </children>
       </Pane>
    </children>

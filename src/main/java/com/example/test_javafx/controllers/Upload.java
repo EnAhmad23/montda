@@ -59,7 +59,7 @@ public class Upload implements Initializable {
     ArrayList<String> studentIDFromExcel = new ArrayList<>();
 
     public void Upload_back(){
-        nav.navigateTo(root,nav.UPLOAD);
+        nav.navigateTo(root,nav.ATTENDENCE_FXML);
     }
     public void Upload() {
         String courseID =  course_ID.getValue();
@@ -79,28 +79,6 @@ public class Upload implements Initializable {
         }catch (Exception e){
             System.out.println("Error! ");
         }
-
-
-
-//        try {
-//            for (int i = 0; i < studentIDFromExcel.size(); i++) {
-//                int result = dm.addAttendance(studentIDFromExcel.get(i), lecture_ID.getValue());
-//                System.out.println(result);
-//                if (result == 1) {
-//                    label.setTextFill(Color.color(0, 1, 0));
-//                    label.setText("SUCCESSFULLY ^_^");
-//                } else if (result == 0) {
-//                    label.setTextFill(Color.color(1, 0, 0));
-//                    label.setText("DIDN'T ADD !!");
-//                } else {
-//
-//                    label.setTextFill(Color.color(1, 0, 0));
-//                    label.setText("Student ID already exists!");
-//                }
-//            }
-//        } catch (Exception exception){
-//
-//        }
     }
     public void chooseFile(){
         try{

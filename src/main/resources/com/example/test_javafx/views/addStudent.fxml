@@ -34,15 +34,15 @@
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="gender" layoutX="181.0" layoutY="373.0" prefHeight="34.0" prefWidth="176.0" style="-fx-background-color: #DEE4E7;" />
+      <ComboBox fx:id="gender" layoutX="181.0" layoutY="373.0" prefHeight="34.0" prefWidth="196.0" style="-fx-background-radius: 10;" />
       <Label layoutX="50.0" layoutY="373.0" prefHeight="34.0" prefWidth="70.0" style="-fx-font-size: 20; -fx-font-family: bold;" text="Gender" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="id" layoutX="181.0" layoutY="110.0" prefHeight="34.0" prefWidth="176.0" promptText="Enter Student ID" />
-      <TextField fx:id="name" layoutX="181.0" layoutY="178.0" prefHeight="34.0" prefWidth="176.0" promptText="Enter Student Name" />
-      <TextField fx:id="major" layoutX="181.0" layoutY="308.0" prefHeight="34.0" prefWidth="176.0" promptText="Enter Student Major" />
+      <TextField fx:id="id" layoutX="181.0" layoutY="110.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student ID" style="-fx-background-radius: 10;" />
+      <TextField fx:id="name" layoutX="181.0" layoutY="178.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student Name" style="-fx-background-radius: 10;" />
+      <TextField fx:id="major" layoutX="181.0" layoutY="308.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student Major" style="-fx-background-radius: 10;" />
       <Label fx:id="label" layoutX="11.0" layoutY="516.0" prefHeight="54.0" prefWidth="284.0" textFill="RED">
          <font>
             <Font size="20.0" />
@@ -66,12 +66,12 @@
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="place" layoutX="181.0" layoutY="240.0" prefHeight="34.0" prefWidth="176.0" promptText="Enter Student Place" />
+      <TextField fx:id="place" layoutX="181.0" layoutY="240.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student Place" style="-fx-background-radius: 10;" />
       <Label layoutX="23.0" layoutY="439.0" prefHeight="34.0" prefWidth="135.0" text="Phone Number" textFill="WHITE">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="phone_number" layoutX="181.0" layoutY="439.0" prefHeight="34.0" prefWidth="176.0" promptText="Enter phone number" />
+      <TextField fx:id="phone_number" layoutX="181.0" layoutY="439.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter phone number" style="-fx-background-radius: 10;" />
    </children>
 </AnchorPane>

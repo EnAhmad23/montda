@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -26,10 +23,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Absent implements Initializable {
-
     @FXML
     private AnchorPane root;
     @FXML
@@ -40,14 +37,12 @@ public class Absent implements Initializable {
     private Button update;
     @FXML
     private TextField t_id;
-
     @FXML
     private TableView<Absents> table;
     @FXML
     private TableColumn<Absents, String> id;
     @FXML
     private TableColumn<Absents, String> name;
-
     @FXML
     private TableColumn<Absents, String> phone_num;
     @FXML
@@ -85,11 +80,7 @@ public class Absent implements Initializable {
         table.setItems(ids);
     }
     public void autoComplete() {
-
-
         autoValues();
-
-
     }
 
     void autoValues() {
@@ -108,50 +99,49 @@ public class Absent implements Initializable {
             list.add(stringBuilder.toString());
         }
     }
-
-
-
     public void exportStudent() throws IOException {
         try {
             Stage stage = new Stage();
             DirectoryChooser directoryChooser = new DirectoryChooser();
             File directory = directoryChooser.showDialog(stage);
             if (directory != null) {
-                try {
-                    String path = directory.getAbsolutePath() + "/file.xls";
-                    System.out.println(path);
-                    WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
-                    WritableSheet sheet = workbook.createSheet("Sheet1", 0);
-                    Label label = new Label(0,0,"123");
-                    sheet.addCell((WritableCell) label);
-                    workbook.write();
-                    workbook.close();
-                    System.out.println("File created successfully at: "+ path);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("File Name");
+                dialog.setHeaderText("Enter the file name:");
+                dialog.setContentText("File Name:");
+
+                Optional<String> result = dialog.showAndWait();
+                if (result.isPresent()) {
+                    String fileName = result.get();
+                    String path = directory.getAbsolutePath() + "/" + fileName + ".xls";
+                    try {
+                        WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
+                        WritableSheet sheet = workbook.createSheet("Sheet1", 0);
+                        Label label = new Label(0, 0, "123");
+                        sheet.addCell(label);
+                        workbook.write();
+                        workbook.close();
+                        System.out.println("File created successfully at: " + path);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("No file name entered.");
                 }
             }
-        }catch (Exception e ){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
     public void searchStudent() {
         if(t_id.getText().length()==9&&!t_id.getText().equals("         ")) {
             view(dm.searchAbsents(t_id.getText()));
         }else
             view(absents);
     }
-
-
-
     public void updateStudent() {
     }
-
     public void back() {
         nav.navigateTo(root, nav.REPORT_PAGE);
     }
-
-
 }
