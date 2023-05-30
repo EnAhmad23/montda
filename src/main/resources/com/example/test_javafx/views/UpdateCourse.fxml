@@ -28,7 +28,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="update_button" layoutX="277.0" layoutY="427.0" mnemonicParsing="false" onAction="#nav_update" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-background-radius: 15;" text="Update">
+      <Button fx:id="update_button" layoutX="277.0" layoutY="427.0" mnemonicParsing="false" onAction="#nav_update" prefHeight="42.0" prefWidth="94.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 15;" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

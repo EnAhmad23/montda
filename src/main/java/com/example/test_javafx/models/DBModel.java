@@ -35,23 +35,13 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setPassword("2002");
         source.setCurrentSchema("uni");
 
         try {
-
             con = source.getConnection();
             System.out.println("Connected to database");
         } catch (SQLException ex) {
-           if (ex.getSQLState().equals("3D000")) {
-               try {
-                   restoreDatabase("backups");
-               } catch (IOException e) {
-                   throw new RuntimeException(e);
-               } catch (InterruptedException e) {
-                   throw new RuntimeException(e);
-               }
-           }
             System.err.println(ex.getMessage());
         }
 
@@ -63,21 +53,40 @@ public class DBModel {
                 "PGHOST=localhost",
                 "PGDATABASE=project",
                 "PGUSER=postgres",
-                "PGPASSWORD=bohboq20",
-                "PGPORT=5432",
-                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
+                "PGPASSWORD=2002",
+                "PGPORT=5432"
         };
         String[] cmdArray = {
-                "cmd",
-                "/c",
-                String.format("pg_dump -f \"%s\"", path)
+                "/bin/sh",
+                "-c",
+                String.format("/Library/PostgreSQL/15/bin/pg_dump -f \"%s\"", path)
         };
         Runtime runtime = Runtime.getRuntime();
         Process process = runtime.exec(cmdArray, envp);
         process.waitFor();
         return process.exitValue();
-
     }
+
+//    public int backupDatabase(String path) throws IOException, InterruptedException {
+//        String[] envp = {
+//                "PGHOST=localhost",
+//                "PGDATABASE=project",
+//                "PGUSER=postgres",
+//                "PGPASSWORD=bohboq20",
+//                "PGPORT=5432",
+//                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
+//        };
+//        String[] cmdArray = {
+//                "cmd",
+//                "/c",
+//                String.format("pg_dump -f \"%s\"", path)
+//        };
+//        Runtime runtime = Runtime.getRuntime();
+//        Process process = runtime.exec(cmdArray, envp);
+//        process.waitFor();
+//        return process.exitValue();
+//
+//    }
     public static void restoreDatabase(String path) throws IOException, InterruptedException {
         String[] envp = {
                 "PGHOST=localhost",

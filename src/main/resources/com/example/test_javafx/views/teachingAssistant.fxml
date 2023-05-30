@@ -13,6 +13,9 @@
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </Button>
       <Label alignment="BOTTOM_CENTER" layoutX="96.0" layoutY="28.0" prefHeight="54.0" prefWidth="425.0" text="Teaching Assistant" textFill="WHITE">
          <font>

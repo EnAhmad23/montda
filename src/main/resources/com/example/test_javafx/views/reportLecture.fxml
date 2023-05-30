@@ -16,7 +16,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="Search" layoutX="617.0" layoutY="153.0" mnemonicParsing="false" onAction="#SearchReportAttendance" prefHeight="54.0" prefWidth="113.0" style="-fx-background-radius: 10;" text="Search">
+            <Button fx:id="Search" layoutX="617.0" layoutY="153.0" mnemonicParsing="false" onAction="#SearchReportAttendance" prefHeight="54.0" prefWidth="113.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>

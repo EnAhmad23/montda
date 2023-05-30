@@ -17,7 +17,7 @@
                 <Font name="Times New Roman" size="12.0" />
             </font>
         </TextField>
-        <Button fx:id="view" layoutX="487.0" layoutY="173.0" mnemonicParsing="false" onAction="#viewTimes" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10;" text="Search">
+        <Button fx:id="view" layoutX="487.0" layoutY="173.0" mnemonicParsing="false" onAction="#viewTimes" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
@@ -30,17 +30,17 @@
                 <TableColumn fx:id="room" prefWidth="135.0" style="-fx-background-radius: 2;" text="Room Number" />
             </columns>
         </TableView>
-        <Button fx:id="delete" layoutX="600.0" layoutY="173.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10;" text="Delete">
+        <Button fx:id="delete" layoutX="600.0" layoutY="173.0" mnemonicParsing="false" onAction="#delete_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="update" layoutX="600.0" layoutY="117.0" mnemonicParsing="false" onAction="#update_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10;" text="Update">
+        <Button fx:id="update" layoutX="600.0" layoutY="117.0" mnemonicParsing="false" onAction="#update_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <Button fx:id="add" layoutX="487.0" layoutY="117.0" mnemonicParsing="false" onAction="#add_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10;" text="Add" AnchorPane.rightAnchor="135.0">
+        <Button fx:id="add" layoutX="487.0" layoutY="117.0" mnemonicParsing="false" onAction="#add_button" prefHeight="48.0" prefWidth="99.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add" AnchorPane.rightAnchor="135.0">
             <font>
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>

@@ -29,7 +29,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="update_button" layoutX="326.0" layoutY="406.0" mnemonicParsing="false" onAction="#nav_update" prefHeight="50.0" prefWidth="112.0" style="-fx-background-radius: 10;" text="Update">
+        <Button fx:id="update_button" layoutX="326.0" layoutY="406.0" mnemonicParsing="false" onAction="#nav_update" prefHeight="50.0" prefWidth="112.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 10;" text="Update">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

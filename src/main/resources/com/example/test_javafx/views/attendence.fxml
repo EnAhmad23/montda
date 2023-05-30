@@ -55,7 +55,8 @@
          </cursor>
       </Button>
       <Button fx:id="search" layoutX="541.0" layoutY="172.0" mnemonicParsing="false" onAction="#searchAttendance" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text="Search">
-         <font>
+
+          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
          <cursor>

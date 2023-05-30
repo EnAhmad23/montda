@@ -21,7 +21,7 @@
                   <Font name="Times New Roman" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="Search" layoutX="413.0" layoutY="161.0" mnemonicParsing="false" onAction="#action" prefHeight="50.0" prefWidth="113.0" style="-fx-background-radius: 10;" text="Search">
+            <Button fx:id="Search" layoutX="413.0" layoutY="161.0" mnemonicParsing="false" onAction="#action" prefHeight="50.0" prefWidth="113.0" style="-fx-background-radius: 10;  -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-      <Button fx:id="nav_update" layoutX="538.0" layoutY="161.0" mnemonicParsing="false" onAction="#UpdateStuReport" prefHeight="50.0" prefWidth="113.0" style="-fx-background-radius: 10;" text="Update">
+      <Button fx:id="nav_update" layoutX="538.0" layoutY="161.0" mnemonicParsing="false" onAction="#UpdateStuReport" prefHeight="50.0" prefWidth="113.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
          <font>
             <Font name="Times New Roman Bold" size="18.0" />
          </font>

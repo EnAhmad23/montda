@@ -37,7 +37,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="delete" layoutX="666.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Delete">
+        <Button fx:id="delete" layoutX="666.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Delete">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -45,7 +45,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="update" layoutX="666.0" layoutY="80.0" mnemonicParsing="false" onAction="#updateCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Update">
+        <Button fx:id="update" layoutX="666.0" layoutY="80.0" mnemonicParsing="false" onAction="#updateCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Update">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -53,7 +53,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="add" layoutX="533.0" layoutY="80.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Add">
+        <Button fx:id="add" layoutX="533.0" layoutY="80.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -66,7 +66,7 @@
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>
         </Button>
-      <Button fx:id="search" layoutX="533.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Search">
+      <Button fx:id="search" layoutX="533.0" layoutY="149.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="60.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

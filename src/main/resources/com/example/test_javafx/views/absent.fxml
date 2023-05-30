@@ -23,7 +23,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="export" layoutX="780.0" layoutY="174.0" mnemonicParsing="false" onAction="#exportStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-radius: 10;" text="Export">
+        <Button fx:id="export" layoutX="780.0" layoutY="174.0" mnemonicParsing="false" onAction="#exportStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Export">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>
@@ -40,12 +40,12 @@
                 <TableColumn fx:id="attPercentage" prefWidth="228.80002441406248" style="-fx-background-radius: 2;" text="AttPercentage" />
             </columns>
         </TableView>
-        <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-color: #DEE4E7; -fx-background-radius: 8;" text="←">
+        <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-radius: 8;" text="←">
             <font>
                 <Font name="Times New Roman Bold" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="search" layoutX="633.0" layoutY="174.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-radius: 10;" text="Search">
+        <Button fx:id="search" layoutX="633.0" layoutY="174.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="112.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Search">
             <font>
                 <Font name="Times New Roman" size="24.0" />
             </font>

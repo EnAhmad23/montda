@@ -36,7 +36,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="add" layoutX="359.0" layoutY="291.0" mnemonicParsing="false" onAction="#addTakes" prefHeight="46.0" prefWidth="78.0" style="-fx-background-color: #DEE4E7; -fx-background-radius: 10;" text="Add">
+        <Button fx:id="add" layoutX="359.0" layoutY="291.0" mnemonicParsing="false" onAction="#addTakes" prefHeight="46.0" prefWidth="78.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 10;" text="Add">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font></Button>

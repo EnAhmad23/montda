@@ -34,7 +34,7 @@ public class Absent implements Initializable {
     @FXML
     private Button export;
     @FXML
-    private Button update;
+    private Button back;
     @FXML
     private TextField t_id;
     @FXML
