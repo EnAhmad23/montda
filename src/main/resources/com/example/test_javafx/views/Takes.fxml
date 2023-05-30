@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="709.0" prefWidth="817.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Takes">
+<AnchorPane fx:id="root" prefHeight="709.0" prefWidth="817.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Takes">
    <children>
       <Label alignment="BOTTOM_CENTER" layoutX="285.0" layoutY="21.0" prefHeight="60.0" prefWidth="256.0" text="Takes" textFill="WHITE">
          <font>
@@ -16,7 +21,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <TextField fx:id="t_id" layoutX="59.0" layoutY="179.0" onKeyTyped="#autoComplete" prefHeight="46.0" prefWidth="336.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="t_id" layoutX="40.0" layoutY="179.0" onKeyTyped="#autoComplete" prefHeight="46.0" prefWidth="336.0" style="-fx-background-radius: 10;" />
       <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
       <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
          <columns>
@@ -39,6 +44,14 @@
          </cursor>
       </Button>
       <Button fx:id="nav_delete" layoutX="676.0" layoutY="172.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text="Delete">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="406.0" layoutY="172.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text="Add">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
