@@ -37,7 +37,7 @@ public class ReportStudent implements Initializable {
     @FXML
     public TableColumn<StudentReport, String> course_id;
     @FXML
-    public TableColumn<StudentReport, String> lec_id;
+    public TableColumn<StudentReport, String> name;
     @FXML
     public TableColumn<StudentReport, String> attendancePear;
     ArrayList<StudentReport> stuReport;
@@ -79,7 +79,7 @@ public class ReportStudent implements Initializable {
     private void view(ArrayList<StudentReport> list) {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
-        lec_id.setCellValueFactory(new PropertyValueFactory<>("lec_id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         attendancePear.setCellValueFactory(new PropertyValueFactory<>("attendancePear"));
         ObservableList<StudentReport> ids = FXCollections.observableArrayList(list);
         table.setItems(ids);

@@ -30,6 +30,7 @@ public class Takes implements Initializable {
     public TableColumn<Take, String> course;
     @FXML
     private TextField t_id;
+
     ArrayList<Take> students;
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();

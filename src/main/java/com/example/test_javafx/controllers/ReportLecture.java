@@ -50,7 +50,10 @@ public class ReportLecture implements Initializable {
     ArrayList<String> list = new ArrayList<>();
 
     public void SearchReportAttendance(){
-
+        if(l_id.getText().length()==5&&!l_id.getText().equals("     ")) {
+            view(dm.reportLectures(l_id.getText()));
+        }else
+            view(lecture);
 
     }
     public void back(){

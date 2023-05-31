@@ -11,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -44,27 +45,32 @@ public class AddTakes implements Initializable {
 
     public void addTakes() {
         if (dm.addTake(id.getText(), course_id.getValue()) != 0) {
-            nav.message("TAKES ADDED SUCCESSFULLY");
-        } else
-            nav.error_message("TAKES DIDN'T ADD");
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("TAKES ADDED SUCCESSFULLY");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("TAKES DIDN'T ADD");
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         course_id.getItems().addAll(dm.getCourseIDs().toArray(new String[dm.getCourseIDs().size()]));
-        students=dm.getStdIds();
+        students = dm.getStdIds();
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            id.setText(event.getCompletion().toString().substring(0,9));
+            id.setText(event.getCompletion().toString().substring(0, 9));
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
     }
-    public void autoComplete(){
+
+    public void autoComplete() {
         autoValues();
 
     }
-    void autoValues(){
+
+    void autoValues() {
         list = new ArrayList<>();
         for (String s : students) {
             list.add(s);

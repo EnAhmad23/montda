@@ -4,13 +4,13 @@ public class StudentReport {
 
     private String id;
     private String course_id;
-    private String lec_id;
+    private String name;
     private double attendancePear;
 
-    StudentReport(String id, String course_id, String lec_id, double attendancePear){
+    StudentReport(String id, String name ,String course_id, double attendancePear){
         this.id = id;
         this.course_id = course_id;
-        this.lec_id = lec_id;
+        this.name = name;
         this.attendancePear = attendancePear;
     }
 
@@ -30,12 +30,12 @@ public class StudentReport {
         this.course_id = course_id;
     }
 
-    public String getLec_id() {
-        return lec_id;
+    public String getName() {
+        return name;
     }
 
-    public void setLec_id(String lec_id) {
-        this.lec_id = lec_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getAttendancePear() {

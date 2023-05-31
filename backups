@@ -408,6 +408,8 @@ COPY uni.students (id, name, gender, majer, place) FROM stdin;
 
 COPY uni.takes (id, course_id) FROM stdin;
 120200887	eele3302
+120200000	eele3402
+120200000	eele3302
 \.
 
 

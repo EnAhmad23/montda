@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -57,27 +56,27 @@ public class DBModel {
     }
 
 
-    public int backupDatabase(String path) throws IOException, InterruptedException {
-        String[] envp = {
-                "PGHOST=localhost",
-                "PGDATABASE=project",
-                "PGUSER=postgres",
-                "PGPASSWORD=bohboq20",
-                "PGPORT=5432",
-                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
-        };
-        String[] cmdArray = {
-                "cmd",
-                "/c",
-                String.format("pg_dump -f \"%s\"", path)
-        };
-        Runtime runtime = Runtime.getRuntime();
-        Process process = runtime.exec(cmdArray, envp);
-        process.waitFor();
-        return process.exitValue();
-    }
-
 //    public int backupDatabase(String path) throws IOException, InterruptedException {
+//        String[] envp = {
+//                "PGHOST=localhost",
+//                "PGDATABASE=project",
+//                "PGUSER=postgres",
+//                "PGPASSWORD=bohboq20",
+//                "PGPORT=5432",
+//                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
+//        };
+//        String[] cmdArray = {
+//                "cmd",
+//                "/c",
+//                String.format("pg_dump -f \"%s\"", path)
+//        };
+//        Runtime runtime = Runtime.getRuntime();
+//        Process process = runtime.exec(cmdArray, envp);
+//        process.waitFor();
+//        return process.exitValue();
+//    }
+
+//    public static void restoreDatabase(String path) throws IOException, InterruptedException {
 //        String[] envp = {
 //                "PGHOST=localhost",
 //                "PGDATABASE=project",
@@ -94,33 +93,13 @@ public class DBModel {
 //        Runtime runtime = Runtime.getRuntime();
 //        Process process = runtime.exec(cmdArray, envp);
 //        process.waitFor();
-//        return process.exitValue();
 //
+//        // Check the exit value of the process
+//        int exitValue = process.exitValue();
+//        if (exitValue != 0) {
+//            throw new IOException("Failed to restore database. Exit value: " + exitValue);
+//        }
 //    }
-    public static void restoreDatabase(String path) throws IOException, InterruptedException {
-        String[] envp = {
-                "PGHOST=localhost",
-                "PGDATABASE=project",
-                "PGUSER=postgres",
-                "PGPASSWORD=bohboq20",
-                "PGPORT=5432",
-                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
-        };
-        String[] cmdArray = {
-                "cmd",
-                "/c",
-                String.format("pg_dump -f \"%s\"", path)
-        };
-        Runtime runtime = Runtime.getRuntime();
-        Process process = runtime.exec(cmdArray, envp);
-        process.waitFor();
-
-        // Check the exit value of the process
-        int exitValue = process.exitValue();
-        if (exitValue != 0) {
-            throw new IOException("Failed to restore database. Exit value: " + exitValue);
-        }
-    }
 
 
     private void closeEverything() {
@@ -155,13 +134,14 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<String> getStuCourseIDs(String id) {
         String sql = "select course_id from takes where id = ?;";
         ArrayList<String> ids = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)
 
         ) {
-            st.setString(1,id);
+            st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 ids.add(rs.getString(1));
@@ -176,7 +156,7 @@ public class DBModel {
 
     }
 
-    public int addAttendance(String stu_id, String lec_id)  {
+    public int addAttendance(String stu_id, String lec_id) {
         String sql = "insert into attendence values(?,?); ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
@@ -186,7 +166,8 @@ public class DBModel {
             return 0;
         }
     }
-    public int deleteAttendence(String stu_id, String lec_id ) {
+
+    public int deleteAttendence(String stu_id, String lec_id) {
         String sql = "delete from attendence where stu_id =? and lec_id = ?; ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
@@ -196,7 +177,8 @@ public class DBModel {
             return 0;
         }
     }
-    public int updateAttendence(String stu_id,String name,String lec_id,String cou_id,String title)  {
+
+    public int updateAttendence(String stu_id, String name, String lec_id, String cou_id, String title) {
         String sql = "UPDATE students, lecture\n" +
                 "SET  students.name = ?, lecture.course_id = ?, lecture.title = ?\n" +
                 "WHERE students.id = (SELECT stu_id FROM attendence WHERE stu_id = ? AND lec_id = ?)\n" +
@@ -213,7 +195,8 @@ public class DBModel {
             return 0;
         }
     }
-    public  ArrayList<Attendences> searchAttendence(String stu_id,String lec_id)  {
+
+    public ArrayList<Attendences> searchAttendence(String stu_id, String lec_id) {
         String sql = "SELECT s.id, s.name, l.id, l.course_id, l.title \n" +
                 "FROM students s \n" +
                 "JOIN attendence a ON s.id = a.stu_id \n" +
@@ -221,147 +204,21 @@ public class DBModel {
                 "WHERE s.id = ? AND l.id = ?;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            ArrayList<Attendences> attendences =new ArrayList<>();
+            ArrayList<Attendences> attendences = new ArrayList<>();
             st.setString(1, stu_id);
             st.setString(2, lec_id);
-            ResultSet rs =st.executeQuery();
-             while (rs.next()) {
-                 attendences.add(new Attendences(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
-             }
-             return attendences;
-        } catch (SQLException ex) {
-            return null;
-        }
-
-    }
-//    public ArrayList<String> getBuildings() {
-//        String sql = "select building from classroom;";
-//        ArrayList<String> buildings = new ArrayList<>();
-//        try (Statement st = con.createStatement();
-//             ResultSet rs = st.executeQuery(sql)
-//        ) {
-//            while (rs.next()) {
-//                buildings.add(rs.getString(1));
-//            }
-//            return buildings;
-//        } catch (SQLException ex) {
-//
-//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//
-//    }
-
-//    public ArrayList<String> getABuildingRooms(String building) {
-//        String sql = "select room_number from classroom where building = ? ;";
-//        ArrayList<String> rooms = new ArrayList<>();
-//        try (PreparedStatement st = con.prepareStatement(sql)) {
-//            st.setString(1, building);
-//            ResultSet rs = st.executeQuery();
-//            while (rs.next()) {
-//                rooms.add(rs.getString(1));
-//            }
-//            return rooms;
-//        } catch (SQLException ex) {
-//
-//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//
-//    }
-
-    public String getcourseName(String id) {
-        String sql = "select title from course where course_id = ? ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-                return rs.getString(1);
+            while (rs.next()) {
+                attendences.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
-            return null;
+            return attendences;
         } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 
     }
 
-    public boolean isClassCross(String b, String r, String s, int y, String t) {
-        String sql = "select count(sec_id) from section " +
-                "where building=? and room_number =? and semester=? and "
-                + "year=? and time_slot_id= ? "
-                + " group by building, room_number,semester,year,time_slot_id;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, b);
-            st.setString(2, r);
-            st.setString(3, s);
-            st.setInt(4, y);
-            st.setString(5, t);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                System.out.println(rs.getInt(1));
-                return rs.getInt(1) > 0;
-            }
-            return false;
 
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public int maxSecID(String c, String s, int y) {
-        String sql = "select max(sec_id) from section " +
-                "where course_id=? and semester=? and "
-                + "year=? ;";
-        int max;
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, c);
-            st.setString(2, s);
-            st.setInt(3, y);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                max = rs.getInt(1);
-                if (max > 0) return max;
-                else return 0;
-            } else return 0;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-    }
-
-
-    public String insertSection(String c, String b, String r, String s, int y, String t) {
-        String sql = "insert into section (course_id,sec_id,building,room_number,semester,"
-                + "year,time_slot_id) values (?,?,?,?,?,?,?);";
-
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, c);
-            st.setString(2, String.valueOf(maxSecID(c, s, y) + 1));
-            st.setString(3, b);
-            st.setString(4, r);
-            st.setString(5, s);
-            st.setInt(6, y);
-            st.setString(7, t);
-
-
-            if (st.executeUpdate() > 0) {
-                System.out.println("\tsection added successfully\n\tsec_id = " + maxSecID(c, s, y) + 1);
-                return " section added successfully\n sec_id = " + maxSecID(c, s, y) + 1;
-
-            } else return "";
-
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return "";
-        }
-    }
 
     public ArrayList<String> availableCourse() {
         String sql = "SELECT C.course_id FROM course AS C LEFT JOIN teacher_assistant AS TA ON C.course_id = TA.teache WHERE TA.teache IS NULL;";
@@ -396,15 +253,16 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<Take> getTakes() {
         String sql = "select id, name ,course_id from students  natural join takes ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
-            ArrayList<Take> takes =new ArrayList<>();
+            ArrayList<Take> takes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
 //                System.out.println(rs.getString(1));
-                takes.add(new Take(rs.getString(1),rs.getString(2),rs.getString(3)));
+                takes.add(new Take(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             return takes;
         } catch (SQLException ex) {
@@ -419,11 +277,11 @@ public class DBModel {
         String sql = "select s.id, s.name ,course_id from students as s  natural join takes  where s.id =? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
-            ArrayList<Take> takes =new ArrayList<>();
+            ArrayList<Take> takes = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
 //                System.out.println(rs.getString(1));
-                takes.add(new Take(rs.getString(1),rs.getString(2),rs.getString(3)));
+                takes.add(new Take(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
             return takes;
         } catch (SQLException ex) {
@@ -457,6 +315,7 @@ public class DBModel {
             return 0;
         }
     }
+
     public int delete_take(String id) {
         String sql = "DELETE FROM takes WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -493,21 +352,21 @@ public class DBModel {
         }
     }
 
-    public void readEXL(String path) {
-        try {
-            Workbook workbook = Workbook.getWorkbook(new File(path));
-            Sheet sheet = workbook.getSheet(0);
-            Cell cell1 = sheet.getCell(0, 0);
-            System.out.print(cell1.getContents() + ":");    // Test Count + :
-            Cell cell2 = sheet.getCell(0, 1);
-            System.out.println(cell2.getContents());        // 1
-
-            Cell cell3 = sheet.getCell(1, 0);
-            System.out.print(cell3.getContents() + ":");
-        } catch (IOException | BiffException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void readEXL(String path) {
+//        try {
+//            Workbook workbook = Workbook.getWorkbook(new File(path));
+//            Sheet sheet = workbook.getSheet(0);
+//            Cell cell1 = sheet.getCell(0, 0);
+//            System.out.print(cell1.getContents() + ":");    // Test Count + :
+//            Cell cell2 = sheet.getCell(0, 1);
+//            System.out.println(cell2.getContents());        // 1
+//
+//            Cell cell3 = sheet.getCell(1, 0);
+//            System.out.print(cell3.getContents() + ":");
+//        } catch (IOException | BiffException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public ArrayList<Student> getStd() {
         String sql = "SELECT s.id, s.name, s.gender, s.majer, s.place, string_agg(p.ph_num, '\n') AS phone_numbers\n" +
@@ -612,7 +471,8 @@ public class DBModel {
         }
 
     }
-    public int addTake(String id ,String course_id) {
+
+    public int addTake(String id, String course_id) {
         String sql = "insert into takes values (?,?);";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -624,6 +484,7 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<LectureTime> getLectures() {
         String sql = "select * from lecture ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -652,8 +513,8 @@ public class DBModel {
 
             while (rs.next()) {
                 String id = rs.getString(1);
-                double num =getNumAttendence(id);
-                double present = (num / getAllStuCourse(id)) *100;
+                double num = getNumAttendence(id);
+                double present = (((num / getAllStuCourse(id)) * 100)>=0)?((num / getAllStuCourse(id)) * 100):-1;
                 ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), num, present));
 
             }
@@ -664,7 +525,33 @@ public class DBModel {
             return null;
         }
 
-    }public Double getCourseLectures(String course_id) {
+    }
+    public ArrayList<ReportLectures> reportLectures(String lec_id) {
+        String sql = "select id ,course_id,room,title from lecture  where id =?;";
+//        String sql2 = "select id ,course_id,room,title from lecture ;";
+
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, lec_id);
+            ArrayList<ReportLectures> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString(1);
+                double num = getNumAttendence(id);
+                double present = (((num / getAllStuCourse(id)) * 100)>=0)?((num / getAllStuCourse(id)) * 100):-1;
+                ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), num, present));
+
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
+    public Double getCourseLectures(String course_id) {
         String SQL = "SELECT COUNT(*) FROM lecture WHERE course_id = ?";
         double numLectures = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -679,6 +566,7 @@ public class DBModel {
         }
         return numLectures;
     }
+
     public Double getStu_Atten_Course(String course_id, String stu_id) {
         String SQL = "SELECT COUNT(*) FROM attendence JOIN lecture ON attendence.lec_id = lecture.id " +
                 "WHERE lecture.course_id = ? AND attendence.stu_id = ?";
@@ -698,10 +586,7 @@ public class DBModel {
     }
 
     public ArrayList<StudentReport> reportStudents(String id) {
-        String query = "SELECT distinct (takes.course_id), lecture.id FROM takes " +
-                "INNER JOIN lecture ON takes.course_id = lecture.course_id " +
-                "INNER JOIN attendence ON lecture.id = attendence.lec_id " +
-                "WHERE takes.ID = ?";
+        String query = "SELECT  students.name, takes.course_id FROM students JOIN takes ON students.id = takes.ID where  students.id =?;";
 
         try (PreparedStatement st = con.prepareStatement(query)) {
             st.setString(1, id);
@@ -710,7 +595,7 @@ public class DBModel {
 
             while (rs.next()) {
                 // id = rs.getString(2);
-                double precent = getStu_Atten_Course(rs.getString(1),id) / getCourseLectures(rs.getString(1));
+                double precent = getStu_Atten_Course(rs.getString(2), id) / getCourseLectures(rs.getString(2));
                 ids.add(new StudentReport(id, rs.getString(1), rs.getString(2), precent));
             }
             return ids;
@@ -719,6 +604,7 @@ public class DBModel {
             return null;
         }
     }
+
     public Double getNumAttendence(String id) throws SQLException {
         String SQL = "SELECT COUNT(DISTINCT a.stu_id) AS student_count FROM attendence a JOIN takes t ON a.stu_id = t.ID AND a.lec_id = ?;";
         double att = 0.0;
@@ -810,10 +696,10 @@ public class DBModel {
 
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1,lec_id);
+            st.setString(1, lec_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                LecId.add(new Attendences(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4) ,rs.getString(5)));
+                LecId.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return LecId;
         } catch (SQLException ex) {
@@ -873,11 +759,12 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<String> getStuLecIds(String id) {
         String sql = "select lec_id from attendence  where stu_id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<String> ids = new ArrayList<>();
-            st.setString(1,id);
+            st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
 //                System.out.println(rs.getString(1));
@@ -891,6 +778,7 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<Absents> getAbsents() {
         String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.ph_num AS phone_number, t.course_id AS course_id,\n" +
                 "       (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 AS attendance_percentage\n" +
@@ -905,7 +793,7 @@ public class DBModel {
             ArrayList<Absents> absents = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                absents.add(new Absents(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                absents.add(new Absents(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return absents;
         } catch (SQLException ex) {
@@ -915,7 +803,8 @@ public class DBModel {
         }
 
     }
-    public ArrayList<Absents> searchAbsents( String id) {
+
+    public ArrayList<Absents> searchAbsents(String id) {
         String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.ph_num AS phone_number, t.course_id AS course_id,\n" +
                 "       (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 AS attendance_percentage\n" +
                 "FROM students s\n" +
@@ -928,10 +817,10 @@ public class DBModel {
                 "HAVING (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 < 25;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<Absents> absents = new ArrayList<>();
-            st.setString(1,id);
+            st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                absents.add(new Absents(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                absents.add(new Absents(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return absents;
         } catch (SQLException ex) {
@@ -942,58 +831,6 @@ public class DBModel {
 
     }
 
-    public String getInstructorName(String id) {
-        String sql = "select name from instructor where id = ? ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-                return rs.getString(1);
-            }
-            return null;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-
-    }
-
-    public String getInstructorDept(String id) {
-        String sql = "select dept_name from instructor where id = ? ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-                return rs.getString(1);
-            }
-            return null;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-
-    }
-
-    public ArrayList<String> getStdYears(String id) {
-        ArrayList<String> years = new ArrayList<>();
-        String sql = "select distinct year from takes where id = ? ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                years.add(rs.getInt(1) + "");
-            }
-            return years;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
 
     public ArrayList<String> getStdIds() {
         ArrayList<String> sems = new ArrayList<>();
@@ -1012,128 +849,19 @@ public class DBModel {
         }
     }
 
-    public ArrayList<String> getInstructorYears(String id) {
-        ArrayList<String> years = new ArrayList<>();
-        String sql = "select distinct year from teaches where id = ? ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                years.add(rs.getInt(1) + "");
-            }
-            return years;
-        } catch (SQLException ex) {
+//    public int getNumAtt(String lec_id) {
+//        ArrayList<String> sems = new ArrayList<>();
+//        String sql = "SELECT COUNT(DISTINCT stu_id) AS attendance_count FROM attendence WHERE lec_id = ?;";
+//        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, lec_id);
+//            ResultSet rs = st.executeQuery();
+//            return rs.getInt(1);
+//        } catch (SQLException ex) {
+//            System.err.println(ex.getMessage());
+//            return 0;
+//        }
+//    }
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    public ArrayList<String> getInstructorSems(String id, int year) {
-        ArrayList<String> sems = new ArrayList<>();
-        String sql = "select distinct semester from teaches where id = ? and year = ?;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            st.setInt(2, year);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                sems.add(rs.getString(1) + "");
-            }
-            return sems;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    public String switchDay(String day) {
-        switch (day) {
-            case "M":
-                return "Monday";
-            case "F":
-                return "Friday";
-            case "T":
-                return "Tuesday";
-            case "R":
-                return "Thursday";
-            case "W":
-                return "Wednesday";
-        }
-        return "";
-    }
-
-    public ArrayList<LectureTime> getStdLectures(String id, String sem, int year) {
-        ArrayList<LectureTime> lects = new ArrayList<>();
-        String time = "";
-        String sql = "select course_id, title, building, room_number, start_hr"
-                + ", start_min, end_hr,end_min ,string_agg(day ,' , ' ) as days"
-                + " from takes natural join section natural join course natural join time_slot"
-                + " where id = ? and year = ? and semester = ?"
-                + " group by 1,2,3,4,5,6,7,8 ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            st.setInt(2, year);
-            st.setString(3, sem);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                time = "";
-                System.out.println(rs.getArray(9).toString());
-                String arr = rs.getArray(9).toString();
-                String[] days = arr.split(" , ");
-                //  rs.getArray(9).toString();
-                /*Array arr =  rs.getArray(9);
-                String [] days = (String [])(arr.getArray());*/
-                for (String day : days) {
-                    time += switchDay(day) + " ";
-                    System.out.println(day);
-                }
-                time += "\n";
-                time += "From " + rs.getInt(5) + " : " + rs.getInt(6) + " To " + rs.getInt(7) + " : " + rs.getInt(8);
-                lects.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
-            }
-            return lects;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    public ArrayList<LectureTime> getInstructorLectures(String id, String sem, int year) {
-        ArrayList<LectureTime> lects = new ArrayList<>();
-        String time = "";
-        String sql = "select course_id, title, building, room_number, start_hr"
-                + ", start_min, end_hr,end_min ,string_agg(day ,' , ' ) as days"
-                + " from teaches natural join section natural join course natural join time_slot"
-                + " where id = ? and year = ? and semester = ?"
-                + " group by 1,2,3,4,5,6,7,8 ;";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, id);
-            st.setInt(2, year);
-            st.setString(3, sem);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                time = "";
-                System.out.println(rs.getArray(9).toString());
-                String arr = rs.getArray(9).toString();
-                String[] days = arr.split(" , ");
-                for (String day : days) {
-                    time += switchDay(day) + " ";
-                    System.out.println(day);
-                }
-                time += "\n";
-                time += "From " + rs.getInt(5) + " : " + rs.getInt(6) + " To " + rs.getInt(7) + " : " + rs.getInt(8);
-                lects.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4)));
-            }
-            return lects;
-        } catch (SQLException ex) {
-
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
 
     public ArrayList<Student> searchStudent(String id) {
         String sql = "select id,name,gender,majer,place,ph_num from students join phone_num on id =s_id where id = ? ;";
