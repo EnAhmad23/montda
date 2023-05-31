@@ -34,18 +34,20 @@ public class UpdateStuRep implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setText(Navigation.string);
         id.setEditable(false);
-        course_id.getItems().addAll(db.getCourseIDs().toArray(new String[db.getCourseIDs().size()]));
+         String s =id.getText();
+        course_id.getItems().addAll(db.getStuCourseIDs(s).toArray(new String[db.getStuCourseIDs(s).size()]));
+        lec_id.getItems().addAll(db.getStuLecIds(s).toArray(new String[db.getStuLecIds(s).size()]));
     }
     public void nav_back(ActionEvent actionEvent) {
         nav.navigateTo(root,nav.REPORT_STUDENT);
     }
 
     public void nav_update() {
-//        if (db.updateAttendence(id.getText(),name.getText(),lecture_id.getId(),course_id.getId(),title.getText())!=0){
+//        if (db.UpdateStudentReport(id.getText(),lec_id.getValue(),course_id.getValue())!=0){
 //            label.setTextFill(Color.color(1,0,0));
 //            label.setText("UPDATED SUCCESSFULLY");
 //        }else { label.setTextFill(Color.color(0,1,0));
-//            label.setText("ATTENDENCES DIDN'T UPDATE");}
+//            label.setText("StudentReport DIDN'T UPDATE");}
 
     }
 

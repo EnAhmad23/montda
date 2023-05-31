@@ -103,8 +103,8 @@ public class ReportStudent implements Initializable {
     }
 
     public void UpdateStuReport(ActionEvent actionEvent) {
-        if (id.getText().length()==9&&!id.getText().equals("         ")) {
-            Navigation.string = id.getText();
+        if (s_id.getText().length()==9&&!s_id.getText().equals("         ")) {
+            Navigation.string = s_id.getText();
             nav.navigateTo(root,nav.UPDATE_STUDENT_REPORT);
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
 

@@ -35,13 +35,22 @@ public class DBModel {
         source.setServerName("localhost");
         source.setDatabaseName("project");
         source.setUser("postgres");
-        source.setPassword("2002");
+        source.setPassword("bohboq20");
         source.setCurrentSchema("uni");
 
         try {
             con = source.getConnection();
             System.out.println("Connected to database");
         } catch (SQLException ex) {
+            if (ex.getSQLState().equals("3D000")) {
+                try {
+                    restoreDatabase("backups");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             System.err.println(ex.getMessage());
         }
 
@@ -53,13 +62,14 @@ public class DBModel {
                 "PGHOST=localhost",
                 "PGDATABASE=project",
                 "PGUSER=postgres",
-                "PGPASSWORD=2002",
-                "PGPORT=5432"
+                "PGPASSWORD=bohboq20",
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
         };
         String[] cmdArray = {
-                "/bin/sh",
-                "-c",
-                String.format("/Library/PostgreSQL/15/bin/pg_dump -f \"%s\"", path)
+                "cmd",
+                "/c",
+                String.format("pg_dump -f \"%s\"", path)
         };
         Runtime runtime = Runtime.getRuntime();
         Process process = runtime.exec(cmdArray, envp);
@@ -141,6 +151,26 @@ public class DBModel {
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<String> getStuCourseIDs(String id) {
+        String sql = "select course_id from takes where id = ?;";
+        ArrayList<String> ids = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)
+
+        ) {
+            st.setString(1,id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getString(1));
+                //  System.out.println(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            System.err.println(ex.getMessage());
             return null;
         }
 
@@ -839,6 +869,24 @@ public class DBModel {
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<String> getStuLecIds(String id) {
+        String sql = "select lec_id from attendence  where stu_id =?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<String> ids = new ArrayList<>();
+            st.setString(1,id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+//                System.out.println(rs.getString(1));
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            System.err.println(ex.getMessage());
             return null;
         }
 
