@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -50,7 +51,7 @@ public class Absent implements Initializable {
     @FXML
     private TableColumn<Absents, String> attPercentage;
     ArrayList<Absents> absents;
-    //    ArrayList<Course> courses = dm.getCou();
+
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
     Navigation nav = new Navigation();
@@ -62,6 +63,16 @@ public class Absent implements Initializable {
         absents = dm.getAbsents();
         view(absents);
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+                if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                    Absents selectedAbsent = table.getSelectionModel().getSelectedItem();
+                    if (selectedAbsent != null) {
+                        t_id.setText(selectedAbsent.getStu_id());
+                    }
+                }
+
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 9));
@@ -99,7 +110,7 @@ public class Absent implements Initializable {
             list.add(stringBuilder.toString());
         }
     }
-    public void exportStudent() throws IOException {
+    public void exportStudent() {
         try {
             Stage stage = new Stage();
             DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -114,11 +125,29 @@ public class Absent implements Initializable {
                 if (result.isPresent()) {
                     String fileName = result.get();
                     String path = directory.getAbsolutePath() + "/" + fileName + ".xls";
+
                     try {
                         WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
                         WritableSheet sheet = workbook.createSheet("Sheet1", 0);
-                        Label label = new Label(0, 0, "123");
-                        sheet.addCell(label);
+
+                        // Write column headers
+                        sheet.addCell(new Label(0, 0, "Student ID"));
+                        sheet.addCell(new Label(1, 0, "Student Name"));
+                        sheet.addCell(new Label(2, 0, "Phone Number"));
+                        sheet.addCell(new Label(3, 0, "Course ID"));
+                        sheet.addCell(new Label(4, 0, "Attendance Percentage"));
+
+                        // Write table data
+                        ObservableList<Absents> data = table.getItems();
+                        for (int i = 0; i < data.size(); i++) {
+                            Absents absent = data.get(i);
+                            sheet.addCell(new Label(0, i + 1, absent.getStu_id()));
+                            sheet.addCell(new Label(1, i + 1, absent.getStu_name()));
+                            sheet.addCell(new Label(2, i + 1, absent.getStu_num()));
+                            sheet.addCell(new Label(3, i + 1, absent.getCourse_id()));
+                            sheet.addCell(new Label(4, i + 1, absent.getPercent()));
+                        }
+
                         workbook.write();
                         workbook.close();
                         System.out.println("File created successfully at: " + path);

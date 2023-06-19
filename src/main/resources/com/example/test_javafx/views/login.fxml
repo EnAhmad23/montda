@@ -11,11 +11,11 @@
                 <font>
                     <Font name="Times New Roman Bold" size="75.0" />
                 </font></Label>
-            <TextField fx:id="userID" layoutX="570.0" layoutY="285.0" prefHeight="41.0" prefWidth="360.0" style="-fx-background-radius: 15;">
+            <TextField fx:id="userID" layoutX="570.0" layoutY="285.0" onKeyPressed="#handleKeyPress" prefHeight="41.0" prefWidth="360.0" style="-fx-background-radius: 15; ">
             <font>
                <Font name="System Bold" size="14.0" />
             </font></TextField>
-            <PasswordField fx:id="password" layoutX="570.0" layoutY="385.0" prefHeight="41.0" prefWidth="360.0" style="-fx-background-radius: 15;">
+            <PasswordField fx:id="password" layoutX="570.0" layoutY="385.0" onKeyPressed="#handleKeyPress" prefHeight="41.0" prefWidth="360.0" style="-fx-background-radius: 15;">
             <font>
                <Font name="System Bold" size="16.0" />
             </font></PasswordField>
@@ -31,7 +31,10 @@
                     <Font name="Verdana Bold" size="50.0" />
                 </font>
             </Label>
-            <Label fx:id="label" layoutX="620.0" layoutY="437.0" prefHeight="41.0" prefWidth="257.0" textFill="#f70000" />
+            <Label fx:id="label" layoutX="599.0" layoutY="440.0" prefHeight="41.0" prefWidth="302.0" textFill="#f70000">
+            <font>
+               <Font name="System Bold" size="16.0" />
+            </font></Label>
         </Pane>
          <Label layoutX="579.0" layoutY="345.0" text="Password" textFill="#DEE4E7">
              <font>

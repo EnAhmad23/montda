@@ -1,11 +1,9 @@
 package com.example.test_javafx.controllers;
-import com.example.test_javafx.models.Course;
-import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.*;
+import javafx.scene.input.MouseButton;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.TeacherAssistant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,15 +39,11 @@ public class TeachingAssistant implements Initializable {
     private Button delete;
     @FXML
     private Button view;
-    @FXML
-    private Button nav_back;
 
-    @FXML
-    private Button reports_statements;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
     ArrayList<TeacherAssistant>teachers;
-    //    ArrayList<Course> courses = dm.getCou();
+
     private AutoCompletionBinding<Object> autoCompletionBinding;
    private ArrayList<String> list = new ArrayList<>();
 
@@ -90,6 +84,16 @@ public class TeachingAssistant implements Initializable {
        teachers =dm.getTeacherAssistant();
         view();
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+            if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                TeacherAssistant selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    t_id.setText(selectedReport.getId());
+
+                }
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0,9));
@@ -137,13 +141,10 @@ public class TeachingAssistant implements Initializable {
 
 
 
-    public void lectures(ActionEvent actionEvent) {
-    }
+
     public void students(){}
 
-    public void attendance_page(ActionEvent actionEvent) {
-    }
-    public void report_statement_page(){}
+
 
     public void searchTA(){
         if (t_id.getText().isEmpty()) {

@@ -30,6 +30,7 @@ import java.util.Scanner;
 import javafx.application.Application;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jxl.Cell;
@@ -46,12 +47,6 @@ public class Upload implements Initializable {
     private Button back;
     @FXML
     private ComboBox<String> lecture_ID;
-    @FXML
-    private ComboBox<String> course_ID;
-    @FXML
-    private TextField title;
-    @FXML
-    private TextField roomNumber;
 
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
@@ -62,13 +57,11 @@ public class Upload implements Initializable {
         nav.navigateTo(root,nav.ATTENDENCE_FXML);
     }
     public void Upload() {
-        String courseID =  course_ID.getValue();
+
         String lectureID =  lecture_ID.getValue();
-        String lec_title = title.getText();
-        String room_num = roomNumber.getText();
         try{
             for (int i =0 ;i< studentIDFromExcel.size();i++){
-                if (dm.addAttendance(studentIDFromExcel.get(i),lecture_ID.getValue()) != 0) {
+                if (dm.addAttendance(studentIDFromExcel.get(i),lectureID) != 0) {
                     label.setTextFill(Color.color(0, 1, 0));
                     label.setText("SUCCESSFULLY ^_^");
                 } else {
@@ -85,6 +78,11 @@ public class Upload implements Initializable {
             Stage stage = new Stage();
             FileChooser filechooser = new FileChooser();
             File file = filechooser.showOpenDialog(stage);
+            if (file != null) {
+                label.setText(file.getName());
+                label.setTextFill(Color.WHEAT);
+                label.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+            }
             ArrayList<String> lines = readFileContents(file);
             try {
                 Workbook workbook = Workbook.getWorkbook(file);
@@ -104,11 +102,11 @@ public class Upload implements Initializable {
             }
 
             // to print excel
-            if (file != null) {
-                for (String line : lines) {
-                    System.out.println(line);
-                }
-            }
+//            if (file != null) {
+//                for (String line : lines) {
+////                    System.out.println(line);
+//                }
+//            }
         }catch (Exception e){
 
         }
@@ -129,6 +127,6 @@ public class Upload implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lecture_ID.getItems().addAll(dm.getLecIds().toArray(new String[dm.getLecIds().size()]));
-        course_ID.getItems().addAll(dm.getCourseIDs().toArray(new String[dm.getCourseIDs().size()]));
+
     }
 }

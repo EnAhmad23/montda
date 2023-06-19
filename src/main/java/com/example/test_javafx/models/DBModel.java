@@ -32,23 +32,70 @@ public class DBModel {
     public void connect() {
         PGSimpleDataSource source = new PGSimpleDataSource();
         source.setServerName("localhost");
-        source.setDatabaseName("project");
-        source.setUser("postgres");
-        source.setPassword("bohboq20");
+        source.setDatabaseName("databasegroup16");
+        source.setUser("databasegroup");
+        source.setPassword("databasegroup16");
         source.setCurrentSchema("uni");
 
         try {
             con = source.getConnection();
             System.out.println("Connected to database");
+            try {
+                Statement statement = con.createStatement();
+
+                // Check if the schema exists
+                String checkSchemaQuery = "SELECT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'uni');";
+                ResultSet resultSet = statement.executeQuery(checkSchemaQuery);
+
+                resultSet.next();
+                boolean schemaExists = resultSet.getBoolean(1);
+
+                if (schemaExists) {
+                    System.out.println("Schema exists.");
+
+                } else {
+                    System.out.println("Schema does not exist.");
+
+
+                    System.out.println("Schema created successfully.");
+                    restoreDatabase("backups/");
+                    source.setCurrentSchema("uni");
+
+//                    restoreDatabase("backups/");
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         } catch (SQLException ex) {
             if (ex.getSQLState().equals("3D000")) {
-                try {
-                    restoreDatabase("backups");
+                String url = "jdbc:postgresql://localhost:5432/postgres";
+                String username = "databasegroup";
+                String password = "databasegroup16";
+                String databaseName = "databasegroup16";
+
+                try (Connection connection = DriverManager.getConnection(url, username, password)) {
+                    Statement statement = connection.createStatement();
+
+                    // Create the database
+                    String createDatabaseQuery = "CREATE DATABASE " + databaseName;
+                    statement.executeUpdate(createDatabaseQuery);
+                    connect();
+                    restoreDatabase("backups/");
+                    System.out.println("Database created successfully.");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+
+
             }
             System.err.println(ex.getMessage());
         }
@@ -56,50 +103,52 @@ public class DBModel {
     }
 
 
-//    public int backupDatabase(String path) throws IOException, InterruptedException {
-//        String[] envp = {
-//                "PGHOST=localhost",
-//                "PGDATABASE=project",
-//                "PGUSER=postgres",
-//                "PGPASSWORD=bohboq20",
-//                "PGPORT=5432",
-//                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
-//        };
-//        String[] cmdArray = {
-//                "cmd",
-//                "/c",
-//                String.format("pg_dump -f \"%s\"", path)
-//        };
-//        Runtime runtime = Runtime.getRuntime();
-//        Process process = runtime.exec(cmdArray, envp);
-//        process.waitFor();
-//        return process.exitValue();
-//    }
+    public int backupDatabase(String path) throws IOException, InterruptedException {
+        String[] envp = {
+                "PGHOST=localhost",
+                "PGDATABASE=databasegroup16",
+                "PGUSER=databasegroup",
+                "PGPASSWORD=databasegroup16",
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
+        };
+        String[] cmdArray = {
+                "cmd",
+                "/c",
+                String.format("pg_dump -f \"%s\"", path)
+        };
+        Runtime runtime = Runtime.getRuntime();
+        Process process = runtime.exec(cmdArray, envp);
+        process.waitFor();
+        return process.exitValue();
+    }
 
-//    public static void restoreDatabase(String path) throws IOException, InterruptedException {
-//        String[] envp = {
-//                "PGHOST=localhost",
-//                "PGDATABASE=project",
-//                "PGUSER=postgres",
-//                "PGPASSWORD=bohboq20",
-//                "PGPORT=5432",
-//                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
-//        };
-//        String[] cmdArray = {
-//                "cmd",
-//                "/c",
-//                String.format("pg_dump -f \"%s\"", path)
-//        };
-//        Runtime runtime = Runtime.getRuntime();
-//        Process process = runtime.exec(cmdArray, envp);
-//        process.waitFor();
-//
-//        // Check the exit value of the process
-//        int exitValue = process.exitValue();
-//        if (exitValue != 0) {
-//            throw new IOException("Failed to restore database. Exit value: " + exitValue);
-//        }
-//    }
+
+    public static void restoreDatabase(String path) throws IOException, InterruptedException {
+        String[] envp = {
+                "PGHOST=localhost",
+                "PGDATABASE=databasegroup16",
+                "PGUSER=databasegroup",
+                "PGPASSWORD=databasegroup16",
+                "PGPORT=5432",
+                "path=C:\\Program Files\\PostgreSQL\\15\\bin"
+        };
+        String[] cmdArray = {
+                "cmd",
+                "/c",
+                String.format("psql -f \"%s\"", path)
+        };
+        Runtime runtime = Runtime.getRuntime();
+        Process process = runtime.exec(cmdArray, envp);
+        process.waitFor();
+        System.out.println("restore done");
+        // Check the exit value of the process
+        int exitValue = process.exitValue();
+        System.out.println(exitValue);
+        if (exitValue != 0) {
+            throw new IOException("Failed to restore database. Exit value: " + exitValue);
+        }
+    }
 
 
     private void closeEverything() {
@@ -134,6 +183,85 @@ public class DBModel {
         }
 
     }
+    public String getCourseRoom(String id) {
+        String sql = "select room from course where course_id = ?;";
+
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1,id);
+            ResultSet rs =st.executeQuery();
+            if(rs.next()) {
+                return (rs.getString(1));
+                //  System.out.println(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+
+            System.err.println(ex.getMessage());
+            return null;
+        }
+return null;
+    }
+//    public String getTeachCourseID(String id) {
+//        String sql = "select teache from teacher_assistant where id =?;";
+//
+//        try (PreparedStatement st = con.prepareStatement(sql) ) {
+//            st.setString(1,id);
+//            if (rs.next()) {
+//               return (rs.getString(1));
+//                //  System.out.println(rs.getString(1));
+//            }
+//
+//        } catch (SQLException ex) {
+//
+//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//
+//        return null;
+//    }
+
+    public String getTeachCourseID(String id) {
+        String sql = "select teache from teacher_assistant where id =?;";
+
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+                //  System.out.println(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+
+            System.err.println(ex.getMessage());
+            return null;
+        }
+        return null;
+    }
+
+    public ArrayList<Student> getTeachStu(String id) {
+        String sql = "SELECT s.id, s.name, s.gender, s.majer, s.place, string_agg(pn.ph_num, '\n') " +
+                "FROM students s " +
+                "JOIN takes t ON s.id = t.ID " +
+                "JOIN phone_num pn ON s.id = pn.s_id " +
+                "WHERE t.course_id = ? " +
+                "GROUP BY s.id, s.name, s.gender, s.place, s.majer";
+        ArrayList<Student> students = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery(); // Remove the "sql" argument here
+            while (rs.next()) {
+                students.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            }
+            return students;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            System.out.println("2");
+            return null;
+        }
+    }
+
 
     public ArrayList<String> getStuCourseIDs(String id) {
         String sql = "select course_id from takes where id = ?;";
@@ -219,7 +347,6 @@ public class DBModel {
     }
 
 
-
     public ArrayList<String> availableCourse() {
         String sql = "SELECT C.course_id FROM course AS C LEFT JOIN teacher_assistant AS TA ON C.course_id = TA.teache WHERE TA.teache IS NULL;";
         ArrayList<String> ids = new ArrayList<>();
@@ -255,7 +382,7 @@ public class DBModel {
     }
 
     public ArrayList<Take> getTakes() {
-        String sql = "select id, name ,course_id from students  natural join takes ;";
+        String sql = "select s.id, s.name , string_agg(t.course_id, '\n') as course_id from students as s natural join takes  as t group by s.id, s.name ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Take> takes = new ArrayList<>();
@@ -274,7 +401,11 @@ public class DBModel {
     }
 
     public ArrayList<Take> searchTakes(String id) {
-        String sql = "select s.id, s.name ,course_id from students as s  natural join takes  where s.id =? ;";
+        String sql = "SELECT students.id, students.name,  string_agg(takes.course_id, '\n')\n" +
+                "FROM students\n" +
+                "JOIN takes ON students.id = takes.ID\n" +
+                "WHERE students.id = ? \n" +
+                "GROUP BY students.id, students.name;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ArrayList<Take> takes = new ArrayList<>();
@@ -514,7 +645,7 @@ public class DBModel {
             while (rs.next()) {
                 String id = rs.getString(1);
                 double num = getNumAttendence(id);
-                double present = (((num / getAllStuCourse(id)) * 100)>=0)?((num / getAllStuCourse(id)) * 100):-1;
+                double present = (((num / getAllStuCourse(id)) * 100) >= 0) ? ((num / getAllStuCourse(id)) * 100) : -1;
                 ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), num, present));
 
             }
@@ -526,6 +657,7 @@ public class DBModel {
         }
 
     }
+
     public ArrayList<ReportLectures> reportLectures(String lec_id) {
         String sql = "select id ,course_id,room,title from lecture  where id =?;";
 //        String sql2 = "select id ,course_id,room,title from lecture ;";
@@ -538,7 +670,7 @@ public class DBModel {
             while (rs.next()) {
                 String id = rs.getString(1);
                 double num = getNumAttendence(id);
-                double present = (((num / getAllStuCourse(id)) * 100)>=0)?((num / getAllStuCourse(id)) * 100):-1;
+                double present = (((num / getAllStuCourse(id)) * 100) >= 0) ? ((num / getAllStuCourse(id)) * 100) : -1;
                 ids.add(new ReportLectures(id, rs.getString(2), rs.getString(3), num, present));
 
             }
@@ -595,7 +727,7 @@ public class DBModel {
 
             while (rs.next()) {
                 // id = rs.getString(2);
-                double precent = getStu_Atten_Course(rs.getString(2), id) / getCourseLectures(rs.getString(2));
+                double precent = (getStu_Atten_Course(rs.getString(2), id) / getCourseLectures(rs.getString(2))) * 100;
                 ids.add(new StudentReport(id, rs.getString(1), rs.getString(2), precent));
             }
             return ids;
@@ -638,18 +770,7 @@ public class DBModel {
     }
 
 
-    public Double getAbsent(String id) {
-        String SQL = "select count(*) from takes where id  not in  (Select id  From takes   Where course_id in ( Select course_id  From lecture Where id = ?));";
-        double absent = 0.0;
-        try (Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL)) {
-            rs.next();
-            absent = rs.getDouble(1);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return absent;
-    }
+
 
 
     public ArrayList<LectureTime> getLecFromCou(String course_id) {
@@ -760,6 +881,29 @@ public class DBModel {
 
     }
 
+    public ArrayList<String> getTeacherLecIds(String id) {
+        String sql = "SELECT lecture.id\n" +
+                "FROM lecture\n" +
+                "JOIN course ON lecture.course_id = course.course_id\n" +
+                "JOIN teacher_assistant ON teacher_assistant.teache = course.course_id\n" +
+                "WHERE teacher_assistant.ID = ?;\n";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            ArrayList<String> ids = new ArrayList<>();
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+//                System.out.println(rs.getString(1));
+                ids.add(rs.getString(1));
+            }
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
     public ArrayList<String> getStuLecIds(String id) {
         String sql = "select lec_id from attendence  where stu_id =?;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -780,14 +924,18 @@ public class DBModel {
     }
 
     public ArrayList<Absents> getAbsents() {
-        String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.ph_num AS phone_number, t.course_id AS course_id,\n" +
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, pn.phone_numbers AS phone_numbers, t.course_id AS course_id,\n" +
                 "       (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 AS attendance_percentage\n" +
                 "FROM students s\n" +
                 "JOIN takes t ON s.id = t.ID\n" +
-                "JOIN phone_num pn ON s.id = pn.s_id\n" +
+                "JOIN (\n" +
+                "    SELECT s_id, string_agg(ph_num, '\n') AS phone_numbers\n" +
+                "    FROM phone_num\n" +
+                "    GROUP BY s_id\n" +
+                ") pn ON s.id = pn.s_id\n" +
                 "JOIN lecture l ON t.course_id = l.course_id\n" +
                 "LEFT JOIN attendence a ON l.id = a.lec_id AND t.ID = a.stu_id\n" +
-                "GROUP BY s.id, s.name, pn.ph_num, t.course_id\n" +
+                "GROUP BY s.id, s.name, pn.phone_numbers, t.course_id\n" +
                 "HAVING (COUNT(a.stu_id) * 1.0 / COUNT(l.id)) * 100 < 25;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<Absents> absents = new ArrayList<>();
@@ -971,9 +1119,9 @@ public class DBModel {
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, course_id);
-            pstmt.setString(3, room);
-            pstmt.setString(4, title);
-            pstmt.setString(5, id);
+            pstmt.setString(2, room);
+            pstmt.setString(3, title);
+            pstmt.setString(4, id);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             return 0;

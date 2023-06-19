@@ -4,6 +4,7 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.StudentReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -54,8 +56,7 @@ public class Students implements Initializable {
     private Button back;
     @FXML
     private TableView<Student> table;
-    @FXML
-    private Button id_close_students;
+
     public static String string = "";
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
@@ -110,10 +111,6 @@ public class Students implements Initializable {
 
     public void Update_back() {
 
-//        if (nav.getCurrentPath().equals(nav.MAIN_FXML))
-//            nav.navigateTo(root, nav.MAIN_FXML);
-//        else
-//            nav.navigateTo(root, nav.TEACHING_FXML);
         nav.navigateTo(root, Navigation.owner);
     }
 
@@ -131,23 +128,22 @@ public class Students implements Initializable {
     }
 
 
-//    public void viewSearch() {
-//        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-//        place.setCellValueFactory(new PropertyValueFactory<>("Place"));
-//        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
-//        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
-//
-//        ObservableList<Student> ids = FXCollections.observableArrayList();
-//        table.setItems(ids);
-//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         students=dm.getStd();
         view(students);
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+            if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                Student selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    t_id.setText(selectedReport.getId());
+
+                }
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0,9));

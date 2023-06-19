@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -25,13 +26,6 @@ public class LecturesTimesController implements Initializable {
     @FXML
     public AnchorPane root;
 
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button update;
-    @FXML
-    private Button delete;
 
     public TableView<LectureTime> table;
     @FXML
@@ -47,13 +41,7 @@ public class LecturesTimesController implements Initializable {
 
     @FXML
     public TextField t_id;
-    @FXML
-    public TextField instructorID;
 
-    @FXML
-    public ComboBox<String> year;
-    @FXML
-    public ComboBox<String> sem;
     @FXML
     public ComboBox<String> courses;
     @FXML
@@ -62,7 +50,7 @@ public class LecturesTimesController implements Initializable {
     DBModel db = DBModel.getModel();
     Navigation nav = new Navigation();
     ArrayList<LectureTime> lectures;
-    //    ArrayList<Course> courses = dm.getCou();
+
     private AutoCompletionBinding<Object> autoCompletionBinding;
     private ArrayList<String> list = new ArrayList<>();
 
@@ -72,6 +60,16 @@ public class LecturesTimesController implements Initializable {
         lectures = db.getLectures();
         view(lectures);
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+            if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                LectureTime selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    t_id.setText(selectedReport.getLecture_id());
+
+                }
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 5));
@@ -81,57 +79,6 @@ public class LecturesTimesController implements Initializable {
     public void back() {
         nav.navigateTo(root, Navigation.owner);
     }
-
-//    public void addLectureTime(){
-//
-//    }
-
-//    @FXML
-//    public void onIDEnter() {
-//        if (!id.getText().equals("")) {
-//            if (student.isSelected()) {
-//                instructorID.setText(db.getStdName(id.getText()));
-//                room.setText(db.getStdDept(id.getText()));
-//                ObservableList<String> years = FXCollections.observableList(db.getStdYears(id.getText()));
-//                year.setItems(years);
-//            } else {
-//                instructorID.setText(db.getInstructorName(id.getText()));
-//                room.setText(db.getInstructorDept(id.getText()));
-//                ObservableList<String> years = FXCollections.observableList(db.getInstructorYears(id.getText()));
-//                year.setItems(years);
-//            }
-//        }
-//    }
-    //
-
-//    public void upCombSems() {
-//
-//        if (year.getValue() != null) {
-//            if (student.isSelected()) {
-//                ObservableList<String> sems = FXCollections.observableList(db.getStdSems(id.getText(),
-//                        Integer.parseInt(year.getValue())));
-//                sem.setItems(sems);
-//            } else {
-//                ObservableList<String> sems = FXCollections.observableList(db.getInstructorSems(id.getText(),
-//                        Integer.parseInt(year.getValue())));
-//                sem.setItems(sems);
-//            }
-//        } else sem.setItems(null);
-//    }
-
-//    public void viewTimes() {
-//        if (id.getText() != null && sem.getValue() != (null)
-//                && year.getValue() != null) {
-//            if (student.isSelected())
-//                table.setItems(FXCollections.observableArrayList(
-//                        db.getStdLectures(id.getText(), sem.getValue(),
-//                                Integer.parseInt(year.getValue()))));
-//            else
-//                table.setItems(FXCollections.observableArrayList(
-//                        db.getInstructorLectures(id.getText(), sem.getValue(),
-//                                Integer.parseInt(year.getValue()))));
-//        } else System.err.println("Error! fill fields");
-//    }
 
 
     public void viewTimes() {
@@ -143,31 +90,10 @@ public class LecturesTimesController implements Initializable {
         else
             view(lectures);
 
-//        if (id.getText() != null && sem.getValue() != (null)
-//                && year.getValue() != null) {
-//            if (student.isSelected())
-//                table.setItems(FXCollections.observableArrayList(
-//                        db.getStdLectures(id.getText(), sem.getValue(),
-//                                Integer.parseInt(year.getValue()))));
-//            else
-//                table.setItems(FXCollections.observableArrayList(
-//                        db.getInstructorLectures(id.getText(), sem.getValue(),
-//                                Integer.parseInt(year.getValue()))));
-//        } else System.err.println("Error! fill fields");
-
-//        public void viewTimes(){
 
 
     }
 
-//    public void viewSearch() {
-//        id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
-//        course_id.setCellValueFactory(new PropertyValueFactory<>("Course_id"));
-//        room.setCellValueFactory(new PropertyValueFactory<>("Room_number"));
-//        title.setCellValueFactory(new PropertyValueFactory<>("title"));
-//        ObservableList<LectureTime> lectures = FXCollections.observableArrayList();
-//        table.setItems(lectures);
-//    }
 
     public void view(ArrayList<LectureTime> lectureTimes) {
         id.setCellValueFactory(new PropertyValueFactory<>("lecture_id"));
@@ -178,14 +104,8 @@ public class LecturesTimesController implements Initializable {
         table.setItems(lectures);
     }
 
-    public void studentId_lecture() {
-    }
 
-    public void studentName_lecture() {
-    }
 
-    public void studentDepartment_lecture() {
-    }
 
     public void delete_button() {
         Stage stage = new Stage();
@@ -253,6 +173,5 @@ public class LecturesTimesController implements Initializable {
         }
     }
 
-    public void SelectYear() {
-    }
+
 }

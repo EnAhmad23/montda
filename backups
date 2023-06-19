@@ -44,142 +44,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: attendence; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.attendence (
-    stu_id character varying(9) NOT NULL,
-    se_id character varying(8) NOT NULL,
-    cou_id character varying(8) NOT NULL,
-    lec_date timestamp without time zone NOT NULL
-);
-
-
-ALTER TABLE public.attendence OWNER TO postgres;
-
---
--- Name: course; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.course (
-    course_id character varying(8) NOT NULL,
-    title character varying(50),
-    dept_name character varying(20),
-    credits numeric(2,0),
-    CONSTRAINT course_credits_check CHECK ((credits > (0)::numeric))
-);
-
-
-ALTER TABLE public.course OWNER TO postgres;
-
---
--- Name: department; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.department (
-    dept_name character varying(20) NOT NULL,
-    building character varying(15),
-    budget numeric(12,2),
-    CONSTRAINT department_budget_check CHECK ((budget > (0)::numeric))
-);
-
-
-ALTER TABLE public.department OWNER TO postgres;
-
---
--- Name: section; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.section (
-    course_id character varying(8) NOT NULL,
-    sec_id character varying(8) NOT NULL,
-    semester character varying(6) NOT NULL,
-    year numeric(4,0) NOT NULL,
-    building character varying(15),
-    room_number character varying(7),
-    time_slot character varying(4),
-    CONSTRAINT section_semester_check CHECK (((semester)::text = ANY ((ARRAY['Fall'::character varying, 'Winter'::character varying, 'Spring'::character varying, 'Summer'::character varying])::text[]))),
-    CONSTRAINT section_year_check CHECK (((year > (1701)::numeric) AND (year < (2100)::numeric)))
-);
-
-
-ALTER TABLE public.section OWNER TO postgres;
-
---
--- Name: students; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.students (
-    id character varying(9) NOT NULL,
-    dept_name character varying(15),
-    stu_level character varying(15),
-    tot_cred numeric,
-    name character varying(255)
-);
-
-
-ALTER TABLE public.students OWNER TO postgres;
-
---
--- Name: takes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.takes (
-    id character varying(5) NOT NULL,
-    course_id character varying(8) NOT NULL,
-    sec_id character varying(8) NOT NULL,
-    semester character varying(6) NOT NULL,
-    year numeric(4,0) NOT NULL,
-    grade character varying(2)
-);
-
-
-ALTER TABLE public.takes OWNER TO postgres;
-
---
--- Name: teacher; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.teacher (
-    id character varying(9) NOT NULL,
-    name character varying(20) NOT NULL,
-    dept_name character varying(20),
-    advisor character varying(9) NOT NULL
-);
-
-
-ALTER TABLE public.teacher OWNER TO postgres;
-
---
--- Name: teaches; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.teaches (
-    id character varying(5) NOT NULL,
-    course_id character varying(8) NOT NULL,
-    sec_id character varying(8) NOT NULL,
-    semester character varying(6) NOT NULL,
-    year numeric(4,0) NOT NULL
-);
-
-
-ALTER TABLE public.teaches OWNER TO postgres;
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.users (
-    user_id character varying(9) NOT NULL,
-    username character varying(255) NOT NULL,
-    user_role character varying(30) NOT NULL,
-    password character varying(100)
-);
-
-
-ALTER TABLE public.users OWNER TO postgres;
-
---
 -- Name: attendence; Type: TABLE; Schema: uni; Owner: postgres
 --
 
@@ -240,8 +104,8 @@ CREATE TABLE uni.students (
     id character(9) NOT NULL,
     name character varying(255),
     gender character varying(20),
-    majer character varying(50),
-    place character varying(50)
+    place character varying(50),
+    majer character varying(50)
 );
 
 
@@ -274,83 +138,13 @@ CREATE TABLE uni.teacher_assistant (
 ALTER TABLE uni.teacher_assistant OWNER TO postgres;
 
 --
--- Data for Name: attendence; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.attendence (stu_id, se_id, cou_id, lec_date) FROM stdin;
-\.
-
-
---
--- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.course (course_id, title, dept_name, credits) FROM stdin;
-\.
-
-
---
--- Data for Name: department; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.department (dept_name, building, budget) FROM stdin;
-\.
-
-
---
--- Data for Name: section; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.section (course_id, sec_id, semester, year, building, room_number, time_slot) FROM stdin;
-\.
-
-
---
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.students (id, dept_name, stu_level, tot_cred, name) FROM stdin;
-\.
-
-
---
--- Data for Name: takes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.takes (id, course_id, sec_id, semester, year, grade) FROM stdin;
-\.
-
-
---
--- Data for Name: teacher; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.teacher (id, name, dept_name, advisor) FROM stdin;
-\.
-
-
---
--- Data for Name: teaches; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.teaches (id, course_id, sec_id, semester, year) FROM stdin;
-\.
-
-
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.users (user_id, username, user_role, password) FROM stdin;
-\.
-
-
---
 -- Data for Name: attendence; Type: TABLE DATA; Schema: uni; Owner: postgres
 --
 
 COPY uni.attendence (stu_id, lec_id) FROM stdin;
-120200887	lec70
+120200291	lec10
+220200600	lec34
+120200887	lec99
 \.
 
 
@@ -359,11 +153,12 @@ COPY uni.attendence (stu_id, lec_id) FROM stdin;
 --
 
 COPY uni.course (course_id, book_name, teacher_name, room, subject) FROM stdin;
-eele3402	syntax	ahmed saed	i303	champions
+ecom1110	java book	ahmed mahdi	k304	matlab
 ecom3102	python book	wesam ashour	k414	labview
+ecom4220	asp.net	ahmed mahdi	c502	quarter
 eele3302	php laravel	mohammed habbash	b313	semifinal
+eele3402	syntax	ahmed saed	i303	champions
 eele3322	verilog	basel hamad	m204	europa
-ecom4220				
 \.
 
 
@@ -372,12 +167,13 @@ ecom4220
 --
 
 COPY uni.lecture (id, course_id, room, title) FROM stdin;
-lec99	eele3302	m204	europa
+lec54	ecom1110	k304	matlab
+lec10	ecom3102	k414	labview
 lec22	ecom4220	c502	quarter
 lec34	eele3302	b313	semifinal
 lec04	eele3402	i303	champions
-lec70	eele3302	m204	europa
-lec00	ecom3102	hk	ssdfs
+lec99	eele3302	m204	europa
+lec70	eele3302	b313	102
 \.
 
 
@@ -386,8 +182,12 @@ lec00	ecom3102	hk	ssdfs
 --
 
 COPY uni.phone_num (s_id, ph_num) FROM stdin;
-120200887	0592294728
 120200887	0597058876
+120200291	0594096020
+120200887	0592294189
+220200666	0594022357
+220200888	0591234567
+220200600	0590000000
 \.
 
 
@@ -395,10 +195,12 @@ COPY uni.phone_num (s_id, ph_num) FROM stdin;
 -- Data for Name: students; Type: TABLE DATA; Schema: uni; Owner: postgres
 --
 
-COPY uni.students (id, name, gender, majer, place) FROM stdin;
-220200326	sadfas	female	dsaf	dasf
-120200000	aa	male	dsaf	asdf
-120200887	ahmad nabil humeid	male	comp eng	gaxa
+COPY uni.students (id, name, gender, place, majer) FROM stdin;
+120200291	yassen	male	5	music
+120200887	ahmed	male	2	comp eng
+220200666	shahed	female	1	comp eng
+220200888	heba	female	gaza	art
+220200600	nada	female	a	b
 \.
 
 
@@ -408,8 +210,9 @@ COPY uni.students (id, name, gender, majer, place) FROM stdin;
 
 COPY uni.takes (id, course_id) FROM stdin;
 120200887	eele3302
-120200000	eele3402
-120200000	eele3302
+120200887	ecom3102
+120200291	eele3302
+220200600	eele3302
 \.
 
 
@@ -418,72 +221,8 @@ COPY uni.takes (id, course_id) FROM stdin;
 --
 
 COPY uni.teacher_assistant (id, name, teache, password) FROM stdin;
-120200887	ahmad	eele3402	$2a$06$/kONmoG86unHr712V2du/u1nzZ09COK342GJwA3Q3D2Q/AtnRK6YC
+120200887	ahmad humeid	eele3302	$2a$06$TNXTHd7anmUGsmDRTwu5NOVlOLnCeIeUrFyZoMexEPbCM2ThOLcLK
 \.
-
-
---
--- Name: attendence attendence_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.attendence
-    ADD CONSTRAINT attendence_pkey PRIMARY KEY (stu_id, se_id, cou_id, lec_date);
-
-
---
--- Name: course course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.course
-    ADD CONSTRAINT course_pkey PRIMARY KEY (course_id);
-
-
---
--- Name: department department_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.department
-    ADD CONSTRAINT department_pkey PRIMARY KEY (dept_name);
-
-
---
--- Name: section section_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.section
-    ADD CONSTRAINT section_pkey PRIMARY KEY (course_id, sec_id, semester, year);
-
-
---
--- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.students
-    ADD CONSTRAINT students_pkey PRIMARY KEY (id);
-
-
---
--- Name: takes takes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.takes
-    ADD CONSTRAINT takes_pkey PRIMARY KEY (id, course_id, sec_id, semester, year);
-
-
---
--- Name: teacher teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.teacher
-    ADD CONSTRAINT teacher_pkey PRIMARY KEY (id);
-
-
---
--- Name: teaches teaches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.teaches
-    ADD CONSTRAINT teaches_pkey PRIMARY KEY (id, course_id, sec_id, semester, year);
 
 
 --
@@ -543,94 +282,6 @@ ALTER TABLE ONLY uni.teacher_assistant
 
 
 --
--- Name: attendence attendence_cou_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.attendence
-    ADD CONSTRAINT attendence_cou_id_fkey FOREIGN KEY (cou_id) REFERENCES public.course(course_id) ON DELETE CASCADE;
-
-
---
--- Name: attendence attendence_stu_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.attendence
-    ADD CONSTRAINT attendence_stu_id_fkey FOREIGN KEY (stu_id) REFERENCES public.students(id) ON DELETE CASCADE;
-
-
---
--- Name: course course_dept_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.course
-    ADD CONSTRAINT course_dept_name_fkey FOREIGN KEY (dept_name) REFERENCES public.department(dept_name) ON DELETE SET NULL;
-
-
---
--- Name: section section_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.section
-    ADD CONSTRAINT section_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON DELETE CASCADE;
-
-
---
--- Name: students students_dept_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.students
-    ADD CONSTRAINT students_dept_name_fkey FOREIGN KEY (dept_name) REFERENCES public.department(dept_name);
-
-
---
--- Name: takes takes_course_id_sec_id_semester_year_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.takes
-    ADD CONSTRAINT takes_course_id_sec_id_semester_year_fkey FOREIGN KEY (course_id, sec_id, semester, year) REFERENCES public.section(course_id, sec_id, semester, year) ON DELETE CASCADE;
-
-
---
--- Name: takes takes_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.takes
-    ADD CONSTRAINT takes_id_fkey FOREIGN KEY (id) REFERENCES public.students(id) ON DELETE CASCADE;
-
-
---
--- Name: teacher teacher_dept_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.teacher
-    ADD CONSTRAINT teacher_dept_name_fkey FOREIGN KEY (dept_name) REFERENCES public.department(dept_name) ON DELETE SET NULL;
-
-
---
--- Name: teaches teaches_course_id_sec_id_semester_year_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.teaches
-    ADD CONSTRAINT teaches_course_id_sec_id_semester_year_fkey FOREIGN KEY (course_id, sec_id, semester, year) REFERENCES public.section(course_id, sec_id, semester, year) ON DELETE CASCADE;
-
-
---
--- Name: teaches teaches_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.teaches
-    ADD CONSTRAINT teaches_id_fkey FOREIGN KEY (id) REFERENCES public.teacher(id) ON DELETE CASCADE;
-
-
---
--- Name: users users_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.teacher(id) ON DELETE CASCADE;
-
-
---
 -- Name: attendence attendence_lec_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
 --
 
@@ -651,7 +302,7 @@ ALTER TABLE ONLY uni.attendence
 --
 
 ALTER TABLE ONLY uni.lecture
-    ADD CONSTRAINT lecture_course_id_fkey FOREIGN KEY (course_id) REFERENCES uni.course(course_id) ON DELETE CASCADE;
+    ADD CONSTRAINT lecture_course_id_fkey FOREIGN KEY (course_id) REFERENCES uni.course(course_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -683,7 +334,7 @@ ALTER TABLE ONLY uni.takes
 --
 
 ALTER TABLE ONLY uni.teacher_assistant
-    ADD CONSTRAINT teacher_assistant_teache_fkey FOREIGN KEY (teache) REFERENCES uni.course(course_id) ON DELETE SET NULL;
+    ADD CONSTRAINT teacher_assistant_teache_fkey FOREIGN KEY (teache) REFERENCES uni.course(course_id) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 --

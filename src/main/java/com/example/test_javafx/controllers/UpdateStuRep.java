@@ -43,11 +43,7 @@ public class UpdateStuRep implements Initializable {
     }
 
     public void nav_update() {
-//        if (db.UpdateStudentReport(id.getText(),lec_id.getValue(),course_id.getValue())!=0){
-//            label.setTextFill(Color.color(1,0,0));
-//            label.setText("UPDATED SUCCESSFULLY");
-//        }else { label.setTextFill(Color.color(0,1,0));
-//            label.setText("StudentReport DIDN'T UPDATE");}
+
 
     }
 

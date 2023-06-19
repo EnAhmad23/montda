@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -24,8 +26,7 @@ public class Login implements Initializable {
     private TextField password;
     @FXML
     private Button login;
-    @FXML
-    private Button id_close_login;
+
     @FXML
     private Label label;
     Navigation nav = new Navigation();
@@ -36,6 +37,7 @@ public class Login implements Initializable {
             nav.navigateTo(root, nav.MAIN_FXML);
         else if (dm.login(userID.getText(),password.getText())) {
             nav.navigateTo(root,nav.TEACHING_FXML);
+            Navigation.id=userID.getText();
         } else label.setText(" WRONG USER NAME OR PASSWORD ");
     }
 
@@ -56,4 +58,9 @@ public class Login implements Initializable {
     }
 
 
+    public void handleKeyPress(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            checkAdmin();
+        }
+    }
 }

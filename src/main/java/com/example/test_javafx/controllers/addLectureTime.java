@@ -41,7 +41,7 @@ public class addLectureTime implements Initializable {
 
         String lecId = id_lecId.getText();
         String courseId = t_courseId.getValue();
-        String roomNo = t_roomNo.getText();
+        String roomNo = !(t_roomNo.getText()).isEmpty()?t_roomNo.getText():dm.getCourseRoom(courseId) ;
 
         String lecTitle = t_title.getText();
 //        dm.addLecture(lecId, courseId, timeSlot, roomNo, lecTitle);

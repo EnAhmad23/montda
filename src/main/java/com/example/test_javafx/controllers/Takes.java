@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -42,6 +43,16 @@ public class Takes implements Initializable {
         students = dm.getTakes();
         view(students);
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+            if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                Take selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    t_id.setText(selectedReport.getStu_id());
+
+                }
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 9));

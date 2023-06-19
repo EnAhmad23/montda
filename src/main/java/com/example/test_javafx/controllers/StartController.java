@@ -26,47 +26,25 @@ public class StartController implements Initializable {
 
     @FXML
     public AnchorPane rootPane;
-    @FXML
-    public Button nav_add_section;
-    @FXML
-    public Button users ;
-    // nav_add_section,nav_lectures_times,nav_enroll_student
-    @FXML
-    public Button nav_lectures_times;
-    @FXML
-    public Button nav_student;
+
+
+
+
     @FXML
     public Button nav_back;
-    @FXML
-    public Button nav_take;
+
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(dm.getStdName("ahmad"));
+
 
     }
-//    private void handleButtonAction (ActionEvent event) throws Exception {
-//
-//        Parent root = null;
-//
-//        if(event.getSource()==nav_student){
-//            stage = (Stage) nav_student.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource(nav.SECTIONs_FXML));
-//        }
-//
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+
     public void navSections() throws IOException {
         nav.navigateTo(rootPane, nav.COURSES);
-//        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource(".../views/Sections.fxml")));
-//        Stage stage = (Stage) nav_add_section.getScene().getWindow();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+
 
     }
     public void navUsers() {
@@ -90,32 +68,7 @@ public class StartController implements Initializable {
     public void back(){nav.navigateTo(rootPane, nav.LOGIN);}
 
 
-    public Connection connect() {
-        PGSimpleDataSource source = new PGSimpleDataSource();
-        source.setServerName("localhost");
-        source.setDatabaseName("UNI1");
-        source.setUser("postgres");
-        source.setPassword("bohboq20");
-        source.setCurrentSchema("uni-space");
-        Connection con = null;
-        try {
-            con = source.getConnection();
 
-            DatabaseMetaData metadata = con.getMetaData();
-            System.out.println("DBMS Name: " + metadata.getDatabaseProductName());
-            System.out.println("DBMS Version: " + metadata.getDatabaseProductVersion());
-            System.out.println("Logged User: " + metadata.getUserName());
-            System.out.println("JDBC Driver: " + metadata.getDriverName());
-            System.out.println("Driver Version: " + metadata.getDriverVersion());
-            System.out.println("Server URL: " + metadata.getURL());
-            System.out.println("Max connections: " + metadata.getMaxConnections());
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return con;  // will return Connection object
-
-    }
 
 
 }

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -85,11 +86,6 @@ public class Attendence implements Initializable {
         if(t_id.getText().length()==9&&!t_id.getText().equals("         ")&&lecture_ids.getValue()!=null) {
              view(dm.searchAttendence(t_id.getText(),lecture_ids.getValue()));
         }
-//        if (t_id.getText().isEmpty()) {
-//            view();
-//        } else {
-//            viewSearch();
-//        }
     }
 
     public void view(ArrayList<Attendences> lectureTimes) {
@@ -101,24 +97,23 @@ public class Attendence implements Initializable {
         ObservableList<Attendences> ids = FXCollections.observableArrayList(lectureTimes);
         table.setItems(ids);
     }
-//
-//
-//    public void viewSearch() {
-//        stu_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        lec_id.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//        title.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-//        room.setCellValueFactory(new PropertyValueFactory<>("Place"));
-//        attendance_percentage.setCellValueFactory(new PropertyValueFactory<>("Majer"));
-//
-//
-//        ObservableList<Student> ids = FXCollections.observableArrayList(dm.searchStudent(t_id.getText()));
-//        table.setItems(ids);
-//    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lecture_ids.getItems().addAll(dm.getLecIds().toArray(new String[dm.getLecIds().size()]));
-        students = dm.getStd();
+        String id =Navigation.id;
+        lecture_ids.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
+        students = dm.getTeachStu(dm.getTeachCourseID(id));
+        table.setOnMouseClicked(mouseEvent ->  {
+
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+                    Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
+                    if (selectedAttendence != null) {
+                        t_id.setText(selectedAttendence.getStudent_id());
+                    }
+                }
+
+        });
         lecture_ids.setOnAction(e -> {
             if (lecture_ids.getValue() != null) {
 //                attendences = dm.getAttendence(lecture_ids.getValue());
@@ -156,22 +151,6 @@ public class Attendence implements Initializable {
     }
 
 
-//    void autoValues(){
-//        list = new ArrayList<>();
-//        for (Attendences s : attendences) {
-//            StringBuilder stringBuilder = new StringBuilder();
-//            stringBuilder.append(s.getStudent_id());
-//            stringBuilder.append(", ");
-//            stringBuilder.append(s.getStudent_name());
-//            stringBuilder.append(", ");
-//            stringBuilder.append(s.getLecture_id());
-//            stringBuilder.append(", ");
-//            stringBuilder.append(s.getCourse_id());
-//            stringBuilder.append(", ");
-//            stringBuilder.append(s.getTitle());
-//            list.add(stringBuilder.toString());
-//        }
-//    }
 
 
 }

@@ -40,20 +40,7 @@ public class AddTeacherAssistant implements Initializable {
 
 
 
-    public void back_to_start() {
-    }
 
-    public void userId() {
-    }
-
-    public void userDept() {
-    }
-
-    public void userName() {
-    }
-
-    public void userPass() {
-    }
 
     public void back_user() {
         nav.navigateTo(root, nav.USERS_FXML);
@@ -82,7 +69,7 @@ public class AddTeacherAssistant implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        if (!dm.availableCourse().is)
+
 
         teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
     }

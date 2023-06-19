@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -113,6 +114,16 @@ public class Courses implements Initializable {
         courses= dm.getCou();
         view();
         autoValues();
+        table.setOnMouseClicked(mouseEvent ->  {
+
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+                    Course selectedCourse = table.getSelectionModel().getSelectedItem();
+                    if (selectedCourse != null) {
+                        t_id.setText(selectedCourse.getCourse_id());
+                    }
+                }
+
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 8));
@@ -132,13 +143,6 @@ public class Courses implements Initializable {
 
     public void autoComplete() {
         autoValues();
-//        if (autoCompletionBinding != null)
-//            autoCompletionBinding.dispose();
-//        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-//        autoCompletionBinding.setOnAutoCompleted(event -> {
-//            t_id.setText(event.getCompletion().toString().substring(0, 8));
-////            TextFields.bindAutoCompletion(t_id, list.toArray());
-//        });
 
 
     }

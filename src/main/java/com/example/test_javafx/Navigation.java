@@ -39,7 +39,7 @@ public class Navigation {
     public final String UPDATE_COURSE = "views/UpdateCourse.fxml";
     public final String UPDATE_LECTURE = "views/UpdateLecture.fxml";
     public final String UPDATE_STUDENT = "views/updateStudent.fxml";
-    public final String UPDATE_STUDENT_REPORT = "views/updateStudentReport.fxml";
+
 
     public final String UPDATE_TA = "views/UpdateTA.fxml";
     public final String REPORT_PAGE = "views/reports.fxml";
@@ -47,6 +47,7 @@ public class Navigation {
     public final String REPORT_STUDENT = "views/reportStudent.fxml";
 
     public static String string = "";
+    public static String id = "";
     DBModel dm = DBModel.getModel();
     public static String owner;
 

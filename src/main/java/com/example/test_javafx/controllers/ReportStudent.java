@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -48,9 +49,7 @@ public class ReportStudent implements Initializable {
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
-    public void SearchReport() {
 
-    }
 
     public void back() {
         nav.navigateTo(root, nav.REPORT_PAGE);
@@ -62,6 +61,16 @@ public class ReportStudent implements Initializable {
         students = dm.getStd();
        // stuReport = ;
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+                if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                    StudentReport selectedReport = table.getSelectionModel().getSelectedItem();
+                    if (selectedReport != null) {
+                        s_id.setText(selectedReport.getId());
+
+                }
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(s_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             s_id.setText(event.getCompletion().toString().substring(0,9));
@@ -102,11 +111,4 @@ public class ReportStudent implements Initializable {
         }
     }
 
-    public void UpdateStuReport(ActionEvent actionEvent) {
-        if (s_id.getText().length()==9&&!s_id.getText().equals("         ")) {
-            Navigation.string = s_id.getText();
-            nav.navigateTo(root,nav.UPDATE_STUDENT_REPORT);
-        }else nav.error_message("ENTER THE ID FOR STUDENT !!");
-
-    }
 }

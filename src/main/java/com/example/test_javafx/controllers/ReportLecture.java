@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -64,6 +65,16 @@ public class ReportLecture implements Initializable {
         lecture=dm.reportLectures();
         view(lecture);
         autoValues();
+        table.setOnMouseClicked(MouseEvent-> {
+
+                if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
+                    ReportLectures selectedLecture = table.getSelectionModel().getSelectedItem();
+                    if (selectedLecture != null) {
+                        l_id.setText(selectedLecture.getLec_id());
+                    }
+                }
+
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(l_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             l_id.setText(event.getCompletion().toString().substring(0,5));

@@ -33,7 +33,7 @@ public class AddTakes implements Initializable {
     @FXML
     private Label label;
     ArrayList<String> students;
-    //    ArrayList<Course> courses = dm.getCou();
+
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
     Navigation nav = new Navigation();
