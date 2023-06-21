@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -57,8 +58,8 @@ public class Attendence implements Initializable {
         nav.navigateTo(root, nav.TEACHING_FXML);
     }
 
-    public void upload() {
-        nav.navigateTo(root, nav.UPLOAD);
+    public void upload() throws IOException {
+        nav.upSecen(nav.UPLOAD);
     }
 
     public void add() {
@@ -72,7 +73,11 @@ public class Attendence implements Initializable {
     public void updateAttendance() {
         if (t_id.getText().length()==9&&!t_id.getText().equals("         ")&&lecture_ids.getValue()!=null) {
             Navigation.string = t_id.getText() +" "+lecture_ids.getValue();
-            nav.navigateTo(root, nav.UPDATE_ATTENDENCE);
+            try {
+                nav.upSecen( nav.UPDATE_ATTENDENCE);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 

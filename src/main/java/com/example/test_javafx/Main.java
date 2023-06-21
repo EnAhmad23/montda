@@ -26,7 +26,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("University");
-//        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));
         stage.setScene(scene);
         stage.show();
     }

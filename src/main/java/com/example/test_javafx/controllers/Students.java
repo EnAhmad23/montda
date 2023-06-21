@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.Main;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
@@ -8,14 +9,17 @@ import com.example.test_javafx.models.StudentReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -23,6 +27,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -31,8 +36,8 @@ public class Students implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private  TextField t_id;
-//    @FXML
+    private TextField t_id;
+    //    @FXML
 //    private TextField s_name;
     @FXML
     private TableColumn<Student, String> id;
@@ -62,8 +67,8 @@ public class Students implements Initializable {
     public static String string = "";
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
-    ArrayList<Student>students;
-//    ArrayList<Course> courses = dm.getCou();
+    ArrayList<Student> students;
+    //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
 
@@ -71,11 +76,12 @@ public class Students implements Initializable {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
-    public void UpdateStudent() {
-        if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
+    public void UpdateStudent() throws IOException {
+        if (t_id.getText().length() == 9 && (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
-            nav.navigateTo(root,nav.UPDATE_STUDENT);
-        }else
+            nav.upSecen(nav.UPDATE_STUDENT);
+//            nav.navigateTo(root,nav.UPDATE_STUDENT);
+        } else
             nav.error_message("ENTER THE ID FOR THE STUDENT !!");
     }
 
@@ -89,7 +95,7 @@ public class Students implements Initializable {
         if (dm.delete_Student(t_id.getText()) != 0) {
             view(dm.getStd());
             del(t_id.getText());
-            nav.navigateTo(root,nav.STUDENTS_FXML);
+            nav.navigateTo(root, nav.STUDENTS_FXML);
             label.setTextFill(Color.color(0, 0, 0));
         } else {
             label.setTextFill(Color.color(1, 0, 0));
@@ -103,6 +109,7 @@ public class Students implements Initializable {
 //        stage.setScene(new Scene());
 
     }
+
     void del(String s) {
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId().equals(s)) {
@@ -130,34 +137,36 @@ public class Students implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        students=dm.getStd();
+        students = dm.getStd();
         view(students);
         autoValues();
-        table.setOnMouseClicked(MouseEvent-> {
 
-            if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
-                Student selectedReport = table.getSelectionModel().getSelectedItem();
-                if (selectedReport != null) {
-                    t_id.setText(selectedReport.getId());
-
-                }
-            }
-        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0,9));
+            t_id.setText(event.getCompletion().toString().substring(0, 9));
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
     }
 
-    public void autoComplete(){
-         autoValues();
+    public void select(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+            Student selectedReport = table.getSelectionModel().getSelectedItem();
+            if (selectedReport != null) {
+                t_id.setText(selectedReport.getId());
+
+            }
+        }
 
     }
-    void autoValues(){
+
+    public void autoComplete() {
+        autoValues();
+
+    }
+
+    void autoValues() {
         list = new ArrayList<>();
         for (Student s : students) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -175,6 +184,7 @@ public class Students implements Initializable {
             list.add(stringBuilder.toString());
         }
     }
+
     public void searchStudent() {
         if (t_id.getText().isEmpty()) {
             view(dm.getStd());
@@ -182,6 +192,7 @@ public class Students implements Initializable {
             view(dm.searchStudent(t_id.getText()));
         }
     }
+
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             Update_back();

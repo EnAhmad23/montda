@@ -67,15 +67,11 @@ public class UpdateStudent implements Initializable {
 
     }
 
-    public void nav_back() {
-        nav.navigateTo(root, nav.STUDENTS_FXML);
-    }
+//    public void nav_back() {
+//        nav.navigateTo(root, nav.STUDENTS_FXML);
+//    }
 
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

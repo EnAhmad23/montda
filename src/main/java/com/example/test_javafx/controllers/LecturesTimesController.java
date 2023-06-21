@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -149,7 +150,11 @@ public class LecturesTimesController implements Initializable {
     public void update_button() {
         if (t_id.getText().length() == 5 && (!t_id.getText().equals("     "))) {
             Navigation.string = t_id.getText();
-            nav.navigateTo(root, nav.UPDATE_LECTURE);
+            try {
+                nav.upSecen( nav.UPDATE_LECTURE);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else
             nav.error_message("ENTER THE ID FOR  THE LECTURE !!");
     }

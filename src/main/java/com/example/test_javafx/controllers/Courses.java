@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -138,11 +139,11 @@ public class Courses implements Initializable {
 
     }
 
-    public void updateCourse(ActionEvent actionEvent) {
+    public void updateCourse(ActionEvent actionEvent) throws IOException {
 
         if (t_id.getText().length() == 8&& (!t_id.getText().equals("        "))) {
             Navigation.string = t_id.getText();
-            nav.navigateTo(root, nav.UPDATE_COURSE);
+            nav.upSecen( nav.UPDATE_COURSE);
         } else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");
     }

@@ -143,10 +143,8 @@ ALTER TABLE uni.teacher_assistant OWNER TO postgres;
 
 COPY uni.attendence (stu_id, lec_id) FROM stdin;
 120200291	lec10
-220200600	lec34
 120200887	lec99
 120200291	lec99
-220200600	lec99
 \.
 
 
@@ -187,9 +185,8 @@ COPY uni.phone_num (s_id, ph_num) FROM stdin;
 120200887	0597058876
 120200291	0594096020
 120200887	0592294189
-220200666	0594022357
 220200888	0591234567
-220200600	0590000000
+220200666	1111111111
 \.
 
 
@@ -200,9 +197,8 @@ COPY uni.phone_num (s_id, ph_num) FROM stdin;
 COPY uni.students (id, name, gender, place, majer) FROM stdin;
 120200291	yassen	male	5	music
 120200887	ahmed	male	2	comp eng
-220200666	shahed	female	1	comp eng
 220200888	heba	female	gaza	art
-220200600	nada	female	a	b
+220200666	shahed	female	33	comp eng
 \.
 
 
@@ -211,10 +207,7 @@ COPY uni.students (id, name, gender, place, majer) FROM stdin;
 --
 
 COPY uni.takes (id, course_id) FROM stdin;
-120200887	eele3302
-120200887	ecom3102
 120200291	eele3302
-220200600	eele3302
 \.
 
 

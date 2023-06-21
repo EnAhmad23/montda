@@ -47,7 +47,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TableView fx:id="table" editable="true" layoutY="256.0" prefHeight="418.0" prefWidth="856.0">
+      <TableView fx:id="table" editable="true" layoutY="256.0" onMouseClicked="#select" prefHeight="418.0" prefWidth="856.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="134.5" style="-fx-background-radius: 2;" text="Student ID" />
             <TableColumn fx:id="name" prefWidth="202.0" style="-fx-background-radius: 2;" text="Name" />
