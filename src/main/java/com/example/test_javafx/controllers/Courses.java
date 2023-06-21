@@ -13,6 +13,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -97,7 +99,11 @@ public class Courses implements Initializable {
         nav.navigateTo(root, nav.Admin_FXML);
 
     }
-
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
+    }
     public void view() {
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
         book_name.setCellValueFactory(new PropertyValueFactory<>("book_name"));

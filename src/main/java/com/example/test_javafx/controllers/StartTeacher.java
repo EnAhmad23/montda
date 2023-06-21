@@ -4,6 +4,8 @@ import com.example.test_javafx.Navigation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -13,8 +15,13 @@ public class StartTeacher implements Initializable {
     @FXML
     AnchorPane root;
     Navigation nav = new Navigation();
-    public void back(ActionEvent actionEvent) {
+    public void back() {
         nav.navigateTo(root,nav.LOGIN);
+    }
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
     }
 
     public void students(ActionEvent actionEvent) {

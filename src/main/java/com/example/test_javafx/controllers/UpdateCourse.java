@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -34,9 +36,17 @@ public class UpdateCourse implements Initializable {
 
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-    public void nav_back(){
+
+    public void nav_back() {
         nav.navigateTo(root, nav.COURSES);
     }
+
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            nav_back();
+        }
+    }
+
     public void nav_update() {
         if (dm.updateCourse(course_id.getText(), teacherName.getText(), bookName.getText(), room.getText(), courseSubject.getText()) != 0) {
             label.setTextFill(Color.color(0, 1, 0));

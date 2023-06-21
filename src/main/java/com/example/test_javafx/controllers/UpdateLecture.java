@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -19,7 +21,7 @@ public class UpdateLecture implements Initializable {
     public AnchorPane root;
 
     @FXML
-    private TextField lecture_id ;
+    private TextField lecture_id;
     @FXML
     private ComboBox<String> courses;
     @FXML
@@ -33,23 +35,31 @@ public class UpdateLecture implements Initializable {
     @FXML
     private Button update_button;
     @FXML
-     private Label label;
+    private Label label;
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
 
-    public void nav_update(){
+    public void nav_update() {
         if (dm.UpdateLecture(lecture_id.getText(), courses.getValue(), roomNo.getText(), title.getText()) != 0) {
-        label.setTextFill(Color.color(0, 1, 0));
-        label.setText("LECTURE UPDATE SUCCESSFULLY");
-    } else {
-        label.setTextFill(Color.color(1, 0, 0));
-        label.setText("LECTURE DIDN'T UPDATE");
+            label.setTextFill(Color.color(0, 1, 0));
+            label.setText("LECTURE UPDATE SUCCESSFULLY");
+        } else {
+            label.setTextFill(Color.color(1, 0, 0));
+            label.setText("LECTURE DIDN'T UPDATE");
+        }
     }
-    }
-    public void nav_back(){
+
+    public void nav_back() {
         nav.navigateTo(root, nav.LECTURES_TIMES_FXML);
     }
+
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            nav_back();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lecture_id.setText(Navigation.string);

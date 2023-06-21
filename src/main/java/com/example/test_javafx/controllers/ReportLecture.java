@@ -13,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -59,6 +61,11 @@ public class ReportLecture implements Initializable {
     }
     public void back(){
         nav.navigateTo(root,nav.REPORT_PAGE);
+    }
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

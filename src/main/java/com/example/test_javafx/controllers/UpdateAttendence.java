@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -51,6 +53,11 @@ private Label label;
 
     public void nav_back(){
         nav.navigateTo(root, nav.ATTENDENCE_FXML);
+    }
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            nav_back();
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

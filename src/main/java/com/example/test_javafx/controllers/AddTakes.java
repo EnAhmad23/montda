@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -39,8 +41,14 @@ public class AddTakes implements Initializable {
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
-    public void back(ActionEvent actionEvent) {
+    public void back() {
         nav.navigateTo(root, nav.TAKES);
+    }
+
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
     }
 
     public void addTakes() {

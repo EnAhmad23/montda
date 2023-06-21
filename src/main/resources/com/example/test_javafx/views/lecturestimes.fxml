@@ -17,7 +17,7 @@
                 <Font name="Times New Roman Bold" size="18.0" />
             </font>
         </Button>
-        <TableView fx:id="table" layoutY="234.0" prefHeight="347.0" prefWidth="721.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="234.0">
+        <TableView fx:id="table" layoutY="234.0" onKeyPressed="#esc" prefHeight="347.0" prefWidth="721.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="234.0">
             <columns>
                 <TableColumn fx:id="id" prefWidth="185.0" style="-fx-background-radius: 2;" text="Lecture ID" />
                 <TableColumn fx:id="course_id" prefWidth="199.5" style="-fx-background-radius: 2;" text="Course Id" />

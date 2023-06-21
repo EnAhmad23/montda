@@ -14,6 +14,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedReader;
@@ -55,6 +57,11 @@ public class Upload implements Initializable {
 
     public void Upload_back(){
         nav.navigateTo(root,nav.ATTENDENCE_FXML);
+    }
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            Upload_back();
+        }
     }
     public void Upload() {
 

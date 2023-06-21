@@ -1,5 +1,7 @@
 package com.example.test_javafx.controllers;
 import com.example.test_javafx.models.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -134,11 +136,15 @@ public class TeachingAssistant implements Initializable {
     }
 
 
-    public void back(ActionEvent actionEvent) {
+    public void back() {
     nav.navigateTo(root,nav.MAIN_FXML);
 }
 
-
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
+    }
 
 
 

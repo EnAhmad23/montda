@@ -145,6 +145,8 @@ COPY uni.attendence (stu_id, lec_id) FROM stdin;
 120200291	lec10
 220200600	lec34
 120200887	lec99
+120200291	lec99
+220200600	lec99
 \.
 
 

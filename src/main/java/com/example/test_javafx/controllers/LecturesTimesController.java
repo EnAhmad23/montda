@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -80,7 +82,11 @@ public class LecturesTimesController implements Initializable {
         nav.navigateTo(root, Navigation.owner);
     }
 
-
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
+    }
     public void viewTimes() {
         if (t_id.getText().isEmpty() && courses.getValue() != null) {
             view(db.getLecFromCou(courses.getValue()));

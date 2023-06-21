@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -21,7 +23,7 @@ public class UpdateStudent implements Initializable {
     public AnchorPane root;
 
     @FXML
-    private TextField id ;
+    private TextField id;
     @FXML
     private TextField name;
     @FXML
@@ -46,16 +48,16 @@ public class UpdateStudent implements Initializable {
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
-    public void nav_update(){
+    public void nav_update() {
 //                      t_id
 
         String stu_name = name.getText();
         String stu_major = major.getText();
-        String stu_place =  place.getText();
+        String stu_place = place.getText();
         String stu_gender = (String) gender.getValue();
         String stu_phone = phone_number.getText();
 
-        if (dm.UpdateStudent(id.getText(), stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
+        if (dm.UpdateStudent(id.getText(), stu_name, stu_gender, stu_major, stu_place, stu_phone) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student Update successfully");
         } else {
@@ -64,13 +66,21 @@ public class UpdateStudent implements Initializable {
         }
 
     }
-    public void nav_back(){
+
+    public void nav_back() {
         nav.navigateTo(root, nav.STUDENTS_FXML);
     }
+
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            nav_back();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        id.setText(Navigation.string) ;
+        id.setText(Navigation.string);
         id.setEditable(false);
         gender.getItems().addAll(genders);
     }

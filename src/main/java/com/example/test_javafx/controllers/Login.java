@@ -48,14 +48,6 @@ public class Login implements Initializable {
 
     }
 
-    public void Username_Login() {
-    }
-
-    public void Password_Login() {
-    }
-
-    public void close_login() {
-    }
 
 
     public void handleKeyPress(KeyEvent keyEvent) {

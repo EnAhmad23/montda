@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -66,7 +68,11 @@ public class StartController implements Initializable {
     }
 
     public void back(){nav.navigateTo(rootPane, nav.LOGIN);}
-
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back();
+        }
+    }
 
 
 

@@ -3,6 +3,8 @@ package com.example.test_javafx.controllers;
 import com.example.test_javafx.Navigation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class Reports {
@@ -17,6 +19,11 @@ public class Reports {
 
     public void back_stuOP() {
         nav.navigateTo(root,nav.TEACHING_FXML);
+    }
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            back_stuOP();
+        }
     }
 
     public void navToStudentReports() {

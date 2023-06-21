@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -38,10 +40,14 @@ public class UpdateStuRep implements Initializable {
         course_id.getItems().addAll(db.getStuCourseIDs(s).toArray(new String[db.getStuCourseIDs(s).size()]));
         lec_id.getItems().addAll(db.getStuLecIds(s).toArray(new String[db.getStuLecIds(s).size()]));
     }
-    public void nav_back(ActionEvent actionEvent) {
+    public void nav_back() {
         nav.navigateTo(root,nav.REPORT_STUDENT);
     }
-
+    public void esc(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+            nav_back();
+        }
+    }
     public void nav_update() {
 
 
