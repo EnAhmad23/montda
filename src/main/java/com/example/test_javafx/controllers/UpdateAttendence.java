@@ -51,14 +51,7 @@ private Label label;
     }
 
 
-    public void nav_back(){
-        nav.navigateTo(root, nav.ATTENDENCE_FXML);
-    }
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setText(Navigation.string.substring(0,9));

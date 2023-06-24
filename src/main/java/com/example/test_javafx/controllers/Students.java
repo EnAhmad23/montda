@@ -1,21 +1,16 @@
 package com.example.test_javafx.controllers;
 
-import com.example.test_javafx.Main;
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
-import com.example.test_javafx.models.StudentReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -118,7 +113,7 @@ public class Students implements Initializable {
         }
     }
 
-    public void Update_back() {
+    public void update() {
 
         nav.navigateTo(root, Navigation.owner);
     }
@@ -156,6 +151,13 @@ public class Students implements Initializable {
             if (selectedReport != null) {
                 t_id.setText(selectedReport.getId());
 
+            }
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
+                Student selectedReport2 = table.getSelectionModel().getSelectedItem();
+                if (selectedReport2 != null) {
+                    Navigation.string =(selectedReport2.getId());
+                    update();
+                }
             }
         }
 
@@ -195,7 +197,7 @@ public class Students implements Initializable {
 
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            Update_back();
+            update();
         }
     }
 }

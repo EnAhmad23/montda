@@ -8,11 +8,6 @@
 
 <AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="468.0" prefWidth="475.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Upload">
    <children>
-      <Button fx:id="back" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#Upload_back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-radius: 7;" text="←">
-         <font>
-            <Font name="Times New Roman Bold" size="14.0" />
-         </font>
-      </Button>
       <Label alignment="BOTTOM_CENTER" layoutX="143.0" layoutY="28.0" prefHeight="54.0" prefWidth="165.0" text="Upload" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="48.0" />

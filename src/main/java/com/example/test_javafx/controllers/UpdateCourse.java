@@ -37,15 +37,7 @@ public class UpdateCourse implements Initializable {
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
-    public void nav_back() {
-        nav.navigateTo(root, nav.COURSES);
-    }
 
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
 
     public void nav_update() {
         if (dm.updateCourse(course_id.getText(), teacherName.getText(), bookName.getText(), room.getText(), courseSubject.getText()) != 0) {

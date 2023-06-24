@@ -36,15 +36,8 @@ public class UpdateTA implements Initializable {
     DBModel dm = DBModel.getModel();
 
 
-    public void nav_back() {
 
-        nav.navigateTo(root, nav.USERS_FXML);
-    }
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
+
     public void nav_update() {
         if (dm.UpdateTeacher_Assist(id.getText(), name.getText(), teach.getValue().toString(), password.getText()) != 0) {
             label.setTextFill(Color.color(0, 1, 0));

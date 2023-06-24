@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="518.0" prefWidth="434.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateAttendence">
+<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0"  prefHeight="518.0" prefWidth="434.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateAttendence">
    <children>
       <Label layoutX="43.0" layoutY="106.0" prefHeight="34.0" prefWidth="101.0" text="Student ID" textFill="WHITE">
          <font>
@@ -41,11 +41,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#nav_back" style="-fx-background-radius: 8; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="←">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Label alignment="BOTTOM_CENTER" layoutX="78.0" layoutY="28.0" prefHeight="50.0" prefWidth="278.0" text="Update Attendence" textFill="WHITE">
          <font>
             <Font size="32.0" />

@@ -44,15 +44,7 @@ public class UpdateLecRep implements Initializable {
 
     }
 
-    public void nav_back() {
-        nav.navigateTo(root, nav.REPORT_LECTURE);
-    }
 
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
 
 
 }

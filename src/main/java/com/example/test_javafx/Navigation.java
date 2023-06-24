@@ -90,6 +90,7 @@ public class Navigation {
         stage.setScene(scene);
         stage.show();
 
+
     }
 
     public int del_message(String done, String error, String id) {

@@ -6,18 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="493.0" prefWidth="404.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateCourse">
+<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0"  prefHeight="493.0" prefWidth="404.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.UpdateCourse">
    <children>
       <Label fx:id="label" layoutX="5.0" layoutY="423.0" prefHeight="50.0" prefWidth="257.0" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#nav_back" style="-fx-background-radius: 8;" text="←">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Label alignment="BOTTOM_CENTER" layoutX="95.0" layoutY="28.0" prefHeight="50.0" prefWidth="213.0" text="Update Course" textFill="WHITE">
          <font>
             <Font size="32.0" />

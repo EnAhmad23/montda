@@ -40,14 +40,7 @@ public class UpdateStuRep implements Initializable {
         course_id.getItems().addAll(db.getStuCourseIDs(s).toArray(new String[db.getStuCourseIDs(s).size()]));
         lec_id.getItems().addAll(db.getStuLecIds(s).toArray(new String[db.getStuLecIds(s).size()]));
     }
-    public void nav_back() {
-        nav.navigateTo(root,nav.REPORT_STUDENT);
-    }
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            nav_back();
-        }
-    }
+
     public void nav_update() {
 
 

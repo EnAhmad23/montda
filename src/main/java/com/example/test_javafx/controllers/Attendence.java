@@ -1,10 +1,7 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.Attendences;
-import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
-import com.example.test_javafx.models.Student;
+import com.example.test_javafx.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -117,6 +114,12 @@ public class Attendence implements Initializable {
                     Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
                     if (selectedAttendence != null) {
                         t_id.setText(selectedAttendence.getStudent_id());
+                    }
+                }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
+                    Attendences selectedReport = table.getSelectionModel().getSelectedItem();
+                    if (selectedReport != null) {
+                        Navigation.string =(selectedReport.getStudent_id());
+                        updateAttendance();
                     }
                 }
 

@@ -71,6 +71,12 @@ public class LecturesTimesController implements Initializable {
                     t_id.setText(selectedReport.getLecture_id());
 
                 }
+            }else if (MouseEvent.getButton().equals(MouseButton.SECONDARY) && MouseEvent.getClickCount() == 2){
+                LectureTime selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    Navigation.string =(selectedReport.getLecture_id());
+                    update_button();
+                }
             }
         });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());

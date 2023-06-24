@@ -99,6 +99,12 @@ public class TeachingAssistant implements Initializable {
                     t_id.setText(selectedReport.getId());
 
                 }
+            }else if (MouseEvent.getButton().equals(MouseButton.SECONDARY) && MouseEvent.getClickCount() == 2){
+                TeacherAssistant selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    Navigation.string =(selectedReport.getId());
+                    update_teaching_assist();
+                }
             }
         });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());

@@ -128,6 +128,16 @@ public class Courses implements Initializable {
                     if (selectedCourse != null) {
                         t_id.setText(selectedCourse.getCourse_id());
                     }
+                }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
+                    Course selectedReport = table.getSelectionModel().getSelectedItem();
+                    if (selectedReport != null) {
+                        Navigation.string =(selectedReport.getCourse_id());
+                        try {
+                            updateCourse();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
 
         });
@@ -139,7 +149,7 @@ public class Courses implements Initializable {
 
     }
 
-    public void updateCourse(ActionEvent actionEvent) throws IOException {
+    public void updateCourse() throws IOException {
 
         if (t_id.getText().length() == 8&& (!t_id.getText().equals("        "))) {
             Navigation.string = t_id.getText();

@@ -57,7 +57,7 @@
             <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="142.5" style="-fx-background-radius: 2;" text="Phone Number" />
          </columns>
       </TableView>
-      <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#Update_back" prefHeight="24.0" prefWidth="33.0" style="-fx-background-radius: 8;" text="←">
+      <Button fx:id="back" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#update" prefHeight="24.0" prefWidth="33.0" style="-fx-background-radius: 8;" text="←">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
