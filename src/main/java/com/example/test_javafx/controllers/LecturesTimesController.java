@@ -79,6 +79,15 @@ public class LecturesTimesController implements Initializable {
                 }
             }
         });
+        courses.setOnAction(e -> {
+            if (courses.getValue() != null) {
+
+                view(db.getLecFromCou(courses.getValue()));
+
+            } else {
+                nav.error_message("SELECT LECTURE ID");
+            }
+        });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 5));
