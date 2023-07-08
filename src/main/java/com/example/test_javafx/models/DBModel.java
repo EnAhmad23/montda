@@ -79,7 +79,8 @@ public class DBModel {
                 String databaseName = "databasegroup16";
 
                 try (Connection connection = DriverManager.getConnection(url, username, password)) {
-                    Statement statement = connection.createStatement();
+                    con =connection;
+                    Statement statement = con.createStatement();
 
                     // Create the database
                     String createDatabaseQuery = "CREATE DATABASE " + databaseName;
@@ -104,6 +105,13 @@ public class DBModel {
 
 
     public int backupDatabase(String path) throws IOException, InterruptedException {
+        try {
+            con.createStatement().execute("SELECT * from takes");
+
+        } catch (SQLException e) {
+            return -2;
+
+        }
         String[] envp = {
                 "PGHOST=localhost",
                 "PGDATABASE=databasegroup16",

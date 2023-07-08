@@ -44,7 +44,7 @@ public class StartController implements Initializable {
 
     }
 
-    public void navSections() throws IOException {
+    public void navCourses() throws IOException {
         nav.navigateTo(rootPane, nav.COURSES);
 
 

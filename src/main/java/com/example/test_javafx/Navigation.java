@@ -54,6 +54,12 @@ public class Navigation {
 
 
     public void navigateTo(Parent rootPane, String path) {
+//        try {
+//            Parent root = FXMLLoader.load(getClass().getResource(path));
+//            rootPane.getScene().setRoot(root);
+//        } catch(IOException e){
+//            System.out.println(e.getMessage());
+//        }
         try {
             Stage stage =new Stage();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));

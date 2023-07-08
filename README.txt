@@ -1,13 +1,5 @@
 
-                                                              In the name of Allah, The most gracious, the most merciful 
-
-
-Group_name : data base groub 16.
-
-memberes of groub : 
-Ahmed Humeid          120200887
-Anas Abu Al_Tarabish  120200999
-Yassen Abu Zeina      120200291
+                                                             
 
 Requirments to run the project you must have these libraries ↓↓
 
@@ -114,13 +106,7 @@ we are very proud about ourself due to complete the project with a lot of challe
 we hope to get your wonder 
 
 
-AlHamdullah 
 
-
-submitted to :
-
-Dr. Ahmed Mahdi
-Eng. Usama Al_zayyan
 
 
 
