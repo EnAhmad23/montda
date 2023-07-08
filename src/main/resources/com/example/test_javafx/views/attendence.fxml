@@ -23,7 +23,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <TextField fx:id="t_id" layoutX="20.0" layoutY="196.0" onKeyPressed="#handleKeyPress" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="322.0" style="-fx-background-radius: 10;" />
+        <TextField fx:id="t_id" layoutX="20.0" layoutY="196.0" onKeyPressed="#handleKeyPress" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="349.0" style="-fx-background-radius: 10;" />
         <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
         <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
             <columns>
@@ -56,7 +56,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <ComboBox fx:id="lecture_ids" layoutX="363.0" layoutY="196.0" prefHeight="36.0" prefWidth="150.0" promptText="Lecture ID" style="-fx-background-radius: 10;" />
+      <ComboBox fx:id="lecture_ids" layoutX="387.0" layoutY="196.0" prefHeight="36.0" prefWidth="126.0" promptText="Lecture ID" style="-fx-background-radius: 10;" />
       <Button fx:id="nav_upload" layoutX="762.0" layoutY="8.0" mnemonicParsing="false" onAction="#upload" prefHeight="37.0" prefWidth="38.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-background-radius: 2;">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -65,7 +65,7 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
          <graphic>
-            <FontAwesomeIcon fill="#37474f" glyphName="UPLOAD" nodeOrientation="RIGHT_TO_LEFT" size="1.3em" textAlignment="CENTER" wrappingWidth="15.885765075683594">
+            <FontAwesomeIcon fill="#37474f" glyphName="UPLOAD" nodeOrientation="RIGHT_TO_LEFT" size="1.3em" tabSize="2" textAlignment="CENTER" wrappingWidth="15.885765075683594">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
