@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Navigation {
-    public final String MAIN_FXML = "views/admin.fxml";
+    public final String MAIN_FXML = "views/start.fxml";
     public final String absence_FXML = "views/Absent.fxml";
     public final String ADD_COURSE_FXML = "views/addNewSection.fxml";
     public final String ADD_TEACHER_FXML = "views/addTeacher.fxml";
@@ -25,7 +25,7 @@ public class Navigation {
 
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
     public final String STUDENTS_FXML = "views/Students.fxml";
-    public final String Admin_FXML = "views/admin.fxml";
+    public final String Admin_FXML = "views/start.fxml";
     public final String USERS_FXML = "views/users.fxml";
     public final String ADD_USER_FXML = "views/addUser.fxml";
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="475.0" prefWidth="455.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddCourse">
+<AnchorPane fx:id="rootPane" minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="455.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddCourse">
    <children>
       <Pane layoutY="2.0" prefHeight="475.0" prefWidth="455.0">
          <children>
@@ -49,11 +49,6 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Button fx:id="button_to_back" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" style="-fx-background-radius: 8;" text="←">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
             <TextField fx:id="room" layoutX="173.0" layoutY="276.0" prefHeight="34.0" prefWidth="170.0" promptText="Enter Room Number" style="-fx-background-radius: 10;" />
             <Label fx:id="label" layoutX="20.0" layoutY="406.0" prefHeight="42.0" prefWidth="279.0" textFill="RED">
                <font>

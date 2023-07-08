@@ -65,7 +65,12 @@ public class Courses implements Initializable {
     ArrayList<String> list = new ArrayList<>();
 
     public void addCourse() {
-        nav.navigateTo(root, nav.ADD_COURSE_FXML);
+
+        try {
+            nav.upSecen( nav.ADD_COURSE_FXML);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

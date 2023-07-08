@@ -49,9 +49,7 @@ public class AddCourse implements Initializable {
 
 
 
-    public void back() {
-        nav.navigateTo(rootPane, nav.COURSES);
-    }
+
     public void addCourses() {
         String courseId = course_id.getText();
         String Teacher_name = teacherName.getText();
@@ -71,11 +69,7 @@ public class AddCourse implements Initializable {
 
     }
 
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            back();
-        }
-    }
+
 
 
 
