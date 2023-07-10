@@ -66,11 +66,7 @@ public class Courses implements Initializable {
 
     public void addCourse() {
 
-        try {
-            nav.upSecen( nav.ADD_COURSE_FXML);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        nav.upSecen( nav.ADD_COURSE_FXML);
 
     }
 

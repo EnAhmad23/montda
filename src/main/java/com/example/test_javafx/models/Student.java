@@ -3,17 +3,16 @@ package com.example.test_javafx.models;
 public class Student {
     private String id ;
     private String name ;
-    private String gender ;
+
     private String place ;
     private String majer ;
     private String phone_num ;
 
 
-
-    public Student(String id, String name, String gender, String majer, String place, String phoneNum) {
+public Student(){}
+    public Student(String id, String name,  String majer, String place, String phoneNum) {
         this.id = id;
         this.name = name;
-        this.gender = gender;
         this.majer = majer;
         this.place = place;
         phone_num = phoneNum;
@@ -25,9 +24,7 @@ public class Student {
     public String getPhone_num() {
         return phone_num;
     }
-    public String getGender() {
-        return gender;
-    }
+
 
     public String getId() {
         return id;
@@ -45,9 +42,7 @@ public class Student {
         return place;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+
 
     public void setMajer(String majer) {
         this.majer = majer;

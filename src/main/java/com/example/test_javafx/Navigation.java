@@ -1,6 +1,7 @@
 package com.example.test_javafx;
 
 import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.Student;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -49,6 +50,7 @@ public class Navigation {
 
     public static String string = "";
     public static String id = "";
+    public static Student student = new Student();
     DBModel dm = DBModel.getModel();
     public static String owner;
 
@@ -87,10 +89,15 @@ public class Navigation {
         }
 
     }
-    public void upSecen( String path) throws IOException {
+    public void upSecen( String path)  {
         Stage stage=new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         stage.setTitle("University");
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));
         stage.setScene(scene);

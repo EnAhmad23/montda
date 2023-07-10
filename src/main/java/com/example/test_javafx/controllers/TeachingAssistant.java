@@ -76,11 +76,7 @@ public class TeachingAssistant implements Initializable {
     public void update_teaching_assist() {
         if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
-            try {
-                nav.upSecen(nav.UPDATE_TA);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            nav.upSecen(nav.UPDATE_TA);
         }else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");
     }

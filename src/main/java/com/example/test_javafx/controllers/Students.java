@@ -5,6 +5,7 @@ import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -25,6 +26,7 @@ import org.controlsfx.control.textfield.TextFields;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+
 
 public class Students implements Initializable {
 
@@ -71,7 +73,7 @@ public class Students implements Initializable {
         nav.navigateTo(root, nav.Add_STUDENT_FXML);
     }
 
-    public void UpdateStudent() throws IOException {
+    public void updateStudent() throws IOException {
         if (t_id.getText().length() == 9 && (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
             nav.upSecen(nav.UPDATE_STUDENT);
@@ -113,15 +115,11 @@ public class Students implements Initializable {
         }
     }
 
-    public void update() {
 
-        nav.navigateTo(root, Navigation.owner);
-    }
 
     public void view(ArrayList<Student> arrayList) {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
         place.setCellValueFactory(new PropertyValueFactory<>("Place"));
         phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
@@ -130,7 +128,10 @@ public class Students implements Initializable {
         ObservableList<Student> ids = FXCollections.observableArrayList(arrayList);
         table.setItems(ids);
     }
+    public void update() {
 
+        nav.navigateTo(root, Navigation.owner);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -156,7 +157,12 @@ public class Students implements Initializable {
                 Student selectedReport2 = table.getSelectionModel().getSelectedItem();
                 if (selectedReport2 != null) {
                     Navigation.string =(selectedReport2.getId());
-                    update();
+                    try {
+                        updateStudent();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+//                    update();
                 }
             }
         }
@@ -176,7 +182,6 @@ public class Students implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getGender());
             stringBuilder.append(", ");
             stringBuilder.append(s.getMajer());
             stringBuilder.append(", ");
@@ -197,7 +202,11 @@ public class Students implements Initializable {
 
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            update();
+            back();
         }
+    }
+
+    public void back() {
+        nav.navigateTo(root,Navigation.owner);
     }
 }

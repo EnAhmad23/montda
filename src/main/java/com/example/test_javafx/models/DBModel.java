@@ -248,7 +248,7 @@ return null;
     }
 
     public ArrayList<Student> getTeachStu(String id) {
-        String sql = "SELECT s.id, s.name, s.gender, s.majer, s.place, string_agg(pn.ph_num, '\n') " +
+        String sql = "SELECT s.id, s.name,  s.majer, s.place, string_agg(pn.ph_num, '\n') " +
                 "FROM students s " +
                 "JOIN takes t ON s.id = t.ID " +
                 "JOIN phone_num pn ON s.id = pn.s_id " +
@@ -260,7 +260,7 @@ return null;
             st.setString(1, id);
             ResultSet rs = st.executeQuery(); // Remove the "sql" argument here
             while (rs.next()) {
-                students.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                students.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return students;
         } catch (SQLException ex) {
@@ -508,7 +508,7 @@ return null;
 //    }
 
     public ArrayList<Student> getStd() {
-        String sql = "SELECT s.id, s.name, s.gender, s.majer, s.place, string_agg(p.ph_num, '\n') AS phone_numbers\n" +
+        String sql = "SELECT s.id, s.name, s.majer, s.place, string_agg(p.ph_num, '\n') AS phone_numbers\n" +
                 "FROM students s\n" +
                 "LEFT JOIN phone_num p ON s.id = p.s_id\n" +
                 "GROUP BY s.id, s.name, s.gender, s.majer, s.place;";
@@ -517,7 +517,7 @@ return null;
             ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -1020,13 +1020,13 @@ return null;
 
 
     public ArrayList<Student> searchStudent(String id) {
-        String sql = "select id,name,gender,majer,place,ph_num from students join phone_num on id =s_id where id = ? ;";
+        String sql = "select id,name,majer,place,ph_num from students join phone_num on id =s_id where id = ? ;";
         ArrayList<Student> student = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return student;
         } catch (SQLException ex) {

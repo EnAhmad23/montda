@@ -165,11 +165,7 @@ public class LecturesTimesController implements Initializable {
     public void update_button() {
         if (t_id.getText().length() == 5 && (!t_id.getText().equals("     "))) {
             Navigation.string = t_id.getText();
-            try {
-                nav.upSecen( nav.UPDATE_LECTURE);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            nav.upSecen( nav.UPDATE_LECTURE);
         } else
             nav.error_message("ENTER THE ID FOR  THE LECTURE !!");
     }

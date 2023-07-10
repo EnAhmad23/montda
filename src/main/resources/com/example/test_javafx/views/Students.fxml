@@ -40,9 +40,9 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="update" layoutX="686.0" layoutY="116.0" mnemonicParsing="false" onAction="#UpdateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
+      <Button fx:id="update" layoutX="686.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
          <font>
-            <Font name="Times New Roman" size="22.0" />
+            <Font name="Times New Roman" size="21.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -64,11 +64,11 @@
       </Button>
       <TableView fx:id="table" editable="true" layoutY="256.0" onMouseClicked="#select" prefHeight="418.0" prefWidth="856.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="134.5" style="-fx-background-radius: 2; -fx-background-color: #DEE4E7;" text="Student ID" />
-            <TableColumn fx:id="name" prefWidth="212.0" style="-fx-background-radius: 2; -fx-background-color: #DEE4E7;" text="Name" />
-            <TableColumn fx:id="major" prefWidth="151.0" style="-fx-background-radius: 2; -fx-background-color: #DEE4E7;" text="Major" />
-            <TableColumn fx:id="place" prefWidth="154.0" style="-fx-background-radius: 2; -fx-background-color: #DEE4E7;" text="Place" />
-            <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="203.0" style="-fx-background-radius: 2; -fx-background-color: #DEE4E7;" text="Phone Number" />
+            <TableColumn fx:id="id" prefWidth="134.5" style="-fx-background-radius: 2;" text="Student ID" />
+            <TableColumn fx:id="name" prefWidth="212.0" style="-fx-background-radius: 2;" text="Name" />
+            <TableColumn fx:id="major" prefWidth="151.0" style="-fx-background-radius: 2;" text="Major" />
+            <TableColumn fx:id="place" prefWidth="154.0" style="-fx-background-radius: 2;" text="Place" />
+            <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="203.0" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="Phone Number" />
          </columns>
       </TableView>
       <Button fx:id="search" layoutX="548.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">
@@ -82,7 +82,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="SEARCH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="39.0" style="-fx-background-radius: 9;">
+      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="48.0" style="-fx-background-radius: 9;">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>

@@ -70,11 +70,7 @@ public class Attendence implements Initializable {
     public void updateAttendance() {
         if (t_id.getText().length()==9&&!t_id.getText().equals("         ")&&lecture_ids.getValue()!=null) {
             Navigation.string = t_id.getText() +" "+lecture_ids.getValue();
-            try {
-                nav.upSecen( nav.UPDATE_ATTENDENCE);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            nav.upSecen( nav.UPDATE_ATTENDENCE);
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 
