@@ -5,12 +5,14 @@ import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -25,7 +27,8 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public class Students implements Initializable {
@@ -41,23 +44,14 @@ public class Students implements Initializable {
     @FXML
     private TableColumn<Student, String> name;
     @FXML
-    private TableColumn<Student, String> gender;
-    @FXML
     private TableColumn<Student, String> place;
     @FXML
     private TableColumn<Student, String> major;
     @FXML
     private TableColumn<Student, String> phone_num;
     //    @FXML
-//    private TextField department;
-    @FXML
-    private Button add;
-    @FXML
-    private Button update;
-    @FXML
-    private Button delete;
-    @FXML
-    private Button back;
+    //    private TextField department;
+
     @FXML
     private TableView<Student> table;
 
@@ -70,7 +64,7 @@ public class Students implements Initializable {
     ArrayList<String> list = new ArrayList<>();
 
     public void addStudent() {
-        nav.navigateTo(root, nav.Add_STUDENT_FXML);
+        nav.upSecen( nav.Add_STUDENT_FXML);
     }
 
     public void updateStudent() throws IOException {
