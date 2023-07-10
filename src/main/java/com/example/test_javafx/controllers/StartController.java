@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.Main;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.event.ActionEvent;
@@ -9,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +33,8 @@ public class StartController implements Initializable {
     public AnchorPane rootPane;
 
 
-
+@FXML
+    ImageView image;
 
     @FXML
     public Button nav_back;
@@ -40,7 +44,7 @@ public class StartController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+image.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/m.png"))));
 
     }
 

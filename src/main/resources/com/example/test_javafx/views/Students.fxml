@@ -29,7 +29,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="delete" layoutX="686.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Delete">
+      <Button fx:id="delete" layoutX="686.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="حذف ">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>
@@ -40,7 +40,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="update" layoutX="686.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
+      <Button fx:id="update" layoutX="686.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="تحديث ">
          <font>
             <Font name="Times New Roman" size="21.0" />
          </font>
@@ -51,7 +51,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="REFRESH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="add" layoutX="548.0" layoutY="116.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Add">
+      <Button fx:id="add" layoutX="548.0" layoutY="116.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="اضافة ">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -64,14 +64,15 @@
       </Button>
       <TableView fx:id="table" editable="true" layoutY="256.0" onMouseClicked="#select" prefHeight="418.0" prefWidth="856.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="134.5" style="-fx-background-radius: 2;" text="Student ID" />
-            <TableColumn fx:id="name" prefWidth="212.0" style="-fx-background-radius: 2;" text="Name" />
-            <TableColumn fx:id="major" prefWidth="151.0" style="-fx-background-radius: 2;" text="Major" />
-            <TableColumn fx:id="place" prefWidth="154.0" style="-fx-background-radius: 2;" text="Place" />
-            <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="203.0" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="Phone Number" />
+            <TableColumn fx:id="id" prefWidth="88.80002135038376" style="-fx-background-radius: 2;" text="رقم الطالب" />
+            <TableColumn fx:id="name" prefWidth="232.00001525878906" style="-fx-background-radius: 2;" text="اسم الطالب" />
+            <TableColumn fx:id="major" prefWidth="119.99993896484375" style="-fx-background-radius: 2;" text="المستوى" />
+            <TableColumn fx:id="place" prefWidth="124.7999267578125" style="-fx-background-radius: 2;" text="المكان" />
+            <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="156.0" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="رقم الجوال" />
+            <TableColumn fx:id="place1" prefWidth="132.79998779296875" style="-fx-background-radius: 2;" text="التخصص الجامعي" />
          </columns>
       </TableView>
-      <Button fx:id="search" layoutX="548.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">
+      <Button fx:id="search" layoutX="548.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="بحث ">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>

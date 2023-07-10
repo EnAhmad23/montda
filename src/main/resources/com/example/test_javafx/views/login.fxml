@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Login">
+<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Login">
     <Pane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #37474F;">
         <Pane layoutX="0.0" layoutY="0.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #DEE4E7;">
             <Label layoutX="625.0" layoutY="100.0" text="LOGIN" textFill="#DEE4E7">
@@ -26,9 +30,9 @@
                     <Font name="Verdana Bold" size="15.0" />
                 </font>
             </Label>
-            <Label layoutX="97.0" layoutY="248.0" style="-fx-text-fill: #37474F;" text="ATTENDANCE" textFill="#37474F">
+            <Label layoutX="52.0" layoutY="252.0" style="-fx-text-fill: #37474F;" text="SCIENTIFIC FORUM" textFill="#37474F">
                 <font>
-                    <Font name="Verdana Bold" size="50.0" />
+                    <Font name="Verdana Bold" size="38.0" />
                 </font>
             </Label>
             <Label fx:id="label" layoutX="599.0" layoutY="440.0" prefHeight="41.0" prefWidth="302.0" textFill="#f70000">
@@ -41,7 +45,7 @@
                  <Font name="System Bold" size="24.0" />
              </font>
       </Label>
-         <Label layoutX="579.0" layoutY="240.0" text="User ID" textFill="#DEE4E7">
+         <Label layoutX="579.0" layoutY="240.0" text="User Name" textFill="#DEE4E7">
              <font>
                  <Font name="System Bold" size="24.0" />
              </font>

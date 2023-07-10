@@ -21,7 +21,7 @@ public class Main extends Application {
         DBModel dm=DBModel.getModel();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("University");
+        stage.setTitle("Montda");
         stage.setOnCloseRequest(event -> {
             try {
                 if( dm.backupDatabase("backups/")==0)
