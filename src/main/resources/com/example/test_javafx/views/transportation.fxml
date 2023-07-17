@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="709.0" prefWidth="817.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Transportation">
+   <children>
+      <Label alignment="BOTTOM_CENTER" layoutX="255.0" layoutY="10.0" prefHeight="60.0" prefWidth="316.0" text=" Transportation" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="48.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField fx:id="t_id" layoutX="20.0" layoutY="196.0" onKeyPressed="#handleKeyPress" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="349.0" style="-fx-background-radius: 10;" />
+      <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
+      <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+         <columns>
+            <TableColumn fx:id="stu_id" prefWidth="70.40002745389938" style="-fx-background-radius: 2;" text="Student ID" />
+            <TableColumn fx:id="name" prefWidth="189.59996032714844" style="-fx-background-radius: 2;" text="Student Name" />
+            <TableColumn fx:id="value_day" prefWidth="80.79998779296875" style="-fx-background-radius: 2;" text="Value in day" />
+            <TableColumn fx:id="h_required" minWidth="0.0" prefWidth="126.40008544921875" style="-fx-background-radius: 2;" text="Hours required daily" />
+            <TableColumn fx:id="expense" prefWidth="88.7999267578125" style="-fx-background-radius: 2;" text="Expense" />
+            <TableColumn fx:id="tra_month" prefWidth="151.20001220703125" style="-fx-background-radius: 2;" text="Transportation month" />
+            <TableColumn fx:id="num_att" prefWidth="115.99996337890627" style="-fx-background-radius: 2;" text="Days of attendance" />
+         </columns>
+      </TableView>
+      <Button fx:id="update" layoutX="676.0" layoutY="103.0" mnemonicParsing="false" onAction="#updateAttendance" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text=" Update" AnchorPane.rightAnchor="24.00000000000003">
+         <font>
+            <Font name="Times New Roman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="REFRESH" size="0.8em" wrappingWidth="15.885765075683594" />
+         </graphic>
+      </Button>
+      <Button fx:id="del" layoutX="676.0" layoutY="172.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text=" Delete" AnchorPane.rightAnchor="24.00000000000003">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
+         </graphic>
+      </Button>
+      <ComboBox fx:id="months" layoutX="387.0" layoutY="196.0" prefHeight="36.0" prefWidth="126.0" promptText="Lecture ID" style="-fx-background-radius: 10;" />
+      <Button fx:id="nav_back" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="46.0" style="-fx-background-radius: 9;">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="ARROW_LEFT" selectionFill="#7d929c" />
+         </graphic>
+      </Button>
+      <Button layoutX="541.0" layoutY="103.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text=" Add">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="PLUS" size="0.8em" wrappingWidth="15.885765075683594" />
+         </graphic>
+      </Button>
+      <Button fx:id="search" layoutX="541.0" layoutY="172.0" mnemonicParsing="false" onAction="#searchAttendance" prefHeight="60.0" prefWidth="126.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text=" Search">
+         <font>
+            <Font name="Times New Roman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="SEARCH" size="0.8em" wrappingWidth="15.885765075683594" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

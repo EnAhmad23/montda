@@ -80,6 +80,7 @@ public class Navigation {
                     System.err.println(e.getMessage());
                     throw new RuntimeException(e);
                 }
+
             });
             Scene scene = new Scene(root);
             stage.setScene(scene);

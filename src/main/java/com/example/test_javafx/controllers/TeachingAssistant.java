@@ -8,14 +8,12 @@ import org.controlsfx.control.textfield.TextFields;
 import com.example.test_javafx.Navigation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -121,7 +119,7 @@ public class TeachingAssistant implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getTeache());
+            stringBuilder.append(s.getTeach());
             list.add(stringBuilder.toString());
         }
     }

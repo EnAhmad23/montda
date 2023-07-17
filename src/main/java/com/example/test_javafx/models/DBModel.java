@@ -162,7 +162,7 @@ public class DBModel {
         }
     }
 
-    private void exit() {
+     public void exit() {
         closeEverything();
         System.out.println("Exiting... \nBye!");
         System.exit(0);
@@ -224,7 +224,7 @@ return null;
 //    }
 
     public String getTeachCourseID(String id) {
-        String sql = "select teache from teacher_assistant where id =?;";
+        String sql = "select teach from teacher where id =?;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);

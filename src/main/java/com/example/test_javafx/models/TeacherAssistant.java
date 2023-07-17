@@ -1,22 +1,17 @@
 package com.example.test_javafx.models;
 
-import javafx.fxml.Initializable;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class TeacherAssistant  {
 
-    String id;
-    String name;
-    String teache;
-   private String password;
+    private String id;
+    private String name;
+    private String teach;
 
 
-    public TeacherAssistant(String id, String name, String teache) {
+
+    public TeacherAssistant(String id, String name, String teach) {
         this.id = id;
         this.name = name;
-        this.teache = teache;
+        this.teach = teach;
     }
 
     public String getId() {
@@ -35,19 +30,14 @@ public class TeacherAssistant  {
         this.name = name;
     }
 
-    public String getTeache() {
-        return teache;
+    public String getTeach() {
+        return teach;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getPassword() {
-        return password;
-    }
 
-    public void setTeache(String teache) {
-        this.teache = teache;
+
+    public void setTeach(String teach) {
+        this.teach = teach;
     }
 
 }
