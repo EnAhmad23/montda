@@ -59,7 +59,7 @@ public class Transportation implements Initializable {
     DBModel dm = DBModel.getModel();
 
     public void back() {
-        nav.navigateTo(root, nav.TEACHING_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
 
     public void upload() throws IOException {
@@ -69,7 +69,7 @@ public class Transportation implements Initializable {
     public void add() {
         if (t_id.getText() != null && months.getValue() != null && t_id.getText().length() == 9) {
             if (dm.addAttendance(t_id.getText(), months.getValue()) != 0)
-                view(dm.getAttendence(months.getValue()));
+          ///      view(dm.getAttendence(months.getValue()));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T ADD");
     }
@@ -84,14 +84,14 @@ public class Transportation implements Initializable {
     public void delete(ActionEvent actionEvent) {
         if (dm.deleteAttendence(t_id.getText(),months.getValue())!=0) {
             nav.message("STUDENT DELETED");
-            view(dm.getAttendence(months.getValue()));
+         ///   view(dm.getAttendence(months.getValue()));
             t_id.clear();
         }else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {
         if(t_id.getText().length()==9&&!t_id.getText().equals("         ")&&months.getValue()!=null) {
-            view(dm.searchAttendence(t_id.getText(),months.getValue()));
+          ///  view(dm.searchAttendence(t_id.getText(),months.getValue()));
         }
     }
 
@@ -111,21 +111,21 @@ public class Transportation implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String id =Navigation.id;
-        months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
-        transports = dm.getTeachStu(dm.getTeachCourseID(id));
+     ///   months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
+     ///   transports = dm.getTeachStu(dm.getTeachCourseID(id));
         table.setOnMouseClicked(mouseEvent ->  {
 
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-                Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
-                if (selectedAttendence != null) {
-                    t_id.setText(selectedAttendence.getStudent_id());
-                }
+            ///    Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
+//          /      if (selectedAttendence != null) {
+//         /           t_id.setText(selectedAttendence.getStudent_id());
+//          /      }
             }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
-                Attendences selectedReport = table.getSelectionModel().getSelectedItem();
-                if (selectedReport != null) {
-                    Navigation.string =(selectedReport.getStudent_id());
-                    updateAttendance();
-                }
+//        /        Attendences selectedReport = table.getSelectionModel().getSelectedItem();
+//             /   if (selectedReport != null) {
+//             /       Navigation.string =(selectedReport.getStudent_id());
+//               /     updateAttendance();
+//             /   }
             }
 
         });
@@ -133,13 +133,13 @@ public class Transportation implements Initializable {
             if (months.getValue() != null) {
 //                attendences = dm.getAttendence(lecture_ids.getValue());
 
-                view(dm.getAttendence(months.getValue()));
+//            /    view(dm.getAttendence(months.getValue()));
 
             } else {
                 nav.error_message("SELECT LECTURE ID");
             }
         });
-        autoValues();
+        ///autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 9));

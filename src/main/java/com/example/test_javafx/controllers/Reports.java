@@ -18,7 +18,7 @@ public class Reports {
 
 
     public void back_stuOP() {
-        nav.navigateTo(root,nav.TEACHING_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {

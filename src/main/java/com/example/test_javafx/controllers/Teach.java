@@ -29,9 +29,9 @@ public class Teach implements Initializable {
     @FXML
     public TableView<Teacher> table;
     @FXML
-    public TableColumn<Teacher, String> tea_id;
+    public TableColumn<Teacher, String> id;
     @FXML
-    public TableColumn<Teacher, String> tea_name;
+    public TableColumn<Teacher, String> name;
     @FXML
     public TableColumn<Teacher, String> course_id;
     @FXML
@@ -48,8 +48,8 @@ public class Teach implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //  /     teachers = dm.getTakes();
-        view(teachers);
-        autoValues();
+//  /      view(teachers);
+//    /    autoValues();
         table.setOnMouseClicked(MouseEvent-> {
 
             if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
@@ -113,8 +113,8 @@ public class Teach implements Initializable {
 
 
     public void view(ArrayList<Teacher> lectureTimes) {
-        tea_id.setCellValueFactory(new PropertyValueFactory<>("tea_id"));
-        tea_name.setCellValueFactory(new PropertyValueFactory<>("tea_name"));
+        id.setCellValueFactory(new PropertyValueFactory<>("tea_id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("tea_name"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
         course_name.setCellValueFactory(new PropertyValueFactory<>("course_name"));
         ObservableList<Teacher> ids = FXCollections.observableArrayList(lectureTimes);

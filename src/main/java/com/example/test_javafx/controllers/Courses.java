@@ -37,13 +37,15 @@ public class Courses implements Initializable {
     private TableColumn<Courses, String> course_id;
     ;
     @FXML
-    private TableColumn<Courses, String> book_name;
+    private TableColumn<Courses, String> name;
     @FXML
     private TableColumn<Courses, String> teacher_name;
     @FXML
     private TableColumn<Courses, String> room_number;
     @FXML
-    private TableColumn<Courses, String> subject;
+    private TableColumn<Courses, String> time;
+    @FXML
+    private TableColumn<Courses, String> montdaMajer;
     @FXML
     private Button nav_add;
     @FXML
@@ -108,10 +110,11 @@ public class Courses implements Initializable {
     }
     public void view() {
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
-        book_name.setCellValueFactory(new PropertyValueFactory<>("book_name"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         teacher_name.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
         room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
-        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        montdaMajer.setCellValueFactory(new PropertyValueFactory<>("montdaMajer"));
+        time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         ObservableList<Course> course = FXCollections.observableArrayList(dm.getCou());
         table.setItems(course);
@@ -199,10 +202,11 @@ public class Courses implements Initializable {
 
     public void viewSearch() {
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
-        book_name.setCellValueFactory(new PropertyValueFactory<>("book_name"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
         teacher_name.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
         room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
-        subject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        montdaMajer.setCellValueFactory(new PropertyValueFactory<>("montdaMajer"));
+        time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         ObservableList<Course> course = FXCollections.observableArrayList(dm.searchCourse(t_id.getText()));
         table.setItems(course);

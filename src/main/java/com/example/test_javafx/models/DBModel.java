@@ -27,10 +27,10 @@ public class DBModel {
     public void connect() {
         PGSimpleDataSource source = new PGSimpleDataSource();
         source.setServerName("localhost");
-        source.setDatabaseName("databasegroup16");
-        source.setUser("databasegroup");
-        source.setPassword("databasegroup16");
-        source.setCurrentSchema("uni");
+        source.setDatabaseName("montda");
+        source.setUser("postgres");
+        source.setPassword("bohboq20");
+        source.setCurrentSchema("public");
 
         try {
             con = source.getConnection();
@@ -69,9 +69,9 @@ public class DBModel {
         } catch (SQLException ex) {
             if (ex.getSQLState().equals("3D000")) {
                 String url = "jdbc:postgresql://localhost:5432/postgres";
-                String username = "databasegroup";
-                String password = "databasegroup16";
-                String databaseName = "databasegroup16";
+                String username = "postgres";
+                String password = "bohboq20";
+                String databaseName = "montda";
 
                 try (Connection connection = DriverManager.getConnection(url, username, password)) {
                     con =connection;
@@ -109,9 +109,9 @@ public class DBModel {
         }
         String[] envp = {
                 "PGHOST=localhost",
-                "PGDATABASE=databasegroup16",
-                "PGUSER=databasegroup",
-                "PGPASSWORD=databasegroup16",
+                "PGDATABASE=montda",
+                "PGUSER=postgres",
+                "PGPASSWORD=bohboq20",
                 "PGPORT=5432",
                 "path=C:\\Program Files\\PostgreSQL\\15\\bin" //PostgreSQL path
         };
@@ -130,9 +130,9 @@ public class DBModel {
     public static void restoreDatabase(String path) throws IOException, InterruptedException {
         String[] envp = {
                 "PGHOST=localhost",
-                "PGDATABASE=databasegroup16",
-                "PGUSER=databasegroup",
-                "PGPASSWORD=databasegroup16",
+                "PGDATABASE=montda",
+                "PGUSER=postgres",
+                "PGPASSWORD=bohboq20",
                 "PGPORT=5432",
                 "path=C:\\Program Files\\PostgreSQL\\15\\bin"
         };
@@ -830,7 +830,7 @@ return null;
     }
 
     public ArrayList<TeacherAssistant> getTeacherAssistant() {
-        String sql = "SELECT ID, name, teache FROM teacher_assistant ;";
+        String sql = "SELECT ID, name, course_id FROM teacher natural join teach ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<TeacherAssistant> teacherAssistants = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -885,8 +885,8 @@ return null;
         String sql = "SELECT lecture.id\n" +
                 "FROM lecture\n" +
                 "JOIN course ON lecture.course_id = course.course_id\n" +
-                "JOIN teacher_assistant ON teacher_assistant.teache = course.course_id\n" +
-                "WHERE teacher_assistant.ID = ?;\n";
+                "JOIN teacher ON teacher.teache = course.course_id\n" +
+                "WHERE teacher.ID = ?;\n";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<String> ids = new ArrayList<>();
             st.setString(1, id);
@@ -1064,7 +1064,7 @@ return null;
     }
 
     public ArrayList<TeacherAssistant> searchTeacher(String id) {
-        String sql = "select * from teacher_assistant where id = ? ;";
+        String sql = "select * from teacher where id = ? ;";
         ArrayList<TeacherAssistant> TA = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);

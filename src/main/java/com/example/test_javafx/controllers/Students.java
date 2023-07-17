@@ -46,9 +46,13 @@ public class Students implements Initializable {
     @FXML
     private TableColumn<Student, String> place;
     @FXML
-    private TableColumn<Student, String> major;
+    private TableColumn<Student, String> level;
     @FXML
-    private TableColumn<Student, String> phone_num;
+    private TableColumn<Student, String> montda_majer;
+    @FXML
+    private TableColumn<Student, String> uni_Major;
+    @FXML
+    private TableColumn<Student, String> path;
     //    @FXML
     //    private TextField department;
 
@@ -71,7 +75,6 @@ public class Students implements Initializable {
         if (t_id.getText().length() == 9 && (!t_id.getText().equals("         "))) {
             Navigation.string = t_id.getText();
             nav.upSecen(nav.UPDATE_STUDENT);
-//            nav.navigateTo(root,nav.UPDATE_STUDENT);
         } else
             nav.error_message("ENTER THE ID FOR THE STUDENT !!");
     }
@@ -114,9 +117,11 @@ public class Students implements Initializable {
     public void view(ArrayList<Student> arrayList) {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        major.setCellValueFactory(new PropertyValueFactory<>("Majer"));
+        level.setCellValueFactory(new PropertyValueFactory<>("level"));
         place.setCellValueFactory(new PropertyValueFactory<>("Place"));
-        phone_num.setCellValueFactory(new PropertyValueFactory<>("phone_num"));
+        montda_majer.setCellValueFactory(new PropertyValueFactory<>("monadMajor"));
+        uni_Major.setCellValueFactory(new PropertyValueFactory<>("uniMajor"));
+        path.setCellValueFactory(new PropertyValueFactory<>("path"));
 
 
         ObservableList<Student> ids = FXCollections.observableArrayList(arrayList);

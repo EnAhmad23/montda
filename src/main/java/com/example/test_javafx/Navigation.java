@@ -37,6 +37,7 @@ public class Navigation {
     public final String LOGIN = "views/login.fxml";
     public final String COURSES = "views/course.fxml";
     public final String TAKES = "views/Takes.fxml";
+    public final String TRANSPORTATION = "views/transportation.fxml";
 
     public final String UPDATE_ATTENDENCE = "views/UpdateAttendence.fxml";
     public final String UPDATE_COURSE = "views/UpdateCourse.fxml";
