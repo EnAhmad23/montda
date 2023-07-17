@@ -116,7 +116,7 @@ public class Navigation {
         root.setAlignment(Pos.BASELINE_CENTER);
         root.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
         Label label = new Label(done);
-        if (dm.delete_teacher_assistant(id) != 0) {
+        if (dm.delete_teacher(id) != 0) {
             label.setTextFill(Color.color(0, 0, 0));
             root.getChildren().add(label);
             stage.setScene(new Scene(root, 300, 100));

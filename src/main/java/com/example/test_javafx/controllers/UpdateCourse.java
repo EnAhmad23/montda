@@ -4,11 +4,7 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -22,13 +18,18 @@ public class UpdateCourse implements Initializable {
     @FXML
     public TextField course_id;
     @FXML
-    public TextField bookName;
+    public TextField name;
     @FXML
     public TextField room;
     @FXML
-    public TextField teacherName;
+    public TextField majer;
     @FXML
-    public TextField courseSubject;
+    public ComboBox<Integer> hour;
+    @FXML
+    public ComboBox<Integer> minute;
+    @FXML
+    public TextField teacherID;
+
     @FXML
     public Label label;
     @FXML
@@ -40,7 +41,8 @@ public class UpdateCourse implements Initializable {
 
 
     public void nav_update() {
-        if (dm.updateCourse(course_id.getText(), teacherName.getText(), bookName.getText(), room.getText(), courseSubject.getText()) != 0) {
+        String cTime = String.format("%02d:%02d",hour.getValue(),minute.getValue());
+        if (dm.updateCourse(course_id.getText(),  name.getText(),teacherID.getText(), room.getText(), majer.getText(),cTime) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("COURSE UPDATE SUCCESSFULLY");
         } else {

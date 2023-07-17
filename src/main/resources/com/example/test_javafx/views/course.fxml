@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="674.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Courses">
+<AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="674.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Courses">
     <children>
         <TextField fx:id="t_id" layoutX="27.0" layoutY="186.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="455.0" promptText="Enter Course ID" style="-fx-background-radius: 8;" />
         <Separator layoutX="1.0" layoutY="229.0" prefHeight="13.0" prefWidth="818.0" />
         <TableView fx:id="table" layoutY="242.0" onKeyTyped="#autoComplete" prefHeight="431.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="82.39999544620514" style="-fx-background-radius: 2;" text="Course ID" />
-                <TableColumn fx:id="name" prefWidth="139.20000457763672" style="-fx-background-radius: 2;" text="Course Name" />
-                <TableColumn fx:id="teacher_name" prefWidth="162.4000244140625" style="-fx-background-radius: 2;" text="Teacher Name" />
-                <TableColumn fx:id="time" prefWidth="148.80007934570312" style="-fx-background-radius: 2;" text="Time" />
-                <TableColumn fx:id="montdaMajer" prefWidth="172.7999267578125" style="-fx-background-radius: 2;" text="Montda Majer" />
-            <TableColumn fx:id="room_number" prefWidth="111.199951171875" style="-fx-background-radius: 2;" text="Room number" />
+                <TableColumn fx:id="course_id" prefWidth="138.40001833438873" style="-fx-background-radius: 2;" text="Course ID" />
+                <TableColumn fx:id="name" prefWidth="223.19998168945312" style="-fx-background-radius: 2;" text="Course Name" />
+                <TableColumn fx:id="time" prefWidth="108.0" style="-fx-background-radius: 2;" text="Time" />
+                <TableColumn fx:id="montdaMajer" prefWidth="182.40005493164062" style="-fx-background-radius: 2;" text="Montda Majer" />
+            <TableColumn fx:id="room_number" prefWidth="168.79998779296875" style="-fx-background-radius: 2;" text="Room number" />
             </columns>
         </TableView>
         <Label alignment="BOTTOM_CENTER" layoutX="316.0" layoutY="17.0" prefHeight="54.0" prefWidth="187.0" text="Courses" textFill="WHITE">

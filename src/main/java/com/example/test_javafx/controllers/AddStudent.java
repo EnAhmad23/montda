@@ -2,9 +2,6 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,8 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.sql.Array;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddStudent implements Initializable {
@@ -30,16 +25,20 @@ public class AddStudent implements Initializable {
     private TextField id;
     @FXML
     private TextField name;
+
+
     @FXML
-    private TextField major;
+    private TextField uni_major;
+    @FXML
+    private TextField montda_majer;
     @FXML
     private TextField place;
 
     @FXML
-    private ComboBox gender;
+    private ComboBox level;
 
     @FXML
-    private TextField phone_number;
+    private TextField path;
     @FXML
     private Button btn_add;
 
@@ -53,12 +52,13 @@ public class AddStudent implements Initializable {
     public void addStudntBotton()  {
         String stu_id = id.getText();
         String stu_name = name.getText();
-        String stu_major = major.getText();
+        String m_major = montda_majer.getText();
+        String u_major = montda_majer.getText();
         String stu_place =  place.getText();
-        String stu_gender = (String) gender.getValue();
-        String stu_phone = phone_number.getText();
+        String stu_level = (String) level.getValue();
+        String stu_path = path.getText();
 
-        if (dm.addStudent(stu_id, stu_name, stu_gender,  stu_major,stu_place,stu_phone) != 0) {
+        if (dm.addStudent(stu_id, stu_name, stu_level,m_major,  u_major,stu_place,stu_path) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
 
@@ -68,9 +68,10 @@ public class AddStudent implements Initializable {
         }
         id.clear();
         name.clear();
-        major.clear();
+        montda_majer.clear();
         place.clear();
-        phone_number.clear();
+        path.clear();
+        uni_major.clear();
     }
 
 
@@ -85,6 +86,6 @@ public class AddStudent implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        gender.getItems().addAll(genders);
+        level.getItems().addAll(genders);
     }
 }

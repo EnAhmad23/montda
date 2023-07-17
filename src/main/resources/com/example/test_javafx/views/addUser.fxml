@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="449.0" prefWidth="435.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddTeacherAssistant">
+<AnchorPane minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="449.0" prefWidth="435.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddTeacher">
    <children>
       <Button fx:id="add" layoutX="312.0" layoutY="386.0" mnemonicParsing="false" onAction="#add_teacher" prefHeight="40.0" prefWidth="101.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 10;" text="Add">
          <cursor>

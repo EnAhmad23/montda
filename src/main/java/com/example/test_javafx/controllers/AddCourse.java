@@ -4,20 +4,15 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
-
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class AddCourse implements Initializable {
 
@@ -29,16 +24,18 @@ public class AddCourse implements Initializable {
     public TextField course_id;
 
     @FXML
-    private TextField CourseSubject;
+    private TextField name;
     @FXML
-    private TextField bookName;
-    @FXML
-    private TextField teacherName;
+    private TextField majer;
     @FXML
 
     public TextField room;
     @FXML
     public Button button_to_back;
+    @FXML
+    public ComboBox<Integer> hour;
+    @FXML
+    public ComboBox<Integer> minute;
 
     @FXML
     public Button nav_back;
@@ -52,11 +49,11 @@ public class AddCourse implements Initializable {
 
     public void addCourses() {
         String courseId = course_id.getText();
-        String Teacher_name = teacherName.getText();
-        String book = bookName.getText();
-        String Room = room.getText();
-        String Subject = CourseSubject.getText();
-        if (dm.addCourse(courseId, Teacher_name, book, Room, Subject) != 0) {
+        String c_name = name.getText();
+        String room = this.room.getText();
+        String montda_majer = majer.getText();
+        String cTime = String.format("%02d:%02d",hour.getValue(),minute.getValue());
+        if (dm.addCourse(courseId,  c_name, room, montda_majer,cTime) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("COURSE ADDED SUCCESSFULLY");//successfully
         } else {
@@ -66,7 +63,12 @@ public class AddCourse implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        for (int i = 1; i <= 12; i++) {
+            hour.getItems().add(i);
+        }
+        for (int i = 0; i <= 60; i++) {
+            minute.getItems().add(i);
+        }
     }
 
 

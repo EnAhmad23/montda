@@ -10,21 +10,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.TextFieldSkin;
-import javafx.scene.control.skin.TextInputControlSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-public class AddTeacherAssistant implements Initializable {
+public class AddTeacher implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
@@ -35,8 +30,8 @@ public class AddTeacherAssistant implements Initializable {
     private TextField name;
     @FXML
     private ComboBox teache;
-    @FXML
-    private PasswordField password =TextFields.createClearablePasswordField() ;
+//    @FXML
+//    private PasswordField password =TextFields.createClearablePasswordField() ;
     DBModel dm = DBModel.getModel();
     Navigation nav = new Navigation();
 
@@ -57,20 +52,17 @@ public class AddTeacherAssistant implements Initializable {
         String t_id = id.getText();
         String t_name = name.getText();
         String t_teache = (String) teache.getValue();
-        String t_password = password.getText();
         lable.setText("");
-        if (!t_id.isEmpty() && !t_name.isEmpty() && !t_password.isEmpty()&&!t_teache.isEmpty())
+        if (!t_id.isEmpty() && !t_name.isEmpty() &&!t_teache.isEmpty())
             new TeacherAssistant(t_id, t_name, t_teache);
         else
             lable.setText("INCOMPLETE INPUTS");
-        if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
-            lable.setTextFill(Color.color(0, 1, 0));
-            lable.setText("Teach Assistant added Successfully");
+        if (dm.addTeacher(t_id, t_name, t_teache) != 0) {
+          nav.message("Teach Assistant added Successfully");
         } else {
-            lable.setTextFill(Color.color(1, 0, 0));
-            lable.setText("Teach Assistant didn't add ");
+            nav.error_message("Teach Assistant didn't add ");
         }
-        id.clear();name.clear();password.clear();
+        id.clear();name.clear();
     }
 
     @Override

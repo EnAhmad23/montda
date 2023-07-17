@@ -6,16 +6,15 @@ public class Course {
     private String name;
     private String teacher_name;
     private String room_number;
-    private String monadMajor;
+    private String montdaMajor;
     private String time;
 
 
-    public Course(String course_id, String name, String teacher_name, String room_number, String monadMajor, String time) {
+    public Course(String course_id, String name, String room_number, String montdaMajor, String time) {
         this.course_id = course_id;
         this.name = name;
-        this.teacher_name = teacher_name;
         this.room_number = room_number;
-        this.monadMajor = monadMajor;
+        this.montdaMajor = montdaMajor;
         this.time = time;
     }
 
@@ -51,12 +50,12 @@ public class Course {
         this.room_number = room_number;
     }
 
-    public String getMonadMajor() {
-        return monadMajor;
+    public String getMontdaMajor() {
+        return montdaMajor;
     }
 
-    public void setMonadMajor(String monadMajor) {
-        this.monadMajor = monadMajor;
+    public void setMontdaMajor(String montdaMajor) {
+        this.montdaMajor = montdaMajor;
     }
 
     public String getTime() {

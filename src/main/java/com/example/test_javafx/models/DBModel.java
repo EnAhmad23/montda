@@ -4,6 +4,8 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +41,7 @@ public class DBModel {
                 Statement statement = con.createStatement();
 
                 // Check if the schema exists
-                String checkSchemaQuery = "SELECT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'uni');";
+                String checkSchemaQuery = "SELECT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'public');";
                 ResultSet resultSet = statement.executeQuery(checkSchemaQuery);
 
                 resultSet.next();
@@ -54,7 +56,7 @@ public class DBModel {
 
                     System.out.println("Schema created successfully.");
                     restoreDatabase("backups/");
-                    source.setCurrentSchema("uni");
+                    source.setCurrentSchema("public");
 
 //                    restoreDatabase("backups/");
                 }
@@ -224,7 +226,7 @@ return null;
 //    }
 
     public String getTeachCourseID(String id) {
-        String sql = "select teach from teacher where id =?;";
+        String sql = "select course_id from teacher natural join teach where id =?;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -462,7 +464,7 @@ return null;
         }
     }
 
-    public int delete_teacher_assistant(String id) {
+    public int delete_teacher(String id) {
         String sql = "DELETE FROM teacher_assistant WHERE id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -526,7 +528,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -554,48 +556,59 @@ return null;
         }
     }
 
-    public int addCourse(String course_id, String book_name, String teacher_name, String room, String subject) {
-        String SQL = "INSERT INTO course(course_id,book_name,teacher_name,room,subject) "
+    public int addCourse(String course_id, String name, String room, String monadMajor, String time) {
+        String SQL = "INSERT INTO course(course_id,name,room,monad_major,time) "
                 + "VALUES(?,?,?,?,?)";
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, course_id);
-            pstmt.setString(2, book_name);
-            pstmt.setString(3, teacher_name);
-            pstmt.setString(4, room);
-            pstmt.setString(5, subject);
+            pstmt.setString(2, name);
+            pstmt.setString(3, room);
+            pstmt.setString(4, monadMajor);
+            Time sqlTime = convertToSqlTime(time);
+            pstmt.setTime(5, sqlTime);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.err.println(e);
             return 0;
         }
     }
-
-    public int addStudent(String id, String name, String gender, String major, String place, String phone_num) {
+    private Time convertToSqlTime(String time) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm"); // Assuming the time format is "HH:mm"
+            java.util.Date utilDate = sdf.parse(time);
+            long timeInMillis = utilDate.getTime();
+            return new Time(timeInMillis);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public int addStudent(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
         String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
-        String SQL2 = "INSERT INTO phone_num (s_id,ph_num) VALUES(?,?)";
 //        ArrayList<student> arr;
-        try (PreparedStatement pstmt = con.prepareStatement(SQL); PreparedStatement pstmt2 = con.prepareStatement(SQL2)) {
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
             pstmt.setString(2, name);
-            pstmt.setString(3, gender);
-            pstmt.setString(4, major);
-            pstmt.setString(5, place);
-            pstmt2.setString(1, id);
-            pstmt2.setString(2, phone_num);
+            pstmt.setString(3, level);
+            pstmt.setString(4, place);
+            pstmt.setString(5, monadMajor);
+            pstmt.setString(6, uniMajor);
+            pstmt.setString(7, path);
 
-            return pstmt.executeUpdate() + pstmt2.executeUpdate();
+
+            return pstmt.executeUpdate() ;
         } catch (SQLException e) {
             return 0;
 
         }
     }
 
-    public int addTeacher(String id, String name, String teache, String password) {
-        String sql = "insert into teacher_assistant(id,name,teache,password) values (?,?,?,crypt(?, gen_salt('bf')));";
+    public int addTeacher(String id, String name, String teache) {
+        String sql = "insert into teacher_assistant(id,name,teache) values (?,?,?);";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             st.setString(2, name);
             st.setString(3, teache);
-            st.setString(4, password);
             return st.executeUpdate();
         } catch (SQLException ex) {
             return 0;
@@ -1035,7 +1048,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 
             }
             return ids;
@@ -1099,15 +1112,17 @@ return null;
     }
 
 
-    public int updateCourse(String id, String book_name, String teach_name, String room, String subject) {
-        String SQL = "UPDATE course SET book_name = ?, teacher_name = ?, room = ?, subject = ? WHERE course_id = ?";
+    public int updateCourse(String course_id, String name, String teacher_name, String room_number, String monadMajor, String time) {
+        String SQL = "UPDATE course SET name = ?, teacher_name = ?, room = ?, monadMajor = ? ,WHERE course_id = ?";
 //        ArrayList<student> arr;
+        Timestamp timestamp=Timestamp.valueOf(time);
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
-            pstmt.setString(1, book_name);
-            pstmt.setString(2, teach_name);
-            pstmt.setString(3, room);
-            pstmt.setString(4, subject);
-            pstmt.setString(5, id);
+            pstmt.setString(1, name);
+            pstmt.setString(2, teacher_name);
+            pstmt.setString(3, room_number);
+            pstmt.setString(4, monadMajor);
+            pstmt.setTimestamp(5, timestamp);
+            pstmt.setString(6, course_id);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             return 0;
