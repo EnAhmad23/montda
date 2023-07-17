@@ -32,6 +32,7 @@ public class Navigation {
 
     public final String ATTENDENCE_FXML = "views/attendence.fxml";
     public final String TEACHING_FXML = "views/teachingAssistant.fxml";
+    public final String TEACH_FXML = "views/teach.fxml";
     public final String UPLOAD = "views/upload.fxml";
     public final String LOGIN = "views/login.fxml";
     public final String COURSES = "views/course.fxml";

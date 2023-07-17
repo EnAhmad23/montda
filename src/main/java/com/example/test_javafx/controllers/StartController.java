@@ -54,6 +54,9 @@ public class StartController implements Initializable {
     public void navUsers() {
         nav.navigateTo(rootPane, nav.USERS_FXML);
     }
+    public void navTeach() {
+        nav.navigateTo(rootPane, nav.TEACH_FXML);
+    }
 
     public void navToLecturesTimes() {
         Navigation.owner =(nav.MAIN_FXML);
@@ -64,7 +67,10 @@ public class StartController implements Initializable {
         Navigation.owner =(nav.MAIN_FXML);
         nav.navigateTo(rootPane, nav.STUDENTS_FXML);
     }
+    public void navToReports() {
 
+        nav.navigateTo(rootPane, nav.REPORT_PAGE);
+    }
     public void takes(){
         nav.navigateTo(rootPane, nav.TAKES);
     }

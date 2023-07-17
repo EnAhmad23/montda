@@ -65,10 +65,10 @@ public class AddTeacherAssistant implements Initializable {
             lable.setText("INCOMPLETE INPUTS");
         if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
             lable.setTextFill(Color.color(0, 1, 0));
-            lable.setText("Teacher Assistant added Successfully");
+            lable.setText("Teach Assistant added Successfully");
         } else {
             lable.setTextFill(Color.color(1, 0, 0));
-            lable.setText("Teacher Assistant didn't add ");
+            lable.setText("Teach Assistant didn't add ");
         }
         id.clear();name.clear();password.clear();
     }

@@ -41,10 +41,10 @@ public class UpdateTA implements Initializable {
     public void nav_update() {
         if (dm.UpdateTeacher_Assist(id.getText(), name.getText(), teach.getValue().toString(), password.getText()) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
-            label.setText("Teacher UPDATE SUCCESSFULLY");
+            label.setText("Teach UPDATE SUCCESSFULLY");
         } else {
             label.setTextFill(Color.color(1, 0, 0));
-            label.setText("Teacher DIDN'T UPDATE");
+            label.setText("Teach DIDN'T UPDATE");
         }
     }
 
