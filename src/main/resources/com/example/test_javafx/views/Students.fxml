@@ -14,13 +14,8 @@
 
 <AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="674.0" prefWidth="856.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Students">
    <children>
-      <TextField fx:id="t_id" layoutX="77.0" layoutY="183.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="439.0" promptText="Enter Student ID" style="-fx-background-radius: 10;" />
+      <TextField fx:id="t_id" layoutX="15.0" layoutY="192.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="530.0" promptText="Enter Student ID" style="-fx-background-radius: 10;" />
       <Separator layoutX="1.0" layoutY="233.0" prefHeight="36.0" prefWidth="856.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="183.0" prefHeight="36.0" prefWidth="56.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="ID" textFill="#e8e3e3">
-         <font>
-            <Font name="Times New Roman" size="13.0" />
-         </font>
-      </Label>
       <Label alignment="BOTTOM_CENTER" layoutX="320.0" layoutY="14.0" prefHeight="54.0" prefWidth="180.0" text="Students" textFill="WHITE">
          <font>
             <Font name="Times New Roman" size="48.0" />
@@ -29,7 +24,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Button fx:id="delete" layoutX="686.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="حذف ">
+      <Button fx:id="delete" layoutX="709.0" layoutY="185.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Delete">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>
@@ -40,7 +35,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="update" layoutX="686.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="تحديث ">
+      <Button fx:id="update" layoutX="709.0" layoutY="118.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
          <font>
             <Font name="Times New Roman" size="21.0" />
          </font>
@@ -51,7 +46,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="REFRESH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="add" layoutX="548.0" layoutY="116.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="اضافة ">
+      <Button fx:id="add" layoutX="571.0" layoutY="118.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Add">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
@@ -64,15 +59,16 @@
       </Button>
       <TableView fx:id="table" editable="true" layoutY="256.0" onMouseClicked="#select" prefHeight="418.0" prefWidth="856.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="88.80002135038376" style="-fx-background-radius: 2;" text="رقم الطالب" />
-            <TableColumn fx:id="name" prefWidth="232.00001525878906" style="-fx-background-radius: 2;" text="اسم الطالب" />
-            <TableColumn fx:id="major" prefWidth="119.99993896484375" style="-fx-background-radius: 2;" text="المستوى" />
-            <TableColumn fx:id="place" prefWidth="124.7999267578125" style="-fx-background-radius: 2;" text="المكان" />
-            <TableColumn fx:id="phone_num" minWidth="0.0" prefWidth="156.0" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="رقم الجوال" />
-            <TableColumn fx:id="place1" prefWidth="132.79998779296875" style="-fx-background-radius: 2;" text="التخصص الجامعي" />
+            <TableColumn fx:id="id" prefWidth="102.39999693632126" style="-fx-background-radius: 2;" text="Student ID" />
+            <TableColumn fx:id="name" prefWidth="212.8000030517578" style="-fx-background-radius: 2;" text="Name" />
+            <TableColumn fx:id="level" prefWidth="80.800048828125" style="-fx-background-radius: 2;" text="Level" />
+            <TableColumn fx:id="place" prefWidth="126.4000244140625" style="-fx-background-radius: 2;" text="Place" />
+            <TableColumn fx:id="montda_majer" minWidth="0.0" prefWidth="121.60003662109375" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="Montda_majer" />
+            <TableColumn fx:id="uni_Major" minWidth="0.0" prefWidth="115.199951171875" style="-fx-background-radius: 2;" text="Uni_Major" />
+            <TableColumn fx:id="path" prefWidth="96.0" style="-fx-background-radius: 2;" text="Path" />
          </columns>
       </TableView>
-      <Button fx:id="search" layoutX="548.0" layoutY="183.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="بحث ">
+      <Button fx:id="search" layoutX="571.0" layoutY="185.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="122.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>
@@ -86,7 +82,9 @@
       <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="24.0" prefWidth="48.0" style="-fx-background-radius: 9;">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
-         </font>
+         </font><cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
          <graphic>
             <FontAwesomeIcon glyphName="ARROW_LEFT" wrappingWidth="12.800018310546875" />
          </graphic>

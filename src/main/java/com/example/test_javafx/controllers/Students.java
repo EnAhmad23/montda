@@ -177,11 +177,11 @@ public class Students implements Initializable {
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
             stringBuilder.append(", ");
-            stringBuilder.append(s.getMajer());
+            stringBuilder.append(s.getLevel());
             stringBuilder.append(", ");
             stringBuilder.append(s.getPlace());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getPhone_num());
+            stringBuilder.append(s.getMonadMajor());
             list.add(stringBuilder.toString());
         }
     }

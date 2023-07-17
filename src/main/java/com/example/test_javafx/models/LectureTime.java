@@ -1,19 +1,23 @@
 package com.example.test_javafx.models;
 
 public class LectureTime {
-    String lecture_id;
-    String course_id;
-    String room_number;
+    private String lecture_id;
+    private String course_id;
+    private String room_number;
+    private String course_name;
+    private String time;
 
 
 
     String title;
 
 
-    public LectureTime(String lecture_id, String course_id,  String room_number,  String title) {
+    public LectureTime(String lecture_id, String course_id, String room_number, String courseName, String time, String title) {
         this.lecture_id = lecture_id;
         this.course_id = course_id;
         this.room_number = room_number;
+        course_name = courseName;
+        this.time = time;
         this.title = title;
     }
     public void setLecture_id(String lecture_id) {
@@ -54,4 +58,19 @@ public class LectureTime {
     }
 
 
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

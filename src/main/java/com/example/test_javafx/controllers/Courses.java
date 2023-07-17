@@ -170,13 +170,13 @@ public class Courses implements Initializable {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getCourse_id());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getBook_name());
+            stringBuilder.append(s.getName());
             stringBuilder.append(", ");
             stringBuilder.append(s.getTeacher_name());
             stringBuilder.append(", ");
             stringBuilder.append(s.getRoom_number());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getSubject());
+            stringBuilder.append(s.getMonadMajor());
             list.add(stringBuilder.toString());
         }
     }

@@ -151,7 +151,7 @@ public class Attendence implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getPhone_num());
+            stringBuilder.append(s.getMonadMajor());
             list.add(stringBuilder.toString());
         }
     }

@@ -2,18 +2,21 @@ package com.example.test_javafx.models;
 
 public class Course {
 
-    String course_id;
-    String book_name;
-    String teacher_name;
-    String room_number;
-    String subject;
+    private String course_id;
+    private String name;
+    private String teacher_name;
+    private String room_number;
+    private String monadMajor;
+    private String time;
 
-    public Course(String course_id, String book_name,  String teacher_name, String room_number,  String subject) {
+
+    public Course(String course_id, String name, String teacher_name, String room_number, String monadMajor, String time) {
         this.course_id = course_id;
-        this.book_name = book_name;
+        this.name = name;
         this.teacher_name = teacher_name;
         this.room_number = room_number;
-        this.subject = subject;
+        this.monadMajor = monadMajor;
+        this.time = time;
     }
 
     public String getCourse_id() {
@@ -24,12 +27,12 @@ public class Course {
         this.course_id = course_id;
     }
 
-    public String getBook_name() {
-        return book_name;
+    public String getName() {
+        return name;
     }
 
-    public void setBook_name(String book_name) {
-        this.book_name = book_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTeacher_name() {
@@ -48,12 +51,19 @@ public class Course {
         this.room_number = room_number;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getMonadMajor() {
+        return monadMajor;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setMonadMajor(String monadMajor) {
+        this.monadMajor = monadMajor;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 }

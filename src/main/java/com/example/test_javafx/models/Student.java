@@ -5,24 +5,28 @@ public class Student {
     private String name ;
 
     private String place ;
-    private String majer ;
-    private String phone_num ;
+    private String level;
+    private String monadMajor;
+    private String uniMajor;
+    private String path;
 
 
 public Student(){}
-    public Student(String id, String name,  String majer, String place, String phoneNum) {
+    public Student(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
         this.id = id;
         this.name = name;
-        this.majer = majer;
+        this.level = level;
         this.place = place;
-        phone_num = phoneNum;
+        this.monadMajor = monadMajor;
+        this.uniMajor = uniMajor;
+        this.path = path;
     }
-    public void setPhone_num(String phone_num) {
-        this.phone_num = phone_num;
+    public void setMonadMajor(String monadMajor) {
+        this.monadMajor = monadMajor;
     }
 
-    public String getPhone_num() {
-        return phone_num;
+    public String getMonadMajor() {
+        return monadMajor;
     }
 
 
@@ -30,8 +34,8 @@ public Student(){}
         return id;
     }
 
-    public String getMajer() {
-        return majer;
+    public String getLevel() {
+        return level;
     }
 
     public String getName() {
@@ -44,8 +48,8 @@ public Student(){}
 
 
 
-    public void setMajer(String majer) {
-        this.majer = majer;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public void setName(String name) {
@@ -60,4 +64,19 @@ public Student(){}
         this.place = place;
     }
 
+    public String getUniMajor() {
+        return uniMajor;
+    }
+
+    public void setUniMajor(String uniMajor) {
+        this.uniMajor = uniMajor;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

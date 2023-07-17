@@ -33,8 +33,7 @@ public class StartController implements Initializable {
     public AnchorPane rootPane;
 
 
-@FXML
-    ImageView image;
+
 
     @FXML
     public Button nav_back;
@@ -44,7 +43,6 @@ public class StartController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-image.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/m.png"))));
 
     }
 
@@ -72,11 +70,6 @@ image.setImage(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("
     }
 
     public void back(){nav.navigateTo(rootPane, nav.LOGIN);}
-    public void esc(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            back();
-        }
-    }
 
 
 

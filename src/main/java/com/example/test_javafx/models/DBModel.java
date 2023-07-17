@@ -1,12 +1,7 @@
 package com.example.test_javafx.models;
 
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 import org.postgresql.ds.PGSimpleDataSource;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -260,7 +255,7 @@ return null;
             st.setString(1, id);
             ResultSet rs = st.executeQuery(); // Remove the "sql" argument here
             while (rs.next()) {
-                students.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                students.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             return students;
         } catch (SQLException ex) {
@@ -508,16 +503,13 @@ return null;
 //    }
 
     public ArrayList<Student> getStd() {
-        String sql = "SELECT s.id, s.name, s.majer, s.place, string_agg(p.ph_num, '\n') AS phone_numbers\n" +
-                "FROM students s\n" +
-                "LEFT JOIN phone_num p ON s.id = p.s_id\n" +
-                "GROUP BY s.id, s.name, s.gender, s.majer, s.place;";
+        String sql = "SELECT * FROM students ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Student> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -534,7 +526,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -631,7 +623,7 @@ return null;
             ArrayList<LectureTime> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             return ids;
         } catch (SQLException ex) {
 
@@ -788,7 +780,7 @@ return null;
             st.setString(1, course_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                LecId.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                LecId.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return LecId;
         } catch (SQLException ex) {
@@ -1020,13 +1012,13 @@ return null;
 
 
     public ArrayList<Student> searchStudent(String id) {
-        String sql = "select id,name,majer,place,ph_num from students join phone_num on id =s_id where id = ? ;";
+        String sql = "select * from students where id = ? ;";
         ArrayList<Student> student = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                student.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             return student;
         } catch (SQLException ex) {
@@ -1043,7 +1035,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
 
             }
             return ids;
@@ -1062,7 +1054,7 @@ return null;
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Lecture.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                Lecture.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return Lecture;
         } catch (SQLException ex) {

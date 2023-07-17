@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#esc" prefHeight="600.0" prefWidth="604.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.StartController">
-   <Label layoutX="170.0" layoutY="122.0" text="Welcome User" textFill="WHITE">
+   <Label layoutX="170.0" layoutY="120.0" text="Welcome User" textFill="WHITE">
       <font>
          <Font name="Times New Roman" size="44.0" />
       </font>

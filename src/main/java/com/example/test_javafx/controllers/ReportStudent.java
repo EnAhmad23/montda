@@ -4,7 +4,6 @@ import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -112,7 +111,7 @@ public class ReportStudent implements Initializable {
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
             stringBuilder.append(", ");
-            stringBuilder.append(s.getPhone_num());
+            stringBuilder.append(s.getMonadMajor());
             list.add(stringBuilder.toString());
         }
     }

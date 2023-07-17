@@ -12,17 +12,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="611.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Courses">
+<AnchorPane fx:id="root" onKeyPressed="#esc" prefHeight="674.0" prefWidth="820.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.Courses">
     <children>
-        <TextField fx:id="t_id" layoutX="37.0" layoutY="164.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="398.0" promptText="Enter Course ID" style="-fx-background-radius: 8;" />
-        <Separator layoutX="1.0" layoutY="211.0" prefHeight="13.0" prefWidth="818.0" />
-        <TableView fx:id="table" layoutY="218.0" onKeyTyped="#autoComplete" prefHeight="417.0" prefWidth="820.0">
+        <TextField fx:id="t_id" layoutX="27.0" layoutY="186.0" onKeyTyped="#autoComplete" prefHeight="36.0" prefWidth="455.0" promptText="Enter Course ID" style="-fx-background-radius: 8;" />
+        <Separator layoutX="1.0" layoutY="229.0" prefHeight="13.0" prefWidth="818.0" />
+        <TableView fx:id="table" layoutY="242.0" onKeyTyped="#autoComplete" prefHeight="431.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0">
             <columns>
-                <TableColumn fx:id="course_id" prefWidth="165.0" style="-fx-background-radius: 2;" text="Course ID" />
-                <TableColumn fx:id="book_name" prefWidth="165.0" style="-fx-background-radius: 2;" text="Book Name" />
-                <TableColumn fx:id="teacher_name" prefWidth="165.0" style="-fx-background-radius: 2;" text="Teacher Name" />
-                <TableColumn fx:id="room_number" prefWidth="165.0" style="-fx-background-radius: 2;" text="Room No" />
-                <TableColumn fx:id="subject" prefWidth="165.0" style="-fx-background-radius: 2;" text="Subject" />
+                <TableColumn fx:id="course_id" prefWidth="82.39999544620514" style="-fx-background-radius: 2;" text="Course ID" />
+                <TableColumn fx:id="name" prefWidth="139.20000457763672" style="-fx-background-radius: 2;" text="Course Name" />
+                <TableColumn fx:id="teacher_name" prefWidth="162.4000244140625" style="-fx-background-radius: 2;" text="Teacher Name" />
+                <TableColumn fx:id="time" prefWidth="148.80007934570312" style="-fx-background-radius: 2;" text="Time" />
+                <TableColumn fx:id="subject" prefWidth="172.7999267578125" style="-fx-background-radius: 2;" text="Montda Majer" />
+            <TableColumn fx:id="room_number" prefWidth="111.199951171875" style="-fx-background-radius: 2;" text="Room number" />
             </columns>
         </TableView>
         <Label alignment="BOTTOM_CENTER" layoutX="316.0" layoutY="17.0" prefHeight="54.0" prefWidth="187.0" text="Courses" textFill="WHITE">
@@ -33,7 +34,7 @@
                 <Insets />
             </opaqueInsets>
         </Label>
-        <Button fx:id="delete" layoutX="679.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Delete">
+        <Button fx:id="delete" layoutX="679.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Delete">
             <font>
                 <Font name="Times New Roman" size="22.0" />
             </font>
@@ -44,7 +45,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
         </Button>
-        <Button fx:id="update" layoutX="679.0" layoutY="93.0" mnemonicParsing="false" onAction="#updateCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
+        <Button fx:id="update" layoutX="679.0" layoutY="106.0" mnemonicParsing="false" onAction="#updateCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
             <font>
                 <Font name="Times New Roman" size="22.0" />
             </font>
@@ -55,7 +56,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="REFRESH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
         </Button>
-        <Button fx:id="add" layoutX="539.0" layoutY="93.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
+        <Button fx:id="add" layoutX="539.0" layoutY="106.0" mnemonicParsing="false" onAction="#addCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text="Add">
             <font>
                 <Font name="Times New Roman" size="22.0" />
             </font>
@@ -66,7 +67,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="PLUS" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
         </Button>
-      <Button fx:id="search" layoutX="539.0" layoutY="155.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">
+      <Button fx:id="search" layoutX="539.0" layoutY="168.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>

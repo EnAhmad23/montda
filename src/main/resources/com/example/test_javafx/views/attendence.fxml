@@ -27,11 +27,11 @@
         <Separator layoutY="268.0" prefHeight="13.0" prefWidth="825.0" />
         <TableView fx:id="table" layoutY="255.0" prefHeight="454.0" prefWidth="826.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
             <columns>
-                <TableColumn fx:id="stu_id" prefWidth="172.0" style="-fx-background-radius: 2;" text="Student ID" />
-                <TableColumn fx:id="name" prefWidth="167.20001220703125" style="-fx-background-radius: 2;" text="Student Name" />
+                <TableColumn fx:id="stu_id" prefWidth="126.40002745389938" style="-fx-background-radius: 2;" text="Student ID" />
+                <TableColumn fx:id="name" prefWidth="213.59996032714844" style="-fx-background-radius: 2;" text="Student Name" />
             <TableColumn fx:id="lec_id" prefWidth="120.79998779296875" style="-fx-background-radius: 2;" text="Lecture Id" />
                 <TableColumn fx:id="course" minWidth="0.0" prefWidth="148.0" style="-fx-background-radius: 2;" text="Course ID" />
-            <TableColumn fx:id="title" prefWidth="215.5" style="-fx-background-radius: 2;" text="Title" />
+            <TableColumn fx:id="name" prefWidth="215.5" style="-fx-background-radius: 2;" text="Course Name" />
             </columns>
         </TableView>
       <Button fx:id="update" layoutX="676.0" layoutY="103.0" mnemonicParsing="false" onAction="#updateAttendance" prefHeight="60.0" prefWidth="125.0" style="-fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; -fx-background-radius: 10;" text=" Update">
@@ -57,7 +57,7 @@
          </graphic>
       </Button>
       <ComboBox fx:id="lecture_ids" layoutX="387.0" layoutY="196.0" prefHeight="36.0" prefWidth="126.0" promptText="Lecture ID" style="-fx-background-radius: 10;" />
-      <Button fx:id="nav_upload" layoutX="762.0" layoutY="8.0" mnemonicParsing="false" onAction="#upload" prefHeight="37.0" prefWidth="38.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-background-radius: 2;">
+      <Button fx:id="nav_upload" layoutX="765.0" layoutY="8.0" mnemonicParsing="false" onAction="#upload" prefHeight="38.0" prefWidth="37.0" style="-fx-background-color: #DEE4E7; -fx-text-fill: #37474F; -fx-background-radius: 2;" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
