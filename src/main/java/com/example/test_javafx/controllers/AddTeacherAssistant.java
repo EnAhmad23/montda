@@ -60,7 +60,7 @@ public class AddTeacherAssistant implements Initializable {
         String t_password = password.getText();
         lable.setText("");
         if (!t_id.isEmpty() && !t_name.isEmpty() && !t_password.isEmpty()&&!t_teache.isEmpty())
-            new TeacherAssistant(t_id, t_name, t_teache).setPassword(t_password);
+            new TeacherAssistant(t_id, t_name, t_teache);
         else
             lable.setText("INCOMPLETE INPUTS");
         if (dm.addTeacher(t_id, t_name, t_teache, t_password) != 0) {
