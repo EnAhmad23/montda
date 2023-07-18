@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -29,15 +27,19 @@ public class UpdateStudent implements Initializable {
     @FXML
     private TextField place;
     @FXML
-    private TextField major;
+    private TextField montda_majer;
     @FXML
-    private ComboBox gender;
+    private TextField uni_major;
+    @FXML
+    private TextField path;
+    @FXML
+    private ComboBox level;
 
     @FXML
     private TextField phone_number;
     @FXML
     private Label label;
-    private String genders[] = {"male", "female"};
+    private String genders[] = {"1", "2","3","4","5"};
     String idFromStudent;
 
 
@@ -52,12 +54,13 @@ public class UpdateStudent implements Initializable {
 //                      t_id
 
         String stu_name = name.getText();
-        String stu_major = major.getText();
+        String stu_level = (String) level.getValue();
         String stu_place = place.getText();
-        String stu_gender = (String) gender.getValue();
-        String stu_phone = phone_number.getText();
+        String stu_montda_majer = montda_majer.getText();
+        String stu_uni_major = uni_major.getText();
+        String stu_path = path.getText();
 
-        if (dm.UpdateStudent(id.getText(), stu_name, stu_gender, stu_major, stu_place, stu_phone) != 0) {
+        if (dm.UpdateStudent(id.getText(), stu_name, stu_level, stu_place, stu_montda_majer, stu_uni_major,stu_path) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student Update successfully");
         } else {
@@ -78,6 +81,6 @@ public class UpdateStudent implements Initializable {
 
         id.setText(Navigation.string);
         id.setEditable(false);
-        gender.getItems().addAll(genders);
+        level.getItems().addAll(genders);
     }
 }

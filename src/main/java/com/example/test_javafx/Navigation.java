@@ -102,7 +102,7 @@ public class Navigation {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stage.setTitle("University");
+        stage.setTitle("Montda");
         stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("images/uni.jpg"))));
         stage.setScene(scene);
         stage.show();

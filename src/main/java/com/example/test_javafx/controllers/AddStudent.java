@@ -45,7 +45,7 @@ public class AddStudent implements Initializable {
     @FXML
     private Button id_back_addStu;
 
-    private String genders[] = {"male", "female"};
+    private String genders[] = {"1", "2","3","4","5"};
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 

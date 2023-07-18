@@ -1095,19 +1095,19 @@ return null;
     }
 
 
-    public int UpdateStudent(String id, String name, String gender, String major, String place, String phone_num) {
-        String SQL = "UPDATE students SET name = ?, gender = ?, place = ?, majer = ? WHERE id = ?";
-        String SQL2 = "UPDATE phone_num SET ph_num = ? WHERE s_id = ?";
+    public int UpdateStudent(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
+        String SQL = "UPDATE students SET name = ?, stu_level = ?, place = ?, montda_majer = ? ,uni_majer = ?,path=? WHERE id = ?";
+
 //        ArrayList<student> arr;
-        try (PreparedStatement pstmt = con.prepareStatement(SQL); PreparedStatement pstmt2 = con.prepareStatement(SQL2)) {
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
-            pstmt.setString(2, gender);
+            pstmt.setString(2, level);
             pstmt.setString(3, place);
-            pstmt.setString(4, major);
-            pstmt.setString(5, id);
-            pstmt2.setString(1, phone_num);
-            pstmt2.setString(2, id);
-            return pstmt.executeUpdate() + pstmt2.executeUpdate();
+            pstmt.setString(4, monadMajor);
+            pstmt.setString(5, uniMajor);
+            pstmt.setString(6, path);
+            pstmt.setString(7, id);
+            return pstmt.executeUpdate() ;
         } catch (SQLException e) {
             return 0;
         }

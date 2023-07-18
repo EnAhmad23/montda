@@ -7,9 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -19,9 +16,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -80,25 +74,17 @@ public class Students implements Initializable {
     }
 
     public void deleteStudent() {
-        Stage stage = new Stage();
-        VBox vBox = new VBox();
-        vBox.setSpacing(20);
-        vBox.setAlignment(Pos.BASELINE_CENTER);
-        vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
-        Label label = new Label("STUDENT DELETED !");
+
         if (dm.delete_Student(t_id.getText()) != 0) {
-            view(dm.getStd());
             del(t_id.getText());
+            view(dm.getStd());
             nav.navigateTo(root, nav.STUDENTS_FXML);
-            label.setTextFill(Color.color(0, 0, 0));
+            nav.message("STUDENT DELETED !");
         } else {
-            label.setTextFill(Color.color(1, 0, 0));
-            label.setText("STUDENT DIDN'T DELETE !");
+            nav.error_message("STUDENT DID NOT DELETED !");
         }
         t_id.clear();
-        vBox.getChildren().add(label);
-        stage.setScene(new Scene(vBox, 300, 100));
-        stage.show();
+
 //
 //        stage.setScene(new Scene());
 
