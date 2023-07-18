@@ -26,6 +26,7 @@ public class Navigation {
     public final String ADD_TAKES_FXML = "views/addTakes.fxml";
 
     public final String Add_STUDENT_FXML = "views/addStudent.fxml";
+    public final String Add_TRANSPORTATION_FXML = "views/addTransportation.fxml";
     public final String STUDENTS_FXML = "views/Students.fxml";
     public final String Admin_FXML = "views/start.fxml";
     public final String USERS_FXML = "views/users.fxml";

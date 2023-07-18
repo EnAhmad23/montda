@@ -67,7 +67,7 @@ public class Transportation implements Initializable {
     }
 
     public void add() {
-        nav.upSecen(nav.TRANSPORTATION);
+        nav.upSecen(nav.Add_TRANSPORTATION_FXML);
     }
 
     public void updateAttendance() {
@@ -87,11 +87,11 @@ public class Transportation implements Initializable {
 
     public void searchAttendance() {
         if(t_id.getText().length()==9&&!t_id.getText().equals("         ")&&months.getValue()!=null) {
-          ///  view(dm.searchAttendence(t_id.getText(),months.getValue()));
+//           view(dm.searchAttendence(t_id.getText(),months.getValue()));
         }
     }
 
-    public void view(ArrayList<Transport> lectureTimes) {
+    public void view(ArrayList<Transport> transports) {
         stu_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         value_day.setCellValueFactory(new PropertyValueFactory<>("value_day"));
         h_required.setCellValueFactory(new PropertyValueFactory<>("h_required"));
@@ -99,7 +99,7 @@ public class Transportation implements Initializable {
         num_att.setCellValueFactory(new PropertyValueFactory<>("num_att"));
         tra_month.setCellValueFactory(new PropertyValueFactory<>("tra_month"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        ObservableList<Transport> ids = FXCollections.observableArrayList(lectureTimes);
+        ObservableList<Transport> ids = FXCollections.observableArrayList(transports);
         table.setItems(ids);
     }
 
@@ -107,35 +107,36 @@ public class Transportation implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String id =Navigation.id;
-     ///   months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
-     ///   transports = dm.getTeachStu(dm.getTeachCourseID(id));
+//        months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
+       transports = dm.getTransport();
+       view(transports);
         table.setOnMouseClicked(mouseEvent ->  {
 
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-            ///    Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
-//          /      if (selectedAttendence != null) {
-//         /           t_id.setText(selectedAttendence.getStudent_id());
-//          /      }
+               Transport selectedAttendence = table.getSelectionModel().getSelectedItem();
+               if (selectedAttendence != null) {
+                    t_id.setText(selectedAttendence.getId());
+                }
             }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
-//        /        Attendences selectedReport = table.getSelectionModel().getSelectedItem();
-//             /   if (selectedReport != null) {
-//             /       Navigation.string =(selectedReport.getStudent_id());
-//               /     updateAttendance();
-//             /   }
+               Transport selectedReport = table.getSelectionModel().getSelectedItem();
+                if (selectedReport != null) {
+                    Navigation.string =(selectedReport.getId());
+                    updateAttendance();
+                }
             }
 
         });
-        months.setOnAction(e -> {
-            if (months.getValue() != null) {
+//        months.setOnAction(e -> {
+//            if (months.getValue() != null) {
 //                attendences = dm.getAttendence(lecture_ids.getValue());
-
-//            /    view(dm.getAttendence(months.getValue()));
-
-            } else {
-                nav.error_message("SELECT LECTURE ID");
-            }
-        });
-        ///autoValues();
+//
+//                view(dm.getAttendence(months.getValue()));
+//
+//            } else {
+//                nav.error_message("SELECT LECTURE ID");
+//            }
+//        });
+        autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             t_id.setText(event.getCompletion().toString().substring(0, 9));
@@ -169,11 +170,11 @@ public class Transportation implements Initializable {
         }
     }
 
-    public void handleKeyPress(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            add();
-        }
-    }
+//    public void handleKeyPress(KeyEvent keyEvent) {
+//        if (keyEvent.getCode() == KeyCode.ENTER) {
+//            add();
+//        }
+//    }
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             back();

@@ -16,6 +16,14 @@ public class Transport {
         this.expense = expense;
 
     }
+    public Transport(String id,String name, double valueDay, double hRequired, double expense) {
+        this.id = id;
+        this.name=name;
+        value_day = valueDay;
+        h_required = hRequired;
+        this.expense = expense;
+
+    }
 
     public double getH_required() {
         return h_required;

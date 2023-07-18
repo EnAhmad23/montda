@@ -227,6 +227,7 @@ COPY public.phone_num (s_id, ph_num) FROM stdin;
 --
 
 COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
+123	wer	dsaf	2	dsf	sdfa	sdfa
 \.
 
 
@@ -259,6 +260,7 @@ COPY public.teacher (id, name) FROM stdin;
 --
 
 COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance) FROM stdin;
+123  	4	2	20	\N	\N
 \.
 
 

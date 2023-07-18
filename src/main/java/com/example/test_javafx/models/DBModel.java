@@ -603,19 +603,14 @@ return null;
             return 0;
 
         }
-    }public int addTransportation(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
-        String SQL = "INSERT INTO students(id,name,stu_level,place,montda_majer,uni_majer,path) VALUES(?,?,?,?,?,?,?)";
+    }public int addTransportation(String id, double valueDay, double hRequired, double expense) {
+        String SQL = "INSERT INTO transportation(s_id,value_day,hours_required_daily,expense) VALUES(?,?,?,?)";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
-            pstmt.setString(2, name);
-            pstmt.setString(3, level);
-            pstmt.setString(4, place);
-            pstmt.setString(5, monadMajor);
-            pstmt.setString(6, uniMajor);
-            pstmt.setString(7, path);
-
-
+            pstmt.setDouble(2, valueDay);
+            pstmt.setDouble(3, hRequired);
+            pstmt.setDouble(4, expense);
             return pstmt.executeUpdate() ;
         } catch (SQLException e) {
             System.err.println(e);
@@ -658,6 +653,22 @@ return null;
             ResultSet rs = st.executeQuery();
             while (rs.next())
                 ids.add(new LectureTime(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+            return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<Transport> getTransport() {
+        String sql = "select s_id,name,value_day,hours_required_daily,expense,transportation_month,days_of_attendance from transportation natural  join students;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<Transport> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                ids.add(new Transport(rs.getString(1),rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5)));
             return ids;
         } catch (SQLException ex) {
 
