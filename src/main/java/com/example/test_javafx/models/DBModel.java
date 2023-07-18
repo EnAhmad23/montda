@@ -103,11 +103,12 @@ public class DBModel {
 
     public int backupDatabase(String path) throws IOException, InterruptedException {
         try {
-            con.createStatement().execute("SELECT * from takes");
+            if (!con.isValid(1)){
+                return -2;
 
+            }
         } catch (SQLException e) {
-            return -2;
-
+            throw new RuntimeException(e);
         }
         String[] envp = {
                 "PGHOST=localhost",
@@ -584,7 +585,7 @@ return null;
         }
     }
     public int addStudent(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
-        String SQL = "INSERT INTO students(id,name,gender,majer,place) VALUES(?,?,?,?,?)";
+        String SQL = "INSERT INTO students(id,name,stu_level,place,montda_majer,uni_majer,path) VALUES(?,?,?,?,?,?,?)";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
@@ -598,6 +599,7 @@ return null;
 
             return pstmt.executeUpdate() ;
         } catch (SQLException e) {
+            System.err.println(e);
             return 0;
 
         }

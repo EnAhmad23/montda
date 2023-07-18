@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Navigation {
@@ -72,7 +73,7 @@ public class Navigation {
             stage = (Stage) rootPane.getScene().getWindow();
             stage.setOnCloseRequest(event -> {
                 try {
-                   if( dm.backupDatabase("backups/")==0)
+                   if( dm.backupDatabase("backups")==0)
                        System.out.println("Backup Successfully");
                    else System.out.println("0");
                 } catch (IOException e) {

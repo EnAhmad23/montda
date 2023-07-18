@@ -17,19 +17,10 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: uni; Type: SCHEMA; Schema: -; Owner: postgres
---
-
-CREATE SCHEMA uni;
-
-
-ALTER SCHEMA uni OWNER TO postgres;
-
---
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA uni;
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
 
 
 --
@@ -44,292 +35,400 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: attendence; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: attendence; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.attendence (
-    stu_id character(9) NOT NULL,
+CREATE TABLE public.attendence (
+    stu_id character(5) NOT NULL,
     lec_id character varying(5) NOT NULL
 );
 
 
-ALTER TABLE uni.attendence OWNER TO postgres;
+ALTER TABLE public.attendence OWNER TO postgres;
 
 --
--- Name: course; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: course; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.course (
-    course_id character(8) NOT NULL,
-    book_name character varying(50),
-    teacher_name character varying(100),
+CREATE TABLE public.course (
+    course_id character varying(15) NOT NULL,
+    name character varying(50),
     room character varying(20),
-    subject character varying(100)
+    monad_major character varying(100),
+    "time" time without time zone
 );
 
 
-ALTER TABLE uni.course OWNER TO postgres;
+ALTER TABLE public.course OWNER TO postgres;
 
 --
--- Name: lecture; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: lecture; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.lecture (
+CREATE TABLE public.lecture (
     id character varying(5) NOT NULL,
-    course_id character(8) NOT NULL,
+    course_id character varying(15) NOT NULL,
     room character varying(20),
-    title character varying(50)
+    title character varying(50),
+    lec_date date
 );
 
 
-ALTER TABLE uni.lecture OWNER TO postgres;
+ALTER TABLE public.lecture OWNER TO postgres;
 
 --
--- Name: phone_num; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: montda_majers; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.phone_num (
-    s_id character(9) NOT NULL,
+CREATE TABLE public.montda_majers (
+    id character varying(8) NOT NULL,
+    name character varying(100)
+);
+
+
+ALTER TABLE public.montda_majers OWNER TO postgres;
+
+--
+-- Name: phone_num; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.phone_num (
+    s_id character(5) NOT NULL,
     ph_num character varying(10) NOT NULL
 );
 
 
-ALTER TABLE uni.phone_num OWNER TO postgres;
+ALTER TABLE public.phone_num OWNER TO postgres;
 
 --
--- Name: students; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: students; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.students (
-    id character(9) NOT NULL,
-    name character varying(255),
-    gender character varying(20),
-    place character varying(50),
-    majer character varying(50)
+CREATE TABLE public.students (
+    id character varying(5) NOT NULL,
+    name character varying(50),
+    path character varying(50),
+    stu_level character varying(15),
+    uni_majer character varying(50),
+    montda_majer character varying(50),
+    place character varying(50)
 );
 
 
-ALTER TABLE uni.students OWNER TO postgres;
+ALTER TABLE public.students OWNER TO postgres;
 
 --
--- Name: takes; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: takes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.takes (
-    id character(9) NOT NULL,
-    course_id character(8) NOT NULL
+CREATE TABLE public.takes (
+    id character(5) NOT NULL,
+    course_id character varying(15) NOT NULL
 );
 
 
-ALTER TABLE uni.takes OWNER TO postgres;
+ALTER TABLE public.takes OWNER TO postgres;
 
 --
--- Name: teacher_assistant; Type: TABLE; Schema: uni; Owner: postgres
+-- Name: teach; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE uni.teacher_assistant (
-    id character(9) NOT NULL,
-    name character varying(100) NOT NULL,
-    teache character(8),
+CREATE TABLE public.teach (
+    id character varying(5) NOT NULL,
+    course_id character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.teach OWNER TO postgres;
+
+--
+-- Name: teacher; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.teacher (
+    id character varying(5) NOT NULL,
+    name character varying(50)
+);
+
+
+ALTER TABLE public.teacher OWNER TO postgres;
+
+--
+-- Name: transportation; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.transportation (
+    s_id character(5) NOT NULL,
+    value_day character varying(10),
+    hours_required_daily double precision,
+    expense numeric,
+    transportation_month numeric,
+    days_of_attendance integer
+);
+
+
+ALTER TABLE public.transportation OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    name character varying(255) NOT NULL,
     password character varying(255)
 );
 
 
-ALTER TABLE uni.teacher_assistant OWNER TO postgres;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Data for Name: attendence; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: attendence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.attendence (stu_id, lec_id) FROM stdin;
-120200291	lec10
-120200887	lec99
-120200291	lec99
+COPY public.attendence (stu_id, lec_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: course; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.course (course_id, book_name, teacher_name, room, subject) FROM stdin;
-ecom1110	java book	ahmed mahdi	k304	matlab
-ecom3102	python book	wesam ashour	k414	labview
-ecom4220	asp.net	ahmed mahdi	c502	quarter
-eele3302	php laravel	mohammed habbash	b313	semifinal
-eele3402	syntax	ahmed saed	i303	champions
-eele3322	verilog	basel hamad	m204	europa
+COPY public.course (course_id, name, room, monad_major, "time") FROM stdin;
+123	qwe	adsa	dsaf	02:01:00
 \.
 
 
 --
--- Data for Name: lecture; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: lecture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.lecture (id, course_id, room, title) FROM stdin;
-lec54	ecom1110	k304	matlab
-lec10	ecom3102	k414	labview
-lec22	ecom4220	c502	quarter
-lec34	eele3302	b313	semifinal
-lec04	eele3402	i303	champions
-lec99	eele3302	m204	europa
-lec70	eele3302	b313	102
+COPY public.lecture (id, course_id, room, title, lec_date) FROM stdin;
 \.
 
 
 --
--- Data for Name: phone_num; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: montda_majers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.phone_num (s_id, ph_num) FROM stdin;
-120200887	0597058876
-120200291	0594096020
-120200887	0592294189
-220200888	0591234567
-220200666	1111111111
+COPY public.montda_majers (id, name) FROM stdin;
 \.
 
 
 --
--- Data for Name: students; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: phone_num; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.students (id, name, gender, place, majer) FROM stdin;
-120200291	yassen	male	5	music
-120200887	ahmed	male	2	comp eng
-220200888	heba	female	gaza	art
-220200666	shahed	female	33	comp eng
+COPY public.phone_num (s_id, ph_num) FROM stdin;
 \.
 
 
 --
--- Data for Name: takes; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.takes (id, course_id) FROM stdin;
-120200291	eele3302
+COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
+?	?	?	?	?	?	?
 \.
 
 
 --
--- Data for Name: teacher_assistant; Type: TABLE DATA; Schema: uni; Owner: postgres
+-- Data for Name: takes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY uni.teacher_assistant (id, name, teache, password) FROM stdin;
-120200887	ahmad humeid	eele3302	$2a$06$TNXTHd7anmUGsmDRTwu5NOVlOLnCeIeUrFyZoMexEPbCM2ThOLcLK
+COPY public.takes (id, course_id) FROM stdin;
 \.
 
 
 --
--- Name: attendence attendence_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Data for Name: teach; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.attendence
+COPY public.teach (id, course_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: teacher; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.teacher (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: transportation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (name, password) FROM stdin;
+\.
+
+
+--
+-- Name: attendence attendence_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attendence
     ADD CONSTRAINT attendence_pkey PRIMARY KEY (stu_id, lec_id);
 
 
 --
--- Name: course course_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: course course_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.course
+ALTER TABLE ONLY public.course
     ADD CONSTRAINT course_pkey PRIMARY KEY (course_id);
 
 
 --
--- Name: lecture lecture_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: lecture lecture_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.lecture
+ALTER TABLE ONLY public.lecture
     ADD CONSTRAINT lecture_pkey PRIMARY KEY (id);
 
 
 --
--- Name: phone_num phone_num_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: montda_majers montda_majers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.phone_num
+ALTER TABLE ONLY public.montda_majers
+    ADD CONSTRAINT montda_majers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: phone_num phone_num_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.phone_num
     ADD CONSTRAINT phone_num_pkey PRIMARY KEY (s_id, ph_num);
 
 
 --
--- Name: students students_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.students
+ALTER TABLE ONLY public.students
     ADD CONSTRAINT students_pkey PRIMARY KEY (id);
 
 
 --
--- Name: takes takes_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: takes takes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.takes
+ALTER TABLE ONLY public.takes
     ADD CONSTRAINT takes_pkey PRIMARY KEY (id, course_id);
 
 
 --
--- Name: teacher_assistant teacher_assistant_pkey; Type: CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: teach teach_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.teacher_assistant
-    ADD CONSTRAINT teacher_assistant_pkey PRIMARY KEY (id);
-
-
---
--- Name: attendence attendence_lec_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
---
-
-ALTER TABLE ONLY uni.attendence
-    ADD CONSTRAINT attendence_lec_id_fkey FOREIGN KEY (lec_id) REFERENCES uni.lecture(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.teach
+    ADD CONSTRAINT teach_pkey PRIMARY KEY (id, course_id);
 
 
 --
--- Name: attendence attendence_stu_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: teacher teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.attendence
-    ADD CONSTRAINT attendence_stu_id_fkey FOREIGN KEY (stu_id) REFERENCES uni.students(id) ON DELETE CASCADE;
-
-
---
--- Name: lecture lecture_course_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
---
-
-ALTER TABLE ONLY uni.lecture
-    ADD CONSTRAINT lecture_course_id_fkey FOREIGN KEY (course_id) REFERENCES uni.course(course_id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY public.teacher
+    ADD CONSTRAINT teacher_pkey PRIMARY KEY (id);
 
 
 --
--- Name: phone_num phone_num_s_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: transportation transportation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.phone_num
-    ADD CONSTRAINT phone_num_s_id_fkey FOREIGN KEY (s_id) REFERENCES uni.students(id) ON DELETE CASCADE;
-
-
---
--- Name: takes takes_course_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
---
-
-ALTER TABLE ONLY uni.takes
-    ADD CONSTRAINT takes_course_id_fkey FOREIGN KEY (course_id) REFERENCES uni.course(course_id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.transportation
+    ADD CONSTRAINT transportation_pkey PRIMARY KEY (s_id);
 
 
 --
--- Name: takes takes_id_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.takes
-    ADD CONSTRAINT takes_id_fkey FOREIGN KEY (id) REFERENCES uni.students(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (name);
 
 
 --
--- Name: teacher_assistant teacher_assistant_teache_fkey; Type: FK CONSTRAINT; Schema: uni; Owner: postgres
+-- Name: attendence attendence_lec_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY uni.teacher_assistant
-    ADD CONSTRAINT teacher_assistant_teache_fkey FOREIGN KEY (teache) REFERENCES uni.course(course_id) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE ONLY public.attendence
+    ADD CONSTRAINT attendence_lec_id_fkey FOREIGN KEY (lec_id) REFERENCES public.lecture(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: attendence attendence_stu_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.attendence
+    ADD CONSTRAINT attendence_stu_id_fkey FOREIGN KEY (stu_id) REFERENCES public.students(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: lecture lecture_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lecture
+    ADD CONSTRAINT lecture_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON DELETE CASCADE;
+
+
+--
+-- Name: phone_num phone_num_s_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.phone_num
+    ADD CONSTRAINT phone_num_s_id_fkey FOREIGN KEY (s_id) REFERENCES public.students(id) ON DELETE CASCADE;
+
+
+--
+-- Name: takes takes_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.takes
+    ADD CONSTRAINT takes_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: takes takes_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.takes
+    ADD CONSTRAINT takes_id_fkey FOREIGN KEY (id) REFERENCES public.students(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: teach teach_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teach
+    ADD CONSTRAINT teach_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: teach teach_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teach
+    ADD CONSTRAINT teach_id_fkey FOREIGN KEY (id) REFERENCES public.teacher(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: transportation transportation_s_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transportation
+    ADD CONSTRAINT transportation_s_id_fkey FOREIGN KEY (s_id) REFERENCES public.students(id) ON DELETE CASCADE;
 
 
 --
