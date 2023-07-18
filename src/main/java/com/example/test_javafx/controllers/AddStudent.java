@@ -45,7 +45,7 @@ public class AddStudent implements Initializable {
     @FXML
     private Button id_back_addStu;
 
-    private String genders[] = {"1", "2","3","4","5"};
+    private String levels[] = {"1", "2","3","4","5"};
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
 
@@ -61,10 +61,9 @@ public class AddStudent implements Initializable {
         if (dm.addStudent(stu_id, stu_name, stu_level,m_major,  u_major,stu_place,stu_path) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
-
         } else {
             label.setTextFill(Color.color(1, 0, 0));
-            label.setText("Student did'nt add");
+            label.setText("Student didn't add");
         }
         id.clear();
         name.clear();
@@ -86,6 +85,6 @@ public class AddStudent implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        level.getItems().addAll(genders);
+        level.getItems().addAll(levels);
     }
 }

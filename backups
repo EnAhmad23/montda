@@ -228,6 +228,7 @@ COPY public.phone_num (s_id, ph_num) FROM stdin;
 
 COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
 123	wer	dsaf	2	dsf	sdfa	sdfa
+111	11	11	1	11	11	11
 \.
 
 

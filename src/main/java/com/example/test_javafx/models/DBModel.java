@@ -165,10 +165,28 @@ public class DBModel {
         }
     }
 
-     public void exit() {
+    public void exit() {
         closeEverything();
         System.out.println("Exiting... \nBye!");
         System.exit(0);
+    }
+
+    public boolean checkStudentID(String id) {
+        String sql = "SELECT EXISTS (SELECT 1 FROM students WHERE id = ?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (rs.getBoolean(1));
+                //  System.out.println(rs.getString(1));
+            } else return false;
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
     }
 
     public ArrayList<String> getCourseIDs() {

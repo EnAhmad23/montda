@@ -57,7 +57,7 @@ public class Takes implements Initializable {
         });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0, 9));
+            t_id.setText(event.getCompletion().toString().split(",")[0]);
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
 
@@ -72,7 +72,7 @@ public class Takes implements Initializable {
         }
     }
     public void search() {
-        if(t_id.getText().length()==9&&!t_id.getText().equals("         ")) {
+        if(dm.checkStudentID(t_id.getText())) {
             view(dm.searchTakes(t_id.getText()));
         }else
             view(students);

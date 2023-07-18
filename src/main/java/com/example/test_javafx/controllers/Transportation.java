@@ -62,16 +62,14 @@ public class Transportation implements Initializable {
         nav.navigateTo(root, nav.MAIN_FXML);
     }
 
-    public void upload() throws IOException {
-        nav.upSecen(nav.UPLOAD);
-    }
+
 
     public void add() {
         nav.upSecen(nav.Add_TRANSPORTATION_FXML);
     }
 
     public void updateAttendance() {
-        if (t_id.getText().length()==9&&!t_id.getText().equals("         ")&&months.getValue()!=null) {
+        if (dm.checkStudentID(t_id.getText())&&months.getValue()!=null) {
             Navigation.string = t_id.getText() +" "+months.getValue();
             nav.upSecen( nav.UPDATE_ATTENDENCE);
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
@@ -86,7 +84,7 @@ public class Transportation implements Initializable {
     }
 
     public void searchAttendance() {
-        if(t_id.getText().length()==9&&!t_id.getText().equals("         ")&&months.getValue()!=null) {
+        if(dm.checkStudentID(t_id.getText())&&months.getValue()!=null) {
 //           view(dm.searchAttendence(t_id.getText(),months.getValue()));
         }
     }
