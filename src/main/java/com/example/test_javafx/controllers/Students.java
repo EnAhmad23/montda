@@ -97,8 +97,9 @@ public class Students implements Initializable {
             }
         }
     }
-    void  refrach() {
-        view(dm.getStd());
+    @FXML
+    void  refresh() {
+        initialize(null,null);
     }
 
 
