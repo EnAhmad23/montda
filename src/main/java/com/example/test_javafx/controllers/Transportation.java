@@ -67,11 +67,7 @@ public class Transportation implements Initializable {
     }
 
     public void add() {
-        if (t_id.getText() != null && months.getValue() != null && t_id.getText().length() == 9) {
-            if (dm.addAttendance(t_id.getText(), months.getValue()) != 0)
-          ///      view(dm.getAttendence(months.getValue()));
-            t_id.clear();
-        } else nav.error_message("STUDENT DIDN'T ADD");
+        nav.upSecen(nav.TRANSPORTATION);
     }
 
     public void updateAttendance() {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" onKeyPressed="#esc" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddTransportarion">
+   <children>
+      <Button fx:id="btn_add" layoutX="364.0" layoutY="518.0" mnemonicParsing="false" onAction="#addStudntBotton" prefHeight="42.0" prefWidth="101.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 15;" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="32.0" layoutY="164.0" prefHeight="34.0" prefWidth="118.0" text="Student ID" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="420.0" prefHeight="34.0" prefWidth="90.0" text="Expense" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id" layoutX="254.0" layoutY="164.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student ID" style="-fx-background-radius: 10;" />
+      <TextField fx:id="expense" layoutX="255.0" layoutY="420.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student Expense" style="-fx-background-radius: 10;" />
+      <Label fx:id="label" layoutX="14.0" layoutY="516.0" prefHeight="46.0" prefWidth="338.0" textFill="RED">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="BOTTOM_CENTER" layoutX="33.0" layoutY="52.0" prefHeight="46.0" prefWidth="413.0" text="Add Student Transportation" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="35.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="30.0" layoutY="344.0" prefHeight="34.0" prefWidth="217.0" text="Hours required daily" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="h_required" layoutX="255.0" layoutY="340.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Hours required daily" style="-fx-background-radius: 10;" />
+      <Label layoutX="32.0" layoutY="249.0" prefHeight="34.0" prefWidth="152.0" text="Value in a day" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="value" layoutX="254.0" layoutY="249.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Value " style="-fx-background-radius: 10;" />
+   </children>
+</AnchorPane>

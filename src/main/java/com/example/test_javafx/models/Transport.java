@@ -9,14 +9,12 @@ public class Transport {
     private double tra_month;
     private int num_att;
 
-    public Transport(String id, String name, double valueDay, double hRequired, double expense, double traMonth, int numAtt) {
+    public Transport(String id, double valueDay, double hRequired, double expense) {
         this.id = id;
-        this.name = name;
         value_day = valueDay;
         h_required = hRequired;
         this.expense = expense;
-        tra_month = traMonth;
-        num_att = numAtt;
+
     }
 
     public double getH_required() {
@@ -60,6 +58,7 @@ public class Transport {
     }
 
     public double getTra_month() {
+        tra_month= value_day*num_att;
         return tra_month;
     }
 

@@ -603,6 +603,25 @@ return null;
             return 0;
 
         }
+    }public int addTransportation(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
+        String SQL = "INSERT INTO students(id,name,stu_level,place,montda_majer,uni_majer,path) VALUES(?,?,?,?,?,?,?)";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, level);
+            pstmt.setString(4, place);
+            pstmt.setString(5, monadMajor);
+            pstmt.setString(6, uniMajor);
+            pstmt.setString(7, path);
+
+
+            return pstmt.executeUpdate() ;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return 0;
+
+        }
     }
 
     public int addTeacher(String id, String name, String teache) {
