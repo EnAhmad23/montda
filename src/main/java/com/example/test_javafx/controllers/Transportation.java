@@ -76,11 +76,11 @@ public class Transportation implements Initializable {
     }
 
     public void delete(ActionEvent actionEvent) {
-        if (dm.deleteAttendence(t_id.getText(),months.getValue())!=0) {
+//   /     if (dm.deleteAttendence(t_id.getText(),months.getValue())!=0) {
             nav.message("STUDENT DELETED");
          ///   view(dm.getAttendence(months.getValue()));
             t_id.clear();
-        }else nav.error_message("STUDENT DIDN'T DELETE !!");
+//     /   }else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {

@@ -1,13 +1,15 @@
 package com.example.test_javafx.models;
 
+import java.sql.Date;
+
 public class Attendences {
 
-    String student_id;
+    private String student_id;
 
-    String lecture_id;
-    String student_name;
-    String title;
-    String course_id ;
+    private String course_name;
+    private String student_name;
+    private Date date;
+    private String course_id ;
 
     public String getCourse_id() {
         return course_id;
@@ -17,12 +19,12 @@ public class Attendences {
         this.course_id = course_id;
     }
 
-    public Attendences(String student_id, String student_name , String lecture_id, String course_id, String title) {
+    public Attendences(String student_id, String student_name, String course_id , String course_name, Date date) {
         this.student_id = student_id;
 
-        this.lecture_id = lecture_id;
+        this.course_name = course_name;
         this.student_name = student_name;
-        this.title = title;
+        this.date = date;
         this.course_id=course_id;
     }
 
@@ -36,12 +38,12 @@ public class Attendences {
 
     
 
-    public String getLecture_id() {
-        return lecture_id;
+    public String getCourse_name() {
+        return course_name;
     }
 
-    public void setLecture_id(String lecture_id) {
-        this.lecture_id = lecture_id;
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
     public String getStudent_name() {
@@ -52,13 +54,6 @@ public class Attendences {
         this.student_name = student_name;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
 }
 

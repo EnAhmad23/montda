@@ -39,8 +39,9 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.attendence (
-    stu_id character(5) NOT NULL,
-    lec_id character varying(5) NOT NULL
+    stu_id character varying(5) NOT NULL,
+    course_id character varying(15) NOT NULL,
+    date date NOT NULL
 );
 
 
@@ -60,33 +61,6 @@ CREATE TABLE public.course (
 
 
 ALTER TABLE public.course OWNER TO postgres;
-
---
--- Name: lecture; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.lecture (
-    id character varying(5) NOT NULL,
-    course_id character varying(15) NOT NULL,
-    room character varying(20),
-    title character varying(50),
-    lec_date date
-);
-
-
-ALTER TABLE public.lecture OWNER TO postgres;
-
---
--- Name: montda_majers; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.montda_majers (
-    id character varying(8) NOT NULL,
-    name character varying(100)
-);
-
-
-ALTER TABLE public.montda_majers OWNER TO postgres;
 
 --
 -- Name: phone_num; Type: TABLE; Schema: public; Owner: postgres
@@ -170,22 +144,11 @@ CREATE TABLE public.transportation (
 ALTER TABLE public.transportation OWNER TO postgres;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.users (
-    name character varying(255) NOT NULL,
-    password character varying(255)
-);
-
-
-ALTER TABLE public.users OWNER TO postgres;
-
---
 -- Data for Name: attendence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.attendence (stu_id, lec_id) FROM stdin;
+COPY public.attendence (stu_id, course_id, date) FROM stdin;
+123	123	2023-07-19
 \.
 
 
@@ -195,22 +158,6 @@ COPY public.attendence (stu_id, lec_id) FROM stdin;
 
 COPY public.course (course_id, name, room, monad_major, "time") FROM stdin;
 123	qwe	adsa	dsaf	02:01:00
-\.
-
-
---
--- Data for Name: lecture; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.lecture (id, course_id, room, title, lec_date) FROM stdin;
-\.
-
-
---
--- Data for Name: montda_majers; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.montda_majers (id, name) FROM stdin;
 \.
 
 
@@ -272,19 +219,11 @@ COPY public.transportation (s_id, value_day, hours_required_daily, expense, tran
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.users (name, password) FROM stdin;
-\.
-
-
---
 -- Name: attendence attendence_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.attendence
-    ADD CONSTRAINT attendence_pkey PRIMARY KEY (stu_id, lec_id);
+    ADD CONSTRAINT attendence_pkey PRIMARY KEY (stu_id, date, course_id);
 
 
 --
@@ -293,22 +232,6 @@ ALTER TABLE ONLY public.attendence
 
 ALTER TABLE ONLY public.course
     ADD CONSTRAINT course_pkey PRIMARY KEY (course_id);
-
-
---
--- Name: lecture lecture_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.lecture
-    ADD CONSTRAINT lecture_pkey PRIMARY KEY (id);
-
-
---
--- Name: montda_majers montda_majers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.montda_majers
-    ADD CONSTRAINT montda_majers_pkey PRIMARY KEY (id);
 
 
 --
@@ -360,19 +283,11 @@ ALTER TABLE ONLY public.transportation
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (name);
-
-
---
--- Name: attendence attendence_lec_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: attendence attendence_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.attendence
-    ADD CONSTRAINT attendence_lec_id_fkey FOREIGN KEY (lec_id) REFERENCES public.lecture(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT attendence_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -381,14 +296,6 @@ ALTER TABLE ONLY public.attendence
 
 ALTER TABLE ONLY public.attendence
     ADD CONSTRAINT attendence_stu_id_fkey FOREIGN KEY (stu_id) REFERENCES public.students(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: lecture lecture_course_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.lecture
-    ADD CONSTRAINT lecture_course_id_fkey FOREIGN KEY (course_id) REFERENCES public.course(course_id) ON DELETE CASCADE;
 
 
 --

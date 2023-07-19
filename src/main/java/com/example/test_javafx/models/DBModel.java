@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -359,22 +360,26 @@ return null;
 
     }
 
-    public int addAttendance(String stu_id, String lec_id) {
-        String sql = "insert into attendence values(?,?); ";
+    public int addAttendance(String stu_id, String course_id) {
+        String sql = "insert into attendence values(?,?,?); ";
+        LocalDate localDate=LocalDate.now();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
-            st.setString(2, lec_id);
+            st.setString(2, course_id);
+            st.setDate(3, Date.valueOf(localDate));
             return st.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex);
             return 0;
         }
     }
 
-    public int deleteAttendence(String stu_id, String lec_id) {
-        String sql = "delete from attendence where stu_id =? and lec_id = ?; ";
+    public int deleteAttendence(String stu_id, String course_id,Date date) {
+        String sql = "delete from attendence where stu_id =? and course_id = ? and date =?; ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, stu_id);
-            st.setString(2, lec_id);
+            st.setString(2, course_id);
+            st.setDate(3, date);
             return st.executeUpdate();
         } catch (SQLException ex) {
             return 0;
@@ -412,7 +417,7 @@ return null;
             st.setString(2, lec_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                attendences.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                attendences.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
             }
             return attendences;
         } catch (SQLException ex) {
@@ -966,24 +971,23 @@ return null;
     }
 
 
-    public ArrayList<Attendences> getAttendence(String lec_id) {
+    public ArrayList<Attendences> getAttendence() {
         ArrayList<Attendences> LecId = new ArrayList<>();
-        String sql = "SELECT s.id, s.name, a.lec_id, l.course_id, l.title\n" +
+        String sql = "SELECT s.id, s.name,  l.course_id,l.name, a.date\n" +
                 "FROM students s\n" +
                 "JOIN attendence a ON s.id = a.stu_id\n" +
-                "JOIN lecture l ON a.lec_id = l.id\n" +
-                "WHERE a.lec_id = ?;";
+                "JOIN course l ON a.course_id = l.course_id " ;
 
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, lec_id);
+
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                LecId.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                LecId.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
             }
             return LecId;
         } catch (SQLException ex) {
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
             return null;
         }
     }

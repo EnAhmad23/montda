@@ -60,6 +60,9 @@ public class StartController implements Initializable {
     public void navTransportation() {
         nav.navigateTo(rootPane, nav.TRANSPORTATION);
     }
+    public void navAttendance() {
+        nav.navigateTo(rootPane, nav.ATTENDENCE_FXML);
+    }
 
     public void navToLecturesTimes() {
         Navigation.owner =(nav.MAIN_FXML);
