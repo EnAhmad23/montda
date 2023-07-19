@@ -110,6 +110,8 @@ public class TeachingAssistant implements Initializable {
     public void autoComplete(){
         autoValues();
 
+    }public void  refresh() {
+        initialize(null,null);
     }
     void autoValues(){
         list = new ArrayList<>();

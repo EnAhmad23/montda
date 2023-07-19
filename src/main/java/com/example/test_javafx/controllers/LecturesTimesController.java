@@ -90,7 +90,7 @@ public class LecturesTimesController implements Initializable {
         });
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0, 5));
+            t_id.setText(event.getCompletion().toString().split(",")[0]);
         });
     }
 
@@ -130,27 +130,16 @@ public class LecturesTimesController implements Initializable {
 
 
     public void delete_button() {
-        Stage stage = new Stage();
-        VBox vBox = new VBox();
-        vBox.setSpacing(20);
-        vBox.setAlignment(Pos.BASELINE_CENTER);
-        vBox.setStyle("-fx-padding: 20px; -fx-background-color:   #DEE4E7");
-        Label label = new Label("LECTURE DELETED !");
         if (db.delete_lecture(t_id.getText()) != 0) {
             view(db.getLectures());
             del(t_id.getText());
-            nav.navigateTo(root, nav.LECTURES_TIMES_FXML);
-            label.setTextFill(Color.color(0, 0, 0));
+            initialize(null,null);
+            nav.message("LECTURE DELETED !");
         } else {
-            label.setTextFill(Color.color(1, 0, 0));
-            label.setText("LECTURE DIDN'T DELETE !");
+            nav.error_message("LECTURE DIDN'T DELETE !");
         }
         lectures = db.getLectures();
         t_id.clear();
-        vBox.getChildren().add(label);
-        stage.setScene(new Scene(vBox, 300, 100));
-        stage.show();
-
     }
 
     void del(String s) {
@@ -163,7 +152,7 @@ public class LecturesTimesController implements Initializable {
     }
 
     public void update_button() {
-        if (t_id.getText().length() == 5 && (!t_id.getText().equals("     "))) {
+        if (db.checkLecID(t_id.getText())) {
             Navigation.string = t_id.getText();
             nav.upSecen( nav.UPDATE_LECTURE);
         } else

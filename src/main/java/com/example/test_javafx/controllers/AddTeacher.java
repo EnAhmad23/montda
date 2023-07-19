@@ -53,15 +53,19 @@ public class AddTeacher implements Initializable {
         String t_name = name.getText();
         String t_teache = (String) teache.getValue();
         lable.setText("");
-        if (!t_id.isEmpty() && !t_name.isEmpty() &&!t_teache.isEmpty())
-            new TeacherAssistant(t_id, t_name, t_teache);
+        if (!t_id.isEmpty() && !t_name.isEmpty() &&!t_teache.isEmpty()){
+            if (dm.addTeacher(t_id, t_name, t_teache) != 0) {
+                lable.setText("TEACHER ADDED ");
+                lable.setTextFill(Color.color(0, 1, 0));
+            } else {
+                lable.setTextFill(Color.color(1, 0, 0));
+                lable.setText("TEACHER DIDN'T ADD");
+            }
+        }
+
         else
             lable.setText("INCOMPLETE INPUTS");
-        if (dm.addTeacher(t_id, t_name, t_teache) != 0) {
-          nav.message("Teach Assistant added Successfully");
-        } else {
-            nav.error_message("Teach Assistant didn't add ");
-        }
+
         id.clear();name.clear();
     }
 
@@ -69,7 +73,7 @@ public class AddTeacher implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        teache.getItems().addAll(dm.availableCourse().toArray(new String[dm.availableCourse().size()]));
+        teache.getItems().addAll(dm.getCourseIDs().toArray(new String[dm.getCourseIDs().size()]));
     }
 
 

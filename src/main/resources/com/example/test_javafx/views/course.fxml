@@ -85,5 +85,16 @@
             <FontAwesomeIcon fill="#37474f" glyphName="ARROW_LEFT" selectionFill="#7d929c" />
          </graphic>
       </Button>
+      <Button layoutX="774.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refresh" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; ">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="#37474f" glyphName="REFRESH" size="0.8em" wrappingWidth="15.885765075683594" />
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>

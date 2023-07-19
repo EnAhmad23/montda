@@ -137,7 +137,7 @@ public class Transportation implements Initializable {
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().substring(0, 9));
+            t_id.setText(event.getCompletion().toString().split(",")[0]);
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
 
@@ -173,6 +173,9 @@ public class Transportation implements Initializable {
 //            add();
 //        }
 //    }
+public void  refresh() {
+    initialize(null,null);
+}
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             back();

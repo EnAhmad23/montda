@@ -2,7 +2,6 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.Take;
 import com.example.test_javafx.models.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,10 +46,10 @@ public class Teach implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//  /     teachers = dm.getTakes();
-//  /      view(teachers);
-//    /    autoValues();
-        table.setOnMouseClicked(MouseEvent-> {
+        teachers = dm.getTeach();
+        view(teachers);
+        autoValues();
+        table.setOnMouseClicked(MouseEvent -> {
 
             if (MouseEvent.getButton().equals(MouseButton.PRIMARY) && MouseEvent.getClickCount() == 2) {
                 Teacher selectedReport = table.getSelectionModel().getSelectedItem();
@@ -76,19 +75,23 @@ public class Teach implements Initializable {
             back();
         }
     }
+
     public void search() {
-        if(t_id.getText().length()==9&&!t_id.getText().equals("         ")) {
-//          /  view(dm.searchTakes(t_id.getText()));
-        }else
+        if (dm.checkTeacherID(t_id.getText())) {
+            view(dm.searchTeach(t_id.getText()));
+        } else
             view(teachers);
     }
 
+    public void refresh() {
+        initialize(null, null);
+    }
+
     public void delete() {
-        if (dm.delete_take(t_id.getText())!=0) {
+        if (dm.delete_take(t_id.getText()) != 0) {
             nav.message("STUDENT DELETED");
-//          /  view(dm.getTakes());
-        }
-        else
+            view(dm.getTeach());
+        } else
             nav.error_message("STUDENT DIDN'T DELETE");
     }
 
@@ -122,7 +125,7 @@ public class Teach implements Initializable {
     }
 
     public void add() {
-        nav.navigateTo(root,nav.ADD_TAKES_FXML);
+        nav.upSecen(nav.ADD_TEACHER_FXML);
 
     }
 }

@@ -77,7 +77,9 @@ public class Takes implements Initializable {
         }else
             view(students);
     }
-
+    public void  refresh() {
+        initialize(null,null);
+    }
     public void delete() {
         if (dm.delete_take(t_id.getText())!=0) {
             nav.message("STUDENT DELETED");
@@ -114,7 +116,7 @@ public class Takes implements Initializable {
     }
 
     public void add() {
-        nav.navigateTo(root,nav.ADD_TAKES_FXML);
+        nav.upSecen(nav.ADD_TAKES_FXML);
 
     }
 }

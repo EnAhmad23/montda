@@ -228,7 +228,6 @@ COPY public.phone_num (s_id, ph_num) FROM stdin;
 
 COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
 123	wer	dsaf	2	dsf	sdfa	sdfa
-111	11	11	1	11	11	11
 22	wqe	daf	3	fdasf	dsaf	dsaf
 999	999	99	3	99	99	99
 00	00	00	2	00	00	00
@@ -240,6 +239,8 @@ COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place)
 --
 
 COPY public.takes (id, course_id) FROM stdin;
+123  	123
+22   	123
 \.
 
 
@@ -248,6 +249,7 @@ COPY public.takes (id, course_id) FROM stdin;
 --
 
 COPY public.teach (id, course_id) FROM stdin;
+999	123
 \.
 
 
@@ -256,6 +258,7 @@ COPY public.teach (id, course_id) FROM stdin;
 --
 
 COPY public.teacher (id, name) FROM stdin;
+999	999
 \.
 
 

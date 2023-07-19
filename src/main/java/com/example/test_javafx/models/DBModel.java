@@ -188,6 +188,57 @@ public class DBModel {
         }
         return false;
     }
+    public boolean checkLecID(String id) {
+        String sql = "SELECT EXISTS (SELECT 1 FROM lecture WHERE id = ?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (rs.getBoolean(1));
+                //  System.out.println(rs.getString(1));
+            } else return false;
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+    public boolean checkCourseID(String id) {
+        String sql = "SELECT EXISTS (SELECT 1 FROM Course WHERE id = ?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (rs.getBoolean(1));
+                //  System.out.println(rs.getString(1));
+            } else return false;
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+    public boolean checkTeacherID(String id) {
+        String sql = "SELECT EXISTS (SELECT 1 FROM Teacher WHERE id = ?);";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (rs.getBoolean(1));
+                //  System.out.println(rs.getString(1));
+            } else return false;
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
 
     public ArrayList<String> getCourseIDs() {
         String sql = "select course_id from course;";
@@ -423,6 +474,27 @@ return null;
         }
 
     }
+    public ArrayList<Teacher> getTeach() {
+        String sql = "SELECT t.ID AS teacher_id, t.name AS teacher_name, c.course_id, c.name AS course_name\n" +
+                "FROM teacher AS t\n" +
+                "JOIN teach AS teach ON t.ID = teach.ID\n" +
+                "JOIN course AS c ON teach.course_id = c.course_id;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+//            st.setString(1, id);
+            ArrayList<Teacher> takes = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+//                System.out.println(rs.getString(1));
+                takes.add(new Teacher(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
+            }
+            return takes;
+        } catch (SQLException ex) {
+
+            System.err.println(ex);
+            return null;
+        }
+
+    }
 
     public ArrayList<Take> searchTakes(String id) {
         String sql = "SELECT students.id, students.name,  string_agg(takes.course_id, '\n')\n" +
@@ -437,6 +509,26 @@ return null;
             if (rs.next()) {
 //                System.out.println(rs.getString(1));
                 takes.add(new Take(rs.getString(1), rs.getString(2), rs.getString(3)));
+            }
+            return takes;
+        } catch (SQLException ex) {
+
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+    public ArrayList<Teacher> searchTeach(String id) {
+        String sql = "SELECT t.id, t.name, teach.course_id,  course.name\n" +
+                "FROM Teacher as t \n" +
+                "natural JOIN teach natural join course WHERE students.id = ?  ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
+            ArrayList<Teacher> takes = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+//                System.out.println(rs.getString(1));
+                takes.add(new Teacher(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
             }
             return takes;
         } catch (SQLException ex) {
@@ -638,13 +730,15 @@ return null;
     }
 
     public int addTeacher(String id, String name, String teache) {
-        String sql = "insert into teacher_assistant(id,name,teache) values (?,?,?);";
-        try (PreparedStatement st = con.prepareStatement(sql)) {
+        String sql = "insert into teacher(id,name) values (?,?);";String sql2 = "insert into teach(id,course_id) values (?,?);";
+        try (PreparedStatement st = con.prepareStatement(sql);PreparedStatement st2 = con.prepareStatement(sql2)) {
             st.setString(1, id);
             st.setString(2, name);
-            st.setString(3, teache);
-            return st.executeUpdate();
+            st2.setString(2, teache);
+            st2.setString(1, id);
+            return st.executeUpdate() + st2.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex);
             return 0;
         }
 
@@ -680,7 +774,9 @@ return null;
 
     }
     public ArrayList<Transport> getTransport() {
-        String sql = "select s_id,name,value_day,hours_required_daily,expense,transportation_month,days_of_attendance from transportation natural  join students;";
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
+                "FROM students AS s\n" +
+                "LEFT JOIN transportation AS t ON s.id = t.s_id;\n";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Transport> ids = new ArrayList<>();

@@ -133,7 +133,7 @@ public class Attendence implements Initializable {
 //        autoValues();
 //        autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
 //        autoCompletionBinding.setOnAutoCompleted(event -> {
-//            t_id.setText(event.getCompletion().toString().substring(0, 9));
+//            t_id.setText(event.getCompletion().toString().split(",")[0]);
 ////            TextFields.bindAutoCompletion(t_id, list.toArray());
 //        });
 

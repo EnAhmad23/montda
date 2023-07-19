@@ -84,7 +84,7 @@ public class ReportLecture implements Initializable {
         });
         autoCompletionBinding = TextFields.bindAutoCompletion(l_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            l_id.setText(event.getCompletion().toString().substring(0,5));
+            l_id.setText(event.getCompletion().toString().split(",")[0]);
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
     }

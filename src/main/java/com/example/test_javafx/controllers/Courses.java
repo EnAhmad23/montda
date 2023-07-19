@@ -154,13 +154,15 @@ public class Courses implements Initializable {
 
     public void updateCourse() throws IOException {
 
-        if (t_id.getText().length() == 8&& (!t_id.getText().equals("        "))) {
+        if (dm.checkCourseID(t_id.getText())) {
             Navigation.string = t_id.getText();
             nav.upSecen( nav.UPDATE_COURSE);
         } else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");
     }
-
+    public void  refresh() {
+        initialize(null,null);
+    }
     public void autoComplete() {
         autoValues();
 

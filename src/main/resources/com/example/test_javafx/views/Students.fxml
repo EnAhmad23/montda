@@ -61,8 +61,8 @@
          <columns>
             <TableColumn fx:id="id" prefWidth="102.39999693632126" style="-fx-background-radius: 2;" text="Student ID" />
             <TableColumn fx:id="name" prefWidth="212.8000030517578" style="-fx-background-radius: 2;" text="Name" />
-            <TableColumn fx:id="level" prefWidth="80.800048828125" style="-fx-background-radius: 2;" text="Level" />
             <TableColumn fx:id="place" prefWidth="126.4000244140625" style="-fx-background-radius: 2;" text="Place" />
+            <TableColumn fx:id="level" prefWidth="80.800048828125" style="-fx-background-radius: 2;" text="Level" />
             <TableColumn fx:id="montda_majer" minWidth="0.0" prefWidth="121.60003662109375" style="-fx-background-radius: 2; -fx-text-fill: #37474F;" text="Montda_majer" />
             <TableColumn fx:id="uni_Major" minWidth="0.0" prefWidth="115.199951171875" style="-fx-background-radius: 2;" text="Uni_Major" />
             <TableColumn fx:id="path" prefWidth="96.0" style="-fx-background-radius: 2;" text="Path" />
@@ -86,7 +86,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
          <graphic>
-            <FontAwesomeIcon glyphName="ARROW_LEFT" wrappingWidth="12.800018310546875" />
+            <FontAwesomeIcon fill="#37474f" glyphName="ARROW_LEFT" wrappingWidth="12.800018310546875" />
          </graphic>
       </Button>
       <Button layoutX="800.0" layoutY="11.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refresh" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; ">

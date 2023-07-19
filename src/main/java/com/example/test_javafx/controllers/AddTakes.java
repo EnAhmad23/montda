@@ -68,7 +68,7 @@ public class AddTakes implements Initializable {
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-            id.setText(event.getCompletion().toString().substring(0, 9));
+            id.setText(event.getCompletion().toString().split(",")[0]);
 //            TextFields.bindAutoCompletion(t_id, list.toArray());
         });
     }
