@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Student;
@@ -143,18 +144,25 @@ public class Students implements Initializable {
 
             }
         } else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2) {
-            Student selectedReport2 = table.getSelectionModel().getSelectedItem();
-            if (selectedReport2 != null) {
-                Navigation.string = (selectedReport2.getId());
+            Student select = table.getSelectionModel().getSelectedItem();
+            if (select != null) {
+                ArrayList<String> data = new ArrayList<>();
+                data.add(select.getId());
+                data.add(select.getName());
+                data.add(select.getLevel());
+                data.add(select.getPlace());
+                data.add(select.getMonadMajor());
+                data.add(select.getUniMajor());
+                data.add(select.getPath());
+                DataBus.data=data;
                 try {
                     updateStudent();
                 } catch (IOException e) {
                     System.err.println(e);
                     throw new RuntimeException(e);
                 }
-//                    update();
-                }
             }
+        }
 
 
     }
@@ -171,7 +179,6 @@ public class Students implements Initializable {
             stringBuilder.append(s.getId());
             stringBuilder.append(", ");
             stringBuilder.append(s.getName());
-            stringBuilder.append(", ");
             stringBuilder.append(", ");
             stringBuilder.append(s.getLevel());
             stringBuilder.append(", ");

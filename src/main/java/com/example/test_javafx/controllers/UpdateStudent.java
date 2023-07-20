@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
@@ -79,7 +80,12 @@ public class UpdateStudent implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        id.setText(Navigation.string);
+        id.setText(DataBus.data.get(0));
+        name.setText(DataBus.data.get(1));
+        place.setText(DataBus.data.get(3));
+        montda_majer.setText(DataBus.data.get(4));
+        uni_major.setText(DataBus.data.get(5));
+        path.setText(DataBus.data.get(6));
         id.setEditable(false);
         level.getItems().addAll(genders);
     }
