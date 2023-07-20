@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
@@ -27,8 +28,11 @@ public class UpdateTran implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(Navigation.string);
+        id.setText(DataBus.data.get(0));
         id.setEditable(false);
+        value.setText(DataBus.data.get(1));
+        h_required.setText(DataBus.data.get(2));
+        expense.setText(DataBus.data.get(3));
     }
 
     public void update() {

@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Transport;
@@ -54,6 +55,7 @@ public class Transportation implements Initializable {
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
+    ArrayList<String> dataBus = new ArrayList<>();
 
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
@@ -69,9 +71,9 @@ public class Transportation implements Initializable {
     }
 
     public void updateAttendance() {
-        if (dm.checkStudentID(t_id.getText())&&months.getValue()!=null) {
-            Navigation.string = t_id.getText() +" "+months.getValue();
-            nav.upSecen( nav.UPDATE_ATTENDENCE);
+        if (dm.checkStudentID(t_id.getText())) {
+//            Navigation.string = t_id.getText() +" "+months.getValue();
+            nav.upSecen( nav.UPDATE_TARN);
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 
@@ -119,6 +121,11 @@ public class Transportation implements Initializable {
                Transport selectedReport = table.getSelectionModel().getSelectedItem();
                 if (selectedReport != null) {
                     Navigation.string =(selectedReport.getId());
+                   dataBus.add(selectedReport.getId());
+                   dataBus.add(String.valueOf(selectedReport.getValue_day()));
+                   dataBus.add(String.valueOf(selectedReport.getH_required()));
+                   dataBus.add(String.valueOf(selectedReport.getExpense()));
+                    DataBus.data= dataBus;
                     updateAttendance();
                 }
             }

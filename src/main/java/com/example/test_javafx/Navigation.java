@@ -49,6 +49,7 @@ public class Navigation {
 
 
     public final String UPDATE_TA = "views/UpdateTA.fxml";
+    public final String UPDATE_TARN = "views/updateTransportation.fxml";
     public final String REPORT_PAGE = "views/reports.fxml";
     public final String REPORT_LECTURE = "views/reportLecture.fxml";
     public final String REPORT_STUDENT = "views/reportStudent.fxml";

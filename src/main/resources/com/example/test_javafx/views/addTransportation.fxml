@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="root" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="480.0" style="-fx-background-color: #37474F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.AddTransportarion">
    <children>
-      <Button fx:id="btn_add" layoutX="364.0" layoutY="518.0" mnemonicParsing="false" onAction="#addTransportationBotton" prefHeight="42.0" prefWidth="101.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 15;" text="Add">
+      <Button fx:id="btn_add" layoutX="364.0" layoutY="518.0" mnemonicParsing="false" onAction="#addTransportationBotton" prefHeight="42.0" prefWidth="101.0" style=" -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F;  -fx-background-radius: 15;" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -32,10 +32,10 @@
       <TextField fx:id="expense" layoutX="255.0" layoutY="420.0" prefHeight="34.0" prefWidth="196.0" promptText="Enter Student Expense" style="-fx-background-radius: 10;" />
       <Label fx:id="label" layoutX="14.0" layoutY="516.0" prefHeight="46.0" prefWidth="338.0" textFill="RED">
          <font>
-            <Font size="20.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label alignment="BOTTOM_CENTER" layoutX="33.0" layoutY="52.0" prefHeight="46.0" prefWidth="413.0" text="Add Student Transportation" textFill="WHITE">
+      <Label alignment="BOTTOM_CENTER" layoutX="33.0" layoutY="52.0" prefHeight="46.0" prefWidth="413.0" text="Update Transportation" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="35.0" />
          </font>
