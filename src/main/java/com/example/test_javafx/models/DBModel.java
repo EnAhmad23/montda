@@ -386,35 +386,43 @@ return null;
         }
     }
 
-    public int updateAttendence(String stu_id, String name, String lec_id, String cou_id, String title) {
-        String sql = "UPDATE students, lecture\n" +
-                "SET  students.name = ?, lecture.course_id = ?, lecture.title = ?\n" +
-                "WHERE students.id = (SELECT stu_id FROM attendence WHERE stu_id = ? AND lec_id = ?)\n" +
-                "    AND lecture.id = ?;\n ";
+    public int deleteTran(String stu_id) {
+        String sql = "delete from Transportation where s_id =? ; ";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, name);
-            st.setString(2, cou_id);
-            st.setString(3, title);
-            st.setString(4, stu_id);
-            st.setString(5, lec_id);
-            st.setString(6, lec_id);
+            st.setString(1, stu_id);
+
             return st.executeUpdate();
         } catch (SQLException ex) {
+            System.err.println(ex);
             return 0;
         }
     }
 
-    public ArrayList<Attendences> searchAttendence(String stu_id, String lec_id) {
-        String sql = "SELECT s.id, s.name, l.id, l.course_id, l.title \n" +
+    public int updateAttendence(String stu_id, String cou_id) {
+        String sql = "UPDATE attendence\n" +
+                "SET   attendence.course_id = ?\n" +
+                "WHERE students.id = ? ";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, cou_id);
+            st.setString(2, stu_id);
+            return st.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return 0;
+        }
+    }
+
+    public ArrayList<Attendences> searchAttendence(String stu_id, String course_id) {
+        String sql = "SELECT s.id, s.name,  l.course_id,l.name, a.date \n" +
                 "FROM students s \n" +
                 "JOIN attendence a ON s.id = a.stu_id \n" +
-                "JOIN lecture l ON a.lec_id = l.id \n" +
-                "WHERE s.id = ? AND l.id = ?;";
+                "JOIN course l ON a.course_id = l.course_id \n" +
+                "WHERE s.id = ? AND l.course_id = ?;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<Attendences> attendences = new ArrayList<>();
             st.setString(1, stu_id);
-            st.setString(2, lec_id);
+            st.setString(2, course_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 attendences.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
@@ -781,13 +789,13 @@ return null;
     public ArrayList<Transport> getTransport() {
         String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
                 "FROM students AS s\n" +
-                "LEFT JOIN transportation AS t ON s.id = t.s_id;\n";
+                " JOIN transportation AS t ON s.id = t.s_id;\n";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 //            st.setString(1, id);
             ArrayList<Transport> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new Transport(rs.getString(1),rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5)));
+                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6)));
             return ids;
         } catch (SQLException ex) {
 
@@ -971,16 +979,17 @@ return null;
     }
 
 
-    public ArrayList<Attendences> getAttendence() {
+    public ArrayList<Attendences> getAttendence(String id) {
         ArrayList<Attendences> LecId = new ArrayList<>();
         String sql = "SELECT s.id, s.name,  l.course_id,l.name, a.date\n" +
                 "FROM students s\n" +
                 "JOIN attendence a ON s.id = a.stu_id\n" +
-                "JOIN course l ON a.course_id = l.course_id " ;
+                "JOIN course l ON a.course_id = l.course_id " +
+                "where a.course_id=?";
 
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-
+            st.setString(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 LecId.add(new Attendences(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
@@ -1293,18 +1302,32 @@ return null;
         }
     }
 
-    public int UpdateTeacher_Assist(String id, String name, String teach, String password) {
-        String SQL = "UPDATE teacher_assistant SET name = ?, teache = ?, password = crypt(?, gen_salt('bf')) WHERE id = ?;";
+    public int UpdateTeacher(String id, String name) {
+        String SQL = "UPDATE teacher SET name = ? WHERE id = ?;";
 //        ArrayList<student> arr;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
-            pstmt.setString(2, teach);
-            pstmt.setString(3, password);
-            pstmt.setString(4, id);
+            pstmt.setString(2, id);
+
             return pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.err.println(e);
             return 0;
         }
     }
 
+    public int updateTran(String id, double stuValue, double hour, double expenseText) {
+        String SQL = "UPDATE transportation SET value_day = ? ,hours_required_daily=?,expense=? WHERE s_id = ?;";
+//        ArrayList<student> arr;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setDouble(1, stuValue);
+            pstmt.setDouble(2, hour);
+            pstmt.setDouble(3, expenseText);
+            pstmt.setString(4, id);
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e);
+            return 0;
+        }
+    }
 }

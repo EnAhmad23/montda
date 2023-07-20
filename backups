@@ -149,6 +149,8 @@ ALTER TABLE public.transportation OWNER TO postgres;
 
 COPY public.attendence (stu_id, course_id, date) FROM stdin;
 123	123	2023-07-19
+123	147	2023-07-19
+22	123	2023-07-19
 \.
 
 
@@ -158,6 +160,7 @@ COPY public.attendence (stu_id, course_id, date) FROM stdin;
 
 COPY public.course (course_id, name, room, monad_major, "time") FROM stdin;
 123	qwe	adsa	dsaf	02:01:00
+147	000	000	000	02:00:00
 \.
 
 
@@ -176,7 +179,6 @@ COPY public.phone_num (s_id, ph_num) FROM stdin;
 COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
 123	wer	dsaf	2	dsf	sdfa	sdfa
 22	wqe	daf	3	fdasf	dsaf	dsaf
-999	999	99	3	99	99	99
 00	00	00	2	00	00	00
 \.
 
@@ -188,6 +190,8 @@ COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place)
 COPY public.takes (id, course_id) FROM stdin;
 123  	123
 22   	123
+123  	147
+22   	147
 \.
 
 
@@ -215,6 +219,8 @@ COPY public.teacher (id, name) FROM stdin;
 
 COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance) FROM stdin;
 123  	4	2	20	\N	\N
+22   	9	-1	-1	\N	\N
+00   	-1	-1	-1	\N	\N
 \.
 
 

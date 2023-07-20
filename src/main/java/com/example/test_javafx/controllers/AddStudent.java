@@ -58,10 +58,10 @@ public class AddStudent implements Initializable {
         String stu_level = (String) level.getValue();
         String stu_path = path.getText();
 
-        if (dm.addStudent(stu_id, stu_name, stu_level,m_major,  u_major,stu_place,stu_path) != 0) {
+        if ((dm.addStudent(stu_id, stu_name, stu_level,m_major,  u_major,stu_place,stu_path) != 0)&&checkFild()) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("Student added successfully");
-new Students();
+
         } else {
             label.setTextFill(Color.color(1, 0, 0));
             label.setText("Student didn't add");
@@ -82,6 +82,11 @@ new Students();
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             back_addStu();
         }
+    }
+    public boolean checkFild(){
+       return ! (id.getText().isEmpty()&&
+        name.getText().isEmpty()&&
+        montda_majer.getText().isEmpty()&&place.getText().isEmpty()&&path.getText().isEmpty()&& uni_major.getText().isEmpty());
     }
 
     @Override

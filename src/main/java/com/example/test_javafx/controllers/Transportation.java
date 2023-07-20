@@ -1,7 +1,8 @@
 package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.*;
+import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.Transport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -76,11 +76,11 @@ public class Transportation implements Initializable {
     }
 
     public void delete(ActionEvent actionEvent) {
-//   /     if (dm.deleteAttendence(t_id.getText(),months.getValue())!=0) {
+        if (dm.deleteTran(t_id.getText()) != 0) {
             nav.message("STUDENT DELETED");
-         ///   view(dm.getAttendence(months.getValue()));
+            view(dm.getTransport());
             t_id.clear();
-//     /   }else nav.error_message("STUDENT DIDN'T DELETE !!");
+        } else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {

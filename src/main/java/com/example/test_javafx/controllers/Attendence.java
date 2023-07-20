@@ -61,7 +61,7 @@ public class Attendence implements Initializable {
     DBModel dm = DBModel.getModel();
 
     public void back() {
-        nav.navigateTo(root, nav.TEACHING_FXML);
+        nav.navigateTo(root, nav.MAIN_FXML);
     }
 
     public void upload() throws IOException {
@@ -71,14 +71,16 @@ public class Attendence implements Initializable {
     public void add() {
         if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null ) {
             if (dm.addAttendance(t_id.getText(), course_ids.getValue()) != 0)
-                view(dm.getAttendence());
+                view(dm.getAttendence(course_ids.getValue()));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T ADD");
     }
 
     public void updateAttendance() {
-        if (t_id.getText().length() == 9 && !t_id.getText().equals("         ") && course_ids.getValue() != null) {
-            Navigation.string = t_id.getText() + " " + course_ids.getValue();
+        String input =(!t_id.getText().isEmpty())? t_id.getText():" ";
+        String id = (input.contains(","))?input.split(",")[0]:input;
+        if (dm.checkStudentID(id)&& course_ids.getValue() != null) {
+            Navigation.string = id + " " + course_ids.getValue();
             nav.upSecen(nav.UPDATE_ATTENDENCE);
         } else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
@@ -90,15 +92,16 @@ public class Attendence implements Initializable {
         LocalDate date = LocalDate.parse(s[2], formatter);
         if (dm.deleteAttendence(s[0], course_ids.getValue(), Date.valueOf(date)) != 0) {
             nav.message("STUDENT DELETED");
-            view(dm.getAttendence());
+            view(dm.getAttendence(course_ids.getValue()));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {
-        if (t_id.getText().length() == 9 && !t_id.getText().equals("         ") && course_ids.getValue() != null) {
+        if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null) {
             view(dm.searchAttendence(t_id.getText(), course_ids.getValue()));
         }
+
     }
 
     public void view(ArrayList<Attendences> lectureTimes) {
@@ -122,7 +125,8 @@ public class Attendence implements Initializable {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
                 Attendences selectedAttendence = table.getSelectionModel().getSelectedItem();
                 if (selectedAttendence != null) {
-                    t_id.setText(selectedAttendence.getStudent_id());
+                    t_id.clear();
+                    t_id.setText(selectedAttendence.getStudent_id()+","+selectedAttendence.getCourse_id()+","+selectedAttendence.getDate().toString());
                 }
             } else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2) {
                 Attendences selectedReport = table.getSelectionModel().getSelectedItem();
@@ -137,18 +141,15 @@ public class Attendence implements Initializable {
             if (course_ids.getValue() != null) {
 //                attendences = dm.getAttendence(lecture_ids.getValue());
 
-                view(dm.getAttendence());
+                view(dm.getAttendence(course_ids.getValue()));
 
             } else {
-                nav.error_message("SELECT LECTURE ID");
+                nav.error_message("SELECT COURSE ID");
             }
         });
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            t_id.setText(event.getCompletion().toString().split(",")[0]);
-//            TextFields.bindAutoCompletion(t_id, list.toArray());
-        });
+        autoCompletionBinding.setOnAutoCompleted(event -> t_id.setText(event.getCompletion().toString().split(",")[0]));
 
     }
 

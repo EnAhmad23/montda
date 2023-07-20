@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DBModel dm=DBModel.getModel();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/start.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Montda");
 //        stage.setOnCloseRequest(event -> {

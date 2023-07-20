@@ -7,8 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -24,11 +22,11 @@ public class UpdateAttendence implements Initializable {
     @FXML
     private TextField name ;
     @FXML
-    private TextField lecture_id ;
+    private TextField course_id;
     @FXML
-    private TextField course_id ;
+    private TextField course_name;
     @FXML
-    private TextField title ;
+    private TextField date;
 @FXML
 private Label label;
     @FXML
@@ -42,10 +40,10 @@ private Label label;
 
 
     public void nav_update(){
-        if (dm.updateAttendence(id.getText(),name.getText(),lecture_id.getId(),course_id.getId(),title.getText())!=0){
-            label.setTextFill(Color.color(1,0,0));
+        if (dm.updateAttendence(id.getText(), course_id.getText())!=0){
+            label.setTextFill(Color.color(0,1,0));
             label.setText("UPDATED SUCCESSFULLY");
-        }else { label.setTextFill(Color.color(0,1,0));
+        }else { label.setTextFill(Color.color(1,0,0));
             label.setText("ATTENDENCES DIDN'T UPDATE");}
 
     }
@@ -54,10 +52,9 @@ private Label label;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(Navigation.string.substring(0,9));
-        lecture_id.setText(Navigation.string.substring(10));
+        id.setText(Navigation.string.split(" ")[0]);
+        course_id.setText(Navigation.string.split(" ")[1]);
         id.setEditable(false);
-        lecture_id.setEditable(false);
         id.setEditable(false);
     }
 }

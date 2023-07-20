@@ -66,7 +66,7 @@ public class Students implements Initializable {
     }
 
     public void updateStudent() throws IOException {
-        if (t_id.getText().length() == 9 && (!t_id.getText().equals("         "))) {
+        if (dm.checkStudentID(t_id.getText())) {
             Navigation.string = t_id.getText();
             nav.upSecen(nav.UPDATE_STUDENT);
         } else
@@ -142,19 +142,20 @@ public class Students implements Initializable {
                 t_id.setText(selectedReport.getId());
 
             }
-            if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
-                Student selectedReport2 = table.getSelectionModel().getSelectedItem();
-                if (selectedReport2 != null) {
-                    Navigation.string =(selectedReport2.getId());
-                    try {
-                        updateStudent();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+        } else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2) {
+            Student selectedReport2 = table.getSelectionModel().getSelectedItem();
+            if (selectedReport2 != null) {
+                Navigation.string = (selectedReport2.getId());
+                try {
+                    updateStudent();
+                } catch (IOException e) {
+                    System.err.println(e);
+                    throw new RuntimeException(e);
+                }
 //                    update();
                 }
             }
-        }
+
 
     }
 
