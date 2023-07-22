@@ -48,6 +48,8 @@ public class Courses implements Initializable {
     @FXML
     private TableColumn<Courses, String> montdaMajer;
     @FXML
+    private TableColumn<Courses, String> hours;
+    @FXML
     private Button nav_add;
     @FXML
     private Button nav_update;
@@ -115,6 +117,7 @@ public class Courses implements Initializable {
         room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         montdaMajer.setCellValueFactory(new PropertyValueFactory<>("montdaMajor"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        hours.setCellValueFactory(new PropertyValueFactory<>("hours"));
 
         ObservableList<Course> course = FXCollections.observableArrayList(dm.getCou());
         table.setItems(course);
@@ -139,6 +142,7 @@ public class Courses implements Initializable {
                         DataBus.data.add(selectedReport.getName());
                         DataBus.data.add(selectedReport.getRoom_number());
                         DataBus.data.add(selectedReport.getMontdaMajor());
+                        DataBus.data.add(selectedReport.getHours());
                         try {
                             updateCourse();
                         } catch (IOException e) {

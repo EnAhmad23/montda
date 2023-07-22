@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,6 +22,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -32,7 +33,7 @@ public class Transportation implements Initializable {
     @FXML
     private TextField t_id;
     @FXML
-    private ComboBox<String> months;
+    private DatePicker months;
 
     public TableView<Transport> table;
     @FXML
@@ -51,7 +52,7 @@ public class Transportation implements Initializable {
     public TableColumn<Transport, String> num_att;
     @FXML
     public TableColumn<Transport, String> name;
-    ArrayList<Transport> transports;
+    ArrayList<Transport> transports;ArrayList<Transport> auto;
     //    ArrayList<Course> courses = dm.getCou();
     private AutoCompletionBinding<Object> autoCompletionBinding;
     ArrayList<String> list = new ArrayList<>();
@@ -80,14 +81,14 @@ public class Transportation implements Initializable {
     public void delete(ActionEvent actionEvent) {
         if (dm.deleteTran(t_id.getText()) != 0) {
             nav.message("STUDENT DELETED");
-            view(dm.getTransport());
+            view(dm.getTransport(months.getValue()));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T DELETE !!");
     }
 
     public void searchAttendance() {
         if(dm.checkStudentID(t_id.getText())&&months.getValue()!=null) {
-//           view(dm.searchAttendence(t_id.getText(),months.getValue()));
+            view(dm.getTransport(months.getValue()));
         }
     }
 
@@ -106,41 +107,50 @@ public class Transportation implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String id =Navigation.id;
+        String id = Navigation.id;
+        auto=dm.getTransport();
+        autoValues();
 //        months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
-       transports = dm.getTransport();
-       view(transports);
-        table.setOnMouseClicked(mouseEvent ->  {
+//        if (months.getValue() != null) {
+//            transports = dm.getTransport((months.getValue()));
+//            autoValues();
+//        }
+//       view(transports);
+        table.setOnMouseClicked(mouseEvent -> {
 
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-               Transport selectedAttendence = table.getSelectionModel().getSelectedItem();
-               if (selectedAttendence != null) {
+                Transport selectedAttendence = table.getSelectionModel().getSelectedItem();
+                if (selectedAttendence != null) {
                     t_id.setText(selectedAttendence.getId());
                 }
-            }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
-               Transport selectedReport = table.getSelectionModel().getSelectedItem();
+            } else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2) {
+                Transport selectedReport = table.getSelectionModel().getSelectedItem();
                 if (selectedReport != null) {
-                    Navigation.string =(selectedReport.getId());
-                   dataBus.add(selectedReport.getId());
-                   dataBus.add(String.valueOf(selectedReport.getValue_day()));
-                   dataBus.add(String.valueOf(selectedReport.getH_required()));
-                   dataBus.add(String.valueOf(selectedReport.getExpense()));
-                    DataBus.data= dataBus;
+                    Navigation.string = (selectedReport.getId());
+                    dataBus.add(selectedReport.getId());
+                    dataBus.add(String.valueOf(selectedReport.getValue_day()));
+                    dataBus.add(String.valueOf(selectedReport.getH_required()));
+                    dataBus.add(String.valueOf(selectedReport.getExpense()));
+                    DataBus.data = dataBus;
                     updateAttendance();
                 }
             }
 
         });
-//        months.setOnAction(e -> {
-//            if (months.getValue() != null) {
-//                attendences = dm.getAttendence(lecture_ids.getValue());
-//
-//                view(dm.getAttendence(months.getValue()));
-//
-//            } else {
-//                nav.error_message("SELECT LECTURE ID");
-//            }
-//        });
+        months.setOnAction(e -> {
+            if (months.getValue() != null) {
+                LocalDate selectedDate = months.getValue();
+                int year = selectedDate.getYear();
+                int month = selectedDate.getMonthValue();
+                transports = dm.getTransport(selectedDate);
+
+                view(transports);
+                // Create a java.sql.Date object from year and month
+
+                // Insert the java.sql.Date object into the database
+
+            }
+        });
         autoValues();
         autoCompletionBinding = TextFields.bindAutoCompletion(t_id, list.toArray());
         autoCompletionBinding.setOnAutoCompleted(event -> {
@@ -156,7 +166,7 @@ public class Transportation implements Initializable {
 
     void autoValues() {
         list = new ArrayList<>();
-        for (Transport s : transports) {
+        for (Transport s : auto) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(s.getId());
             stringBuilder.append(", ");

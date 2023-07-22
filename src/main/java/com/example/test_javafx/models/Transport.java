@@ -1,5 +1,7 @@
 package com.example.test_javafx.models;
 
+import java.sql.Date;
+
 public class Transport {
     private String id;
     private String name;
@@ -8,6 +10,7 @@ public class Transport {
     private double expense;
     private double tra_month;
     private int num_att;
+    private Date months;
 
     public Transport(String id, double valueDay, double hRequired, double expense) {
         this.id = id;
@@ -16,13 +19,14 @@ public class Transport {
         this.expense = expense;
 
     }
-    public Transport(String id,String name, double valueDay, double hRequired, double expense) {
+    public Transport(String id, String name, double valueDay, double hRequired, double expense, Date months) {
         this.id = id;
         this.name=name;
         value_day = valueDay;
         h_required = hRequired;
         this.expense = expense;
 
+        this.months = months;
     }
 
     public double getH_required() {
@@ -80,5 +84,13 @@ public class Transport {
 
     public void setNum_att(int num_att) {
         this.num_att = num_att;
+    }
+
+    public Date getMonths() {
+        return months;
+    }
+
+    public void setMonths(Date months) {
+        this.months = months;
     }
 }

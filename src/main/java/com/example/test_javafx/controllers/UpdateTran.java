@@ -45,10 +45,10 @@ public class UpdateTran implements Initializable {
 
         if (dm.updateTran(id.getText(), stu_value, hour, expenseText) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
-            label.setText("Student Update successfully");
+            label.setText("Transportation Update successfully");
         } else {
             label.setTextFill(Color.color(1, 0, 0));
-            label.setText("Student did'nt Update");
+            label.setText("Transportation did'nt Update");
         }
 
     }

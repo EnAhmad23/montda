@@ -56,7 +56,8 @@ CREATE TABLE public.course (
     name character varying(50),
     room character varying(20),
     monad_major character varying(100),
-    "time" time without time zone
+    "time" time without time zone,
+    houres double precision
 );
 
 
@@ -137,7 +138,8 @@ CREATE TABLE public.transportation (
     hours_required_daily double precision,
     expense numeric,
     transportation_month numeric,
-    days_of_attendance integer
+    days_of_attendance integer,
+    months date
 );
 
 
@@ -157,9 +159,9 @@ COPY public.attendence (stu_id, course_id, date) FROM stdin;
 -- Data for Name: course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.course (course_id, name, room, monad_major, "time") FROM stdin;
-123	qwe	adsa	dsaf	02:01:00
-147	000	000	000	02:00:00
+COPY public.course (course_id, name, room, monad_major, "time", houres) FROM stdin;
+147	000	000	000	01:00:00	2
+123	qwe	adsa	dsaf	02:00:00	3
 \.
 
 
@@ -177,7 +179,7 @@ COPY public.phone_num (s_id, ph_num) FROM stdin;
 
 COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place) FROM stdin;
 123	wer	dsaf	2	dsf	sdfa	sdfa
-00	00	00	2	00	00	00
+00	00	00	1	00	00	00
 \.
 
 
@@ -215,9 +217,9 @@ COPY public.teacher (id, name) FROM stdin;
 -- Data for Name: transportation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance) FROM stdin;
-123  	4	2	20	\N	\N
-00   	1	2	-1	\N	\N
+COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance, months) FROM stdin;
+123  	4	2	20	\N	\N	2023-07-19
+00   	0	0	0	\N	\N	2023-07-23
 \.
 
 

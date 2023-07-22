@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.sql.Time;
 import java.util.ResourceBundle;
 
 public class UpdateCourse implements Initializable {
@@ -26,7 +27,8 @@ public class UpdateCourse implements Initializable {
     @FXML
     public TextField room;
     @FXML
-    public TextField majer;
+    public TextField majer; @FXML
+    public TextField hours;
     @FXML
     public ComboBox<Integer> hour;
     @FXML
@@ -41,12 +43,12 @@ public class UpdateCourse implements Initializable {
 
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-    TextField[] textFields= new TextField[]{course_id, name, room, majer};
+
 
 
     public void nav_update() {
-        String cTime = String.format("%02d:%02d",hour.getValue(),minute.getValue());
-        if (dm.updateCourse(course_id.getText(),  name.getText(),teacherID.getText(), room.getText(), majer.getText(),cTime) != 0) {
+        Time cTime = new Time(hour.getValue(),minute.getValue(),0);
+        if (dm.updateCourse(course_id.getText(),  name.getText(), room.getText(), majer.getText(),cTime,hours.getText()) != 0) {
             label.setTextFill(Color.color(0, 1, 0));
             label.setText("COURSE UPDATE SUCCESSFULLY");
         } else {
@@ -62,6 +64,7 @@ public class UpdateCourse implements Initializable {
         name.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
         room.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
         majer.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
+        hours.setText((DataBus.data.size()>4)?DataBus.data.get(4):"");
         course_id.setEditable(false);
         for (int i = 1; i <= 12; i++) {
             hour.getItems().add(i);

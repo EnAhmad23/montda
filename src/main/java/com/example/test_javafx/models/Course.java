@@ -8,14 +8,16 @@ public class Course {
     private String room_number;
     private String montdaMajor;
     private String time;
+    private String hours;
 
 
-    public Course(String course_id, String name, String room_number, String montdaMajor, String time) {
+    public Course(String course_id, String name, String room_number, String montdaMajor, String time, String hours) {
         this.course_id = course_id;
         this.name = name;
         this.room_number = room_number;
         this.montdaMajor = montdaMajor;
         this.time = time;
+        this.hours = hours;
     }
 
     public String getCourse_id() {
@@ -64,5 +66,13 @@ public class Course {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 }

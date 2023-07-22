@@ -4,7 +4,6 @@ import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Attendences;
 import com.example.test_javafx.models.DBModel;
-import com.example.test_javafx.models.LectureTime;
 import com.example.test_javafx.models.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,8 +70,11 @@ public class Attendence implements Initializable {
 
     public void add() {
         if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null ) {
-            if (dm.addAttendance(t_id.getText(), course_ids.getValue()) != 0)
+            if (dm.addAttendance(t_id.getText(), course_ids.getValue()) != 0) {
+                LocalDate localDate = LocalDate.now();
                 view(dm.getAttendence(course_ids.getValue()));
+                dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate));
+            }
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T ADD");
     }

@@ -487,6 +487,24 @@ return null;
         }
 
     }
+//    public ArrayList<Take> getTransSIDS() {
+//        String sql = "select s_id, s.name , string_agg(t.course_id, '\n') as course_id from students as s natural join takes  as t group by s.id, s.name ;";
+//        try (PreparedStatement st = con.prepareStatement(sql)) {
+////            st.setString(1, id);
+//            ArrayList<Take> takes = new ArrayList<>();
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+////                System.out.println(rs.getString(1));
+//                takes.add(new Take(rs.getString(1), rs.getString(2), rs.getString(3)));
+//            }
+//            return takes;
+//        } catch (SQLException ex) {
+//
+//            System.out.println(ex.getMessage());
+//            return null;
+//        }
+//
+//    }
     public ArrayList<Teacher> getTeach() {
         String sql = "SELECT t.ID AS teacher_id, t.name AS teacher_name, c.course_id, c.name AS course_name\n" +
                 "FROM teacher AS t\n" +
@@ -652,7 +670,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
             return ids;
         } catch (SQLException ex) {
@@ -727,13 +745,15 @@ return null;
 
         }
     }public int addTransportation(String id, double valueDay, double hRequired, double expense) {
-        String SQL = "INSERT INTO transportation(s_id,value_day,hours_required_daily,expense) VALUES(?,?,?,?)";
+        String SQL = "INSERT INTO transportation(s_id,value_day,hours_required_daily,expense,months) VALUES(?,?,?,?,?)";
 //        ArrayList<student> arr;
+        LocalDate localDate=LocalDate.now();
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
             pstmt.setDouble(2, valueDay);
             pstmt.setDouble(3, hRequired);
             pstmt.setDouble(4, expense);
+            pstmt.setDate(5, Date.valueOf(localDate));
             return pstmt.executeUpdate() ;
         } catch (SQLException e) {
             System.err.println(e);
@@ -786,20 +806,40 @@ return null;
         }
 
     }
-    public ArrayList<Transport> getTransport() {
+
+    public ArrayList<Transport> getTransport(LocalDate month) {
         String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
                 "FROM students AS s\n" +
-                " JOIN transportation AS t ON s.id = t.s_id;\n";
+                " JOIN transportation AS t ON s.id = t.s_id \n" +
+                "where extract(YEAR FROM t.months)  = ? and extract(MONTH FROM t.months) =?;\n";
         try (PreparedStatement st = con.prepareStatement(sql)) {
-//            st.setString(1, id);
+            st.setInt(1, month.getYear());st.setInt(2, month.getMonthValue());
             ArrayList<Transport> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
-                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6)));
+                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getDate(7)));
             return ids;
         } catch (SQLException ex) {
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+            return null;
+        }
+
+    }
+    public ArrayList<Transport> getTransport() {
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
+                "FROM students AS s\n" +
+                " JOIN transportation AS t ON s.id = t.s_id ;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+
+            ArrayList<Transport> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getDate(7)));
+            return ids;
+        } catch (SQLException ex) {
+
+            System.err.println(ex);
             return null;
         }
 
@@ -870,10 +910,28 @@ return null;
         }
         return numLectures;
     }
+    public Double gethours_required_daily(String stu_id) {
+        String SQL = "SELECT hours_required_daily FROM transportation WHERE s_id = ?";
+        double numHours = 0.0;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, stu_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    numHours = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return numHours;
+    }
 
     public Double getStu_Atten_Course(String course_id, String stu_id) {
-        String SQL = "SELECT COUNT(*) FROM attendence JOIN lecture ON attendence.lec_id = lecture.id " +
-                "WHERE lecture.course_id = ? AND attendence.stu_id = ?";
+        String SQL = "SELECT COUNT(*) AS attendance_count\n" +
+                "FROM attendence\n" +
+                "WHERE stu_id = 'your_s_id'\n" +
+                "  AND EXTRACT(YEAR FROM date) = your_year \n" +
+                "  AND EXTRACT(MONTH FROM date) = your_month; ";
         double numLectures = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, course_id);
@@ -885,6 +943,48 @@ return null;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }
+        return numLectures;
+    }
+
+    public Double getStu_Atten_houres_month(String stu_id) {
+        String SQL = "SELECT sum(houres) AS hour_count\n" +
+                "FROM attendence natural  join course\n" +
+                "WHERE stu_id = ?\n" +
+                "  AND EXTRACT(YEAR FROM date) = ? \n" +
+                "  AND EXTRACT(MONTH FROM date) = ?; ";
+        double numLectures = 0.0;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
+            pstmt.setString(1, stu_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    numLectures = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return numLectures;
+    }
+
+    public Double getStu_Atten_houres_day(String stu_id, Date date) {
+        String SQL = "SELECT sum(course.houres) AS hour_count\n" +
+                "FROM attendence natural  join course\n" +
+                "WHERE stu_id = ?\n" +
+                "  AND  attendence.date =?";
+        double numLectures = 0.0;
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
+            pstmt.setString(1, stu_id);
+            pstmt.setDate(2, date);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    numLectures = rs.getDouble(1);
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
         return numLectures;
     }
@@ -1207,7 +1307,7 @@ return null;
             ArrayList<Course> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                ids.add(new Course(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
 
             }
             return ids;
@@ -1271,19 +1371,19 @@ return null;
     }
 
 
-    public int updateCourse(String course_id, String name, String teacher_name, String room_number, String monadMajor, String time) {
-        String SQL = "UPDATE course SET name = ?, teacher_name = ?, room = ?, monadMajor = ? ,WHERE course_id = ?";
-//        ArrayList<student> arr;
-        Timestamp timestamp=Timestamp.valueOf(time);
+    public int updateCourse(String course_id, String name, String room_number, String monadMajor, Time time,String hour) {
+        String SQL = "UPDATE course SET name = ?, room = ?, monad_major = ?,time=?,houres=? WHERE course_id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, name);
-            pstmt.setString(2, teacher_name);
-            pstmt.setString(3, room_number);
-            pstmt.setString(4, monadMajor);
-            pstmt.setTimestamp(5, timestamp);
+
+            pstmt.setString(2, room_number);
+            pstmt.setString(3, monadMajor);
+            pstmt.setTime(4, time);
+            pstmt.setDouble(5, Double.parseDouble(hour));
             pstmt.setString(6, course_id);
             return pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.err.println(e);
             return 0;
         }
     }
@@ -1325,6 +1425,19 @@ return null;
             pstmt.setDouble(3, expenseText);
             pstmt.setString(4, id);
             return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e);
+            return 0;
+        }
+    }
+    public int updateDays_of_attendance(String stu_id, Date date) {
+        String SQL = "UPDATE transportation SET days_of_attendance = days_of_attendance+1 WHERE s_id = ?;";
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            if (getStu_Atten_houres_day(stu_id,date)>=gethours_required_daily(stu_id)) {
+                pstmt.setString(1 ,stu_id);
+                return pstmt.executeUpdate();
+            }else return 0;
+
         } catch (SQLException e) {
             System.err.println(e);
             return 0;
