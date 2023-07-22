@@ -1,10 +1,14 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -37,7 +41,7 @@ public class UpdateCourse implements Initializable {
 
     Navigation nav = new Navigation();
     DBModel dm = DBModel.getModel();
-
+    TextField[] textFields= new TextField[]{course_id, name, room, majer};
 
 
     public void nav_update() {
@@ -54,8 +58,12 @@ public class UpdateCourse implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        course_id.setText(Navigation.string);
+        course_id.setText(DataBus.data.get(0));
+        name.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
+        room.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
+        majer.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
         course_id.setEditable(false);
 
     }
+
 }

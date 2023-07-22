@@ -81,11 +81,11 @@ public class UpdateStudent implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         id.setText(DataBus.data.get(0));
-        name.setText(DataBus.data.get(1));
-        place.setText(DataBus.data.get(3));
-        montda_majer.setText(DataBus.data.get(4));
-        uni_major.setText(DataBus.data.get(5));
-        path.setText(DataBus.data.get(6));
+        name.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
+        place.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
+        montda_majer.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
+        uni_major.setText((DataBus.data.size()>4)?DataBus.data.get(4):"");
+        path.setText((DataBus.data.size()>5)?DataBus.data.get(5):"");
         id.setEditable(false);
         level.getItems().addAll(genders);
     }

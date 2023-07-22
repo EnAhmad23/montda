@@ -72,7 +72,7 @@ public class Transportation implements Initializable {
 
     public void updateAttendance() {
         if (dm.checkStudentID(t_id.getText())) {
-//            Navigation.string = t_id.getText() +" "+months.getValue();
+            DataBus.data.add(t_id.getText());
             nav.upSecen( nav.UPDATE_TARN);
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }

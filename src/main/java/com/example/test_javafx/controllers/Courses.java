@@ -1,6 +1,7 @@
 package com.example.test_javafx.controllers;
 
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DBModel;
@@ -134,7 +135,10 @@ public class Courses implements Initializable {
                 }else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2){
                     Course selectedReport = table.getSelectionModel().getSelectedItem();
                     if (selectedReport != null) {
-                        Navigation.string =(selectedReport.getCourse_id());
+                        DataBus.data.add(selectedReport.getCourse_id());
+                        DataBus.data.add(selectedReport.getName());
+                        DataBus.data.add(selectedReport.getRoom_number());
+                        DataBus.data.add(selectedReport.getMontdaMajor());
                         try {
                             updateCourse();
                         } catch (IOException e) {
@@ -155,7 +159,7 @@ public class Courses implements Initializable {
     public void updateCourse() throws IOException {
 
         if (dm.checkCourseID(t_id.getText())) {
-            Navigation.string = t_id.getText();
+            DataBus.data.add(t_id.getText());
             nav.upSecen( nav.UPDATE_COURSE);
         } else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");

@@ -207,7 +207,7 @@ public class DBModel {
         return false;
     }
     public boolean checkCourseID(String id) {
-        String sql = "SELECT EXISTS (SELECT 1 FROM Course WHERE id = ?);";
+        String sql = "SELECT EXISTS (SELECT 1 FROM Course WHERE Course_id = ?);";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();

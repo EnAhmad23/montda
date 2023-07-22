@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
@@ -52,9 +53,8 @@ private Label label;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(Navigation.string.split(" ")[0]);
-        course_id.setText(Navigation.string.split(" ")[1]);
-        id.setEditable(false);
+        id.setText(DataBus.data.get(0));
+        course_id.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
         id.setEditable(false);
     }
 }

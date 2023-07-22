@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
 import javafx.fxml.FXML;
@@ -45,7 +46,8 @@ public class UpdateTA implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setText(Navigation.string);
+        id.setText(DataBus.data.get(0));
+        name.setText( (DataBus.data.size()>1)?DataBus.data.get(1):"");
         id.setEditable(false);
 
     }

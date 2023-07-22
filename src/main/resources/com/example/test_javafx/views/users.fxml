@@ -44,7 +44,7 @@
             <FontAwesomeIcon fill="#37474f" glyphName="TRASH" size="0.8em" wrappingWidth="15.885765075683594" />
          </graphic>
       </Button>
-      <Button fx:id="update" layoutX="669.0" layoutY="122.0" mnemonicParsing="false" onAction="#update_teaching_assist" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
+      <Button fx:id="update" layoutX="669.0" layoutY="122.0" mnemonicParsing="false" onAction="#update_teaching" prefHeight="54.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Update">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>

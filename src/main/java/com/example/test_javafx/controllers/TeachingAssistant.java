@@ -1,18 +1,24 @@
 package com.example.test_javafx.controllers;
-import com.example.test_javafx.models.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
+
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.TeacherAssistant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,7 +55,7 @@ public class TeachingAssistant implements Initializable {
    private ArrayList<String> list = new ArrayList<>();
 
     public void add_teaching_assist() {
-        nav.navigateTo(root, nav.ADD_TEACHER_FXML);
+        nav.upSecen( nav.ADD_TEACHER_FXML);
     }
 
     public void delete_teaching_assist() {
@@ -71,9 +77,9 @@ public class TeachingAssistant implements Initializable {
             }
         }
     }
-    public void update_teaching_assist() {
-        if (t_id.getText().length()==9&& (!t_id.getText().equals("         "))) {
-            Navigation.string = t_id.getText();
+    public void update_teaching() {
+        if (dm.checkTeacherID(t_id.getText())) {
+           DataBus.data.add(t_id.getText());
             nav.upSecen(nav.UPDATE_TA);
         }else
             nav.error_message("ENTER THE ID FOR  THE COURSE !!");
@@ -96,8 +102,9 @@ public class TeachingAssistant implements Initializable {
             }else if (MouseEvent.getButton().equals(MouseButton.SECONDARY) && MouseEvent.getClickCount() == 2){
                 TeacherAssistant selectedReport = table.getSelectionModel().getSelectedItem();
                 if (selectedReport != null) {
-                    Navigation.string =(selectedReport.getId());
-                    update_teaching_assist();
+                    DataBus.data.add(selectedReport.getId());
+                    DataBus.data.add(selectedReport.getName());
+                    update_teaching();
                 }
             }
         });

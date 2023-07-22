@@ -68,7 +68,7 @@ public class Students implements Initializable {
 
     public void updateStudent() throws IOException {
         if (dm.checkStudentID(t_id.getText())) {
-            Navigation.string = t_id.getText();
+           DataBus.data.add( t_id.getText());
             nav.upSecen(nav.UPDATE_STUDENT);
         } else
             nav.error_message("ENTER THE ID FOR THE STUDENT !!");
@@ -149,7 +149,6 @@ public class Students implements Initializable {
                 ArrayList<String> data = new ArrayList<>();
                 data.add(select.getId());
                 data.add(select.getName());
-                data.add(select.getLevel());
                 data.add(select.getPlace());
                 data.add(select.getMonadMajor());
                 data.add(select.getUniMajor());

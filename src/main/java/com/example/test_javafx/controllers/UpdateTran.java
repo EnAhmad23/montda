@@ -30,9 +30,9 @@ public class UpdateTran implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setText(DataBus.data.get(0));
         id.setEditable(false);
-        value.setText(DataBus.data.get(1));
-        h_required.setText(DataBus.data.get(2));
-        expense.setText(DataBus.data.get(3));
+        value.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
+        h_required.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
+        expense.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
     }
 
     public void update() {

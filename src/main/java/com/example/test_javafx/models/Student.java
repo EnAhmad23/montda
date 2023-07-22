@@ -12,7 +12,7 @@ public class Student {
 
 
 public Student(){}
-    public Student(String id, String name, String level, String place, String monadMajor, String uniMajor, String path) {
+    public Student(String id, String name, String path,String level, String uniMajor, String monadMajor , String place) {
         this.id = id;
         this.name = name;
         this.level = level;

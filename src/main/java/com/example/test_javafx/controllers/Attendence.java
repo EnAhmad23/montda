@@ -1,5 +1,6 @@
 package com.example.test_javafx.controllers;
 
+import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Attendences;
 import com.example.test_javafx.models.DBModel;
@@ -80,7 +81,8 @@ public class Attendence implements Initializable {
         String input =(!t_id.getText().isEmpty())? t_id.getText():" ";
         String id = (input.contains(","))?input.split(",")[0]:input;
         if (dm.checkStudentID(id)&& course_ids.getValue() != null) {
-            Navigation.string = id + " " + course_ids.getValue();
+            DataBus.data.add(id);
+            DataBus.data.add(course_ids.getValue());
             nav.upSecen(nav.UPDATE_ATTENDENCE);
         } else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
@@ -131,7 +133,8 @@ public class Attendence implements Initializable {
             } else if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount() == 2) {
                 Attendences selectedReport = table.getSelectionModel().getSelectedItem();
                 if (selectedReport != null) {
-                    Navigation.string = (selectedReport.getStudent_id());
+                    DataBus.data.add(selectedReport.getStudent_id());
+                    DataBus.data.add(selectedReport.getCourse_id());
                     updateAttendance();
                 }
             }
