@@ -63,7 +63,12 @@ public class UpdateCourse implements Initializable {
         room.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
         majer.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
         course_id.setEditable(false);
-
+        for (int i = 1; i <= 12; i++) {
+            hour.getItems().add(i);
+        }
+        for (int i = 0; i <= 60; i++) {
+            minute.getItems().add(i);
+        }
     }
 
 }

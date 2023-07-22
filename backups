@@ -197,6 +197,7 @@ COPY public.takes (id, course_id) FROM stdin;
 
 COPY public.teach (id, course_id) FROM stdin;
 999	123
+00	123
 \.
 
 
@@ -206,6 +207,7 @@ COPY public.teach (id, course_id) FROM stdin;
 
 COPY public.teacher (id, name) FROM stdin;
 999	999
+00	00
 \.
 
 
@@ -215,7 +217,7 @@ COPY public.teacher (id, name) FROM stdin;
 
 COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance) FROM stdin;
 123  	4	2	20	\N	\N
-00   	-1	2	-1	\N	\N
+00   	1	2	-1	\N	\N
 \.
 
 

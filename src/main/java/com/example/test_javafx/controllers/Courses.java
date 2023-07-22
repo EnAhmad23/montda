@@ -208,9 +208,8 @@ public class Courses implements Initializable {
     public void viewSearch() {
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        teacher_name.setCellValueFactory(new PropertyValueFactory<>("teacher_name"));
         room_number.setCellValueFactory(new PropertyValueFactory<>("room_number"));
-        montdaMajer.setCellValueFactory(new PropertyValueFactory<>("montdaMajer"));
+        montdaMajer.setCellValueFactory(new PropertyValueFactory<>("montdaMajor"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         ObservableList<Course> course = FXCollections.observableArrayList(dm.searchCourse(t_id.getText()));

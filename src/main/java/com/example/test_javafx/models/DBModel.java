@@ -1236,7 +1236,7 @@ return null;
     }
 
     public ArrayList<TeacherAssistant> searchTeacher(String id) {
-        String sql = "select * from teacher where id = ? ;";
+        String sql = "select * from teacher natural join teach where id = ? ;";
         ArrayList<TeacherAssistant> TA = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
@@ -1246,7 +1246,7 @@ return null;
             }
             return TA;
         } catch (SQLException ex) {
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);;
             return null;
         }
     }
