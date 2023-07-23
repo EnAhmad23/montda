@@ -69,11 +69,11 @@ public class Attendence implements Initializable {
     }
 
     public void add() {
-        if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null ) {
+        if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null &&dm.isTakes(t_id.getText(),course_ids.getValue()) ) {
             if (dm.addAttendance(t_id.getText(), course_ids.getValue()) != 0) {
                 LocalDate localDate = LocalDate.now();
                 view(dm.getAttendence(course_ids.getValue()));
-                dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate));
+                System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate)));
             }
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T ADD");
@@ -97,6 +97,8 @@ public class Attendence implements Initializable {
         if (dm.deleteAttendence(s[0], course_ids.getValue(), Date.valueOf(date)) != 0) {
             nav.message("STUDENT DELETED");
             view(dm.getAttendence(course_ids.getValue()));
+            LocalDate localDate = LocalDate.now();
+            System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate)));
             t_id.clear();
         } else nav.error_message("STUDENT DIDN'T DELETE !!");
     }

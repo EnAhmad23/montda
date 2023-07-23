@@ -19,13 +19,15 @@ public class Transport {
         this.expense = expense;
 
     }
-    public Transport(String id, String name, double valueDay, double hRequired, double expense, Date months) {
+
+    public Transport(String id, String name, double valueDay, double hRequired, double expense, double tra_month, int num_att, Date months) {
         this.id = id;
-        this.name=name;
+        this.name = name;
         value_day = valueDay;
         h_required = hRequired;
         this.expense = expense;
-
+        this.tra_month = tra_month;
+        this.num_att=num_att;
         this.months = months;
     }
 

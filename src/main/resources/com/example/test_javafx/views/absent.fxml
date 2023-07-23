@@ -37,11 +37,10 @@
         </Button>
         <TableView fx:id="table" editable="true" layoutX="-1.0" layoutY="255.0" prefHeight="463.0" prefWidth="926.0" style="-fx-background-color: #DEE4E7;">
             <columns>
-                <TableColumn fx:id="id" prefWidth="120.19997864961624" style="-fx-background-radius: 2;" text="Student ID" />
-                <TableColumn fx:id="name" prefWidth="204.39999389648438" style="-fx-background-radius: 2;" text="Name" />
-                <TableColumn fx:id="phone_num" prefWidth="191.00003051757812" style="-fx-background-radius: 2;" text="Phone No." />
-                <TableColumn fx:id="course_id" prefWidth="179.800048828125" style="-fx-background-radius: 2;" text="Course_id" />
-                <TableColumn fx:id="attPercentage" prefWidth="228.80002441406248" style="-fx-background-radius: 2;" text="AttPercentage" />
+                <TableColumn fx:id="id" prefWidth="149.8000030517578" style="-fx-background-radius: 2;" text="Student ID" />
+                <TableColumn fx:id="name" prefWidth="275.2000274658203" style="-fx-background-radius: 2;" text="Name" />
+                <TableColumn fx:id="course_id" prefWidth="236.79998779296875" style="-fx-background-radius: 2;" text="Course_id" />
+                <TableColumn fx:id="attPercentage" prefWidth="263.199951171875" style="-fx-background-radius: 2;" text="AttPercentage" />
             </columns>
         </TableView>
         <Button fx:id="search" layoutX="634.0" layoutY="174.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="54.0" prefWidth="125.0" style="-fx-background-radius: 10; -fx-background-color: #DEE4E7; -fx-font-weight: bold; -fx-text-fill: #37474F; " text=" Search">

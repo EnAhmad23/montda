@@ -3,14 +3,13 @@ package com.example.test_javafx.models;
 public class Absents {
     private  String stu_id;
     private  String stu_name;
-    private  String stu_num;
+
     private  String course_id;
     private  String percent;
 
-    public Absents(String stuId, String stuName, String stuNum, String courseId, String percent) {
+    public Absents(String stuId, String stuName, String courseId, String percent) {
         stu_id = stuId;
         stu_name = stuName;
-        stu_num = stuNum;
         course_id = courseId;
         this.percent = percent;
     }
@@ -30,13 +29,7 @@ public class Absents {
         this.stu_name = stu_name;
     }
 
-    public String getStu_num() {
-        return stu_num;
-    }
-
-    public void setStu_num(String stu_num) {
-        this.stu_num = stu_num;
-    }
+   
 
     public String getCourse_id() {
         return course_id;

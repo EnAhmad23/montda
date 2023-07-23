@@ -86,7 +86,6 @@ public class Absent implements Initializable {
     public void view(ArrayList<Absents> lectureTimes) {
         id.setCellValueFactory(new PropertyValueFactory<>("stu_id"));
         name.setCellValueFactory(new PropertyValueFactory<>("stu_name"));
-        phone_num.setCellValueFactory(new PropertyValueFactory<>("stu_num"));
         course_id.setCellValueFactory(new PropertyValueFactory<>("course_id"));
         attPercentage.setCellValueFactory(new PropertyValueFactory<>("percent"));
         ObservableList<Absents> ids = FXCollections.observableArrayList(lectureTimes);
@@ -103,8 +102,7 @@ public class Absent implements Initializable {
             stringBuilder.append(s.getStu_id());
             stringBuilder.append(", ");
             stringBuilder.append(s.getStu_name());
-            stringBuilder.append(", ");
-            stringBuilder.append(s.getStu_num());
+
             stringBuilder.append(", ");
             stringBuilder.append(s.getCourse_id());
             stringBuilder.append(", ");
@@ -135,7 +133,6 @@ public class Absent implements Initializable {
                         // Write column headers
                         sheet.addCell(new Label(0, 0, "Student ID"));
                         sheet.addCell(new Label(1, 0, "Student Name"));
-                        sheet.addCell(new Label(2, 0, "Phone Number"));
                         sheet.addCell(new Label(3, 0, "Course ID"));
                         sheet.addCell(new Label(4, 0, "Attendance Percentage"));
 
@@ -145,19 +142,18 @@ public class Absent implements Initializable {
                             Absents absent = data.get(i);
                             sheet.addCell(new Label(0, i + 1, absent.getStu_id()));
                             sheet.addCell(new Label(1, i + 1, absent.getStu_name()));
-                            sheet.addCell(new Label(2, i + 1, absent.getStu_num()));
                             sheet.addCell(new Label(3, i + 1, absent.getCourse_id()));
                             sheet.addCell(new Label(4, i + 1, absent.getPercent()));
                         }
 
                         workbook.write();
                         workbook.close();
-                        System.out.println("File created successfully at: " + path);
+                        nav.message("File created successfully at: " + path);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    System.out.println("No file name entered.");
+                    nav.error_message("No file name entered.");
                 }
             }
         } catch (Exception e) {

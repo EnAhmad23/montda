@@ -22,6 +22,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -75,6 +76,7 @@ public class Transportation implements Initializable {
         if (dm.checkStudentID(t_id.getText())) {
             DataBus.data.add(t_id.getText());
             nav.upSecen( nav.UPDATE_TARN);
+            System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(months.getValue())));
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 
@@ -110,6 +112,7 @@ public class Transportation implements Initializable {
         String id = Navigation.id;
         auto=dm.getTransport();
         autoValues();
+
 //        months.getItems().addAll(dm.getTeacherLecIds(id).toArray(new String[dm.getTeacherLecIds(id).size()]));
 //        if (months.getValue() != null) {
 //            transports = dm.getTransport((months.getValue()));
@@ -192,6 +195,10 @@ public class Transportation implements Initializable {
 //    }
 public void  refresh() {
     initialize(null,null);
+    t_id.clear();
+    transports=dm.getTransport(months.getValue());
+    view(transports);
+
 }
     public void esc(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {

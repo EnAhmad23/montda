@@ -84,7 +84,7 @@ public class ReportStudent implements Initializable {
     }
 
     public void action(){
-        if (s_id.getText() != null && s_id.getText().length() == 9 && !(s_id.getText().equals("         "))){
+        if (dm.checkStudentID(s_id.getText())){
             stuReport=dm.reportStudents(s_id.getText());
             view(stuReport);
         }
