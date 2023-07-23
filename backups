@@ -30,6 +30,58 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
 COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
+--
+-- Name: get_stu_atten_hours_in_day(character varying, date); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.get_stu_atten_hours_in_day(stu_id character varying, date_val date) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    total_hours DOUBLE PRECISION;
+BEGIN
+    SELECT COALESCE(SUM(c.houres), 0) INTO total_hours
+    FROM attendence a
+    JOIN course c ON a.course_id = c.course_id
+    WHERE a.stu_id = get_stu_atten_hours_in_day.stu_id AND a.date = get_stu_atten_hours_in_day.date_val;
+
+    RETURN total_hours;
+END;
+$$;
+
+
+ALTER FUNCTION public.get_stu_atten_hours_in_day(stu_id character varying, date_val date) OWNER TO postgres;
+
+--
+-- Name: update_days_of_attendance(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_days_of_attendance() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    IF TG_OP = 'DELETE' THEN
+        -- Calculate total hours for the day after the deletion
+        UPDATE transportation
+        SET days_of_attendance = days_of_attendance - 1
+        WHERE s_id = OLD.stu_id;
+    ELSE
+        -- Calculate total hours for the day after the insertion or update
+        UPDATE transportation
+        SET days_of_attendance = days_of_attendance + CASE
+            WHEN get_stu_atten_hours_in_day(NEW.stu_id, NEW.date) >= hours_required_daily THEN 1
+            ELSE -1
+        END
+        WHERE s_id = NEW.stu_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_days_of_attendance() OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -150,9 +202,7 @@ ALTER TABLE public.transportation OWNER TO postgres;
 --
 
 COPY public.attendence (stu_id, course_id, date) FROM stdin;
-123	147	2023-07-23
 123	123	2023-07-23
-00	000	2023-07-23
 \.
 
 
@@ -163,7 +213,6 @@ COPY public.attendence (stu_id, course_id, date) FROM stdin;
 COPY public.course (course_id, name, room, monad_major, "time", houres) FROM stdin;
 147	000	000	000	01:00:00	2
 123	qwe	adsa	dsaf	02:00:00	3
-000	000	000	000	06:01:00	\N
 \.
 
 
@@ -192,8 +241,8 @@ COPY public.students (id, name, path, stu_level, uni_majer, montda_majer, place)
 COPY public.takes (id, course_id) FROM stdin;
 123  	123
 123  	147
-123  	000
-00   	000
+00   	147
+00   	123
 \.
 
 
@@ -222,7 +271,7 @@ COPY public.teacher (id, name) FROM stdin;
 --
 
 COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance, months) FROM stdin;
-123  	6	10	4	0	1	2023-07-23
+123  	2	2	20	0	1	2023-07-23
 \.
 
 

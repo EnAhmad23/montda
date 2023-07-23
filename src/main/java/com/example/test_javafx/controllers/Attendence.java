@@ -69,15 +69,35 @@ public class Attendence implements Initializable {
     }
 
     public void add() {
-        if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null &&dm.isTakes(t_id.getText(),course_ids.getValue()) ) {
-            if (dm.addAttendance(t_id.getText(), course_ids.getValue()) != 0) {
-                LocalDate localDate = LocalDate.now();
-                view(dm.getAttendence(course_ids.getValue()));
-                System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate)));
+        String studentId = t_id.getText();
+        String selectedCourse = course_ids.getValue();
+
+        if (dm.checkStudentID(studentId) && selectedCourse != null) {
+            if (dm.isTakes(studentId, selectedCourse)) {
+                double currentDayHours = dm.getStu_Atten_houres_day(studentId, Date.valueOf(LocalDate.now()));
+                double requiredHoursDaily = dm.gethours_required_daily(studentId);
+                double courseHours = dm.getCourseHoures(selectedCourse);
+                System.err.println("1");
+                if (currentDayHours < requiredHoursDaily && currentDayHours + courseHours >= requiredHoursDaily) {
+                    System.err.println(dm.updateDays_of_attendance(studentId, Date.valueOf(LocalDate.now())));
+                    System.err.println('0');
+                }
+
+                if (dm.addAttendance(studentId, selectedCourse) != 0) {
+                    LocalDate localDate = LocalDate.now();
+                    view(dm.getAttendence(selectedCourse));
+//                    System.err.println(dm.updateDays_of_attendance(studentId, Date.valueOf(localDate)));
+                }
+            } else {
+                nav.error_message("STUDENT DIDN'T TAKES THIS COURSE");
             }
+
             t_id.clear();
-        } else nav.error_message("STUDENT DIDN'T ADD");
+        } else {
+            nav.error_message("STUDENT DIDN'T ADD");
+        }
     }
+
 
     public void updateAttendance() {
         String input =(!t_id.getText().isEmpty())? t_id.getText():" ";
@@ -91,17 +111,36 @@ public class Attendence implements Initializable {
 
     public void delete(ActionEvent actionEvent) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String studentId = t_id.getText();
+        String courseId = course_ids.getValue();
 
-            String [] s=t_id.getText().split(",");
-        LocalDate date = LocalDate.parse(s[2], formatter);
-        if (dm.deleteAttendence(s[0], course_ids.getValue(), Date.valueOf(date)) != 0) {
-            nav.message("STUDENT DELETED");
-            view(dm.getAttendence(course_ids.getValue()));
-            LocalDate localDate = LocalDate.now();
-            System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(localDate)));
-            t_id.clear();
-        } else nav.error_message("STUDENT DIDN'T DELETE !!");
+        if (isInputValid(studentId, courseId)) {
+            LocalDate date = LocalDate.parse(studentId.split(",")[2], formatter);
+
+            double studentAttendanceHours = dm.getStu_Atten_houres_day(studentId, Date.valueOf(date));
+            double courseHours = dm.getCourseHoures(courseId);
+            double requiredHours = dm.gethours_required_daily(studentId);
+
+            if (studentAttendanceHours > requiredHours && studentAttendanceHours - courseHours < requiredHours) {
+                dm.updateDays_delete(studentId, Date.valueOf(date));
+            }
+
+            if (dm.deleteAttendence(studentId, courseId, Date.valueOf(date)) != 0) {
+                nav.message("STUDENT DELETED");
+                view(dm.getAttendence(courseId));
+                t_id.clear();
+            } else {
+                nav.error_message("STUDENT DIDN'T DELETE !!");
+            }
+        } else {
+            nav.error_message("ENTER THE ID FOR STUDENT !!");
+        }
     }
+
+    private boolean isInputValid(String studentId, String courseId) {
+        return dm.checkStudentID(studentId) && courseId != null;
+    }
+
 
     public void searchAttendance() {
         if (dm.checkStudentID(t_id.getText()) && course_ids.getValue() != null) {

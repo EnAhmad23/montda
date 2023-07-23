@@ -259,23 +259,24 @@ public class DBModel {
         }
 
     }
-    public String getCourseRoom(String id) {
-        String sql = "select room from course where course_id = ?;";
+
+    public int getCourseHoures(String id) {
+        String sql = "select houres from course where course_id = ?;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1,id);
-            ResultSet rs =st.executeQuery();
-            if(rs.next()) {
-                return (rs.getString(1));
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return Integer.parseInt(rs.getString(1));
                 //  System.out.println(rs.getString(1));
             }
 
         } catch (SQLException ex) {
 
             System.err.println(ex.getMessage());
-            return null;
+            return -1;
         }
-return null;
+return -1;
     }
 //    public String getTeachCourseID(String id) {
 //        String sql = "select teache from teacher_assistant where id =?;";
@@ -933,7 +934,7 @@ return null;
         }
         return numLectures;
     }
-    public Double gethours_required_daily(String stu_id) {
+    public double gethours_required_daily(String stu_id) {
         String SQL = "SELECT hours_required_daily FROM transportation WHERE s_id = ?";
         double numHours = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -990,7 +991,7 @@ return null;
         return numLectures;
     }
 
-    public Double getStu_Atten_houres_day(String stu_id, Date date) {
+    public double getStu_Atten_houres_day(String stu_id, Date date) {
         String SQL = "SELECT sum(course.houres) AS hour_count\n" +
                 "FROM attendence natural  join course\n" +
                 "WHERE stu_id = ?\n" +
@@ -1445,10 +1446,23 @@ return null;
     public int updateDays_of_attendance(String stu_id, Date date) {
         String SQL = "UPDATE transportation SET days_of_attendance = days_of_attendance+1 WHERE s_id = ?;";
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
-            if (getStu_Atten_houres_day(stu_id,date)>=gethours_required_daily(stu_id)) {
+
+                pstmt.setString(1, stu_id);
+                return pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return 0;
+        }
+    }
+    public int updateDays_delete(String stu_id, Date date) {
+        String SQL = "UPDATE transportation SET days_of_attendance = days_of_attendance-1 WHERE s_id = ?;";
+        try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
                 pstmt.setString(1 ,stu_id);
                 return pstmt.executeUpdate();
-            }else return 0;
+
 
         } catch (SQLException e) {
             System.err.println(e);

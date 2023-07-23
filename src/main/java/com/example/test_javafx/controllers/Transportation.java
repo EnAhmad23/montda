@@ -76,7 +76,7 @@ public class Transportation implements Initializable {
         if (dm.checkStudentID(t_id.getText())) {
             DataBus.data.add(t_id.getText());
             nav.upSecen( nav.UPDATE_TARN);
-            System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(months.getValue())));
+//            System.err.println(dm.updateDays_of_attendance(t_id.getText(), Date.valueOf(months.getValue())));
         }else nav.error_message("ENTER THE ID FOR STUDENT !!");
     }
 
