@@ -1,9 +1,9 @@
 package com.example.test_javafx.models;
 
 public class ReportLectures {
-    private String lec_id;
+    private String name;
     private String course_id;
-    private String title;
+    private String majer;
     private double num;
     private double present;
 
@@ -15,20 +15,20 @@ public class ReportLectures {
         this.num = num;
     }
 
-    ReportLectures(String lecId, String courseId, String title, double num, double present){
-        lec_id = lecId;
+    ReportLectures(String name, String courseId, String majer, double num, double present){
+        this.name = name;
         course_id = courseId;
-        this.title = title;
+        this.majer = majer;
         this.num = num;
 
         this.present = present;
     }
-    public String getLec_id() {
-        return lec_id;
+    public String getName() {
+        return name;
     }
 
-    public void setLec_id(String lec_id) {
-        this.lec_id = lec_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCourse_id() {
@@ -39,12 +39,12 @@ public class ReportLectures {
         this.course_id = course_id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getMajer() {
+        return majer;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMajer(String majer) {
+        this.majer = majer;
     }
 
     public double getPresent() {

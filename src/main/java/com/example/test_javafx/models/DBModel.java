@@ -869,8 +869,8 @@ return -1;
 
     }
 
-    public ArrayList<ReportLectures> reportLectures() {
-        String sql = "select id ,course_id,room,title from lecture ;";
+    public ArrayList<ReportLectures> reportCourse() {
+        String sql = "select course_id, name,monad_major from course  ";
 //        String sql2 = "select id ,course_id,room,title from lecture ;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
@@ -894,12 +894,13 @@ return -1;
 
     }
 
-    public ArrayList<ReportLectures> reportLectures(String lec_id) {
-        String sql = "select id ,course_id,room,title from lecture  where id =?;";
+
+    public ArrayList<ReportLectures> reportCourse(String course_id) {
+        String sql = "select course_id, name,monad_major from course  where course_id =?;";
 //        String sql2 = "select id ,course_id,room,title from lecture ;";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
-            st.setString(1, lec_id);
+            st.setString(1, course_id);
             ArrayList<ReportLectures> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
 
@@ -913,7 +914,7 @@ return -1;
             return ids;
         } catch (SQLException ex) {
 
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
             return null;
         }
 
@@ -1033,7 +1034,7 @@ return -1;
     }
 
     public Double getNumAttendence(String id) throws SQLException {
-        String SQL = "SELECT COUNT(DISTINCT a.stu_id) AS student_count FROM attendence a JOIN takes t ON a.stu_id = t.ID AND a.lec_id = ?;";
+        String SQL = "SELECT COUNT(DISTINCT a.stu_id) AS student_count FROM attendence a JOIN takes t ON a.stu_id = t.ID AND a.course_id = ?;";
         double att = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
@@ -1043,13 +1044,13 @@ return -1;
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
         return att;
     }
 
     public Double getAllStuCourse(String id) {
-        String SQL = "SELECT COUNT(*)  FROM takes  WHERE course_id IN (SELECT course_id FROM lecture WHERE id = ? );";
+        String SQL = "SELECT COUNT(*)  FROM takes  WHERE course_id =?;";
         double stuCourse = 0.0;
         try (PreparedStatement pstmt = con.prepareStatement(SQL)) {
             pstmt.setString(1, id);
