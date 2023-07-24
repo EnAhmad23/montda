@@ -2,6 +2,7 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.Absents;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Transport;
 import javafx.collections.FXCollections;
@@ -9,22 +10,27 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Transportation implements Initializable {
@@ -93,7 +99,64 @@ public class Transportation implements Initializable {
             view(dm.getTransport(months.getValue()));
         }
     }
+    public void export() {
+        try {
+            Stage stage = new Stage();
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File directory = directoryChooser.showDialog(stage);
+            if (directory != null) {
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("File Name");
+                dialog.setHeaderText("Enter the file name:");
+                dialog.setContentText("File Name:");
 
+                Optional<String> result = dialog.showAndWait();
+                if (result.isPresent()) {
+                    String fileName = result.get();
+                    String path = directory.getAbsolutePath() + "/" + fileName + ".xls";
+
+                    try {
+                        WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
+                        WritableSheet sheet = workbook.createSheet("Sheet1", 0);
+
+                        // Write column headers
+                        sheet.addCell(new jxl.write.Label(0, 0, "Student ID"));
+                        sheet.addCell(new jxl.write.Label(1, 0, "Student Name"));
+                        sheet.addCell(new jxl.write.Label(3, 0, "Value in day"));
+                        sheet.addCell(new jxl.write.Label(4, 0, "Hours required daily"));
+                        sheet.addCell(new jxl.write.Label(5, 0, "Expense"));
+                        sheet.addCell(new jxl.write.Label(6, 0, "Transportation month"));
+                        sheet.addCell(new jxl.write.Label(7, 0, "Days of attendance"));
+
+                        // Write table data
+                        ObservableList<Transport> data = table.getItems();
+                        for (int i = 0; i < data.size(); i++) {
+                            Transport transport = data.get(i);
+                            sheet.addCell(new jxl.write.Label(0, i + 1, transport.getId()));
+                            sheet.addCell(new jxl.write.Label(1, i + 1, transport.getName()));
+                            sheet.addCell(new jxl.write.Label(3, i + 1, transport.getValue_day()+""));
+                            sheet.addCell(new jxl.write.Label(4, i + 1, transport.getH_required()+""));
+                            sheet.addCell(new jxl.write.Label(5, i + 1, transport.getExpense()+""));
+                            sheet.addCell(new jxl.write.Label(6, i + 1, transport.getTra_month()+""));
+                            sheet.addCell(new jxl.write.Label(7, i + 1, transport.getNum_att()+""));
+
+
+                        }
+
+                        workbook.write();
+                        workbook.close();
+                        nav.message("File created successfully at: " + path);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    nav.error_message("No file name entered.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void view(ArrayList<Transport> transports) {
         stu_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         value_day.setCellValueFactory(new PropertyValueFactory<>("value_day"));
