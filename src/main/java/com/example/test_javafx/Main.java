@@ -1,6 +1,5 @@
 package com.example.test_javafx;
 
-
 import com.example.test_javafx.models.DBModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         DBModel dm=DBModel.getModel();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/start.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Montda");
 //        stage.setOnCloseRequest(event -> {
