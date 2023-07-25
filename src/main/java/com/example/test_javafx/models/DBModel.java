@@ -850,12 +850,54 @@ return -1;
         }
 
     }
+
+    public ArrayList<Transport> getTransport(String id, LocalDate month) {
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
+                "FROM students AS s\n" +
+                " JOIN transportation AS t ON s.id = t.s_id \n" +
+                "where extract(YEAR FROM t.months)  = ? and extract(MONTH FROM t.months) =? and s.id=?;\n";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setInt(1, month.getYear());
+            st.setInt(2, month.getMonthValue());
+            st.setString(3, id);
+            ArrayList<Transport> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getDouble(7), rs.getInt(8), rs.getDate(9)));
+            return ids;
+        } catch (SQLException ex) {
+
+            System.err.println(ex);
+            return null;
+        }
+
+    }
+
     public ArrayList<Transport> getTransport() {
         String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
                 "FROM students AS s\n" +
                 " JOIN transportation AS t ON s.id = t.s_id ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
 
+            ArrayList<Transport> ids = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                ids.add(new Transport(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getDouble(7), rs.getInt(8), rs.getDate(9)));
+            return ids;
+        } catch (SQLException ex) {
+
+            System.err.println(ex);
+            return null;
+        }
+
+    }
+
+    public ArrayList<Transport> getTransport(String id) {
+        String sql = "SELECT s.id AS student_id, s.name AS student_name, t.*\n" +
+                "FROM students AS s\n" +
+                " JOIN transportation AS t ON s.id = t.s_id  where s.id=?;";
+        try (PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, id);
             ArrayList<Transport> ids = new ArrayList<>();
             ResultSet rs = st.executeQuery();
             while (rs.next())
@@ -1024,6 +1066,7 @@ return -1;
             while (rs.next()) {
                 // id = rs.getString(2);
                 double precent = (getStu_Atten_Course(rs.getString(2), id) / getCourseLectures(rs.getString(2))) * 100;
+                precent=(precent>=0)?precent:-1;
                 ids.add(new StudentReport(id, rs.getString(1), rs.getString(2), precent));
             }
             return ids;
@@ -1220,12 +1263,21 @@ return -1;
     }
 
     public ArrayList<Absents> getAbsents() {
-        String sql = "SELECT  s.id AS student_id, s.name AS student_name, t.course_id,\n" +
-                "    (COUNT(a.course_id) / (SELECT COUNT(*) FROM attendence WHERE course_id = t.course_id)) AS attendance_percentage\n" +
-                "FROM  students s JOIN   takes t ON s.id = t.ID\n" +
-                "LEFT JOIN   attendence a ON s.id = a.stu_id AND t.course_id = a.course_id\n" +
-                "GROUP BY   s.id, s.name, t.course_id\n" +
-                "HAVING  (COUNT(a.course_id) / (SELECT COUNT(*) FROM attendence WHERE course_id = t.course_id)) <= 0.25;";
+        String sql = "SELECT\n" +
+                "    s.id AS student_id,\n" +
+                "    s.name AS student_name,\n" +
+                "    t.course_id,\n" +
+                "    COUNT(a.course_id) * 100.0 / NULLIF((SELECT COUNT(*) FROM attendence WHERE course_id = t.course_id), 0) AS attendance_percentage\n" +
+                "FROM\n" +
+                "    students s\n" +
+                "JOIN\n" +
+                "    takes t ON s.id = t.ID\n" +
+                "LEFT JOIN\n" +
+                "    attendence a ON s.id = a.stu_id AND t.course_id = a.course_id\n" +
+                "GROUP BY\n" +
+                "    s.id, s.name, t.course_id\n" +
+                "HAVING\n" +
+                "    COUNT(a.course_id) * 100.0 / NULLIF((SELECT COUNT(*) FROM attendence WHERE course_id = t.course_id), 0) <= 25.0;\n";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<Absents> absents = new ArrayList<>();
             ResultSet rs = st.executeQuery();
@@ -1235,7 +1287,7 @@ return -1;
             return absents;
         } catch (SQLException ex) {
 
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
             return null;
         }
 

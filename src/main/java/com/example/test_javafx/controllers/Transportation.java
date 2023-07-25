@@ -2,7 +2,6 @@ package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
-import com.example.test_javafx.models.Absents;
 import com.example.test_javafx.models.DBModel;
 import com.example.test_javafx.models.Transport;
 import javafx.collections.FXCollections;
@@ -19,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import jxl.Workbook;
-import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -27,7 +25,6 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -95,9 +92,11 @@ public class Transportation implements Initializable {
     }
 
     public void searchAttendance() {
-        if(dm.checkStudentID(t_id.getText())&&months.getValue()!=null) {
-            view(dm.getTransport(months.getValue()));
+        if (dm.checkStudentID(t_id.getText()) && months.getValue() != null) {
+            view(dm.getTransport(t_id.getText(), months.getValue()));
         }
+
+        if(dm.checkCourseID(t_id.getText())&&months.getValue()==null) view(dm.getTransport(t_id.getText()));
     }
     public void export() {
         try {
