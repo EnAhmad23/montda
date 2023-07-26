@@ -72,7 +72,7 @@ public class Transport {
     }
 
     public double getTra_month() {
-        tra_month= value_day*num_att;
+        tra_month= value_day*num_att+expense;
         return tra_month;
     }
 
