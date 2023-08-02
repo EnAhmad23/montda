@@ -62,11 +62,7 @@ public class DBModel {
 //                    restoreDatabase("backups/");
                 }
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (SQLException e) {
+            } catch (IOException | SQLException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         } catch (SQLException ex) {
@@ -88,9 +84,7 @@ public class DBModel {
                     System.out.println("Database created successfully.");
                 } catch (SQLException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (InterruptedException e) {
+                } catch (IOException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
 

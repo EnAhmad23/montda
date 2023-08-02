@@ -213,6 +213,7 @@ COPY public.attendence (stu_id, course_id, date) FROM stdin;
 COPY public.course (course_id, name, room, monad_major, "time", houres) FROM stdin;
 147	000	000	000	01:00:00	2
 123	qwe	adsa	dsaf	02:00:00	3
+111	jfdj	22	bvcb	04:20:00	\N
 \.
 
 
@@ -271,7 +272,7 @@ COPY public.teacher (id, name) FROM stdin;
 --
 
 COPY public.transportation (s_id, value_day, hours_required_daily, expense, transportation_month, days_of_attendance, months) FROM stdin;
-123  	2	2	20	0	1	2023-07-23
+123  	2	2	20	0	2	2023-07-23
 \.
 
 
