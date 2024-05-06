@@ -152,19 +152,19 @@ public class DBModel {
     }
 
 
-    private void closeEverything() {
-        try {
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void closeEverything() {
+//        try {
+//            con.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
-    public void exit() {
-        closeEverything();
-        System.out.println("Exiting... \nBye!");
-        System.exit(0);
-    }
+//    public void exit() {
+//        closeEverything();
+//        System.out.println("Exiting... \nBye!");
+//        System.exit(0);
+//    }
 
     public boolean checkStudentID(String id) {
         String sql = "SELECT EXISTS (SELECT 1 FROM students WHERE id = ?);";
@@ -246,6 +246,23 @@ public class DBModel {
                 //  System.out.println(rs.getString(1));
             }
             return ids;
+        } catch (SQLException ex) {
+
+            Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+    public ArrayList<Course> getCourse(String course_id) {
+        String sql = "select * from course where course_id=?;";
+        ArrayList<Course> course = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(sql)
+        ) {
+            st.setString(1,course_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+                course.add(new Course(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+            return course ;
         } catch (SQLException ex) {
 
             Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -408,11 +425,12 @@ return -1;
     }
 
     public ArrayList<Attendences> searchAttendence(String stu_id, String course_id) {
-        String sql = "SELECT s.id, s.name,  l.course_id,l.name, a.date \n" +
-                "FROM students s \n" +
-                "JOIN attendence a ON s.id = a.stu_id \n" +
-                "JOIN course l ON a.course_id = l.course_id \n" +
-                "WHERE s.id = ? AND l.course_id = ?;";
+        String sql = """
+                SELECT s.id, s.name,  l.course_id,l.name, a.date\s
+                FROM students s\s
+                JOIN attendence a ON s.id = a.stu_id\s
+                JOIN course l ON a.course_id = l.course_id\s
+                WHERE s.id = ? AND l.course_id = ?;""";
 
         try (PreparedStatement st = con.prepareStatement(sql)) {
             ArrayList<Attendences> attendences = new ArrayList<>();
@@ -446,14 +464,14 @@ return -1;
         }
     }
 
-    public String getStdName(String id) {
-        String sql = "select name from students where id = ? ;";
+    public Student getStd(String id) {
+        String sql = "select * from students where id = ? ;";
         try (PreparedStatement st = con.prepareStatement(sql)) {
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                System.out.println(rs.getString(1));
-                return rs.getString(1);
+            while (rs.next()) {
+
+                return new  Student(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
             }
             return null;
         } catch (SQLException ex) {

@@ -3,6 +3,7 @@ package com.example.test_javafx.controllers;
 import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.Transport;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,9 +31,10 @@ public class UpdateTran implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id.setText(DataBus.data.get(0));
         id.setEditable(false);
-        value.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
-        h_required.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
-        expense.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
+        Transport  transport= dm.getTransport(id.getText()).get(0);
+        value.setText((transport != null)? String.valueOf(transport.getValue_day()) :"");
+        h_required.setText((transport != null)? String.valueOf(transport.getH_required()) :"");
+        expense.setText((transport != null)? String.valueOf(transport.getExpense()) :"");
     }
 
     public void update() {

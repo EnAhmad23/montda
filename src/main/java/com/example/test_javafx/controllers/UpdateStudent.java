@@ -3,6 +3,7 @@ package com.example.test_javafx.controllers;
 import com.example.test_javafx.DataBus;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.DBModel;
+import com.example.test_javafx.models.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -81,12 +82,15 @@ public class UpdateStudent implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         id.setText(DataBus.data.get(0));
-        name.setText((DataBus.data.size()>1)?DataBus.data.get(1):"");
-        place.setText((DataBus.data.size()>2)?DataBus.data.get(2):"");
-        montda_majer.setText((DataBus.data.size()>3)?DataBus.data.get(3):"");
-        uni_major.setText((DataBus.data.size()>4)?DataBus.data.get(4):"");
-        path.setText((DataBus.data.size()>5)?DataBus.data.get(5):"");
         id.setEditable(false);
+        Student student = dm.getStd(id.getText());
+        name.setText((student!=null)?student.getName():"");
+        place.setText((student!=null)?student.getPlace():"");
+        montda_majer.setText((student!=null)?student.getMonadMajor():"");
+        uni_major.setText((student!=null)?student.getUniMajor():"");
+        path.setText((student!=null)?student.getPath():"");
+
         level.getItems().addAll(genders);
+
     }
 }

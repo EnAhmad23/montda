@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
@@ -70,6 +71,7 @@ public class Navigation {
 //        }
         try {
             Stage stage =new Stage();
+
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
 //            currentPath = path ;
 //            rootPane.getScene().setRoot(root);
@@ -102,6 +104,8 @@ public class Navigation {
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load());
+
+//            scene = dialogPane.getScene();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
